@@ -62,6 +62,16 @@ class NotiTVC: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    @IBAction func unwindToNOTI(){
+        self.notis.removeAll()
+        
+        self.queryNotiis()
+    }
+    
+    
+    
 
     // MARK: - Table view data source
 
@@ -110,11 +120,18 @@ class NotiTVC: UITableViewController {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell : NotiCell1 = tableView.cellForRowAtIndexPath(indexPath) as! NotiCell1
+
+        cell.backgroundColor = UIColor(red: 242/255, green:  244/255, blue:  250/255, alpha: 1)
+        
+        cell.changeColor()
+        
         if self.notis[indexPath.row].NotiID != nil{
             self.recievedN(self.notis[indexPath.row].NotiID!)
         }
             if notis[indexPath.row].theType == "DapAnswer"{
                 if notis[indexPath.row].theDType == "PAnswer"{
+                    
                     self.thepic = notis[indexPath.row].cachedIMGp
                     if self.thepic != nil{
                         performSegueWithIdentifier("PAnswered", sender: self)
@@ -757,6 +774,8 @@ class NotiTVC: UITableViewController {
                 vc.theAnswer = self.notis[row!].theAnswer!
             }
             vc.theAnswerID = self.notis[row!].theAnswerID!
+//            self.queryNotiis()
+
         }
         
         if segue.identifier == "PAnswered"{
@@ -769,6 +788,8 @@ class NotiTVC: UITableViewController {
             vc.theQ = self.notis[row!].theQuestion
             vc.chit = "seggy"
             vc.theAnswerID = self.notis[row!].theAnswerID!
+//            self.queryNotiis()
+
 
         }
         if segue.identifier == "NewLesson"{
@@ -777,13 +798,15 @@ class NotiTVC: UITableViewController {
             vc.theTeachername = self.notis[row!].theTeacher!
             vc.theClassname = self.notis[row!].theClass!
             vc.theAssignment = self.notis[row!].theLesson!
+//            self.queryNotiis()
+
         }
         if segue.identifier == "SeeAnswer"{
             print("SeeAnswer")
             let vc : AnswersTableViewController = segue.destinationViewController as! AnswersTableViewController
             
             vc.SeeAnswer = self.notis[row!].QuestionID
-//            vc.queryAnswers()
+//            self.queryNotiis()
         }
 
     }
