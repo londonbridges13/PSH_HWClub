@@ -38,9 +38,17 @@ class HomeTVC: UITableViewController {
     var nextpage = 0
     var proppie : PFFile?
     
+    
+    var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        dispatch_async(queue) { () -> Void in
+//            self.UpdateProPIC()
+//        }
+        
         LoadingDesign()
         let cUser = PFUser.currentUser()
         print(cUser?.objectId!)
@@ -818,8 +826,12 @@ class HomeTVC: UITableViewController {
                     let pp = first["profilePic"] as? PFFile
                     
                     if pp != nil{
+                        print("Grabbed the ProfilePic")
                         //self.getPic(pp!)
                         self.proppie = pp!
+                        dispatch_async(self.queue) { () -> Void in
+                            self.UpdateProPIC()
+                        }
                         print(pp)
                     }else{
                         print("noIMG")
@@ -865,6 +877,80 @@ class HomeTVC: UITableViewController {
     }
     */
 
+    
+    
+    
+    
+    
+    func UpdateProPIC(){
+        print("Starting the back updates")
+        dispatch_async(queue) { () -> Void in
+            
+        let ll = PFQuery(className: "Answers")
+        
+        ll.whereKey("usernameID", equalTo: self.cUser!.objectId!)
+        
+        ll.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+            if error == nil{
+                if let results = results as [PFObject]?{
+                    for result in results{
+                        print("CHANGING1")
+                        result["profilePic"] = self.proppie!
+                        result["username"] = self.cUser!.username!
+                        result.saveInBackground()
+                    }
+                }
+            }
+        }
+        
+        
+        let cc = PFQuery(className: "Comment")
+        
+        cc.whereKey("CommentUserID", equalTo: self.cUser!.objectId!)
+        
+        cc.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+            if error == nil{
+                if let results = results as [PFObject]?{
+                    for result in results{
+                        print("CHANGING2")
+                        result["profilePic"] = self.proppie!
+                        print(result["CommenterUserName"])
+                        result["CommenterUserName"] = self.cUser!.username!
+                        result.saveInBackground()
+                    }
+                }
+            }
+        }
+        
+        
+        
+        let qq = PFQuery(className: "Questions")
+        
+        qq.whereKey("usernameID", equalTo: self.cUser!.objectId!)
+        
+        qq.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+            if error == nil{
+                if let results = results as [PFObject]?{
+                    for result in results{
+                        print("CHANGING3")
+                        print(result["username"])
+                        result["username"] = self.cUser!.username!
+                        result.saveInBackground()
+                    }
+                }
+            }
+        }
+        
+        
+                }
+
+    }
+    
+    
+    
+    
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
