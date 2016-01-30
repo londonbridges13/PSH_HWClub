@@ -43,7 +43,7 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
         }else{
             self.answerQuery()
 //            wacthIT()
-//            commentsQuery()
+            commentsQuery()
             tableView.reloadData()
             tableView.estimatedRowHeight = 146.0
             tableView.rowHeight = UITableViewAutomaticDimension
@@ -165,9 +165,11 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let vc : AddCommentVC = segue.destinationViewController as! AddCommentVC
         
-        vc.AnswerProviderID = self.theAnswerID!
-        vc.AnswerID = self.theAnswer!
+        vc.AnswerProviderID = self.AnswerProviderID!
+        vc.AnswerID = self.theAnswerID!
         vc.theSay = "AnswerComment"
+        vc.seggyCheck = "VATVC"
+
     }
 
     
@@ -206,6 +208,11 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
 
     
     
+    @IBAction func unwindCommentSeggyVATVC(segue: UIStoryboardSegue){
+        answerQuery()
+    }
+    
+    
     func wacthIT(){
         _ = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: Selector("sayHello"), userInfo: nil, repeats: true)
 
@@ -217,6 +224,12 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
     }
     
     func answerQuery(){
+        commys.removeAll()
+        theDappers.removeAll()
+        commentsArray.removeAll()
+        commyDATES.removeAll()
+        
+        
         let cQ = PFQuery(className: "Answers")
         cQ.whereKey("objectId", equalTo: self.theAnswerID!)
         cQ.findObjectsInBackgroundWithBlock { (comments:[PFObject]?, error:NSError?) -> Void in

@@ -18,6 +18,10 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     @IBOutlet var BackToAButton: UIButton!
     
     
+    var longA : String?
+    var shortA : String?
+
+    
     
     var QuestionID : String?
     var QuestionerID : String?
@@ -141,19 +145,26 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
  
             if shortAnswerTX.text == nil{
                 shortAnswerTX.text = answerTXT.text
-            }
-            if shortAnswerTX.text == ""{
+                self.shortA = answerTXT.text
+            }else if shortAnswerTX.text == ""{
                 shortAnswerTX.text = answerTXT.text
-            }
-            if answerTXT.text == "Full Answer"{
-                print("Full House")
-                answerTXT.text = shortAnswerTX.text
-            }
-            if answerTXT.text == ""{
-                print("Full House")
-                answerTXT.text = shortAnswerTX.text
+                self.shortA = answerTXT.text
+            }else if shortAnswerTX.text != ""{
+                self.shortA = shortAnswerTX.text
             }
             
+            if answerTXT.text.characters.count < 3{// == "Full Answer"{
+                print("Full House")
+                answerTXT.text = shortAnswerTX.text
+                longA = shortAnswerTX.text
+            }else if answerTXT.text == "Full Answer"{
+                print("Full House")
+                answerTXT.text = shortAnswerTX.text
+                longA = shortAnswerTX.text
+            }else{
+                self.longA = answerTXT.text
+            }
+
             
             if ImgView.image != nil{
                 // set photo = to sentIMG
@@ -181,34 +192,46 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         answerTXT.endEditing(true)
         shortAnswerTX.endEditing(true)
         sendAnswers()
-        
-        if txt == nil{
-            if sentIMG == nil{
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            //put your code which should be executed with a delay here
+            
+            
+        if self.txt == nil{
+            if self.sentIMG == nil{
                 self.shouldSend = false
             }
         }
         
-        if shouldSend != false{
+        if self.shouldSend != false{
         
-        if self.QuestionerID != cUser!.objectId!{
+        if self.QuestionerID != self.cUser!.objectId!{
             
                 print("I AM")
 
         let answer = PFObject(className: "Answers")
-        answer["Answer"] = self.answerTXT.text!
-        answer["hasAnImage"] = sendingIMG!
-            answer["username"] = klkl?.username!
-            answer["shortAnswer"] = self.shortAnswerTX.text!
+            if self.longA != nil{
+                answer["Answer"] = self.longA //self.answerTXT.text!
+            }else{
+                answer["Answer"] = self.shortA//self.answerTXT.text!
+            }
+            answer["hasAnImage"] = self.sendingIMG!
+            answer["username"] = self.klkl?.username!
+            if self.shortA != nil{
+                answer["shortAnswer"] = self.shortA!//self.shortAnswerTX.text!
+            }else{
+                answer["shortAnswer"] = self.longA!//self.shortAnswerTX.text!
+            }
             answer["numOfDaps"] = 0
             answer["QuestionID"] = self.QuestionID
-            answer["usernameID"] = klkl?.objectId!
+            answer["usernameID"] = self.klkl?.objectId!
             answer["profilePic"] = self.proppie!
             answer["Question"] = self.theQuestion!
             answer["classname"] = self.theClass
 
         print("passed 1")
-        if sendingIMG == true{
-            let iData = UIImagePNGRepresentation(sentIMG!)
+        if self.sendingIMG == true{
+            let iData = UIImagePNGRepresentation(self.sentIMG!)
             let aFile = PFFile(data: iData!)
             answer["AnswerImage"] = aFile
         }else{
@@ -250,19 +273,20 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
                 print("I AM NOT")
                 let answer = PFObject(className: "Answers")
                 answer["Answer"] = self.answerTXT.text!
-                answer["hasAnImage"] = sendingIMG!
-                answer["username"] = klkl?.username!
+                answer["hasAnImage"] = self.sendingIMG!
+                answer["username"] = self.klkl?.username!
                 answer["shortAnswer"] = self.shortAnswerTX.text!
-                answer["numOfDaps"] = 0
+          
+            answer["numOfDaps"] = 0
                 answer["QuestionID"] = self.QuestionID
-                answer["usernameID"] = klkl?.objectId!
+                answer["usernameID"] = self.klkl?.objectId!
                 answer["profilePic"] = self.proppie!
                 answer["Question"] = self.theQuestion!
                 answer["classname"] = self.theClass
                 //ISSUE: Parse says Null value somewhere in here
                 print("passed 1")
-                if sendingIMG == true{
-                    let iData = UIImagePNGRepresentation(sentIMG!)
+                if self.sendingIMG == true{
+                    let iData = UIImagePNGRepresentation(self.sentIMG!)
                     let aFile = PFFile(data: iData!)
                     answer["AnswerImage"] = aFile
                 }else{
@@ -304,6 +328,9 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             }
 
     }
+        
+        }
+
     }
     
     

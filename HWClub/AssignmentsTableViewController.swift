@@ -354,7 +354,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
             if AssignmentsArray.count != 0{
             cell.assignmentName.text = "\(AssignmentsArray[indexPath.row])"
 //            cell.numOfQ.text = "  \(numQuArray[indexPath.row]) Questions"
-            cell.date.text = dts(createDateArray[indexPath.row])//"\(createDateArray[indexPath.row])"
+            cell.date.text = "Created: \(dts(createDateArray[indexPath.row]))"//"\(createDateArray[indexPath.row])"
             
             tableView.rowHeight = 101
             }else{

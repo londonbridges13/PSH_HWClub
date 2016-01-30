@@ -1418,9 +1418,12 @@
                     <connections>
                         <outlet property="commentTV" destination="osB-dF-Opw" id="fZf-b0-ZVG"/>
                         <outlet property="dr" destination="4N9-cS-NxR" id="d3Q-dX-2pd"/>
+                        <outlet property="unWPATVC" destination="Lh6-L1-arZ" id="4MT-Yy-Fhg"/>
+                        <outlet property="unWVATVC" destination="iyC-9Y-grw" id="Ke9-JL-kUb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mob-u0-0Ep" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aie-8s-mD5" userLabel="Exit" sceneMemberID="exit"/>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4N9-cS-NxR">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1428,6 +1431,22 @@
                     <state key="normal" title="DonerReal"/>
                     <connections>
                         <action selector="doIT:" destination="o5v-IY-Ts6" eventType="touchUpInside" id="OTv-UI-WWJ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Lh6-L1-arZ">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="unW-PATVC"/>
+                    <connections>
+                        <segue destination="aie-8s-mD5" kind="unwind" unwindAction="unwindCommentSegueVPATVC:" id="IIR-Jg-wRn"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iyC-9Y-grw">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="unW-VATVC"/>
+                    <connections>
+                        <segue destination="aie-8s-mD5" kind="unwind" unwindAction="unwindCommentSeggyVATVC:" id="GSs-mr-Zft"/>
                     </connections>
                 </button>
             </objects>
@@ -6108,11 +6127,11 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sep 27, 2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrq-uT-lvL">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Created: Sep 27, 2015" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrq-uT-lvL">
                                             <rect key="frame" x="280" y="0.0" width="95" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="95" id="0ND-ui-5Ed"/>
-                                                <constraint firstAttribute="width" constant="95" id="PQZ-ip-JAP"/>
+                                                <constraint firstAttribute="width" constant="359" id="PQZ-ip-JAP"/>
                                                 <constraint firstAttribute="height" constant="21" id="wjx-Uo-Ngg"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -6141,6 +6160,7 @@
                                         <constraint firstItem="Bak-DN-u4b" firstAttribute="centerX" secondItem="1lM-Rx-uuS" secondAttribute="centerX" id="GXl-4i-KW6"/>
                                         <constraint firstItem="Fw4-af-8ev" firstAttribute="top" secondItem="Bak-DN-u4b" secondAttribute="bottom" constant="8" id="NQw-Ob-6j2"/>
                                         <constraint firstItem="Bak-DN-u4b" firstAttribute="centerY" secondItem="1lM-Rx-uuS" secondAttribute="centerY" id="PyK-ii-IFO"/>
+                                        <constraint firstItem="hrq-uT-lvL" firstAttribute="trailing" secondItem="1lM-Rx-uuS" secondAttribute="trailingMargin" id="R4u-1f-kIa"/>
                                         <constraint firstAttribute="trailing" secondItem="hrq-uT-lvL" secondAttribute="trailing" id="RHP-CD-uxh"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Bak-DN-u4b" secondAttribute="trailing" constant="9" id="Rv8-z4-YCY"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="hrq-uT-lvL" secondAttribute="bottom" constant="-8" id="Wui-13-auf"/>
@@ -6160,6 +6180,7 @@
                                             <exclude reference="z2t-bj-jtJ"/>
                                             <exclude reference="NQw-Ob-6j2"/>
                                             <exclude reference="z8L-GL-afG"/>
+                                            <exclude reference="R4u-1f-kIa"/>
                                             <exclude reference="Wui-13-auf"/>
                                             <exclude reference="Ygv-II-sYg"/>
                                             <exclude reference="eEq-a3-Q7e"/>
@@ -6179,12 +6200,13 @@
                                             <exclude reference="bEQ-qQ-jq2"/>
                                             <exclude reference="ksZ-ck-wH8"/>
                                             <include reference="z8L-GL-afG"/>
+                                            <include reference="R4u-1f-kIa"/>
                                             <exclude reference="RHP-CD-uxh"/>
                                             <include reference="Wui-13-auf"/>
                                             <exclude reference="Y3E-WJ-deQ"/>
                                             <include reference="Ygv-II-sYg"/>
-                                            <include reference="eEq-a3-Q7e"/>
-                                            <include reference="jIp-wp-LT3"/>
+                                            <exclude reference="eEq-a3-Q7e"/>
+                                            <exclude reference="jIp-wp-LT3"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>

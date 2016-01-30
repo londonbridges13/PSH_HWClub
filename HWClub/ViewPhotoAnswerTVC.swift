@@ -14,6 +14,8 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
     @IBOutlet var tableview: UITableView!
     @IBOutlet var UNWans : UIButton!
 
+    
+    
     var qS : [Int] = [0,1,2,3,4,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,55,4,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,55,4,4,55,5,5,5,5,5,55]
     var theDappers = [String]()
     var chit : String?
@@ -79,7 +81,7 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
     }
 
     @IBAction func unwindCommentSegueVPATVC(segue: UIStoryboardSegue){
-        
+        answerQuery()   
     }
     // MARK: - Table view data source
 
@@ -226,7 +228,7 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
             vc.AnswerProviderID = self.AnswerProviderID
             vc.AnswerID = self.theAnswerID!
             vc.theSay = "PAnswerComment"
-
+            vc.seggyCheck = "PATVC"
         }else if segue.identifier == "fifer"{
             let vc : AnswersTableViewController = segue.destinationViewController as! AnswersTableViewController
             
@@ -326,6 +328,13 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
     
     
     func answerQuery(){
+        
+        commys.removeAll()
+        theDappers.removeAll()
+        commentsArray.removeAll()
+        commyDATES.removeAll()
+        
+        
         let cQ = PFQuery(className: "Answers")
         cQ.whereKey("objectId", equalTo: self.theAnswerID!)
         cQ.findObjectsInBackgroundWithBlock { (comments:[PFObject]?, error:NSError?) -> Void in

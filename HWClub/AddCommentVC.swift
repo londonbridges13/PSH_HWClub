@@ -12,6 +12,10 @@ import Parse
 
 class AddCommentVC: UIViewController, UITextViewDelegate {
 
+    @IBOutlet var unWPATVC: UIButton!
+    
+    @IBOutlet var unWVATVC: UIButton!
+    
     @IBOutlet var commentTV: UITextView!
     @IBOutlet var dr: UIButton!
     
@@ -23,6 +27,9 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
     var AnswerProviderID : String?
     var propy : UIImage?
     var proppie : PFFile?
+    
+    
+    var seggyCheck : String?
     
     
     let queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
@@ -75,8 +82,23 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
     }
     
     func itt(){
-        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
-        self.presentingViewController?.viewDidLoad()
+
+        // RIGHT HERE UNWIND SEGGY
+        
+        if seggyCheck == "PATVC"{
+            print("PATVC")
+            
+            self.unWPATVC.sendActionsForControlEvents(.TouchUpInside)
+        }else if seggyCheck == "VATVC"{
+            print("VATVC")
+
+            self.unWVATVC.sendActionsForControlEvents(.TouchUpInside)
+        }else{
+            print("OtherUNWINDER")
+
+            self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+            self.presentingViewController?.viewDidLoad()
+        }
     }
     
     

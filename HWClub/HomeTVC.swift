@@ -907,7 +907,7 @@ class HomeTVC: UITableViewController {
                 vc.theAnswer = self.hPosts[row!].theAnswer!
             }
             vc.derp = "not nil"
-            vc.theAnswerID = self.hPosts[row!].theAnswerID
+            vc.theAnswerID = self.hPosts[row!].theAnswerID!
         }
         if segue.identifier == "homeToAnswer"{
             // Send AnswerID Over
@@ -917,7 +917,9 @@ class HomeTVC: UITableViewController {
             
             let row = tableView.indexPathForSelectedRow?.row
 
-            
+            if self.hPosts[row!].theClass != nil{
+                vc.theClass = self.hPosts[row!].theClass!
+            }
             if self.proppie != nil{
                 vc.proppie = self.proppie!
             }
