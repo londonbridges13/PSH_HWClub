@@ -2435,7 +2435,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="88"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dbSWORD" translatesAutoresizingMaskIntoConstraints="NO" id="rye-yI-lFW">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dbSWORD" translatesAutoresizingMaskIntoConstraints="NO" id="rye-yI-lFW">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="45" id="PJi-Cq-Oxt"/>
@@ -10408,18 +10408,18 @@
         <image name="yellowlockerroom" width="375" height="109"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eeu-Jh-8Tk"/>
-        <segue reference="PsB-1a-q3Q"/>
-        <segue reference="q3A-tV-ccu"/>
+        <segue reference="Xdp-1r-1Wm"/>
         <segue reference="LIq-Rx-h94"/>
         <segue reference="NpO-ab-Ojt"/>
+        <segue reference="q3A-tV-ccu"/>
+        <segue reference="PsB-1a-q3Q"/>
+        <segue reference="eeu-Jh-8Tk"/>
         <segue reference="UGY-pk-WNj"/>
-        <segue reference="hex-re-RoU"/>
-        <segue reference="55X-N6-9aw"/>
-        <segue reference="fGt-O5-wsb"/>
-        <segue reference="mAc-b4-gfm"/>
-        <segue reference="Wct-MS-k77"/>
-        <segue reference="Zp4-lH-dH6"/>
+        <segue reference="w6n-Hz-L1r"/>
+        <segue reference="uYv-zz-zdl"/>
+        <segue reference="tU6-QY-Fw0"/>
         <segue reference="Bfq-68-nt3"/>
+        <segue reference="Zp4-lH-dH6"/>
+        <segue reference="Wct-MS-k77"/>
     </inferredMetricsTieBreakers>
 </document>

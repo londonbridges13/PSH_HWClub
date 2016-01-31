@@ -55,6 +55,7 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
 
         profilePictureButton.layer.cornerRadius = 33
         profilePictureButton.layer.masksToBounds = true
+        self.profilePictureButton.imageView?.contentMode = .ScaleAspectFill
         profilePictureButton.layer.borderWidth = 2
         profilePictureButton.layer.borderColor = UIColor.whiteColor().CGColor
         
@@ -303,6 +304,7 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         sentIMG = info[UIImagePickerControllerOriginalImage] as? UIImage
         
+        let imga = sentIMG!
         
         //let img = sentIMG!.resize(0.1)
         let iimg = UIImageJPEGRepresentation(sentIMG!, 0.1)
@@ -313,8 +315,9 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
         picToParse(img)
         let maniiy = dispatch_get_main_queue()
         dispatch_async(maniiy) { () -> Void in
-        self.profilePictureButton.setImage(img, forState: .Normal)
-        self.profilePictureButton.imageView?.image = img
+        self.profilePictureButton.setImage(imga, forState: .Normal)
+        self.profilePictureButton.imageView?.image = imga
+        self.profilePictureButton.imageView?.contentMode = .ScaleAspectFill
         self.profilePictureButton.layer.cornerRadius = 33
         self.profilePictureButton.layer.masksToBounds = true
         self.profilePictureButton.layer.borderWidth = 2
@@ -341,6 +344,8 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         sentIMG = image.resize(0.1)
       
+        let imga = image
+
 //        let img = sentIMG!.resize(0.1)
         let iimg = UIImageJPEGRepresentation(sentIMG!, 0.1)
         let img = UIImage(data: iimg!)!
@@ -351,8 +356,9 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
         //ImgView.image = sentIMG!
         let maniiy = dispatch_get_main_queue()
         dispatch_async(maniiy) { () -> Void in
-        self.profilePictureButton.setImage(img, forState: .Normal)
-        self.profilePictureButton.imageView?.image = img
+        self.profilePictureButton.setImage(imga, forState: .Normal)
+        self.profilePictureButton.imageView?.image = imga
+        self.profilePictureButton.imageView?.contentMode = .ScaleAspectFill
         self.profilePictureButton.layer.cornerRadius = 31
         self.profilePictureButton.layer.masksToBounds = true
         self.profilePictureButton.layer.borderWidth = 2
@@ -448,7 +454,7 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
 extension UIImage {
     func resize(scale:CGFloat)-> UIImage {
         let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: size.width*scale, height: size.height*scale)))
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        imageView.contentMode = UIViewContentMode.ScaleAspectFill//ScaleAspectFit
         imageView.image = self
         UIGraphicsBeginImageContext(imageView.bounds.size)
         imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
