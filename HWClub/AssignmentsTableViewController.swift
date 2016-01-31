@@ -355,16 +355,18 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
             cell.assignmentName.text = "\(AssignmentsArray[indexPath.row])"
 //            cell.numOfQ.text = "  \(numQuArray[indexPath.row]) Questions"
             cell.date.text = "Created: \(dts(createDateArray[indexPath.row]))"//"\(createDateArray[indexPath.row])"
-            
+                cell.date.alpha = 1
             tableView.rowHeight = 101
             }else{
                 if indexPath.row == 0{
                     tableView.rowHeight = 101
                     cell.assignmentName.text = "Welcome to your New Class" //"This is where all Topics / Lessons are Posted"
+                    cell.date.alpha = 0
                 }
                 if indexPath.row == 1{
                     tableView.rowHeight = UITableViewAutomaticDimension
                     tableView.estimatedRowHeight = 101
+                    cell.date.alpha = 0
                     cell.assignmentName.text = "This is where all Topics / Lessons are Posted"
                 }
             }
