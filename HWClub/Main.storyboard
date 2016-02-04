@@ -2591,6 +2591,7 @@
                             </state>
                         </button>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="menuButton" destination="c6m-Fk-hHe" id="zAL-fW-k2h"/>
                         <segue destination="SiB-Ua-jtu" kind="show" identifier="NewLesson" id="uYv-zz-zdl"/>
@@ -3605,6 +3606,9 @@
                                             <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="24"/>
                                             <color key="textColor" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="86" y="25" width="203" height="93"/>
+                                            </variation>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkz-oa-J7F">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -3622,7 +3626,8 @@
                                                     <exclude reference="imO-FH-GbI"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="137" y="126" width="102" height="32"/>
                                                 <mask key="constraints">
                                                     <include reference="8Hp-0w-b5J"/>
                                                     <include reference="imO-FH-GbI"/>
@@ -3696,7 +3701,7 @@
                         </button>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="900"/>
+                    <size key="freeformSize" width="414" height="900"/>
                     <connections>
                         <outlet property="menuButton" destination="VjB-SX-AbS" id="hCH-cB-dK8"/>
                         <segue destination="A5y-s4-yGS" kind="show" identifier="homeToAnswer" id="b88-7Z-kEW"/>
@@ -10411,18 +10416,18 @@
         <image name="yellowlockerroom" width="375" height="109"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="PsB-1a-q3Q"/>
+        <segue reference="q3A-tV-ccu"/>
         <segue reference="LIq-Rx-h94"/>
-        <segue reference="w6n-Hz-L1r"/>
-        <segue reference="tU6-QY-Fw0"/>
-        <segue reference="Xdp-1r-1Wm"/>
+        <segue reference="UGY-pk-WNj"/>
+        <segue reference="NpO-ab-Ojt"/>
+        <segue reference="fGt-O5-wsb"/>
+        <segue reference="55X-N6-9aw"/>
+        <segue reference="b88-7Z-kEW"/>
+        <segue reference="hex-re-RoU"/>
         <segue reference="Bfq-68-nt3"/>
         <segue reference="Zp4-lH-dH6"/>
         <segue reference="Wct-MS-k77"/>
-        <segue reference="UGY-pk-WNj"/>
-        <segue reference="q3A-tV-ccu"/>
-        <segue reference="PsB-1a-q3Q"/>
-        <segue reference="hgI-k3-yj8"/>
         <segue reference="eeu-Jh-8Tk"/>
-        <segue reference="NpO-ab-Ojt"/>
     </inferredMetricsTieBreakers>
 </document>

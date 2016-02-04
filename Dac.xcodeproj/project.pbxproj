@@ -50,7 +50,6 @@
 		3E558C4A1BB39B69009E5170 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E558C491BB39B69009E5170 /* CoreLocation.framework */; };
 		3E558C4C1BB39B74009E5170 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E558C4B1BB39B74009E5170 /* CFNetwork.framework */; };
 		3E558C4E1BB39B82009E5170 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E558C4D1BB39B82009E5170 /* Security.framework */; };
-		3E558C501BB39B8E009E5170 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E558C4F1BB39B8E009E5170 /* StoreKit.framework */; };
 		3E558C521BB39BA2009E5170 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E558C511BB39BA2009E5170 /* QuartzCore.framework */; };
 		3E558C541BB39BC3009E5170 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E558C531BB39BC3009E5170 /* SystemConfiguration.framework */; };
 		3E558C561BB39BDF009E5170 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E558C551BB39BDF009E5170 /* libz.tbd */; };
@@ -185,7 +184,6 @@
 		3E558C491BB39B69009E5170 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3E558C4B1BB39B74009E5170 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3E558C4D1BB39B82009E5170 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		3E558C4F1BB39B8E009E5170 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3E558C511BB39BA2009E5170 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3E558C531BB39BC3009E5170 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3E558C551BB39BDF009E5170 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -264,7 +262,6 @@
 				3E558C561BB39BDF009E5170 /* libz.tbd in Frameworks */,
 				3E558C541BB39BC3009E5170 /* SystemConfiguration.framework in Frameworks */,
 				3E558C521BB39BA2009E5170 /* QuartzCore.framework in Frameworks */,
-				3E558C501BB39B8E009E5170 /* StoreKit.framework in Frameworks */,
 				3E558C4E1BB39B82009E5170 /* Security.framework in Frameworks */,
 				3E558C4C1BB39B74009E5170 /* CFNetwork.framework in Frameworks */,
 				3E558C4A1BB39B69009E5170 /* CoreLocation.framework in Frameworks */,
@@ -443,7 +440,6 @@
 			children = (
 				3E558C531BB39BC3009E5170 /* SystemConfiguration.framework */,
 				3E558C511BB39BA2009E5170 /* QuartzCore.framework */,
-				3E558C4F1BB39B8E009E5170 /* StoreKit.framework */,
 				3E558C4D1BB39B82009E5170 /* Security.framework */,
 				3E558C4B1BB39B74009E5170 /* CFNetwork.framework */,
 				3E558C491BB39B69009E5170 /* CoreLocation.framework */,
@@ -549,6 +545,12 @@
 						DevelopmentTeam = MP76YT95VQ;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -781,9 +783,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "7ee79c6d-a384-4d7b-9e3a-84b532723e97";
+				PROVISIONING_PROFILE = "38e178b9-cc01-44b0-badc-a3485c732afc";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -839,6 +841,96 @@
 			};
 			name = adHoc;
 		};
+		3E434F121C5E765300AA0BFA /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lyndon McKay (MP76YT95VQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lyndon McKay (MP76YT95VQ)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "38e178b9-cc01-44b0-badc-a3485c732afc";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		3E434F131C5E765300AA0BFA /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HWClub",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = HWClub/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system/introspection",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.Dac;
+				PRODUCT_NAME = Dac;
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "HWClub-Bridging-Header.h";
+			};
+			name = Distribution;
+		};
+		3E434F141C5E765300AA0BFA /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HWClubTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.HWClubTests;
+				PRODUCT_NAME = Dac;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dac.app/Dac";
+			};
+			name = Distribution;
+		};
+		3E434F151C5E765300AA0BFA /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = HWClubUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.HWClubUITests;
+				PRODUCT_NAME = Dac;
+				TEST_TARGET_NAME = HWClub;
+				USES_XCTRUNNER = YES;
+			};
+			name = Distribution;
+		};
 		3E558C311BB39A90009E5170 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -856,7 +948,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Patricia McKay (247YX7FWG7)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lyndon McKay (MP76YT95VQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patricia McKay (247YX7FWG7)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -876,10 +968,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "d8a75f4a-6d26-43f6-a459-b1e0ad5a8bf3";
+				PROVISIONING_PROFILE = "38e178b9-cc01-44b0-badc-a3485c732afc";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -916,9 +1008,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "7ee79c6d-a384-4d7b-9e3a-84b532723e97";
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "38e178b9-cc01-44b0-badc-a3485c732afc";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1033,6 +1126,7 @@
 			buildConfigurations = (
 				3E558C311BB39A90009E5170 /* Debug */,
 				3E558C321BB39A90009E5170 /* Release */,
+				3E434F121C5E765300AA0BFA /* Distribution */,
 				3E40473D1C4F023F00F2EB14 /* adHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1043,6 +1137,7 @@
 			buildConfigurations = (
 				3E558C341BB39A90009E5170 /* Debug */,
 				3E558C351BB39A90009E5170 /* Release */,
+				3E434F131C5E765300AA0BFA /* Distribution */,
 				3E40473E1C4F023F00F2EB14 /* adHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1053,6 +1148,7 @@
 			buildConfigurations = (
 				3E558C371BB39A90009E5170 /* Debug */,
 				3E558C381BB39A90009E5170 /* Release */,
+				3E434F141C5E765300AA0BFA /* Distribution */,
 				3E40473F1C4F023F00F2EB14 /* adHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1063,6 +1159,7 @@
 			buildConfigurations = (
 				3E558C3A1BB39A90009E5170 /* Debug */,
 				3E558C3B1BB39A90009E5170 /* Release */,
+				3E434F151C5E765300AA0BFA /* Distribution */,
 				3E4047401C4F023F00F2EB14 /* adHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
