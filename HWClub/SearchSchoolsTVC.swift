@@ -175,10 +175,17 @@ class SearchSchoolsTVC: UITableViewController, UISearchResultsUpdating, UINaviga
     }
     
     func seggy(){
+        LoadingDesign()
+        
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let vc: SWRevealViewController = storyboard.instantiateViewControllerWithIdentifier("homeR") as! SWRevealViewController
-        self.presentViewController(vc, animated: true, completion: nil)
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            
+            let vc: SWRevealViewController = storyboard.instantiateViewControllerWithIdentifier("homeR") as! SWRevealViewController
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
         
     }
     
@@ -323,6 +330,38 @@ class SearchSchoolsTVC: UITableViewController, UISearchResultsUpdating, UINaviga
         }
     }
     
+    
+    
+    
+    
+    func LoadingDesign(){
+        
+        let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height - 60)
+        let testView : UIView = UIView(frame: testFrame)
+        testView.backgroundColor = UIColor.whiteColor()
+        testView.alpha = 1
+        testView.tag = 90
+        self.view.addSubview(testView)
+        
+        let aFrame = CGRectMake((testView.frame.size.height / 4), 96, 80, 80)
+        
+        let loadingView: UIView = UIView()
+        loadingView.frame = aFrame //CGRectMake(0, 0, 80, 80)
+        loadingView.backgroundColor = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 0.6)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 40
+        testView.addSubview(loadingView)
+        
+        
+        let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        myActivityIndicator.color = UIColor.whiteColor()
+        myActivityIndicator.frame = aFrame
+        myActivityIndicator.hidden = false
+        myActivityIndicator.startAnimating()
+        testView.addSubview(myActivityIndicator)
+        
+    }
+
     
 
     /*

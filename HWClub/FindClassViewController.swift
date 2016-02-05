@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class FindClassViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FindClassViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     @IBOutlet var menuButton: UIBarButtonItem!
     @IBOutlet var tableview: UITableView!
@@ -112,6 +112,9 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
         let newClass = addV.addTextField("Class")
         let newTeach = addV.addTextField("Teacher")
         
+        newClass.delegate = self
+        newTeach.delegate = self
+        
         addV.showCloseButton = false
 
 
@@ -121,14 +124,21 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
             // IF ERROR CHECK THIS AREA
 
             print("pressed")
-            if newClass.text != nil{
-                if newTeach.text != nil{
+            if newClass.text?.characters.count > 3{
+                if newTeach.text?.characters.count > 3{
                     
                     self.ccc = newClass.text
                     self.ttt = newTeach.text
-                    self.addThat()
+                    if newClass.text?.characters.count > 3 && newTeach.text?.characters.count > 3{
+                        self.checkForUsername(self.ccc!, tTextfield: self.ttt!)
+                    }
+                    
                     self.tableview.reloadData()
+                }else{
+                    self.NoCongTeach()
                 }
+            }else{
+                self.NoCongClass()
             }
             
             
@@ -141,6 +151,32 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
         addV.showInfo("Add Class", subTitle: "Don't see your class, Add it")
 
     }
+    
+    func checkForUsername(ctextfield : String, tTextfield : String ){
+        print(ctextfield)
+        let uC = PFQuery(className: "Classes")
+            uC.whereKey("teacherName", equalTo: tTextfield)
+            uC.whereKey("classname", equalTo: ctextfield)
+            uC.whereKey("School", equalTo: self.theSchool!)
+            uC.findObjectsInBackgroundWithBlock({ (results : [PFObject]?, error: NSError?) -> Void in
+                if error == nil{
+                    // self.checker.removeAll()
+                    
+                    if results!.count > 0{
+                        self.NoCongEXISTS() // Sorry this Class Already Exists
+                    }else{
+                        self.addThat()
+                    }
+                    
+                    
+                    
+                    
+                }
+            })
+        //sleep(1)
+    }
+
+    
     
     func addThat(){
             let adding = PFObject(className: "Classes")
@@ -165,6 +201,29 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             })
         }
+    
+    
+    func NoCongEXISTS(){
+        let cn = SCLAlertView()
+        cn.showNotice("Lucky you", subTitle: "This Class already Exists in your School. Search for this Class and Start connecting with your Classmates")
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
+    }
+    
+    
+    func NoCongClass(){
+        let cn = SCLAlertView()
+        cn.showError("Problem", subTitle: "The Class cannot be less then 4 characters.")
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
+    }
+    
+    func NoCongTeach(){
+        let cn = SCLAlertView()
+        cn.showError("Problem", subTitle: "The Teacher's Name cannot be less then 4 characters.")
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
+    }
 
     func removeLoading(){
         if let viewWithTag = self.view.viewWithTag(90) {
@@ -354,5 +413,12 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
 
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
+    
 
 }

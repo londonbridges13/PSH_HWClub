@@ -23,6 +23,7 @@ class HomeTVC: UITableViewController {
     var assName = [String]()
     var cUser = PFUser.currentUser()
     var hPosts = [HomePost]()
+    var copyPosts = [HomePost]()
     var theSchool = [String]() // its an array for query purposes
     var MyClasses = [ClassObject]()
     var classes = [String]()
@@ -774,15 +775,14 @@ class HomeTVC: UITableViewController {
             print("rerere")
             print(self.hPosts[0].date)
 //            self.hPosts.sortInPlace({$0.date! > $1.date!})
-            
             self.hPosts.sortInPlace{ $0.date!.compare($1.date!) == .OrderedDescending}
             print(self.hPosts[0].date)
             print(hPosts.count)
 //            var uniq = [HomePost]()
             var checker = [String]()
+            
             for each in hPosts{
-                if each.date! > self.wAgo{
-                    if checker.contains(each.IDCheck!) != true{
+                if checker.contains(each.IDCheck!) == false {//&& each.date!.isGreaterThan(self.wAgo) == true{// && each.date! >= self.wAgo {
                         checker.append(each.IDCheck!)
                         uniq.append(each)
                         print(hPosts.count)
@@ -790,7 +790,7 @@ class HomeTVC: UITableViewController {
                     }else{
                         print("WE GOTONE")
                     }
-                }
+//                }
             }
             self.hPosts = uniq
             self.allPosts.addObjectsFromArray(uniq)

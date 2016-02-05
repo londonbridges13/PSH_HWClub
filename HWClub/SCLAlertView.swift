@@ -25,7 +25,7 @@ public class SCLButton: UIButton {
     var target:AnyObject!
     var selector:Selector!
     var action:(()->Void)!
-    var txtt : UITextField!
+    var txtt : UITextField! = nil
     public init() {
         super.init(frame: CGRectZero)
     }
@@ -224,6 +224,9 @@ public class SCLAlertView: UIViewController {
         kWindowHeight += kTextFieldHeight
         // Add text field
         let txt = UITextField()
+//        let txt = UITextField! = nil
+        txt.returnKeyType = .Next
+        txt.keyboardType = .ASCIICapable
         txt.borderStyle = UITextBorderStyle.RoundedRect
         txt.font = UIFont(name:kDefaultFont, size: 14)
         txt.autocapitalizationType = UITextAutocapitalizationType.Words
