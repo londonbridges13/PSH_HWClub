@@ -781,13 +781,15 @@ class HomeTVC: UITableViewController {
 //            var uniq = [HomePost]()
             var checker = [String]()
             for each in hPosts{
-                if checker.contains(each.IDCheck!) != true{
-                    checker.append(each.IDCheck!)
-                    uniq.append(each)
-                    print(hPosts.count)
-                    print(uniq.count)
-                }else{
-                    print("WE GOTONE")
+                if each.date! > self.wAgo{
+                    if checker.contains(each.IDCheck!) != true{
+                        checker.append(each.IDCheck!)
+                        uniq.append(each)
+                        print(hPosts.count)
+                        print(uniq.count)
+                    }else{
+                        print("WE GOTONE")
+                    }
                 }
             }
             self.hPosts = uniq
