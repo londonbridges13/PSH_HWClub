@@ -2424,15 +2424,15 @@
             <objects>
                 <tableViewController id="2pQ-XI-TVS" customClass="NotiTVC" customModule="Dac" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Fcl-4v-3lD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="notiPostCell" rowHeight="88" id="Y22-r6-lXa" customClass="NotiCell1" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="88"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y22-r6-lXa" id="JZQ-Az-Ryj">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="88"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="88"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dbSWORD" translatesAutoresizingMaskIntoConstraints="NO" id="rye-yI-lFW">
@@ -2609,15 +2609,15 @@
             <objects>
                 <tableViewController id="mGS-cP-cHb" customClass="HomeTVC" customModule="Dac" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="ysd-nr-bHt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomeCell1" rowHeight="200" id="6pP-F6-0bU" customClass="HomeCell1" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6pP-F6-0bU" id="M7N-5y-1iC">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="labelblueback" translatesAutoresizingMaskIntoConstraints="NO" id="hCa-Ir-xPq">
@@ -2925,10 +2925,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="homePicPost" rowHeight="350" id="Wbv-7e-Tei" customClass="HomeCellPic" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="292" width="375" height="350"/>
+                                <rect key="frame" x="0.0" y="292" width="414" height="350"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wbv-7e-Tei" id="dHM-yy-vTA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sem-og-Kjv">
@@ -3284,10 +3284,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="homeCellA" rowHeight="200" id="qm5-HN-LNy" customClass="HomeCellAnswer" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="642" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="642" width="414" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qm5-HN-LNy" id="LdI-05-3Gm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kFh-6n-ok8">
@@ -3595,10 +3595,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="noClass" rowHeight="209" id="M8A-T3-JqZ" customClass="NoClassHomeCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="842" width="375" height="209"/>
+                                <rect key="frame" x="0.0" y="842" width="414" height="209"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M8A-T3-JqZ" id="5Rt-Z1-pfT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="209"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="209"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Posts Yet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObR-XG-eqT">
@@ -3606,9 +3606,6 @@
                                             <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="24"/>
                                             <color key="textColor" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="86" y="25" width="203" height="93"/>
-                                            </variation>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkz-oa-J7F">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -3626,8 +3623,7 @@
                                                     <exclude reference="imO-FH-GbI"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="137" y="126" width="102" height="32"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
                                                     <include reference="8Hp-0w-b5J"/>
                                                     <include reference="imO-FH-GbI"/>
@@ -3702,6 +3698,9 @@
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="900"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="xTH-xq-WiF">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="menuButton" destination="VjB-SX-AbS" id="hCH-cB-dK8"/>
                         <segue destination="A5y-s4-yGS" kind="show" identifier="homeToAnswer" id="b88-7Z-kEW"/>
@@ -10419,15 +10418,15 @@
         <segue reference="PsB-1a-q3Q"/>
         <segue reference="q3A-tV-ccu"/>
         <segue reference="LIq-Rx-h94"/>
-        <segue reference="UGY-pk-WNj"/>
         <segue reference="NpO-ab-Ojt"/>
+        <segue reference="UGY-pk-WNj"/>
         <segue reference="fGt-O5-wsb"/>
+        <segue reference="hex-re-RoU"/>
         <segue reference="55X-N6-9aw"/>
         <segue reference="b88-7Z-kEW"/>
-        <segue reference="hex-re-RoU"/>
+        <segue reference="Wct-MS-k77"/>
         <segue reference="Bfq-68-nt3"/>
         <segue reference="Zp4-lH-dH6"/>
-        <segue reference="Wct-MS-k77"/>
         <segue reference="eeu-Jh-8Tk"/>
     </inferredMetricsTieBreakers>
 </document>

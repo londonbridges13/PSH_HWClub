@@ -16,6 +16,8 @@ class SearchSchoolsTVC: UITableViewController, UISearchResultsUpdating, UINaviga
     var qI = 0
     var allResults = [schoolio]()
 
+    var cUser = PFUser.currentUser()
+    
     var theSchool : String?
     
     var filterCollegeArray = [String]()
@@ -240,6 +242,8 @@ class SearchSchoolsTVC: UITableViewController, UISearchResultsUpdating, UINaviga
   
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        unfollowClass()
         if (self.resultSearchController.active) {
             let cO = self.allResults[indexPath.row]
 //            sendC = cO.classname
@@ -283,6 +287,41 @@ class SearchSchoolsTVC: UITableViewController, UISearchResultsUpdating, UINaviga
     }
     
     
+    
+    
+    func unfollowClass(){
+        //        print("Class Unfollowed")
+        let Class = PFQuery(className: "ClassesFollowed")
+        Class.whereKey("UserID", equalTo: (cUser?.objectId)!)
+        if self.theSchool != nil{
+            //            Class.whereKey("School", equalTo: self.theSchool!)
+        }
+        //Class.whereKey("Username", equalTo: "\((cUser?.username)!)")
+        Class.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+            if error == nil{
+                if let results = results as [PFObject]?{
+                    for result in results{
+                        let theIdo = result.objectId
+                        if theIdo != nil{
+                            self.deleteThatClass(theIdo!)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func deleteThatClass(id: String){
+        let Class = PFQuery(className: "ClassesFollowed")
+        Class.getObjectInBackgroundWithId(id) { (result:PFObject?, error:NSError?) -> Void in
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), { () -> Void in
+                result!.deleteInBackground()
+            })
+            //            result!.deleteInBackground()
+            print("ALLClassesUnfollowed")
+        }
+    }
     
     
 

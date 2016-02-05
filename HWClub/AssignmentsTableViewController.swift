@@ -460,7 +460,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
         Class.whereKey("teacherName", equalTo: self.theTeacher!)
         Class.whereKey("UserID", equalTo: (cUser?.objectId)!)
         if self.theSchool != nil{
-            Class.whereKey("School", equalTo: self.theSchool!)
+//            Class.whereKey("School", equalTo: self.theSchool!)
         }
         //Class.whereKey("Username", equalTo: "\((cUser?.username)!)")
         Class.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in

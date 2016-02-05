@@ -159,7 +159,7 @@ class MyClassesTableViewController: UITableViewController {
         //myClassQuery.whereKey("Username", equalTo: cUser!.username!)
         myClassQuery.whereKey("UserID", equalTo: cUser!.objectId!)
         if self.theSchool != nil{
-            myClassQuery.whereKey("theSchool", equalTo: self.theSchool!)
+//            myClassQuery.whereKey("School", equalTo: self.theSchool!)
         }else{
             print("theSchool equals nil")
         }

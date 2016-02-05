@@ -38,6 +38,7 @@ class HomeTVC: UITableViewController {
     var nextpage = 0
     var proppie : PFFile?
     
+    var gogo = 0
     
     var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
     
@@ -67,7 +68,9 @@ class HomeTVC: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
 
-        piko()
+//        piko()
+        self.refreshControl = refreshControlelol
+        self.refreshControlelol.addTarget(self, action: "DidRefreshStrings", forControlEvents: UIControlEvents.ValueChanged)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -85,7 +88,12 @@ class HomeTVC: UITableViewController {
     
     func piko(){
 //        LoadingDesign()
+//        self.hPosts.removeAll()
+        
+
         self.refreshControl = refreshControlelol
+        
+
         self.refreshControlelol.addTarget(self, action: "DidRefreshStrings", forControlEvents: UIControlEvents.ValueChanged)
     }
     
@@ -94,9 +102,20 @@ class HomeTVC: UITableViewController {
         
         
         LoadingDesign()
+        
+        if self.gogo == 0{
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            self.refreshControlelol.endRefreshing()
+
+            print(gogo)
+            print("gogo")
+
+            
         self.allPosts.removeAllObjects()
         self.displayedPosts.removeAllObjects()
-        self.hPosts.removeAll()
+//        if self.hPosts.count != 0{
+            self.hPosts.removeAll()
+//        }
         self.qIDs.removeAll()
         self.array.removeAll()
         self.uniq.removeAll()
@@ -109,25 +128,31 @@ class HomeTVC: UITableViewController {
         self.MyClasses.removeAll()
         self.theSchool.removeAll()
         self.teachers.removeAll()
-
-
-//        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-
-
-
-        
+            
+//        self.gogo += 1
         
         //this is me combining two different arrays, hitting two birds with one stone a me lad!!
         // this is vital to the follow function in DAC adding multiple arrays
 //        preQuery()
-        previewOP()
+            previewOP()
 
-        self.refreshControlelol.endRefreshing()
+            self.refreshControlelol.endRefreshing()
 //        removeLoading()
         
 //        UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
-        print("REFRESHED")
+            print("REFRESHED")
+            
+            
+        }else{
+            self.refreshControlelol.endRefreshing()
+            print("ALREADYRELOADING")
+            removeLoading()
+        }
+
+
+        
+
     }
     
     
@@ -135,10 +160,20 @@ class HomeTVC: UITableViewController {
     
     
     func previewOP(){
-        self.LoadingDesign()
-        self.preQuery()
 
-        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+        
+        self.LoadingDesign()
+        if self.gogo == 0{
+            self.preQuery()
+            self.gogo += 1
+            print(gogo)
+
+
+        }else{
+            print("ALREADY IN PROGRESS")
+        }
+
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/2 * Int64(NSEC_PER_SEC))
         dispatch_after(time, dispatch_get_main_queue()) {
             //put your code which should be executed with a delay here
             
@@ -171,6 +206,9 @@ class HomeTVC: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if self.hPosts.count > indexPath.row{
+
         if theSay == "yes"{
 //            let cell : HomeCell1 = tableView.dequeueReusableCellWithIdentifier("HomeCell1", forIndexPath: indexPath) as! HomeCell1
 //            
@@ -178,7 +216,6 @@ class HomeTVC: UITableViewController {
 //            tableView.estimatedRowHeight = 200
             
             // Configure the cell...
-            
             if hPosts[indexPath.row].Type == "Ass"{
                 let cell : HomeCell1 = tableView.dequeueReusableCellWithIdentifier("HomeCell1", forIndexPath: indexPath) as! HomeCell1
                 
@@ -195,6 +232,7 @@ class HomeTVC: UITableViewController {
                 return cell
 
             }
+            
             
             if hPosts[indexPath.row].Type == "Q"{
                 let cell : HomeCell1 = tableView.dequeueReusableCellWithIdentifier("HomeCell1", forIndexPath: indexPath) as! HomeCell1
@@ -271,8 +309,10 @@ class HomeTVC: UITableViewController {
                     //                    return cell
                 }
                 
-                
+            
+            
                 return celli!
+                
                 
 
             }
@@ -290,8 +330,20 @@ class HomeTVC: UITableViewController {
             
             return cell
         }
-        
+        }else{ // This Can Be Your Error Cell
+            let cell : NoClassHomeCell = tableView.dequeueReusableCellWithIdentifier("noClass", forIndexPath: indexPath) as! NoClassHomeCell
+            
+            cell.findClassButton.layer.borderColor = teal.CGColor
+            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.estimatedRowHeight = 209
+            
+            // Configure the cell...
+            
+            return cell
+        }
 //        return cell
+            
+        
 
     }
     
@@ -319,10 +371,13 @@ class HomeTVC: UITableViewController {
                 
                 if ro > 5{ //maybe move
                     displayedPosts.addObjectsFromArray(allPosts.subarrayWithRange(NSMakeRange(currentPage, 1)))
-                    tableView.reloadData()
+//                    tableView.reloadData()
                 }else{
                     displayedPosts.addObjectsFromArray(allPosts.subarrayWithRange(NSMakeRange(currentPage, 0)))
-                    tableView.reloadData()
+//                    tableView.reloadData()
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadData()
+                    })
                     
                 }
             }
@@ -393,6 +448,7 @@ class HomeTVC: UITableViewController {
         // goes in viewwillappear
         
         
+        
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
 
         let Class = PFQuery(className: "ClassesFollowed")
@@ -402,7 +458,7 @@ class HomeTVC: UITableViewController {
             if error == nil{
                 if let results = results as [PFObject]?{
                     if results.count == 0{
-                        self.tableView.reloadData()
+//                        self.tableView.reloadData()
                     }
                     for result in results{
                         var cO = ClassObject()
@@ -430,7 +486,7 @@ class HomeTVC: UITableViewController {
                     }
                     self.queryAssignments()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                    self.tableView.reloadData()
+//                    self.tableView.reloadData()
 
                 }
             }else{
@@ -499,7 +555,13 @@ class HomeTVC: UITableViewController {
                         self.hPosts.append(aO)
                     }
                     self.queryQuestions()
-                    self.tableView.reloadData()
+                    
+                    let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    dispatch_after(time, dispatch_get_main_queue()) {
+                        //put your code which should be executed with a delay here
+                        self.gogo = 0
+                    }
+//                    self.tableView.reloadData()
 
                 }
             }
@@ -571,7 +633,9 @@ class HomeTVC: UITableViewController {
                     sleep(1/2)
 //                    self.removeLoading()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                    self.tableView.reloadData()
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadData()
+                    })
 
                 }
             }else{
@@ -656,8 +720,10 @@ class HomeTVC: UITableViewController {
                                         print("YEYEYEYEYEYEYEY")
 //                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                             
-                                            self.tableView.reloadData()
-//                                            self.removeLoading()
+                                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                                self.tableView.reloadData()
+                                            })
+                                            //                                            self.removeLoading()
 
                                         })
                                     }
@@ -729,7 +795,11 @@ class HomeTVC: UITableViewController {
             displayedPosts.addObjectsFromArray(allPosts.subarrayWithRange(NSMakeRange(0, 6)))
 //            sleep(1)
             //                    hPosts = sorted(hPosts)
-            self.tableView.reloadData()
+//            self.tableView.reloadData()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
+            
             uniq.removeAll()
 
             print("reloaded")
@@ -750,7 +820,10 @@ class HomeTVC: UITableViewController {
         }
         
         if image != nil{
-            self.tableView.reloadData()
+//            self.tableView.reloadData()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
             print("YEYEYEYEYYE")
             return image!
         }else{
