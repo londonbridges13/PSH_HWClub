@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import RealmSwift
 import Foundation
 
 class HomeTVC: UITableViewController {
@@ -162,7 +163,7 @@ class HomeTVC: UITableViewController {
     
     func previewOP(){
 
-        
+        let realm = try! Realm()
         self.LoadingDesign()
         if self.gogo == 0{
             self.preQuery()
