@@ -162,6 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if  PFUser.currentUser() != nil{
             queryNotiis()
         }
+        // clear CachedPosts HERE
 
     }
 

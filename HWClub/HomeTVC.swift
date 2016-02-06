@@ -13,6 +13,8 @@ import Foundation
 
 class HomeTVC: UITableViewController {
     
+    let realm = try! Realm()
+
     var wAgo : NSDate = NSDate().minusDays(6)
     @IBOutlet var menuButton: UIBarButtonItem!
     var theSay : String?
@@ -34,6 +36,8 @@ class HomeTVC: UITableViewController {
     var answers = [AnswerObject]()
     var anan = AnswerObject()
     var uniq = [HomePost]()
+    var cachedPosts = [HomePost]()
+    var cachedIDs = [String]()
     var displayedPosts : NSMutableArray = []
     var allPosts : NSMutableArray = []
     var currentPage = 0
@@ -45,12 +49,71 @@ class HomeTVC: UITableViewController {
     var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        dispatch_async(queue) { () -> Void in
-//            self.UpdateProPIC()
+        
+        
+        try! self.realm.write {
+            realm.deleteAll()
+        }
+        
+        
+        
+//        // Give cachedIDS SomeJuicy Data bytes
+//        let ALLPosts = realm.objects(RealmHomePost)
+////        self.cachedPosts = ALLPosts as HomePost
+//        
+//        for each in ALLPosts {
+//            let PostsID = each.ObjectID
+//            print("BOBOBO\(PostsID)")
+//            self.cachedIDs.append(PostsID)
+//            
+//            var cachO = HomePost()
+//            cachO.ObjectID = each.ObjectID
+//            cachO.theTeacher = each.theTeacher
+//            cachO.theClass = each.theClass
+//            cachO.theDap = each.theDap
+////            if each.thePicNSData != nil{
+////                var koko = PFFile(data: each.thePicNSData!)
+////                cachO.thePic = koko
+////                cachO.hasIMG = true
+////            } Waste sense you give the image
+//            if each.cachedIMGNSData != nil{
+////                var kokoi = PFFile(data: each.cachedIMGNSData!)
+//                cachO.cachedIMG = UIImage(data: each.cachedIMGNSData!)
+//                cachO.hasIMG = true
+//
+//            }else{
+//                cachO.hasIMG = false
+//            }
+//            if each.proPicData != nil{
+//                var kokok = PFFile(data: each.proPicData!)
+//                cachO.cachedIMG = UIImage(data: each.proPicData!)
+//            }
+//            cachO.theQComment = each.theQComment
+//            cachO.theQuestion = each.theQuestion
+//            cachO.theQuestionID = each.theQuestionID
+//            cachO.theSchool = each.theSchool
+//            cachO.Type = each.Type
+//            cachO.What = each.What
+//            cachO.theAnswer = each.theAnswer
+//            cachO.theAnswerID = each.theAnswerID
+//            cachO.theAssignmentID = each.theAssignmentID
+//            cachO.AskerID = each.AskerID
+//            cachO.date = each.date
+//            cachO.IDCheck = each.IDCheck
+//            cachO.highWhat = each.highWhat
+//            cachO.lowWhat = each.lowWhat
+//            cachO.numOfDaps = each.numOfDaps
+//            cachO.POSTERNAME = each.POSTERNAME
+//            cachO.QuestionId = each.QuestionId
+//            cachO.theAComment = each.theAComment
+//            cachO.theLesson = each.theLesson
+//            cachedPosts.append(cachO)
 //        }
+//        
+
         
         LoadingDesign()
         let cUser = PFUser.currentUser()
@@ -163,12 +226,68 @@ class HomeTVC: UITableViewController {
     
     func previewOP(){
 
-        let realm = try! Realm()
+        // Give cachedIDS SomeJuicy Data bytes
+        let ALLPosts = realm.objects(RealmHomePost).sorted("date")
+        //        self.cachedPosts = ALLPosts as HomePost
+        
+        for each in ALLPosts {
+            let PostsID = each.ObjectID
+            print("BOBOBO\(PostsID)")
+            self.cachedIDs.append(PostsID)
+            
+            var cachO = HomePost()
+            cachO.ObjectID = each.ObjectID
+            cachO.theTeacher = each.theTeacher
+            cachO.theClass = each.theClass
+            cachO.theDap = each.theDap
+            if each.thePicNSData != nil{
+                var koko = PFFile(data: each.thePicNSData!)
+                cachO.thePic = koko
+                cachO.hasIMG = true
+            } //Waste sense you give the image
+            if each.cachedIMGNSData != nil{
+                var kokoi = PFFile(data: each.cachedIMGNSData!)
+                cachO.cachedIMG = UIImage(data: each.cachedIMGNSData!)
+                cachO.hasIMG = true
+                
+            }else{
+//                cachO.hasIMG = false
+            }
+            if each.proPicData != nil{
+                var kokok = PFFile(data: each.proPicData!)
+                cachO.cachedIMG = UIImage(data: each.proPicData!)
+            }
+            cachO.theQComment = each.theQComment
+            cachO.theQuestion = each.theQuestion
+            cachO.theQuestionID = each.theQuestionID
+            cachO.theSchool = each.theSchool
+            cachO.Type = each.Type
+            cachO.What = each.What
+            cachO.theAnswer = each.theAnswer
+            cachO.theAnswerID = each.theAnswerID
+            cachO.theAssignmentID = each.theAssignmentID
+            cachO.AskerID = each.AskerID
+            cachO.date = each.date
+            cachO.IDCheck = each.IDCheck
+            cachO.highWhat = each.highWhat
+            cachO.lowWhat = each.lowWhat
+            cachO.numOfDaps = each.numOfDaps
+            cachO.POSTERNAME = each.POSTERNAME
+            cachO.QuestionId = each.QuestionId
+            cachO.theAComment = each.theAComment
+            cachO.theLesson = each.theLesson
+            cachedPosts.append(cachO)
+        }
+        
+
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/2 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+        
         self.LoadingDesign()
         if self.gogo == 0{
             self.preQuery()
             self.gogo += 1
-            print(gogo)
+            print(self.gogo)
 
 
         }else{
@@ -181,6 +300,7 @@ class HomeTVC: UITableViewController {
             
             self.removeLoading()
 
+        }
         }
     }
     
@@ -287,8 +407,8 @@ class HomeTVC: UITableViewController {
                     
                     tableView.rowHeight = UITableViewAutomaticDimension
                     tableView.estimatedRowHeight = 350
-                    let okit = allPosts[indexPath.row] as! HomePost
-                    print("QUQUQUQUQUQu\(okit.date)")
+//                    let okit = allPosts[indexPath.row] as! HomePost
+//                    print("QUQUQUQUQUQu\(okit.date)")
                     print(hPosts[indexPath.row].date!)
                     cell.dateLabel.text = dts(hPosts[indexPath.row].date!)
                     cell.QuestionLabel.text = hPosts[indexPath.row].theQuestion!
@@ -350,7 +470,7 @@ class HomeTVC: UITableViewController {
     }
     
     
-    
+    /*
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         //        if allObjectArray.count >= indexPath.row{
         
@@ -373,7 +493,9 @@ class HomeTVC: UITableViewController {
                 
                 if ro > 5{ //maybe move
                     displayedPosts.addObjectsFromArray(allPosts.subarrayWithRange(NSMakeRange(currentPage, 1)))
-//                    tableView.reloadData()
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadData()
+                    })
                 }else{
                     displayedPosts.addObjectsFromArray(allPosts.subarrayWithRange(NSMakeRange(currentPage, 0)))
 //                    tableView.reloadData()
@@ -385,7 +507,7 @@ class HomeTVC: UITableViewController {
             }
         }
     }
-    
+    */
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("Going somewhere")
@@ -464,6 +586,7 @@ class HomeTVC: UITableViewController {
                     }
                     for result in results{
                         var cO = ClassObject()
+                        var reCO = RealmHomePost()
                         
                         let myClass = result["classesFollowed"] as? String
                         let myTeacher = result["teacherName"] as? String
@@ -517,51 +640,65 @@ class HomeTVC: UITableViewController {
         Ass.whereKey("classname", containedIn: self.classes)
         Ass.whereKey("teacherName", containedIn: self.teachers)
         Ass.whereKey("School", containedIn: self.theSchool)
-//        Ass.whereKey("createdAt", greaterThanOrEqualTo: wAgo)
-
+//        Ass.whereKey("objectId", notContainedIn: self.cachedIDs)
+        
         Ass.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
             if error == nil{
                 if let results = results as [PFObject]?{
                     for result in results{
                         
                         var aO = HomePost() //AssignmentObject()
-                        
+                        var reaO = RealmHomePost()
+
                         let aAss = result["assignmentName"] as? String
                         let myClass = result["classname"] as? String
                         let myTeacher = result["teacherName"] as? String
                         let ASSid = result.objectId!
                        
                         aO.Type = "Ass"
+                        reaO.Type = "Ass"
                         aO.date = result.createdAt!
+                        reaO.date = result.createdAt!
                         aO.theAssignmentID = ASSid
+                        reaO.theAssignmentID = ASSid
                         self.assID.append(ASSid)
                         aO.IDCheck = result.objectId
-
+                        reaO.IDCheck = result.objectId!
+                        reaO.ObjectID = result.objectId!
+                        
                         if myTeacher != nil{
                             aO.theTeacher = myTeacher!
+                            reaO.theTeacher = myTeacher!
                         }
                         if myClass != nil{
                             aO.theClass = myClass
+                            reaO.theClass = myClass!
                         }
                         if aAss != nil{
                             aO.theLesson = aAss!
+                            reaO.theLesson = aAss!
                             
                             aO.What = "New Topic Added to \(myClass!): \(aAss!)"
+                            reaO.What = "New Topic Added to \(myClass!): \(aAss!)"
                             print("Assignment/Topic : \(aAss!)")
                             aO.highWhat = "New Topic"
+                            reaO.highWhat = "New Topic"
                         }
 
                         
                         
 //                        self.assArray.append(aO)
+                        try! self.realm.write {
+                            self.realm.add(reaO)
+                        }
                         self.hPosts.append(aO)
                     }
                     self.queryQuestions()
-                    
                     let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
                     dispatch_after(time, dispatch_get_main_queue()) {
                         //put your code which should be executed with a delay here
                         self.gogo = 0
+                        self.sortIt()
                     }
 //                    self.tableView.reloadData()
 
@@ -579,12 +716,9 @@ class HomeTVC: UITableViewController {
         let questionQuery = PFQuery(className: "Questions")
         
         questionQuery.whereKey("assignmentId", containedIn: self.assID)  // contained in
-//        questionQuery.whereKey("createdAt", lessThanOrEqualTo: NSDate())
-        questionQuery.whereKey("createdAt", greaterThan: wAgo)
+//        questionQuery.whereKey("objectId", notContainedIn: self.cachedIDs)
 
-//        questionQuery.whereKey("createdAt", greaterThanOrEqualTo: self.wAgo)
         
-//        questionQuery.orderByDescending("createdAt")
         questionQuery.limit = 1000
         questionQuery.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
             
@@ -597,7 +731,10 @@ class HomeTVC: UITableViewController {
                         
                         
                         var quba = HomePost()//QuestionObject()
+                        var rquba = RealmHomePost()
+
                         quba.Type = "Q"
+                        rquba.Type = "Q"
                         let aQuestion = result["question"] as! String
                         
                         
@@ -606,29 +743,43 @@ class HomeTVC: UITableViewController {
                         let aClass = result["classname"] as? String
                         
                         quba.theClass = aClass!
+                        rquba.theClass = aClass!
                         quba.date = result.createdAt!
+                        rquba.date = result.createdAt!
 
                         quba.highWhat = "New Question"
+                        rquba.highWhat = "New Question"
                         
                         
                         //Append
                         if Asker != nil{
                             quba.AskerID = Asker!
+                            rquba.AskerID = Asker!
                             quba.POSTERNAME = AskerName!
+                            rquba.POSTERNAME = AskerName!
 //                            self.askers.append(Asker!)
                         }else{print("no asker")}
                         
                         quba.theQuestion = aQuestion
+                        rquba.theQuestion = aQuestion
                         quba.What = "\(aQuestion)"
+                        rquba.What = "\(aQuestion)"
 //                        self.questionArray.append(aQuestion)
 //                        print(aQuestion)
                         print("Question : \(aQuestion)")
 
 //                        self.qIDS.append(result.objectId!)
                         quba.theQuestionID = result.objectId!
+                        rquba.theQuestionID = result.objectId!
                         quba.IDCheck = result.objectId
+                        rquba.IDCheck = result.objectId!
+                        rquba.ObjectID = result.objectId!
+                        
                         self.qIDs.append(result.objectId!)
                         self.hPosts.append(quba)
+                        try! self.realm.write {
+                            self.realm.add(rquba)
+                        }
                         self.queryAnswers()
 //                        self.tableView.reloadData()
                     }
@@ -636,14 +787,15 @@ class HomeTVC: UITableViewController {
 //                    self.removeLoading()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.tableView.reloadData()
+//                        self.tableView.reloadData()
+                        self.sortIt()
                     })
 
                 }
             }else{
                 print("Error \(error)  \(error?.userInfo)")
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                
+                self.sortIt()
             }
             
             
@@ -662,15 +814,17 @@ class HomeTVC: UITableViewController {
 //        anS.whereKey("createdAt", greaterThan: wAgo)
 
         anS.whereKey("QuestionID", containedIn: self.qIDs)
+        anS.whereKey("objectId", notContainedIn: self.cachedIDs)
+
         anS.limit = 1000
-//        anS.orderByDescending("createdAt")
         anS.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
             if error == nil{
                 if let results = results as [PFObject]?{
                     for result in results{
                         
                         var aO = HomePost()//AnswerObject()
-                        
+                        var raO = RealmHomePost()
+
                         let q = result["Question"] as? String
                         let a = result["Answer"] as? String
                         let qID = result["QuestionID"] as? String
@@ -683,6 +837,7 @@ class HomeTVC: UITableViewController {
                         
                         if hasIMG != nil{
                             aO.hasIMG = hasIMG!
+                            raO.hasIMG = hasIMG!
                         }
                         if thePic != nil{
                             aO.thePic = thePic!
@@ -693,12 +848,14 @@ class HomeTVC: UITableViewController {
                                 
                                 if theData != nil{
                                     let img = UIImage(data: theData!)!
-                                    
+
                                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                     aO.cachedIMG = img
                                     print("YEYEYEYEYEYEYEY")
-//                                    self.tableView.reloadData()
+                                    self.tableView.reloadData()
                                     })
+                                    
+                                    raO.thePicNSData = theData!
                                 }
                             })
                             
@@ -715,19 +872,23 @@ class HomeTVC: UITableViewController {
                                     
                                     if theData != nil{
                                         let img = UIImage(data: theData!)!
-                                    
+
                                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                            
+//                                        raO.proCachyNSData = theData!
 
                                         aO.proCachy = img
+                                            self.tableView.reloadData()
+
                                         print("YEYEYEYEYEYEYEY")
-//                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                            
                                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                                 self.tableView.reloadData()
                                             })
                                             //                                            self.removeLoading()
 
                                         })
+                                        raO.proPicData = theData
+
                                     }
                                 })
                                 
@@ -735,26 +896,42 @@ class HomeTVC: UITableViewController {
                         }
                         
                         aO.IDCheck = result.objectId
+                        raO.IDCheck = result.objectId!
+                        raO.ObjectID = result.objectId!
                         aO.theClass = aClass!
+                        raO.theClass = aClass!
                         aO.highWhat = "Answer to"
+                        raO.highWhat = "Answer to"
                         aO.Type = "A"
+                        raO.Type = "A"
                         aO.date = result.createdAt!
+                        raO.date = result.createdAt!
                         aO.theAnswerID = result.objectId!
+                        raO.theAnswerID = result.objectId!
                         if qID != nil{
                             aO.theQuestionID = qID
+                            raO.theQuestionID = qID!
                         }
                         if a != nil{
                             aO.theAnswer = a!
+                            raO.theAnswer = a!
                             aO.What = "\(q!)"
+                            raO.What = "\(q!)"
                             aO.lowWhat = "Answered By"
+                            raO.lowWhat = "Answered By"
                             aO.POSTERNAME = poster!
+                            raO.POSTERNAME = poster!
                             print("Answer : \(a!)")
                         }
                         if q != nil{
                             aO.theQuestion = q!
+                            raO.theQuestion = q!
                         }
 //                        self.answers.append(aO)
                         self.hPosts.append(aO)
+                        try! self.realm.write {
+                            self.realm.add(raO)
+                        }
                     }
                     
 //                    if self.answers.count > 1{
@@ -772,17 +949,19 @@ class HomeTVC: UITableViewController {
     
     func sortIt(){
         
-        if self.hPosts.count > 1{
+        if self.cachedPosts.count > 1{
+//        if self.hPosts.count > 1{
             print("rerere")
             print(self.hPosts[0].date)
-//            self.hPosts.sortInPlace({$0.date! > $1.date!})
-            self.hPosts.sortInPlace{ $0.date!.compare($1.date!) == .OrderedDescending}
+            self.cachedPosts.sortInPlace{ $0.date!.compare($1.date!) == .OrderedDescending}
+//            self.hPosts.sortInPlace{ $0.date!.compare($1.date!) == .OrderedDescending}
             print(self.hPosts[0].date)
             print(hPosts.count)
 //            var uniq = [HomePost]()
             var checker = [String]()
             
-            for each in hPosts{
+            for each in cachedPosts{
+//            for each in hPosts{
                 if checker.contains(each.IDCheck!) == false {//&& each.date!.isGreaterThan(self.wAgo) == true{// && each.date! >= self.wAgo {
                         checker.append(each.IDCheck!)
                         uniq.append(each)
@@ -971,7 +1150,9 @@ class HomeTVC: UITableViewController {
                 if let results = results as [PFObject]?{
                     for result in results{
                         print("CHANGING1")
-                        result["profilePic"] = self.proppie!
+                        if self.proppie != nil{
+                            result["profilePic"] = self.proppie!
+                        }
                         result["username"] = self.cUser!.username!
                         result.saveInBackground()
                     }
