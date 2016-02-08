@@ -40,6 +40,7 @@ class HomePost {
     dynamic var POSTERNAME : String?
     dynamic var Type : String?
     dynamic var IDCheck : String?
+    dynamic var cachedIMGDATA : NSData?
 }
 
 

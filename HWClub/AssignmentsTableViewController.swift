@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
+class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, Childing {
 
    // let queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED.rawValue, 0)
 
@@ -18,6 +18,12 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
     @IBOutlet var tableview: UITableView!
     @IBOutlet var MCL : UIButton!
     @IBOutlet var FINDER : UIButton!
+    
+    @IBOutlet var menuButton: UIBarButtonItem!
+
+    @IBOutlet var contine: UIView!
+
+    
     var AssignmentsArray: [String] = [String]()
     var teacherArray: [String] = [String]()
     var classArray: [String] = [String]()
@@ -36,8 +42,31 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
     var theTeacher : String?
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        if derp == "KLM"{
+            
+            let cvc = childViewControllers.first as! ChildViewController
+            cvc.delegate = self
+            
+            cvc.teacherLabel.text = self.theTeacher!
+            cvc.myLabel.text = self.theClass!
+
+            if self.revealViewController() != nil {
+                menuButton.target = self.revealViewController()
+                menuButton.action = "revealToggle:"
+                self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+                
+                // Uncomment to change the width of menu
+                //   self.revealViewController().rearViewRevealWidth = 200
+            }
+        }else{
+            
+        }
         
 //        showActivityIndicatory(self.view)
 
@@ -275,30 +304,40 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        if self.derp != "KLM"{
+            return 2
+        }else{
+            return 1
+        }
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
+        if self.derp != "KLM"{
+            switch (section){
+                
+            case 0:
+                return 1
+                
+            case 1:
+                if AssignmentsArray.count != 0{
+                    return AssignmentsArray.count
+                }else{
+                    return 2
+                }
+                
+            default:
+                return 0
+                
+                
+            }
         
-        switch (section){
-        
-        case 0:
-            return 1
-
-        case 1:
-            if AssignmentsArray.count != 0{
-                return AssignmentsArray.count
-            }else{
-                return 2
+        }else{
+                return 0 // hpost array.count
+            
             }
 
-        default:
-            return 0
-
-            
-        }
         
             
     }
@@ -309,79 +348,108 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
         // Configure the cell...
 
         
-        switch (indexPath.section){
-        
-        case 0:
-            let cell : AssignmentHeaderViewCell = tableView.dequeueReusableCellWithIdentifier("assHeadercell", forIndexPath: indexPath) as! AssignmentHeaderViewCell
-           
-            func preQuery(){
-                // goes in viewwillappear
-                let Class = PFQuery(className: "ClassesFollowed")
-                Class.whereKey("classesFollowed", equalTo: self.theClass!)
-                Class.whereKey("teacherName", equalTo: self.theTeacher!)
-                if self.theSchool != nil{
-                    Class.whereKey("School", equalTo: self.theSchool!)
-                }
-                Class.whereKey("Username", equalTo: "\((cUser?.username)!)")
-                Class.whereKey("UserID", equalTo: (cUser?.objectId)!)
-                Class.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
-                    if error == nil{
-                        if let results = results as [PFObject]?{
-                            for result in results{
-                                self.array.append(result.objectId!)
-                                if self.array.count > 0{
-                                    let lBlue = UIColor(red: 134/255, green: 218/255, blue: 233/255, alpha: 1)
-                                    cell.followButton.setTitle("Following", forState: UIControlState.Normal)
-                                    cell.followButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                                    cell.followButton.backgroundColor = lBlue
-                                    cell.newLessonButton.alpha = 1
-                                    self.isFollowing = true
+        if self.derp != "KLM"{
+            
+            switch (indexPath.section){
+                
+            case 0:
+                let cell : AssignmentHeaderViewCell = tableView.dequeueReusableCellWithIdentifier("assHeadercell", forIndexPath: indexPath) as! AssignmentHeaderViewCell
+                
+                func preQuery(){
+                    // goes in viewwillappear
+                    let Class = PFQuery(className: "ClassesFollowed")
+                    Class.whereKey("classesFollowed", equalTo: self.theClass!)
+                    Class.whereKey("teacherName", equalTo: self.theTeacher!)
+                    if self.theSchool != nil{
+                        Class.whereKey("School", equalTo: self.theSchool!)
+                    }
+                    Class.whereKey("Username", equalTo: "\((cUser?.username)!)")
+                    Class.whereKey("UserID", equalTo: (cUser?.objectId)!)
+                    Class.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+                        if error == nil{
+                            if let results = results as [PFObject]?{
+                                for result in results{
+                                    self.array.append(result.objectId!)
+                                    if self.array.count > 0{
+                                        let lBlue = UIColor(red: 134/255, green: 218/255, blue: 233/255, alpha: 1)
+                                        cell.followButton.setTitle("Following", forState: UIControlState.Normal)
+                                        cell.followButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                                        cell.followButton.backgroundColor = lBlue
+                                        cell.newLessonButton.alpha = 1
+                                        self.isFollowing = true
+                                        
+                                        if self.derp == "KLM"{
+                                            let cvc = self.childViewControllers.first as! ChildViewController
+                                            cvc.delegate = self
+                                            cvc.follow.setTitle("Following", forState: UIControlState.Normal)
+                                            cvc.follow.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                                            
+                                            print("ISS  KLM FOLLOWING")
+                                            
+                                        }
+                                    }else{
+                                        if self.derp == "KLM"{
+                                            let cvc = self.childViewControllers.first as! ChildViewController
+                                            cvc.delegate = self
+                                            
+                                            cvc.follow.setTitle("Follow", forState: UIControlState.Normal)
+                                        }
+                                        self.isFollowing = false
+                                        print("NOTTTKLM FOLLOWING")
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-            preQuery()
-            cell.delegate = self
-            cell.classnameLabel.text = theClass
-            cell.teachernameLabel.text = theTeacher
-            tableView.rowHeight = 162
-            return cell
-            
-        case 1:
-            let cell : AssignmentTableViewCell = tableView.dequeueReusableCellWithIdentifier("AssignmentsCell", forIndexPath: indexPath) as! AssignmentTableViewCell
-            if AssignmentsArray.count != 0{
-            cell.assignmentName.text = "\(AssignmentsArray[indexPath.row])"
-//            cell.numOfQ.text = "  \(numQuArray[indexPath.row]) Questions"
-            cell.date.text = "Created: \(dts(createDateArray[indexPath.row]))"//"\(createDateArray[indexPath.row])"
-                cell.date.alpha = 1
-            tableView.rowHeight = 101
-            }else{
-                if indexPath.row == 0{
+                preQuery()
+                cell.delegate = self
+                cell.classnameLabel.text = theClass
+                cell.teachernameLabel.text = theTeacher
+                tableView.rowHeight = 162
+                return cell
+                
+            case 1:
+                let cell : AssignmentTableViewCell = tableView.dequeueReusableCellWithIdentifier("AssignmentsCell", forIndexPath: indexPath) as! AssignmentTableViewCell
+                if AssignmentsArray.count != 0{
+                    cell.assignmentName.text = "\(AssignmentsArray[indexPath.row])"
+                    //            cell.numOfQ.text = "  \(numQuArray[indexPath.row]) Questions"
+                    cell.date.text = "Created: \(dts(createDateArray[indexPath.row]))"//"\(createDateArray[indexPath.row])"
+                    cell.date.alpha = 1
                     tableView.rowHeight = 101
-                    cell.assignmentName.text = "Welcome to your New Class" //"This is where all Topics / Lessons are Posted"
-                    cell.date.alpha = 0
-                }
-                if indexPath.row == 1{
-                    tableView.rowHeight = UITableViewAutomaticDimension
-                    tableView.estimatedRowHeight = 101
-                    cell.date.alpha = 0
-                    cell.assignmentName.text = "This is where all Topics / Lessons are Posted"
-                }
-            }//
-            
-            
-            return cell
-        
-            
-        default:
+                }else{
+                    if indexPath.row == 0{
+                        tableView.rowHeight = 101
+                        cell.assignmentName.text = "Welcome to your New Class" //"This is where all Topics / Lessons are Posted"
+                        cell.date.alpha = 0
+                    }
+                    if indexPath.row == 1{
+                        tableView.rowHeight = UITableViewAutomaticDimension
+                        tableView.estimatedRowHeight = 101
+                        cell.date.alpha = 0
+                        cell.assignmentName.text = "This is where all Topics / Lessons are Posted"
+                    }
+                }//
+                
+                
+                return cell
+                
+                
+            default:
+                let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+                
+                return cell
+                
+            }
+
+        }else{
+            // New Assignments TableView
             let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
             
             return cell
-        
+            
+
         }
-    
     
     }
     
@@ -391,10 +459,16 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if AssignmentsArray.count != 0{
-            if self.isFollowing == true{
-                performSegueWithIdentifier("iQ", sender: self)
+        if self.derp != "KLM"{
+            if AssignmentsArray.count != 0{
+                if self.isFollowing == true{
+                    performSegueWithIdentifier("iQ", sender: self)
+                }
             }
+
+        }else{
+            // New Assignments TableView
+
         }
     }
     
@@ -454,6 +528,10 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
     
     func unfollowClass(){
 //        print("Class Unfollowed")
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.LoadingDesign()
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        }
         isFollowing = false
         let Class = PFQuery(className: "ClassesFollowed")
         Class.whereKey("classesFollowed", equalTo: self.theClass!)
@@ -473,10 +551,13 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
                             self.deleteThatClass(theIdo!)
                             //self.minusOne()
                             self.BACK()
+                            UIApplication.sharedApplication().endIgnoringInteractionEvents()
                         }
                     }
                 }
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
             }
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
         }
     }
     
@@ -598,11 +679,91 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate {
     func BACK(){
         if self.derp == "MCL"{
             self.MCL.sendActionsForControlEvents(.TouchUpInside)
-        }else{
+        }else if self.derp == "FINDER"{
             self.FINDER.sendActionsForControlEvents(.TouchUpInside)
+        }else{
+            removeLoading()
+            print("Working here")
         }
     }
     
+    
+    func LoadingDesign(){
+        
+        let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height - 60)
+        let testView : UIView = UIView(frame: testFrame)
+        testView.backgroundColor = UIColor.clearColor()
+        testView.alpha = 1
+        testView.tag = 90
+        self.view.addSubview(testView)
+        
+        let aFrame = CGRectMake((testView.frame.size.height / 4), 96, 80, 80)
+        
+        let loadingView: UIView = UIView()
+        loadingView.frame = aFrame //CGRectMake(0, 0, 80, 80)
+        loadingView.backgroundColor = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 1)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 40
+        testView.addSubview(loadingView)
+        
+        
+        let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        myActivityIndicator.color = UIColor.whiteColor()
+        myActivityIndicator.frame = aFrame
+        myActivityIndicator.hidden = false
+        myActivityIndicator.startAnimating()
+        testView.addSubview(myActivityIndicator)
+        
+    }
+    
+
+    
+    
+    
+    
+    func preQuery(){
+        // goes in viewwillappear
+        let Class = PFQuery(className: "ClassesFollowed")
+        Class.whereKey("classesFollowed", equalTo: self.theClass!)
+        Class.whereKey("teacherName", equalTo: self.theTeacher!)
+        if self.theSchool != nil{
+            Class.whereKey("School", equalTo: self.theSchool!)
+        }
+        Class.whereKey("Username", equalTo: "\((cUser?.username)!)")
+        Class.whereKey("UserID", equalTo: (cUser?.objectId)!)
+        Class.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+            if error == nil{
+                if let results = results as [PFObject]?{
+                    for result in results{
+                        self.array.append(result.objectId!)
+                        if self.array.count > 0{
+                            self.isFollowing = true
+                            
+                            if self.derp == "KLM"{
+                                let cvc = self.childViewControllers.first as! ChildViewController
+                                cvc.delegate = self
+                                cvc.follow.setTitle("Following", forState: UIControlState.Normal)
+                                cvc.follow.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                                
+                                print("ISS  KLM FOLLOWING")
+                                
+                            }
+                        }else{
+                            if self.derp == "KLM"{
+                                let cvc = self.childViewControllers.first as! ChildViewController
+                                cvc.delegate = self
+                                
+                                cvc.follow.setTitle("Follow", forState: UIControlState.Normal)
+                            }
+                            self.isFollowing = false
+                            print("NOTTTKLM FOLLOWING")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     
     /*
     // Override to support conditional editing of the table view.

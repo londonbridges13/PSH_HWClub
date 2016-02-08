@@ -30,6 +30,7 @@ class NewLessonVC: UIViewController {
         if newTopicTX?.text!.characters.count > 3{
 //            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
             theTopic = newTopicTX.text
+            self.LoadingDesign()
             checkAndUpload(theTopic!)
         }
     }
@@ -40,6 +41,7 @@ class NewLessonVC: UIViewController {
     
     func checkAndUpload(textfield:String){
         print(textfield)
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         self.checker.removeAll()
         let uC = PFQuery(className: "Assignments")
         //var iii = 0
@@ -55,15 +57,19 @@ class NewLessonVC: UIViewController {
                     
                     if results!.count > 0{
                         self.checker.append("homie")
+                        UIApplication.sharedApplication().endIgnoringInteractionEvents()
                         self.cThat()
+                        UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     }else{
                         self.sendher()
+                        UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     }
                     
                     
-                    
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     
                 }
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
             })
         }
         //sleep(1)
@@ -85,7 +91,7 @@ class NewLessonVC: UIViewController {
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 self.ConG()
                 self.senditButty.sendActionsForControlEvents(.TouchUpInside)
-
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
             }else{
                 print(error?.description)
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
@@ -108,6 +114,39 @@ class NewLessonVC: UIViewController {
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
     }
+    
+    
+    
+    
+    func LoadingDesign(){
+        
+        let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height - 60)
+        let testView : UIView = UIView(frame: testFrame)
+        testView.backgroundColor = UIColor.clearColor()
+        testView.alpha = 1
+        testView.tag = 90
+        self.view.addSubview(testView)
+        
+        let aFrame = CGRectMake((testView.frame.size.height / 4), 96, 80, 80)
+        
+        let loadingView: UIView = UIView()
+        loadingView.frame = aFrame //CGRectMake(0, 0, 80, 80)
+        loadingView.backgroundColor = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 1)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 40
+        testView.addSubview(loadingView)
+        
+        
+        let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        myActivityIndicator.color = UIColor.whiteColor()
+        myActivityIndicator.frame = aFrame
+        myActivityIndicator.hidden = false
+        myActivityIndicator.startAnimating()
+        testView.addSubview(myActivityIndicator)
+        
+    }
+    
+
     /*
     // MARK: - Navigation
 

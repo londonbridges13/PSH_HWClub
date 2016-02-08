@@ -354,6 +354,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
         vc.theClass = "\(classnameArray[codeIndex])"
         //vc.CHold = className
         vc.theTeacher = "\(teacherNameArray[codeIndex])"
+        vc.derp = "FINDER"
         // NOT DONE HERE
         } else {
             let vc : SearchTVC = segue.destinationViewController as! SearchTVC

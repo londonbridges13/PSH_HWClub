@@ -19,6 +19,11 @@
 		3E2842581C3AFE1500579FAF /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2842571C3AFE1500579FAF /* CommentCell.swift */; };
 		3E28425A1C3B3F3000579FAF /* AddCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2842591C3B3F3000579FAF /* AddCommentVC.swift */; };
 		3E35AC081C1FD30D00169C2C /* findNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35AC071C1FD30D00169C2C /* findNAVI.swift */; };
+		3E381CBC1C68106000DAD08F /* SideBarSchoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CBB1C68106000DAD08F /* SideBarSchoolCell.swift */; };
+		3E381CBE1C6813AA00DAD08F /* SidebarMyClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CBD1C6813AA00DAD08F /* SidebarMyClassCell.swift */; };
+		3E381CC01C6819BF00DAD08F /* SideBarNotiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CBF1C6819BF00DAD08F /* SideBarNotiCell.swift */; };
+		3E381CC21C684C9100DAD08F /* AssNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CC11C684C9100DAD08F /* AssNAVI.swift */; };
+		3E381CC41C68E97300DAD08F /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CC31C68E97300DAD08F /* ChildViewController.swift */; };
 		3E3C63D61BCAD7FE008AE62D /* AddHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C63D51BCAD7FE008AE62D /* AddHWViewController.swift */; };
 		3E3C95E31BC0A283006E7802 /* noIMGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C95E21BC0A283006E7802 /* noIMGViewController.swift */; };
 		3E3CD4331C3387900071DE06 /* ViewPhotoAnswerTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3CD4321C33878F0071DE06 /* ViewPhotoAnswerTVC.swift */; };
@@ -121,6 +126,7 @@
 		3EF323ED1C659CC100D1EA57 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF323E61C65971500D1EA57 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3EF323EE1C659CC100D1EA57 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF323E71C65971600D1EA57 /* RealmSwift.framework */; };
 		3EF323EF1C659CC100D1EA57 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF323E71C65971600D1EA57 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EF323F31C66C7DE00D1EA57 /* OldHomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF323F21C66C7DE00D1EA57 /* OldHomeTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +175,11 @@
 		3E2842571C3AFE1500579FAF /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		3E2842591C3B3F3000579FAF /* AddCommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentVC.swift; sourceTree = "<group>"; };
 		3E35AC071C1FD30D00169C2C /* findNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = findNAVI.swift; sourceTree = "<group>"; };
+		3E381CBB1C68106000DAD08F /* SideBarSchoolCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SideBarSchoolCell.swift; path = HWClub/SideBarSchoolCell.swift; sourceTree = "<group>"; };
+		3E381CBD1C6813AA00DAD08F /* SidebarMyClassCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarMyClassCell.swift; sourceTree = "<group>"; };
+		3E381CBF1C6819BF00DAD08F /* SideBarNotiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarNotiCell.swift; sourceTree = "<group>"; };
+		3E381CC11C684C9100DAD08F /* AssNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssNAVI.swift; sourceTree = "<group>"; };
+		3E381CC31C68E97300DAD08F /* ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		3E3C63D51BCAD7FE008AE62D /* AddHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHWViewController.swift; sourceTree = "<group>"; };
 		3E3C95E21BC0A283006E7802 /* noIMGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = noIMGViewController.swift; sourceTree = "<group>"; };
 		3E3CD4321C33878F0071DE06 /* ViewPhotoAnswerTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPhotoAnswerTVC.swift; sourceTree = "<group>"; };
@@ -274,6 +285,7 @@
 		3EF323E61C65971500D1EA57 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		3EF323E71C65971600D1EA57 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		3EF323EA1C65979F00D1EA57 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		3EF323F21C66C7DE00D1EA57 /* OldHomeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldHomeTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +345,9 @@
 		3E558C021BB39A90009E5170 = {
 			isa = PBXGroup;
 			children = (
+				3E381CBB1C68106000DAD08F /* SideBarSchoolCell.swift */,
+				3E381CBD1C6813AA00DAD08F /* SidebarMyClassCell.swift */,
+				3E381CBF1C6819BF00DAD08F /* SideBarNotiCell.swift */,
 				3EF323EA1C65979F00D1EA57 /* libc++.tbd */,
 				3EA92E0F1BDEF8690056B795 /* iAd.framework */,
 				3E558C551BB39BDF009E5170 /* libz.tbd */,
@@ -362,6 +377,7 @@
 		3E558C0D1BB39A90009E5170 /* HWClub */ = {
 			isa = PBXGroup;
 			children = (
+				3E381CC31C68E97300DAD08F /* ChildViewController.swift */,
 				3E6293161C41897C00C8473D /* CVCalendarKitOperators.swift */,
 				3E6293171C41897C00C8473D /* CVCalendarKitExtensions.swift */,
 				3E62931A1C418F9A00C8473D /* DateExtension.swift */,
@@ -399,6 +415,7 @@
 				3E4ABBF01C2F79EF001E8D15 /* homeNAVI.swift */,
 				3E4ABBF21C2F7A26001E8D15 /* notiNAVI.swift */,
 				3E4ABBF41C2F7BFD001E8D15 /* HomeTVC.swift */,
+				3EF323F21C66C7DE00D1EA57 /* OldHomeTVC.swift */,
 				3E5718441C38622700B98463 /* noMyClassCell.swift */,
 				3E5718461C38631200B98463 /* noFindCellClass.swift */,
 				3E4ABBF61C2F7C1D001E8D15 /* NotiTVC.swift */,
@@ -413,6 +430,7 @@
 				3EE015A31BBDCD9600F74966 /* imageViewViewController.swift */,
 				3EE015A11BBCA79600F74966 /* AnswerIMGCell.swift */,
 				3EE0159D1BBB81F300F74966 /* MyClassesTableViewController.swift */,
+				3E381CC11C684C9100DAD08F /* AssNAVI.swift */,
 				3E6ED99D1C5735C00085FCDC /* QLabelCell.swift */,
 				3EE0159F1BBB821300F74966 /* MyClassTableViewCell.swift */,
 				3EE0159B1BBB540300F74966 /* QuestionsTableViewController.swift */,
@@ -681,7 +699,9 @@
 				3EE57DF91C32582A0048B602 /* AnswerQHeaderCell.swift in Sources */,
 				3E558C111BB39A90009E5170 /* ViewController.swift in Sources */,
 				3EE0159E1BBB81F300F74966 /* MyClassesTableViewController.swift in Sources */,
+				3E381CBE1C6813AA00DAD08F /* SidebarMyClassCell.swift in Sources */,
 				3E5718451C38622700B98463 /* noMyClassCell.swift in Sources */,
+				3E381CC01C6819BF00DAD08F /* SideBarNotiCell.swift in Sources */,
 				3E3FC0121BB7B30100E6D4B8 /* AssignmentsTableViewController.swift in Sources */,
 				3E4E9DC61C4B60BA00CC5BFA /* aCommentCell.swift in Sources */,
 				3E89323C1BBAF04300EB0217 /* AnswersTableViewController.swift in Sources */,
@@ -690,6 +710,7 @@
 				3E3C63D61BCAD7FE008AE62D /* AddHWViewController.swift in Sources */,
 				3E7ADE101C34D3C400E1C1E4 /* ViewAnswerAllOptionsCell.swift in Sources */,
 				3E495FAB1C4015A400C02C01 /* loadSETUPVC.swift in Sources */,
+				3EF323F31C66C7DE00D1EA57 /* OldHomeTVC.swift in Sources */,
 				3E3C95E31BC0A283006E7802 /* noIMGViewController.swift in Sources */,
 				3E3FC01A1BB8C83700E6D4B8 /* LoadingViewController.swift in Sources */,
 				3E3CD4331C3387900071DE06 /* ViewPhotoAnswerTVC.swift in Sources */,
@@ -728,6 +749,7 @@
 				3EA8476F1C4C703600EB8A25 /* AddQuestionVC.swift in Sources */,
 				3E6F226D1C3794C3002D5802 /* NoClassHomeCell.swift in Sources */,
 				3E6293191C41897C00C8473D /* CVCalendarKitExtensions.swift in Sources */,
+				3E381CBC1C68106000DAD08F /* SideBarSchoolCell.swift in Sources */,
 				3E08D4AD1BB4DA560092EF8B /* SecondViewController.swift in Sources */,
 				3E6F226F1C37BBE1002D5802 /* UserData.swift in Sources */,
 				3EA66E321C3C7B0900FFDDF3 /* EnterEmailVC.swift in Sources */,
@@ -738,6 +760,7 @@
 				3E57184B1C39CF3200B98463 /* WelcomeVC.swift in Sources */,
 				3E5E09E41C3F44A60020A73A /* AddStateTVC.swift in Sources */,
 				3E08D4B01BB4ED070092EF8B /* SWRevealViewController.m in Sources */,
+				3E381CC41C68E97300DAD08F /* ChildViewController.swift in Sources */,
 				3EE7D00F1C270E7700DE2DA2 /* ClassObject.swift in Sources */,
 				3EC4B7481C2E5666000B878D /* ProfileTVC.swift in Sources */,
 				3EE015A01BBB821300F74966 /* MyClassTableViewCell.swift in Sources */,
@@ -745,6 +768,7 @@
 				3EE7D00B1C27065000DE2DA2 /* SearchTVC.swift in Sources */,
 				3E3CD4351C3393800071DE06 /* ViewPhotoAnswerCell.swift in Sources */,
 				3E4E9DC41C4B363700CC5BFA /* CommyObject.swift in Sources */,
+				3E381CC21C684C9100DAD08F /* AssNAVI.swift in Sources */,
 				3E9DDBE11BB65B4000A0EB77 /* FindClassTableViewCell.swift in Sources */,
 				3E08D4BD1BB4F2B00092EF8B /* ProfileViewController.swift in Sources */,
 				3E4047421C4F4E3100F2EB14 /* CH_Username.swift in Sources */,
