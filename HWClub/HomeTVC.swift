@@ -44,7 +44,7 @@ class HomeTVC: UITableViewController {
     var currentPage = 0
     var nextpage = 0
     var proppie : PFFile?
-    
+    var prepre = 0
     var gogo = 0
     
     var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
@@ -127,8 +127,15 @@ class HomeTVC: UITableViewController {
         }
         quickQuery()
 //        preQuery()
-        previewOP()
+        
 
+            self.previewOP()
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 10/3 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.removeLoading()
+            self.prepre = 1
+            
+        }
         
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -303,8 +310,9 @@ class HomeTVC: UITableViewController {
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/2 * Int64(NSEC_PER_SEC))
         dispatch_after(time, dispatch_get_main_queue()) {
             //put your code which should be executed with a delay here
-            
-            self.removeLoading()
+            if self.prepre != 0{
+                self.removeLoading()
+            }
 
         }
 //        }
@@ -1179,7 +1187,7 @@ class HomeTVC: UITableViewController {
         
         let loadingView: UIView = UIView()
         loadingView.frame = aFrame //CGRectMake(0, 0, 80, 80)
-        loadingView.backgroundColor = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 0.6)
+        loadingView.backgroundColor = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 1.0)
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 40
         testView.addSubview(loadingView)

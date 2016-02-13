@@ -2399,7 +2399,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="myClassLabel" destination="e8N-sp-Oi3" id="DVi-5M-0Dc"/>
-                                    <segue destination="STq-Nm-nn0" kind="show" identifier="Sidebar Class" customClass="SWRevealViewControllerSeguePushController" id="3Sg-2F-V2r"/>
+                                    <segue destination="STq-Nm-nn0" kind="custom" identifier="Sidebar Class" customClass="SWRevealViewControllerSeguePushController" id="Wet-8M-rfC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -7220,7 +7220,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04w-j2-J8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4689.75" y="2584.125"/>
+            <point key="canvasLocation" x="4661.25" y="2623.875"/>
         </scene>
         <!--Assignments Table View Controller-->
         <scene sceneID="yFv-S0-u2y">
@@ -11052,7 +11052,7 @@
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
                                 <color key="color" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Short Answer" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3D6-0E-eKP">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Short Answer" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3D6-0E-eKP">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="oYs-Jn-ipH"/>
@@ -11077,6 +11077,7 @@
                                     <constraint firstAttribute="width" constant="79" id="5Td-iL-cmf"/>
                                     <constraint firstAttribute="height" constant="87" id="eEa-V3-Cwr"/>
                                 </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="5Td-iL-cmf"/>
@@ -12034,9 +12035,9 @@
         <segue reference="jr1-0W-bqv"/>
         <segue reference="mAc-b4-gfm"/>
         <segue reference="yP6-e0-SdD"/>
+        <segue reference="lUu-W5-3W7"/>
         <segue reference="Zp4-lH-dH6"/>
         <segue reference="WKF-IA-i01"/>
-        <segue reference="J5F-HI-gc9"/>
         <segue reference="hbg-oZ-9mf"/>
     </inferredMetricsTieBreakers>
 </document>

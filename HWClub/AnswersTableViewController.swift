@@ -662,7 +662,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
                             aObject.theSay = "AnswerComment"
                             
                             self.Answers.append(aObject)
-                            self.filesArray.append(fakeIMG!)
+//                            self.filesArray.append(fakeIMG!)
                             self.hasIMGarray.append(aTorF!)
                             print("No IMG")
                             print(aAnswer)
@@ -818,7 +818,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
                 if self.Answers[indexPathO].numOfDaps! == 0{
-                    cell.dapsButton.setTitle(" | Dap", forState: .Normal)
+                    cell.dapsButton.setTitle("  |  Dap", forState: .Normal)
                     
                 }else if self.Answers[indexPathO].numOfDaps! == 1{
                     cell.dapsButton.setTitle(" | \(self.Answers[indexPathO].numOfDaps!) Dap", forState: .Normal)

@@ -57,9 +57,22 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     @IBOutlet var addPhotoButton: UIButton!
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+//        LoadingDesign()
+//        self.answerTXT.becomeFirstResponder()
+//        self.answerTXT.delegate = self
+//        self.answerTXT.becomeFirstResponder()
+
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+//        LoadingDesign()
+//        self.answerTXT.becomeFirstResponder()
+
+        self.ImgView.image = UIImage(named: "Flat-Camera-Icon")
         print(howMEhere)
         actINDI.stopAnimating()
         print(QuestionerID)
@@ -69,11 +82,17 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         quickQuery()
         self.shortAnswerTX.delegate = self
         
-        self.shortAnswerTX.becomeFirstResponder()
-        
+//        self.shortAnswerTX.becomeFirstResponder()
+
         self.answerTXT.delegate = self
-        answerTXT.text = "Full Answer"
+        answerTXT.text = "Tap to Answer"
         answerTXT.textColor = UIColor.lightGrayColor()
+//        self.answerTXT.becomeFirstResponder()
+
+//        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 5/9 * Int64(NSEC_PER_SEC))
+//        dispatch_after(time, dispatch_get_main_queue()) {
+//            self.answerTXT.becomeFirstResponder()
+//        }
         // Do any additional setup after loading the view.
     }
 
@@ -134,12 +153,12 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     
     @IBAction func newSendFunc(sender: AnyObject) {
-        if answerTXT.text == "Full Answer"{
+        if answerTXT.text == "Tap to Answer"{
             answerTXT.text = ""
         }
         LoadingDesign()
         var htht = shortAnswerTX.text!.characters.count + answerTXT.text.characters.count
-//        if shortAnswerTX.text == "" && answerTXT.text == "Full Answer"{//answerTXT.text == "" ||
+//        if shortAnswerTX.text == "" && answerTXT.text == "Tap to Answer"{//answerTXT.text == "" ||
         if htht <= 2{
             // THERE's Nothing
             //Type Something
@@ -165,11 +184,11 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
                 self.shortA = shortAnswerTX.text
             }
             
-            if answerTXT.text.characters.count < 3{// == "Full Answer"{
+            if answerTXT.text.characters.count < 3{// == "Tap to Answer"{
                 print("Full House")
                 answerTXT.text = shortAnswerTX.text
                 longA = shortAnswerTX.text
-            }else if answerTXT.text == "Full Answer"{
+            }else if answerTXT.text == "Tap to Answer"{
                 print("Full House")
                 answerTXT.text = shortAnswerTX.text
                 longA = shortAnswerTX.text
@@ -178,7 +197,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             }
 
             
-            if ImgView.image != nil{
+            if ImgView.image != UIImage(named: "Flat-Camera-Icon"){
                 // set photo = to sentIMG
                 
                 self.sendingIMG = true
@@ -448,7 +467,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         // 2
         let vAction = UIAlertAction(title: "View Photo", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
-            if self.ImgView.image != nil{
+            if self.ImgView.image != UIImage(named: "Flat-Camera-Icon"){
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.performSegueWithIdentifier("picview", sender: self)
                 })
@@ -460,6 +479,12 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             (alert: UIAlertAction!) -> Void in
             self.takePic()
             print("From Camera")
+        })
+        let DeleteAction = UIAlertAction(title: "Remove Photo", style: .Destructive, handler: {            (alert: UIAlertAction!) -> Void in
+            self.sentIMG = nil
+            self.ImgView.image = UIImage(named: "Flat-Camera-Icon")
+
+            
         })
         let PLAction = UIAlertAction(title: "Photo Library", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -488,6 +513,9 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         optionMenu.addAction(vAction)
         optionMenu.addAction(TPAction)
         optionMenu.addAction(PLAction)
+        if self.ImgView.image != UIImage(named: "Flat-Camera-Icon"){
+            optionMenu.addAction(DeleteAction)
+        }
         optionMenu.addAction(cancelAction)
         
         // 5
@@ -512,17 +540,22 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     }
     
     @IBAction func Done(sender: AnyObject) {
+        answerTXT.resignFirstResponder()
+        shortAnswerTX.resignFirstResponder()
         print("pushed")
-        if answerTXT.text == "Full Answer"{
+        if answerTXT.text == "Tap to Answer"{
             answerTXT.text = ""
         }
         LoadingDesign()
         var htht = shortAnswerTX.text!.characters.count + answerTXT.text.characters.count
-        //        if shortAnswerTX.text == "" && answerTXT.text == "Full Answer"{//answerTXT.text == "" ||
+        //        if shortAnswerTX.text == "" && answerTXT.text == "Tap to Answer"{//answerTXT.text == "" ||
         if htht <= 2{
             // THERE's Nothing
             //Type Something
             
+            let alert = SCLAlertView()
+            alert.showInfo("Too Short", subTitle: "Type a little more")
+
             removeLoading()
         }else{
             ParsePart()
@@ -622,7 +655,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
 
     func textViewShouldBeginEditing(textView: UITextView) -> Bool{
-        if textView.text == "Full Answer"{
+        if textView.text == "Tap to Answer"{
             textView.text = ""
             textView.textColor = self.dGray
             
@@ -657,12 +690,30 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     
     func dopi(){
-        LoadingDesign()
+//        LoadingDesign()
+        
         print("pushed")
         
 //        actINDI.startAnimating()
-        
-        self.NewSenderButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+        answerTXT.resignFirstResponder()
+        shortAnswerTX.resignFirstResponder()
+        print("pushed")
+        if answerTXT.text == "Tap to Answer"{
+            answerTXT.text = ""
+        }
+        LoadingDesign()
+        var htht = shortAnswerTX.text!.characters.count + answerTXT.text.characters.count
+        //        if shortAnswerTX.text == "" && answerTXT.text == "Tap to Answer"{//answerTXT.text == "" ||
+        if htht <= 2{
+            // THERE's Nothing
+            //Type Something
+            
+            let alert = SCLAlertView()
+            alert.showInfo("Too Short", subTitle: "Type a little more")
+            removeLoading()
+        }else{
+            self.NewSenderButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+        }
     }
     
     func LoadingDesign(){
