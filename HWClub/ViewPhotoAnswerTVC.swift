@@ -25,6 +25,8 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
     var theExplaination : String?
     let lBlue = UIColor(red: 134/255, green: 218/255, blue: 233/255, alpha: 1)
     var AnswerProviderID : String?
+    var userPic : UIImage?
+    var AnswererUsername : String?
     var derp : String?
     var theDate : NSDate?
     var QuestionID : String?
@@ -36,6 +38,7 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
     var commyDATES = [NSDate]()
     var proppie : PFFile?
     var commys = [CommyObject]()
+    var uniq = [CommyObject]()
     var cUser = PFUser.currentUser()    
     var commentersNames = [String]()
     var commentersPics = [PFFile]()
@@ -111,15 +114,6 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
             }
             return cell
         case 1:
-
-            let cell : ViewPhotoAnswerPhotoCell = tableView.dequeueReusableCellWithIdentifier("photodisplay", forIndexPath: indexPath) as! ViewPhotoAnswerPhotoCell
-            tableview.rowHeight = 407
-            if self.thePic != nil{
-                cell.photoView.image = self.thePic!
-            }
-            return cell
-
-        case 2:
             let cell : ViewPhotoAnswerCell = tableView.dequeueReusableCellWithIdentifier("answerDisplayCell", forIndexPath: indexPath) as! ViewPhotoAnswerCell
             tableview.rowHeight = UITableViewAutomaticDimension
             tableview.estimatedRowHeight = 103
@@ -129,9 +123,27 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
             if self.theDate != nil{
                 cell.dateLabel.text = dts(self.theDate!)
             }
+            if self.userPic != nil{
+                cell.proPic.image = userPic!
+                cell.proPic.layer.cornerRadius = 23
+                cell.proPic.layer.masksToBounds = true
+            }
+            if self.AnswererUsername != nil{
+                cell.usernameLabel.text = self.AnswererUsername!
+            }
 
             return cell
-        case 3:
+
+        case 2:
+
+            let cell : ViewPhotoAnswerPhotoCell = tableView.dequeueReusableCellWithIdentifier("photodisplay", forIndexPath: indexPath) as! ViewPhotoAnswerPhotoCell
+            tableview.rowHeight = 407
+            if self.thePic != nil{
+                cell.photoView.image = self.thePic!
+            }
+            return cell
+
+              case 3:
         
             let cell : ViewPhotoAnswerMoreOptions = tableView.dequeueReusableCellWithIdentifier("buttonscell", forIndexPath: indexPath) as! ViewPhotoAnswerMoreOptions
             tableview.rowHeight = 80
@@ -406,6 +418,8 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
     
     
     func commentsQuery(){
+        commys.removeAll()
+        
         let cQ = PFQuery(className: "Comment")
         cQ.whereKey("AnswerID", equalTo: self.theAnswerID!)
         cQ.findObjectsInBackgroundWithBlock { (comments:[PFObject]?, error:NSError?) -> Void in
@@ -471,7 +485,8 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
                         
                         
                     }
-                    self.tableView.reloadData()
+                    self.sortIt()
+//                    tableView.reloadData()
                     if self.commentsArray.count != 0{
                         self.findingCommenters()
                         
@@ -485,6 +500,42 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
         }
         
     }
+    
+    
+    func sortIt(){
+        
+        if self.commys.count > 0{
+            print("rerere")
+//            print(self.commys[0].)
+            //            self.hPosts.sortInPlace({$0.date! > $1.date!})
+            
+//            self.commys.sortInPlace{ $0.date!.compare($1.date!) == .OrderedDescending}
+//            print(self.commys[0].date)
+            print(commys.count)
+            //            var uniq = [HomePost]()
+            var checker = [String]()
+            for each in commys{
+                if checker.contains(each.objectID!) != true{
+                    checker.append(each.objectID!)
+                    uniq.append(each)
+                    print(commys.count)
+                    print(uniq.count)
+                }else{
+                    print("WE GOTONE")
+                }
+            }
+            self.commys = uniq
+            //            self.allPosts.addObjectsFromArray(uniq)
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            
+            self.tableView.reloadData()
+            uniq.removeAll()
+            print("reloaded")
+        }
+    }
+
+    
+    
     
     func findingCommenters(){
 //        print(user)
@@ -521,6 +572,7 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
                     }
                         }
                         self.tableView.reloadData()
+//                    self.sortIt()
                     
                 }
             })

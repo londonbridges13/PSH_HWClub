@@ -11,6 +11,10 @@ import UIKit
 protocol Childing{
     func followClass()
     func unfollowClass()
+    func SeggyIndexZero()
+    func SeggyIndexOne()
+    func SeggyIndexTwo()
+    
 }
 
 
@@ -24,6 +28,8 @@ class ChildViewController: UIViewController {
     
     @IBOutlet var seggy : UISegmentedControl!
     
+    @IBOutlet var segmentControl: UISegmentedControl!
+    
     var delegate = Childing?()
     
     let dRed = UIColor(red: 234/255, green: 141/255, blue: 158/255, alpha: 1)
@@ -33,6 +39,7 @@ class ChildViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         follow.setTitle("Follow", forState: UIControlState.Normal)
 
         if shepard != nil{
@@ -67,6 +74,36 @@ class ChildViewController: UIViewController {
 //        }
 //    }
 
+    
+    
+    
+    
+    
+    @IBAction func DisplayedPosts(sender: AnyObject) {
+        
+        switch self.segmentControl.selectedSegmentIndex{
+            
+        case 0:
+            print("Viewing All Posts")
+            if let delegate = self.delegate {
+                delegate.SeggyIndexZero()
+            }
+        case 1:
+            print("Viewing Questions")
+            if let delegate = self.delegate {
+                delegate.SeggyIndexOne()
+            }
+        case 2:
+           print("Viewing Topics")
+           if let delegate = self.delegate {
+                delegate.SeggyIndexTwo()
+            }
+        default: break
+        }
+        
+    }
+    
+    
     
     
     @IBAction func jacked(sender: AnyObject){

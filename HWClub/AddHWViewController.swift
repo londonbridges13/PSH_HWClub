@@ -134,8 +134,20 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     
     @IBAction func newSendFunc(sender: AnyObject) {
-
-        ParsePart()
+        if answerTXT.text == "Full Answer"{
+            answerTXT.text = ""
+        }
+        LoadingDesign()
+        var htht = shortAnswerTX.text!.characters.count + answerTXT.text.characters.count
+//        if shortAnswerTX.text == "" && answerTXT.text == "Full Answer"{//answerTXT.text == "" ||
+        if htht <= 2{
+            // THERE's Nothing
+            //Type Something
+            
+            removeLoading()
+        }else{
+            ParsePart()
+        }
 
     }
     
@@ -188,7 +200,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     }
 
     func ParsePart(){
-        
+        LoadingDesign()
         answerTXT.endEditing(true)
         shortAnswerTX.endEditing(true)
         sendAnswers()
@@ -303,7 +315,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
                     }
 //                    self.notifyUser(self.QuestionerID!)
                     self.answerTXT.endEditing(true)
-                    
+                    self.removeLoading()
                     let aa = SCLAlertView()
                     
                     aa.showCloseButton = false
@@ -487,7 +499,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     @IBAction func newDoneButton(sender: AnyObject) {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             
-            self.actINDI.startAnimating()
+//            self.actINDI.startAnimating()
 
         }
 
@@ -501,8 +513,20 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     @IBAction func Done(sender: AnyObject) {
         print("pushed")
-        
-        ParsePart()
+        if answerTXT.text == "Full Answer"{
+            answerTXT.text = ""
+        }
+        LoadingDesign()
+        var htht = shortAnswerTX.text!.characters.count + answerTXT.text.characters.count
+        //        if shortAnswerTX.text == "" && answerTXT.text == "Full Answer"{//answerTXT.text == "" ||
+        if htht <= 2{
+            // THERE's Nothing
+            //Type Something
+            
+            removeLoading()
+        }else{
+            ParsePart()
+        }
         //actINDI.startAnimating()
         
         
@@ -612,8 +636,8 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         
         // Setup the buttons to be put in the system.
         //let Ditem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dopi") )
-        let Ditem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: Selector("dopi"))
-        
+//        let Ditem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: Selector("dopi"))
+        let Ditem = UIBarButtonItem(title: "Send", style: .Done, target: self, action: Selector("dopi"))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil);
         
         let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Camera, target: self, action: Selector("tipi"))
@@ -633,12 +657,57 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     
     func dopi(){
+        LoadingDesign()
         print("pushed")
         
-        actINDI.startAnimating()
+//        actINDI.startAnimating()
         
         self.NewSenderButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
     }
+    
+    func LoadingDesign(){
+        
+        let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height - 60)
+        let testView : UIView = UIView(frame: testFrame)
+        testView.backgroundColor = UIColor.clearColor()
+        testView.alpha = 1
+        testView.tag = 90
+        self.view.addSubview(testView)
+        
+        let aFrame = CGRectMake((testView.frame.size.height / 4), 96, 80, 80)
+        
+        let loadingView: UIView = UIView()
+        loadingView.frame = aFrame //CGRectMake(0, 0, 80, 80)
+        loadingView.backgroundColor = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 1.0)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 40
+        testView.addSubview(loadingView)
+        
+        
+        let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        myActivityIndicator.color = UIColor.whiteColor()
+        myActivityIndicator.frame = aFrame
+        myActivityIndicator.hidden = false
+        myActivityIndicator.startAnimating()
+        testView.addSubview(myActivityIndicator)
+        
+        
+    }
+
+    
+    
+    func removeLoading(){
+        if let viewWithTag = self.view.viewWithTag(90) {
+            print("Tag 100")
+            viewWithTag.removeFromSuperview()
+        }
+        else {
+            print("tag not found")
+        }
+    }
+
+    
+    
     
     
     

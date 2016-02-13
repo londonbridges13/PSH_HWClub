@@ -39,21 +39,36 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+//        tableView.setContentOffset(CGPointZero, animated:true)
+
 //        yy.delegate = self
         queryMyClasses()
         queryNotiis()
+        
+//        tableView.setContentOffset(CGPointZero, animated:true)
+
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 //        tableView.reloadData()
-//        tableView.scrollsToTop = true
-        tableView.setContentOffset(CGPointZero, animated:true)
+
+//        tableView.setContentOffset(CGPointZero, animated:true)
+//        tableView.setContentOffset(CGPoint(x: 0, y: 20), animated:true)
+
         print("Gone")
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        tableView.setContentOffset(CGPoint(x: 0, y: -20), animated:true)
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+
 //        yy.delegate = self
 
 //        notiNumLabel.layer.cornerRadius = 16
@@ -62,6 +77,8 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
 //            usernameLabel.text = "@\((cUser?.username)!)"
         }
         userInfoQuery()
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
 //        if self.notiNumLabel.text == "0"{
 //            self.notiNumLabel.alpha = 0 //0
 //        }
@@ -231,6 +248,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     
     
     func queryMyClasses(){
+
         self.myClassArray.removeAll()
         self.myTeacherArray.removeAll()
         
@@ -260,8 +278,10 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                         print(myClass)
                         print(myTeacher)
                         self.tableView.reloadData()
+                        
                     }
                     self.tableView.reloadData()
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 }
             }else{
                 print("\(error) ..... \(error!.userInfo)")
@@ -343,6 +363,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
             }
             vc.theTeacher = "\(myTeacherArray[miko])"
             vc.theClass = "\(myClassArray[miko)"
+            vc.theSchool = self.theSchool!
         }
     }
     

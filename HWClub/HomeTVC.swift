@@ -345,35 +345,67 @@ class HomeTVC: UITableViewController {
             
             // Configure the cell...
             if hPosts[indexPath.row].Type == "Ass"{
-                let cell : HomeCell1 = tableView.dequeueReusableCellWithIdentifier("HomeCell1", forIndexPath: indexPath) as! HomeCell1
-                
+//                let cell : HomeCell1 = tableView.dequeueReusableCellWithIdentifier("HomeCell1", forIndexPath: indexPath) as! HomeCell1
+//                
+//                tableView.rowHeight = UITableViewAutomaticDimension
+//                tableView.estimatedRowHeight = 200
+//                
+//                cell.whatLabel.text = hPosts[indexPath.row].What!
+//                cell.usernameLabel.text = hPosts[indexPath.row].theClass!
+//                cell.dateLabel.text = dts(hPosts[indexPath.row].date!)
+//                cell.classnameLabel.text = hPosts[indexPath.row].theClass!
+//                cell.highStatusLabel.text = ""//"New Lesson:"
+//                cell.byLabel.text = ""//           For"
+//                
+                let cell : HomeTopicCell = tableView.dequeueReusableCellWithIdentifier("HomeAssTopicCell", forIndexPath: indexPath) as! HomeTopicCell
+                if self.hPosts[indexPath.row].theLesson != nil{
+                    cell.WHatLabel.text = " New Topic Added: \"\(self.hPosts[indexPath.row].theLesson!)\""
+                    cell.topicLabel.text = "\(self.hPosts[indexPath.row].theClass!)"
+                }else{
+
+                }
+                if self.hPosts[indexPath.row].date != nil{
+                    cell.dateLabel.text = dts(self.hPosts[indexPath.row].date!)
+                }else{
+                    cell.dateLabel.text = ""
+                }
                 tableView.rowHeight = UITableViewAutomaticDimension
-                tableView.estimatedRowHeight = 200
-                
-                cell.whatLabel.text = hPosts[indexPath.row].What!
-                cell.usernameLabel.text = hPosts[indexPath.row].theClass!
-                cell.dateLabel.text = dts(hPosts[indexPath.row].date!)
-                cell.classnameLabel.text = hPosts[indexPath.row].theClass!
-                cell.highStatusLabel.text = ""//"New Lesson:"
-                cell.byLabel.text = ""//           For"
-                
+                tableView.estimatedRowHeight = 99//106
                 return cell
 
             }
             
             
             if hPosts[indexPath.row].Type == "Q"{
-                let cell : HomeCell1 = tableView.dequeueReusableCellWithIdentifier("HomeCell1", forIndexPath: indexPath) as! HomeCell1
+//                let cell : HomeCell1 = tableView.dequeueReusableCellWithIdentifier("HomeCell1", forIndexPath: indexPath) as! HomeCell1
+//                
+//                tableView.rowHeight = UITableViewAutomaticDimension
+//                tableView.estimatedRowHeight = 200
+//                cell.whatLabel.text = hPosts[indexPath.row].What!
+//                cell.usernameLabel.text = hPosts[indexPath.row].POSTERNAME
+//                cell.dateLabel.text = dts(hPosts[indexPath.row].date!)
+//                cell.classnameLabel.text = hPosts[indexPath.row].theClass!
+//                cell.highStatusLabel.text = "New Question:"
+//                cell.byLabel.text = "Posted by"
+
                 
                 tableView.rowHeight = UITableViewAutomaticDimension
-                tableView.estimatedRowHeight = 200
-                cell.whatLabel.text = hPosts[indexPath.row].What!
-                cell.usernameLabel.text = hPosts[indexPath.row].POSTERNAME
+                tableView.estimatedRowHeight = 107
+                
+                
+                // New Assignments TableView
+                let cell : HomeQuestionCell = tableView.dequeueReusableCellWithIdentifier("HomeQuestionCell", forIndexPath: indexPath) as! HomeQuestionCell
+                cell.WHatLabel.text = hPosts[indexPath.row].What!
+                if self.hPosts[indexPath.row].theClass != nil{
+                    cell.topicLabel.text = "\(self.hPosts[indexPath.row].theClass!)"
+                }else{
+                    cell.topicLabel.text = ""
+                }
+                //                cell.usernameLabel.text = cPost[indexPath.row].POSTERNAME
                 cell.dateLabel.text = dts(hPosts[indexPath.row].date!)
-                cell.classnameLabel.text = hPosts[indexPath.row].theClass!
-                cell.highStatusLabel.text = "New Question:"
-                cell.byLabel.text = "Posted by"
-
+                //                cell.classnameLabel.text = cPost[indexPath.row].theClass!
+                
+                
                 return cell
 
             }
@@ -384,26 +416,56 @@ class HomeTVC: UITableViewController {
                 var celli : UITableViewCell?
                 
                 if hPosts[indexPath.row].hasIMG == false{
-                    let cell : HomeCellAnswer = tableView.dequeueReusableCellWithIdentifier("homeCellA", forIndexPath: indexPath) as! HomeCellAnswer
+//                    let cell : HomeCellAnswer = tableView.dequeueReusableCellWithIdentifier("homeCellA", forIndexPath: indexPath) as! HomeCellAnswer
+//                    
+//                    tableView.rowHeight = UITableViewAutomaticDimension
+//                    tableView.estimatedRowHeight = 200
+//                    cell.dateLabel.text = dts(hPosts[indexPath.row].date!)
+////                    cell.whatLabel.text = hPosts[indexPath.row].What!
+//                    cell.QuestionLabel.text = hPosts[indexPath.row].theQuestion!
+//                    cell.AnswerLabel.text = hPosts[indexPath.row].theAnswer!
+//                    cell.usernameLabel.text = hPosts[indexPath.row].POSTERNAME!
+//                    cell.classLabel.text = hPosts[indexPath.row].theClass!
+//                    if hPosts[indexPath.row].proCachy != nil{
+//                        cell.userPic.image = hPosts[indexPath.row].proCachy
+//                        cell.userPic.layer.cornerRadius = 31
+//                        cell.userPic.layer.masksToBounds = true
+//
+//
+//                    }
+////                    cell.userPic.layer.cornerRadius = 31
+////                    cell.highStatusLabel.text = "Answer For:"
+////                    cell.byLabel.text = "Answered by"
+//                    
+//                    
+                    
+                    let cell : HomeAnswerCell = tableView.dequeueReusableCellWithIdentifier("HomeAnswerCell", forIndexPath: indexPath) as! HomeAnswerCell
                     
                     tableView.rowHeight = UITableViewAutomaticDimension
-                    tableView.estimatedRowHeight = 200
+                    tableView.estimatedRowHeight = 145
                     cell.dateLabel.text = dts(hPosts[indexPath.row].date!)
-//                    cell.whatLabel.text = hPosts[indexPath.row].What!
-                    cell.QuestionLabel.text = hPosts[indexPath.row].theQuestion!
-                    cell.AnswerLabel.text = hPosts[indexPath.row].theAnswer!
-                    cell.usernameLabel.text = hPosts[indexPath.row].POSTERNAME!
-                    cell.classLabel.text = hPosts[indexPath.row].theClass!
-                    if hPosts[indexPath.row].proCachy != nil{
-                        cell.userPic.image = hPosts[indexPath.row].proCachy
-                        cell.userPic.layer.cornerRadius = 31
-                        cell.userPic.layer.masksToBounds = true
-
-
+                    //                    cell.whatLabel.text = hPosts[indexPath.row].What!
+                    if hPosts[indexPath.row].theQuestion != nil{
+                        cell.QuestionLabel.text = hPosts[indexPath.row].theQuestion!
                     }
-//                    cell.userPic.layer.cornerRadius = 31
-//                    cell.highStatusLabel.text = "Answer For:"
-//                    cell.byLabel.text = "Answered by"
+                    if hPosts[indexPath.row].theAnswer != nil{
+                        cell.AnswerLabel.text = hPosts[indexPath.row].theAnswer!
+                    }
+                    if hPosts[indexPath.row].POSTERNAME != nil{
+                        cell.usernameLabel.text = hPosts[indexPath.row].POSTERNAME!
+                    }
+                    if hPosts[indexPath.row].theClass != nil{
+                        cell.topicLabel.text = hPosts[indexPath.row].theClass!
+                    }else{
+                        cell.topicLabel.text = ""
+                    }
+                    if hPosts[indexPath.row].proCachy != nil{
+                        cell.proPicIMGView.image = hPosts[indexPath.row].proCachy
+                        cell.proPicIMGView.layer.cornerRadius = 18
+                        cell.proPicIMGView.layer.masksToBounds = true
+                    }
+
+                    
                     celli = cell
 //                    return cell
 
@@ -412,7 +474,7 @@ class HomeTVC: UITableViewController {
                     let cell : HomeCellPic = tableView.dequeueReusableCellWithIdentifier("homePicPost", forIndexPath: indexPath) as! HomeCellPic
                     
                     tableView.rowHeight = UITableViewAutomaticDimension
-                    tableView.estimatedRowHeight = 350
+                    tableView.estimatedRowHeight = 360 //350
 //                    let okit = allPosts[indexPath.row] as! HomePost
 //                    print("QUQUQUQUQUQu\(okit.date)")
                     print(hPosts[indexPath.row].date!)
@@ -434,7 +496,7 @@ class HomeTVC: UITableViewController {
                     cell.classLabel.text = hPosts[indexPath.row].theClass!
                     if hPosts[indexPath.row].proCachy != nil{
                         cell.userPic.image = hPosts[indexPath.row].proCachy
-                        cell.userPic.layer.cornerRadius = 31
+                        cell.userPic.layer.cornerRadius = 18//31
                         cell.userPic.layer.masksToBounds = true
                     }
                     
@@ -696,6 +758,7 @@ class HomeTVC: UITableViewController {
                             reaO.theLesson = aAss!
                             
                             aO.What = "New Topic Added to \(myClass!): \(aAss!)"
+//                            aO.theLesson = aAss!
                             reaO.What = "New Topic Added to \(myClass!): \(aAss!)"
                             print("Assignment/Topic : \(aAss!)")
                             aO.highWhat = "New Topic"
@@ -1314,6 +1377,12 @@ class HomeTVC: UITableViewController {
             vc.chit = "seggy"
             vc.theQ = self.hPosts[row!].theQuestion
             vc.QuestionID = self.hPosts[row!].theQuestionID
+            if self.hPosts[row!].POSTERNAME != nil{
+                vc.AnswererUsername = self.hPosts[row!].POSTERNAME!
+            }
+            if self.hPosts[row!].proCachy != nil{
+                vc.userPic = self.hPosts[row!].proCachy
+            }
         }
 
         if segue.identifier == "homeQtoVA"{
@@ -1326,6 +1395,15 @@ class HomeTVC: UITableViewController {
             }
             vc.derp = "not nil"
             vc.theAnswerID = self.hPosts[row!].theAnswerID!
+            vc.chit = "seggy"
+            vc.theQ = self.hPosts[row!].theQuestion
+            vc.QuestionID = self.hPosts[row!].theQuestionID
+            if self.hPosts[row!].POSTERNAME != nil{
+                vc.AnswererUsername = self.hPosts[row!].POSTERNAME!
+            }
+            if self.hPosts[row!].proCachy != nil{
+                vc.userPic = self.hPosts[row!].proCachy
+            }
         }
         if segue.identifier == "homeToAnswer"{
             // Send AnswerID Over

@@ -19,7 +19,7 @@ class NewLessonVC: UIViewController {
     var theSchool : String?
     var theClass : String?
     var theTeacher : String?
-    
+    var groupChat = "Group Chat"
     override func viewDidLoad() {
         super.viewDidLoad()
         newTopicTX.becomeFirstResponder()
@@ -27,13 +27,32 @@ class NewLessonVC: UIViewController {
     }
 
     @IBAction func AddIt(sender: AnyObject) {
-        if newTopicTX?.text!.characters.count > 3{
-//            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-            theTopic = newTopicTX.text
-            self.LoadingDesign()
-            checkAndUpload(theTopic!)
+        newTopicTX.resignFirstResponder()
+        theTopic = newTopicTX.text
+        
+                while theTopic!.characters.last == " "{
+                    //            if theTopic?.characters.last == " "{
+                    print("remove")
+                    //                theTopic = newTopicTX.text
+                    print("\(theTopic)ttt")
+                    var toko = theTopic!.substringToIndex(theTopic!.endIndex.predecessor())
+                    self.theTopic = toko
+                    print("\(theTopic)ttt")
+                }
+        if theTopic != groupChat{
+            if newTopicTX?.text!.characters.count > 3{
+                        //            theTopic = newTopicTX.text
+                self.LoadingDesign()
+                checkAndUpload(theTopic!)
+                //
+            }else{CGTooShort()}
+        }else{
+            var nono = SCLAlertView()
+            nono.showError("Oops...", subTitle: "Cannot have a topic by the name \"Group Chat\"")
         }
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,13 +63,14 @@ class NewLessonVC: UIViewController {
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         self.checker.removeAll()
         let uC = PFQuery(className: "Assignments")
+        let wago = NSDate().minusDays(1)
         //var iii = 0
         if theTopic != nil{
             uC.whereKey("assignmentName", equalTo: textfield)
             uC.whereKey("classname", equalTo: theClass!)
             uC.whereKey("teacherName", equalTo: theTeacher!)
             uC.whereKey("School", equalTo: theSchool!)
-            uC.whereKey("createdAt", lessThan: NSDate())
+            uC.whereKey("createdAt", greaterThan: wago)
             uC.findObjectsInBackgroundWithBlock({ (results : [PFObject]?, error: NSError?) -> Void in
                 if error == nil{
                     // self.checker.removeAll()
@@ -106,17 +126,43 @@ class NewLessonVC: UIViewController {
     
     func cThat(){
         // error
+        CGReused()
     }
     
     func ConG(){
+        removeLoading()
         let cn = SCLAlertView()
         cn.showSuccess("Added New Topic", subTitle: "Successfully Added New Topic 👌")
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
     }
     
+    func CGTooShort(){
+        removeLoading()
+        let cn = SCLAlertView()
+        cn.showNotice("Wait a Sec", subTitle: "This Title is too short")
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
+    }
     
+    func CGReused(){
+        removeLoading()
+        let cn = SCLAlertView()
+        cn.showInfo("Wait a Sec", subTitle: "This Topic was added Earlier Today")
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
+    }
     
+    func removeLoading(){
+        if let viewWithTag = self.view.viewWithTag(90) {
+            print("Tag 100")
+            viewWithTag.removeFromSuperview()
+        }
+        else {
+            print("tag not found")
+        }
+    }
+
     
     func LoadingDesign(){
         

@@ -46,7 +46,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     var Answerss : NSArray = []
 //    var transAarray = [AnswerObject] as NSArray
     
-    var bothArray : NSMutableArray = ["Look Down"]
+//    var bothArray : NSMutableArray = ["Look Down"]
     
     
     //MARK:- without IMG Arrays
@@ -79,7 +79,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
         
         print(SeeAnswer)
         if SeeAnswer != nil{
-            self.theQuestion = SeeAnswer!
+//            self.theQuestion = SeeAnswer!
         }
         naviItem.backBarButtonItem?.tintColor = UIColor.whiteColor()
         
@@ -130,37 +130,6 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
         
         //tableView.reloadData()
         tableView.allowsMultipleSelection = true
-        //tableview.estimatedRowHeight = tableView.rowHeight
-        //tableview.rowHeight = UITableViewAutomaticDimension
-      
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        
-        // needed
-
-//        self.tableview.rowHeight = UITableViewAutomaticDimension
-//       tableView.rowHeight = UITableViewAutomaticDimension
-        
-//        var ser = hasIMGarray.
-        
-        /*
-        switch hasIMGarray[0]{
-        case true:
-            tableView.estimatedRowHeight = 362
-            tableview.estimatedRowHeight = 362
-        case false:
-            tableView.estimatedRowHeight = 362
-            tableview.estimatedRowHeight = 362
-            
-        default:
-            tableview.estimatedRowHeight = 362
-        }
-        
-        */
         
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
@@ -170,25 +139,38 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     @IBAction func unwindSeggyANS(segue: UIStoryboardSegue){
         
 //        self.myTeacherArray.removeAll()
-//        self.myClassArray.removeAll()
-        self.queryAnswers()
+//        self.myClassArray.removeAll()    
+        self.Answers.removeAll()
+        theAnswerIDs.removeAll()
+//        bothArray.removeAllObjects()
+        hasIMGarray.removeAll()
+        filesArray.removeAll()
+        vArray.removeAll()
+        
+        LoadingDesign()
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.ststst()
+        }
         //        self.tableView.reloadData()
         
     }
 
-    override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
-        if (self.respondsToSelector(action)){
-            return true
-        }
-        return false
-    }
+//    override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
+//        if (self.respondsToSelector(action)){
+//            return true
+//        }
+//        return false
+//    }
     
 
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        bothArray.removeAllObjects()
+        theAnswerIDs.removeAll()
+//        bothArray.removeAllObjects()
         hasIMGarray.removeAll()
         filesArray.removeAll()
         vArray.removeAll()
@@ -219,6 +201,12 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
 //            self.qI = t
             print(self.qI)
             queryAnswers()
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/2 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.removeLoading()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
+        }
 //        }
     }
     
@@ -246,7 +234,8 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             }
             self.Answers = uniq
 //            self.allPosts.addObjectsFromArray(uniq)
-            
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
             self.tableView.reloadData()
             uniq.removeAll()
             print("reloaded")
@@ -272,7 +261,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     
     func piko(){
         
-        bothArray.removeAllObjects()
+//        bothArray.removeAllObjects()
         hasIMGarray.removeAll()
         filesArray.removeAll()
         vArray.removeAll()
@@ -400,7 +389,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             }
             alert.addButton("Cancel") { () -> Void in
                 // unwindsegue to questionVC, create one
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
                 self.jojjQQQ.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
             
             }
@@ -420,7 +409,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
 
         //self.tableView.reloadData()
 //        self.Answers.removeAll()
-        self.bothArray.removeAllObjects()
+//        self.bothArray.removeAllObjects()
         self.hasIMGarray.removeAll()
         self.filesArray.removeAll()
         
@@ -603,7 +592,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
                         self.hasIMGarray.append(aTorF!)
                     //|    self.answerArray.append(aAnswer!)
                         self.userArray.append(aName!)
-                        self.bothArray.addObject(aAnswer!)
+//                        self.bothArray.addObject(aAnswer!)
                             print(self.filesArray.count)
                             print("")
                             print(anImage!)
@@ -681,7 +670,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
                             print("END...")
                             
                             //changing that
-                            self.bothArray.addObject(aAnswer!)
+//                            self.bothArray.addObject(aAnswer!)
                           //|  self.NanswerArray.append(aAnswer!)
                             self.NuserArray.append(aName!)
                             print(self.NanswerArray)
@@ -693,25 +682,25 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
                         
                     }
                     self.sortIt()
-                    self.tableview.reloadData()
+//                    self.tableview.reloadData()
                     if self.Answers.count > 0 {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         
-                        self.tableview.reloadData()
-                        self.removeLoading()
-                        self.removeLoading()
+//                        self.tableview.reloadData()
+//                        self.removeLoading()
+//                        self.removeLoading()
                         UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
                         sleep(1/2)
                         
                     })
                     }
-                    self.removeLoading()
+//                    self.removeLoading()
 
                 }
             }
 
-            self.removeLoading()
+//            self.removeLoading()
 
         }
     //    self.tableView.reloadData()
@@ -747,58 +736,49 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2 //1
+        return 1//2 //1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-      
-        switch (section){
         
-        case 0:
-            return 1
-            
-        case 1:
-            //   return answerArray.count + NanswerArray.count
-            //  return  hasIMGarray.count
-            
-            print("CHECKPOINT")
-            print(bothArray.count)
-            print(hasIMGarray.count)
-            print(filesArray.count)
-            
-            return Answers.count
-            // was hasboolArray
-            /*
-            switch section{
-            case 0:
-            return 1
-            
-            case 1:
-            return answerArray.count
-            
-            case 2:
-            return NanswerArray.count
-            default:
-            return 1
-            
-            }
-            */
-            
-
-        default:
-            return 0
-        }
-        
+        return Answers.count + 1
+//      
+//        switch (section){
+//        
+//        case 0:
+//            return 1
+//            
+//        case 1:
+//
+//            
+//            print("CHECKPOINT")
+//            print(bothArray.count)
+//            print(hasIMGarray.count)
+//            print(filesArray.count)
+//            
+//            return Answers.count
+//
+//
+//        default:
+//            return 0
+//        }
+//        
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if Answers.count >= indexPath.row{
+        let indexPathO = indexPath.row - 1
+
         print(indexPath.section)
         
         var celli : UITableViewCell?
         
-        if indexPath.section == 0{
+//        if indexPath.section == 0{
+        if indexPath.row == 0{
+
             let cell : AnswerQHeaderCell = tableView.dequeueReusableCellWithIdentifier("answerHeaderCell", forIndexPath: indexPath) as! AnswerQHeaderCell
             tableview.rowHeight = 209
 
@@ -808,93 +788,67 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             
             //tableView.rowHeight = 209
             //tableview.rowHeight = 209
-            
-            celli = cell
-            return celli!
+            return cell
+
+//            celli = cell
+//            return celli!
         }else{
-        let newQueue = dispatch_queue_create("com.happymappy.prodown", nil)
-        dispatch_async(newQueue) { () -> Void in
-            print("Yoppi, le Francais")
-            print(self.Answers.count)
-            print("t")
-
-
-        }
-            print(Answers.count)
-            print("t")
-        // move it
-       // bothArray.addObjectsFromArray(answerArray)
-       // bothArray.addObjectsFromArray(NanswerArray)
-      /*
-        while ti < 1{
-         //   self.queryAnswers()
-            print("HHAHAHAHAHAHAHAHAHHAAHA")
-            ti = ti + 1
-            print(ti)
-            print("thats ti")
-        }
-        */
-        switch (self.Answers[indexPath.row].hasIMG){
+//            switch (self.Answers[indexPath.row].hasIMG){
+            switch (self.Answers[indexPathO].hasIMG){
         case true:
             
             let cell : AnswerIMGCell = tableView.dequeueReusableCellWithIdentifier("a2Cell", forIndexPath: indexPath) as! AnswerIMGCell
-            
             cell.delegate = self
 
-            let theAnswer = self.Answers[indexPath.row]
-            print(self.Answers[indexPath.row].lAnswer)
+            let theAnswer = self.Answers[indexPathO]
+            print(self.Answers[indexPathO].lAnswer)
             print("happyhappyhappy")
-            cell.dappers = self.Answers[indexPath.row].Dappers
+            cell.dappers = self.Answers[indexPathO].Dappers
             cell.dapsButton.layer.borderColor = lBlue.CGColor
-            print(self.Answers[indexPath.row].date!)
-            cell.dateLabel.text = "\(dts(self.Answers[indexPath.row].date!))"
+            print(self.Answers[indexPathO].date!)
+            cell.dateLabel.text = "\(dts(self.Answers[indexPathO].date!))"
             if self.theClass != nil{
                 cell.classLabel.text = self.theClass!
                 
 //                cell.classLabel.text = self.Answers[indexPath.row].classname
             }
-            if self.Answers[indexPath.row].sAnswer != nil{
-                cell.shortAnswerLabel.text = self.Answers[indexPath.row].sAnswer!
+            if self.Answers[indexPathO].sAnswer != nil{
+                cell.shortAnswerLabel.text = self.Answers[indexPathO].sAnswer!
             }else{cell.shortAnswerLabel.text = ""}
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if self.Answers[indexPath.row].numOfDaps! == 1{
-                    cell.dapsButton.setTitle(" | \(self.Answers[indexPath.row].numOfDaps!) Dap", forState: .Normal)
+                
+                if self.Answers[indexPathO].numOfDaps! == 0{
+                    cell.dapsButton.setTitle(" | Dap", forState: .Normal)
+                    
+                }else if self.Answers[indexPathO].numOfDaps! == 1{
+                    cell.dapsButton.setTitle(" | \(self.Answers[indexPathO].numOfDaps!) Dap", forState: .Normal)
                     
                 }else{
-                    cell.dapsButton.setTitle(" | \(self.Answers[indexPath.row].numOfDaps!) Daps", forState: .Normal)
+                    cell.dapsButton.setTitle(" | \(self.Answers[indexPathO].numOfDaps!) Daps", forState: .Normal)
                 }
 //                cell.dapsButton.titleLabel?.text =
             })
             
-            if self.Answers[indexPath.row].ppPic != nil{
-                cell.circle.image = self.Answers[indexPath.row].ppPic
+            if self.Answers[indexPathO].ppPic != nil{
+                cell.circle.image = self.Answers[indexPathO].ppPic
                 cell.circle.layer.cornerRadius = 31
                 cell.circle.layer.masksToBounds = true
             }else{print("no ppPic   ")}
             
-            cell.usernameLabel.text = self.Answers[indexPath.row].username
-            cell.numDaps = self.Answers[indexPath.row].numOfDaps!
-            cell.AnswerID = self.Answers[indexPath.row].AnswerID
-            cell.AnswerProviderID = self.Answers[indexPath.row].AnswerProviderID
-            cell.theSay = self.Answers[indexPath.row].theSay
-            //dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            cell.usernameLabel.text = self.Answers[indexPathO].username
+            cell.numDaps = self.Answers[indexPathO].numOfDaps!
+            cell.AnswerID = self.Answers[indexPathO].AnswerID
+            cell.AnswerProviderID = self.Answers[indexPathO].AnswerProviderID
+            cell.theSay = self.Answers[indexPathO].theSay
             self.tableview.estimatedRowHeight = 465.0
             self.tableview.rowHeight = UITableViewAutomaticDimension
             
 
-            //})
             
-            //let bbArray = self.bothArray as NSArray
             cell.AnswerIMGView.image = UIImage(named: "menu")
             cell.answerLabel.text = theAnswer.lAnswer
 
-            //362
-            // Configure the cell...
-            
-            //change if wonk
-            
-          //  cell.answerLabel.text = "\(bothArray[indexPath.row])"
-            
+
         if theAnswer.cachedIMG != nil{
             cell.AnswerIMGView.image = theAnswer.cachedIMG
             print("got cach")
@@ -902,43 +856,31 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             
             let nono = NSOperationQueue()
             let onon : NSBlockOperation = NSBlockOperation(block: {
-                //let overlayImage = self.faceOverlayImageFromImage(self.image)
-                cell.cellfile = self.filesArray[indexPath.row]
-                cell.cellfile!.getDataInBackgroundWithBlock({ (theData: NSData?, error: NSError?) -> Void in
-                    // he said IN not VIOD IN
-                    if let image : UIImage = UIImage(data: theData!){
-                        self.answerIMGArray.append(image)
-                        theAnswer.cachedIMG = image
-                        print("cached it")
-                        
-                        //cell.AnswerIMGView.image = self.answerIMGArray[indexPath.row]
-                        dispatch_async(dispatch_get_main_queue()) { // 2
-                            cell.AnswerIMGView.image = image
-                        }
-                    }
-                }) //END
-                
-//                
-//                dispatch_async(dispatch_get_main_queue()) { // 2
-////                    cell.spinning.stopAnimating()
-//                    
-//                }
+//                cell.cellfile = self.filesArray[indexPath.row]
+//                cell.cellfile!.getDataInBackgroundWithBlock({ (theData: NSData?, error: NSError?) -> Void in
+//                    // he said IN not VIOD IN
+//                    if let image : UIImage = UIImage(data: theData!){
+//                        self.answerIMGArray.append(image)
+//                        theAnswer.cachedIMG = image
+//                        print("cached it")
+//                        
+//                        dispatch_async(dispatch_get_main_queue()) { // 2
+//                            cell.AnswerIMGView.image = image
+//                        }
+//                    }
+//                }) //END
 
-//                var i = 11
-//                while i > 1 {
-//                    print(i)
-//                    i -= 1
-//                }
-                
                 
             })//BLOCK-END
            
             nono.addOperation(onon)
             
         }
-            celli = cell
-            return celli!
-            
+            return cell
+
+//            celli = cell
+//            return celli!
+//            
             
             
             
@@ -949,41 +891,45 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             cell.delegate = self
 
             
-            let theAnswer = self.Answers[indexPath.row]
+            let theAnswer = self.Answers[indexPathO]
             
             var cd = NSDate()
             theAnswer.main(cd)
-            cell.dappers = self.Answers[indexPath.row].Dappers
-            cell.dateLabel.text = dts(self.Answers[indexPath.row].date!)
+            cell.dappers = self.Answers[indexPathO].Dappers
+            cell.dateLabel.text = dts(self.Answers[indexPathO].date!)
             if self.proppie != nil{
                 cell.proppie = self.proppie!
             }else{
                 print("getting proppie")
                 quickQuery()
             }
-            cell.usernameLabel.text = self.Answers[indexPath.row].username
+            cell.usernameLabel.text = self.Answers[indexPathO].username
 
             //let bbArray = self.bothArray as NSArray
             //cell.answerLabel?.text = "\(bbArray[indexPath.row])"
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if self.Answers[indexPath.row].numOfDaps! == 1{
-                    cell.dapButton.setTitle(" | \(self.Answers[indexPath.row].numOfDaps!) Dap", forState: .Normal)
+                
+                if self.Answers[indexPathO].numOfDaps! == 0{
+                    cell.dapButton.setTitle(" | Dap", forState: .Normal)
+                    
+                }else if self.Answers[indexPathO].numOfDaps! == 1{
+                    cell.dapButton.setTitle(" | \(self.Answers[indexPathO].numOfDaps!) Dap", forState: .Normal)
 
                 }else{
-                    cell.dapButton.setTitle(" | \(self.Answers[indexPath.row].numOfDaps!) Daps", forState: .Normal)
+                    cell.dapButton.setTitle(" | \(self.Answers[indexPathO].numOfDaps!) Daps", forState: .Normal)
                 }
             })
             
             
-            if self.Answers[indexPath.row].sAnswer != nil{
-                cell.answerLabel.text = self.Answers[indexPath.row].sAnswer!
+            if self.Answers[indexPathO].sAnswer != nil{
+                cell.answerLabel.text = self.Answers[indexPathO].sAnswer!
             }else{cell.answerLabel.text = ""}
             
             cell.circle.layer.cornerRadius = 31
             cell.circle.layer.masksToBounds = true
             cell.fullAnswerLabel.text = theAnswer.lAnswer
-            if self.Answers[indexPath.row].ppPic != nil{
-                cell.circle.image = self.Answers[indexPath.row].ppPic
+            if self.Answers[indexPathO].ppPic != nil{
+                cell.circle.image = self.Answers[indexPathO].ppPic
                 cell.circle.layer.cornerRadius = 31
                 cell.circle.layer.masksToBounds = true
 
@@ -992,11 +938,11 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             
             
             
-            cell.numDaps = self.Answers[indexPath.row].numOfDaps!
+            cell.numDaps = self.Answers[indexPathO].numOfDaps!
 //            cell.answerLabel.text = theAnswer.lAnswer
-            cell.AnswerID = self.Answers[indexPath.row].AnswerID
-            cell.AnswerProviderID = self.Answers[indexPath.row].AnswerProviderID
-            cell.theSay = self.Answers[indexPath.row].theSay
+            cell.AnswerID = self.Answers[indexPathO].AnswerID
+            cell.AnswerProviderID = self.Answers[indexPathO].AnswerProviderID
+            cell.theSay = self.Answers[indexPathO].theSay
             if self.theClass != nil{
                 cell.classLabel.text = self.theClass!
 //                cell.classLabel.text = self.Answers[indexPath.row].classname
@@ -1010,10 +956,11 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
 //            tableview.rowHeight = 300.0
             
             
-            celli = cell
-            
-            return celli!
-            
+            return cell
+
+//            celli = cell
+//            return celli!
+//            
         }
         
       /*
@@ -1094,6 +1041,12 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
         
         }
 //        return celli!
+        } else{
+            let cell = tableView.dequeueReusableCellWithIdentifier("cgg")
+            
+            return cell!
+        }
+
     }
     
     
@@ -1162,29 +1115,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // set identifier for segue 
         //photoTVC
-        if segue.identifier == "photoTVC"{
-            let vc: ViewPhotoAnswerTVC = segue.destinationViewController as! ViewPhotoAnswerTVC
-            
-            if let row = tableView.indexPathForSelectedRow?.row{
-                
-                let index = NSIndexPath(forRow: row, inSection: 1)
-                
-                 let cell = self.tableView.cellForRowAtIndexPath(index) as! AnswerIMGCell
-                    if cell.AnswerIMGView.image != nil{
-                        vc.thePic = cell.AnswerIMGView.image!
-                    }
-                vc.theQ = self.theQuestion! //self.Answers[row].Question
-                vc.AnswerProviderID = self.Answers[row].AnswerProviderID
-                vc.theAnswerID = self.theAnswerIDs[row]
-                vc.theAnswer = self.Answers[row].lAnswer
-                vc.theDate = self.Answers[row].date!
-                print("This is the AnswerID: \(self.theAnswerIDs[row])")
-
-                tableView.deselectRowAtIndexPath(index, animated: true)
-                
-            }
-        }
-
+        
         if segue.identifier == "questionToAnswer"{
             let vc: AddHWViewController = segue.destinationViewController as! AddHWViewController
             
@@ -1199,24 +1130,46 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             vc.theClass = self.theClass
 
         }
-/*        if segue.identifier == "IMGView"{
-        let vc: imageViewViewController = segue.destinationViewController as! imageViewViewController
-        
-        if let row = tableView.indexPathForSelectedRow?.row{
-            
-            
-            let index = NSIndexPath(forRow: row, inSection: 1)
 
-            let cell = self.tableView.cellForRowAtIndexPath(index) as! AnswerIMGCell
+        if segue.identifier == "photoTVC"{
+            let vc: ViewPhotoAnswerTVC = segue.destinationViewController as! ViewPhotoAnswerTVC
             
-            vc.theImage = cell.AnswerIMGView.image!
-            
-            tableView.deselectRowAtIndexPath(index, animated: true)
+            let roww = tableView.indexPathForSelectedRow?.row //{
+                let row = roww! - 1
 
-        }
-        }
-*/
+                let index = tableView.indexPathForSelectedRow
+
+
+//                 let cell = self.tableView.cellForRowAtIndexPath(index) as! AnswerIMGCell
+//                    if cell.AnswerIMGView.image != nil{
+//                        vc.thePic = cell.AnswerIMGView.image!
+//                    }else{
+//                        if self.Answers[row].cachedIMG != nil{
+//                            vc.thePic = self.Answers[row].cachedIMG
+//                        }
+//                    }
+                
+                
+                if self.Answers[row].cachedIMG != nil{
+                    vc.thePic = self.Answers[row].cachedIMG
+                }
+                vc.theQ = self.theQuestion! //self.Answers[row].Question
+                vc.AnswerProviderID = self.Answers[row].AnswerProviderID
+                vc.theAnswerID = self.theAnswerIDs[row]
+                vc.theAnswer = self.Answers[row].lAnswer
+                vc.theDate = self.Answers[row].date!
+                print("This is the AnswerID: \(self.theAnswerIDs[row])")
+                vc.AnswererUsername = self.Answers[row].username
+                if self.Answers[row].ppPic != nil{
+                    vc.userPic = self.Answers[row].ppPic
+                }
+                
+            tableView.deselectRowAtIndexPath(index!, animated: true)
+
             
+//            }
+        }
+
         if segue.identifier == "APVComment"{
             
             let vc: AddCommentVC = segue.destinationViewController as! AddCommentVC
@@ -1229,23 +1182,31 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
          
             let vc: ViewAnswerTVC = segue.destinationViewController as! ViewAnswerTVC
             
-            if let row = tableView.indexPathForSelectedRow?.row{
+            let roww = tableView.indexPathForSelectedRow?.row //{
                 
+                let row = roww! - 1
                 
-                let index = NSIndexPath(forRow: row, inSection: 1)
+                let index = tableView.indexPathForSelectedRow
                 
-                let cell = self.tableView.cellForRowAtIndexPath(index) as! AnswersTableViewCell
+//                let cell = self.tableView.cellForRowAtIndexPath(index!) as! AnswersTableViewCell
                 
-                
+                vc.theQ = self.theQuestion! //self.Answers[row].Question
                 vc.AnswerProviderID = self.Answers[row].AnswerProviderID
                 vc.theAnswerID = self.Answers[row].AnswerID
-                vc.theAnswer = cell.fullAnswerLabel.text
+//                vc.theAnswer = cell.fullAnswerLabel.text
+                vc.theAnswer = Answers[row].lAnswer
                 vc.theDate = self.Answers[row].date!
-                
-                tableView.deselectRowAtIndexPath(index, animated: true)
-            }
+                //                if self.Answers[row].username ""{
+                vc.AnswererUsername = self.Answers[row].username
+                //                }
+                if self.Answers[row].ppPic != nil{
+                    vc.userPic = self.Answers[row].ppPic
+                }
+                tableView.deselectRowAtIndexPath(index!, animated: true)
+//            }
         
-    }
+        }
+
     }
 
     
@@ -1263,7 +1224,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
         
         let loadingView: UIView = UIView()
         loadingView.frame = aFrame //CGRectMake(0, 0, 80, 80)
-        loadingView.backgroundColor = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 0.6)
+        loadingView.backgroundColor = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 1)
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 40
         testView.addSubview(loadingView)

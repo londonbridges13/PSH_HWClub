@@ -37,6 +37,16 @@ class QuestionsTableViewController: UITableViewController, toAnswerDelegate, SEG
     var noQs : Bool?
 //    var AssID : String?
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        LoadingDesign()
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.removeLoading()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

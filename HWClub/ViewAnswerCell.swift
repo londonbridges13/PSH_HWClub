@@ -12,6 +12,11 @@ class ViewAnswerCell: UITableViewCell {
 
     @IBOutlet var answerLabel : UILabel!
     @IBOutlet var dateLabel : UILabel!
+    
+    @IBOutlet var usernameLabel: UILabel!
+    
+    @IBOutlet var proPic: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

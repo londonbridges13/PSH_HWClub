@@ -16,6 +16,10 @@
 		3E08D4BA1BB4F1BA0092EF8B /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E08D4B61BB4F1BA0092EF8B /* menu@2x.png */; };
 		3E08D4BB1BB4F1BA0092EF8B /* menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E08D4B71BB4F1BA0092EF8B /* menu@3x.png */; };
 		3E08D4BD1BB4F2B00092EF8B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E08D4BC1BB4F2B00092EF8B /* ProfileViewController.swift */; };
+		3E0B39B71C6B8E9C000E89EF /* AssQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B39B61C6B8E9C000E89EF /* AssQuestionCell.swift */; };
+		3E0B39B91C6C1702000E89EF /* HomeTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B39B81C6C1702000E89EF /* HomeTopicCell.swift */; };
+		3E0B39BB1C6C18F1000E89EF /* HomeAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B39BA1C6C18F1000E89EF /* HomeAnswerCell.swift */; };
+		3E0B39BD1C6C1AA8000E89EF /* HomeQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B39BC1C6C1AA8000E89EF /* HomeQuestionCell.swift */; };
 		3E2842581C3AFE1500579FAF /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2842571C3AFE1500579FAF /* CommentCell.swift */; };
 		3E28425A1C3B3F3000579FAF /* AddCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2842591C3B3F3000579FAF /* AddCommentVC.swift */; };
 		3E35AC081C1FD30D00169C2C /* findNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35AC071C1FD30D00169C2C /* findNAVI.swift */; };
@@ -24,6 +28,8 @@
 		3E381CC01C6819BF00DAD08F /* SideBarNotiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CBF1C6819BF00DAD08F /* SideBarNotiCell.swift */; };
 		3E381CC21C684C9100DAD08F /* AssNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CC11C684C9100DAD08F /* AssNAVI.swift */; };
 		3E381CC41C68E97300DAD08F /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CC31C68E97300DAD08F /* ChildViewController.swift */; };
+		3E381CC61C69727100DAD08F /* AssTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CC51C69727100DAD08F /* AssTopicCell.swift */; };
+		3E381CC81C69A03E00DAD08F /* AssAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CC71C69A03E00DAD08F /* AssAnswerCell.swift */; };
 		3E3C63D61BCAD7FE008AE62D /* AddHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C63D51BCAD7FE008AE62D /* AddHWViewController.swift */; };
 		3E3C95E31BC0A283006E7802 /* noIMGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C95E21BC0A283006E7802 /* noIMGViewController.swift */; };
 		3E3CD4331C3387900071DE06 /* ViewPhotoAnswerTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3CD4321C33878F0071DE06 /* ViewPhotoAnswerTVC.swift */; };
@@ -107,6 +113,7 @@
 		3EA8476F1C4C703600EB8A25 /* AddQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA8476E1C4C703600EB8A25 /* AddQuestionVC.swift */; };
 		3EA92E101BDEF8690056B795 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA92E0F1BDEF8690056B795 /* iAd.framework */; };
 		3EB2C71E1C24F24100A308B3 /* AnswerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2C71D1C24F24100A308B3 /* AnswerObject.swift */; };
+		3EC2455E1C6A58DF00F7288E /* AssAnswerPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */; };
 		3EC4B7461C2E2D00000B878D /* proNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7451C2E2D00000B878D /* proNAVI.swift */; };
 		3EC4B7481C2E5666000B878D /* ProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7471C2E5666000B878D /* ProfileTVC.swift */; };
 		3EE0159C1BBB540300F74966 /* QuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE0159B1BBB540300F74966 /* QuestionsTableViewController.swift */; };
@@ -172,6 +179,10 @@
 		3E08D4B61BB4F1BA0092EF8B /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
 		3E08D4B71BB4F1BA0092EF8B /* menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@3x.png"; sourceTree = "<group>"; };
 		3E08D4BC1BB4F2B00092EF8B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3E0B39B61C6B8E9C000E89EF /* AssQuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssQuestionCell.swift; sourceTree = "<group>"; };
+		3E0B39B81C6C1702000E89EF /* HomeTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTopicCell.swift; sourceTree = "<group>"; };
+		3E0B39BA1C6C18F1000E89EF /* HomeAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeAnswerCell.swift; sourceTree = "<group>"; };
+		3E0B39BC1C6C1AA8000E89EF /* HomeQuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeQuestionCell.swift; sourceTree = "<group>"; };
 		3E2842571C3AFE1500579FAF /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		3E2842591C3B3F3000579FAF /* AddCommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentVC.swift; sourceTree = "<group>"; };
 		3E35AC071C1FD30D00169C2C /* findNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = findNAVI.swift; sourceTree = "<group>"; };
@@ -180,6 +191,8 @@
 		3E381CBF1C6819BF00DAD08F /* SideBarNotiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarNotiCell.swift; sourceTree = "<group>"; };
 		3E381CC11C684C9100DAD08F /* AssNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssNAVI.swift; sourceTree = "<group>"; };
 		3E381CC31C68E97300DAD08F /* ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
+		3E381CC51C69727100DAD08F /* AssTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssTopicCell.swift; sourceTree = "<group>"; };
+		3E381CC71C69A03E00DAD08F /* AssAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssAnswerCell.swift; sourceTree = "<group>"; };
 		3E3C63D51BCAD7FE008AE62D /* AddHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHWViewController.swift; sourceTree = "<group>"; };
 		3E3C95E21BC0A283006E7802 /* noIMGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = noIMGViewController.swift; sourceTree = "<group>"; };
 		3E3CD4321C33878F0071DE06 /* ViewPhotoAnswerTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPhotoAnswerTVC.swift; sourceTree = "<group>"; };
@@ -270,6 +283,7 @@
 		3EA8476E1C4C703600EB8A25 /* AddQuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddQuestionVC.swift; sourceTree = "<group>"; };
 		3EA92E0F1BDEF8690056B795 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3EB2C71D1C24F24100A308B3 /* AnswerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerObject.swift; sourceTree = "<group>"; };
+		3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssAnswerPicCell.swift; sourceTree = "<group>"; };
 		3EC4B7451C2E2D00000B878D /* proNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = proNAVI.swift; sourceTree = "<group>"; };
 		3EC4B7471C2E5666000B878D /* ProfileTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTVC.swift; sourceTree = "<group>"; };
 		3EE0159B1BBB540300F74966 /* QuestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsTableViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +359,8 @@
 		3E558C021BB39A90009E5170 = {
 			isa = PBXGroup;
 			children = (
+				3E0B39BC1C6C1AA8000E89EF /* HomeQuestionCell.swift */,
+				3E381CC51C69727100DAD08F /* AssTopicCell.swift */,
 				3E381CBB1C68106000DAD08F /* SideBarSchoolCell.swift */,
 				3E381CBD1C6813AA00DAD08F /* SidebarMyClassCell.swift */,
 				3E381CBF1C6819BF00DAD08F /* SideBarNotiCell.swift */,
@@ -378,11 +394,14 @@
 			isa = PBXGroup;
 			children = (
 				3E381CC31C68E97300DAD08F /* ChildViewController.swift */,
+				3E0B39B61C6B8E9C000E89EF /* AssQuestionCell.swift */,
 				3E6293161C41897C00C8473D /* CVCalendarKitOperators.swift */,
 				3E6293171C41897C00C8473D /* CVCalendarKitExtensions.swift */,
 				3E62931A1C418F9A00C8473D /* DateExtension.swift */,
 				3E558C0E1BB39A90009E5170 /* AppDelegate.swift */,
 				3E3FC01B1BB8DB4B00E6D4B8 /* Main.storyboard */,
+				3E381CC71C69A03E00DAD08F /* AssAnswerCell.swift */,
+				3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */,
 				3EA8476E1C4C703600EB8A25 /* AddQuestionVC.swift */,
 				3E2842591C3B3F3000579FAF /* AddCommentVC.swift */,
 				3E4047411C4F4E3100F2EB14 /* CH_Username.swift */,
@@ -415,6 +434,8 @@
 				3E4ABBF01C2F79EF001E8D15 /* homeNAVI.swift */,
 				3E4ABBF21C2F7A26001E8D15 /* notiNAVI.swift */,
 				3E4ABBF41C2F7BFD001E8D15 /* HomeTVC.swift */,
+				3E0B39B81C6C1702000E89EF /* HomeTopicCell.swift */,
+				3E0B39BA1C6C18F1000E89EF /* HomeAnswerCell.swift */,
 				3EF323F21C66C7DE00D1EA57 /* OldHomeTVC.swift */,
 				3E5718441C38622700B98463 /* noMyClassCell.swift */,
 				3E5718461C38631200B98463 /* noFindCellClass.swift */,
@@ -707,6 +728,7 @@
 				3E89323C1BBAF04300EB0217 /* AnswersTableViewController.swift in Sources */,
 				3E7B52FA1C5482BB001851FA /* HomeCellAnswer.swift in Sources */,
 				3E8932341BBA013D00EB0217 /* QHeaderCell.swift in Sources */,
+				3E0B39B71C6B8E9C000E89EF /* AssQuestionCell.swift in Sources */,
 				3E3C63D61BCAD7FE008AE62D /* AddHWViewController.swift in Sources */,
 				3E7ADE101C34D3C400E1C1E4 /* ViewAnswerAllOptionsCell.swift in Sources */,
 				3E495FAB1C4015A400C02C01 /* loadSETUPVC.swift in Sources */,
@@ -720,6 +742,7 @@
 				3E4ABBF51C2F7BFD001E8D15 /* HomeTVC.swift in Sources */,
 				3EB2C71E1C24F24100A308B3 /* AnswerObject.swift in Sources */,
 				3E674B111BB41FCB0044B781 /* SwiftData.swift in Sources */,
+				3E0B39BB1C6C18F1000E89EF /* HomeAnswerCell.swift in Sources */,
 				3EA8476D1C4C5D6600EB8A25 /* NewLessonVC.swift in Sources */,
 				3EC4B7461C2E2D00000B878D /* proNAVI.swift in Sources */,
 				3E7B52F81C5482A0001851FA /* HomeCellPic.swift in Sources */,
@@ -733,14 +756,18 @@
 				3EE7D00D1C27088D00DE2DA2 /* SearchCell.swift in Sources */,
 				3E3FC0161BB7B74500E6D4B8 /* AssignmentHeaderViewCell.swift in Sources */,
 				3E08D46D1BB429390092EF8B /* SCLAlertView.swift in Sources */,
+				3E381CC61C69727100DAD08F /* AssTopicCell.swift in Sources */,
 				3E5718471C38631200B98463 /* noFindCellClass.swift in Sources */,
 				3EE015A21BBCA79600F74966 /* AnswerIMGCell.swift in Sources */,
+				3EC2455E1C6A58DF00F7288E /* AssAnswerPicCell.swift in Sources */,
 				3E6F22651C362121002D5802 /* HomePost.swift in Sources */,
 				3E3FC0141BB7B70C00E6D4B8 /* AssignmentTableViewCell.swift in Sources */,
 				3E5E09E01C3F440F0020A73A /* AddSchoolVC.swift in Sources */,
 				3E7ADE0E1C34D35A00E1C1E4 /* ViewAnswerCell.swift in Sources */,
 				3E7B52F61C51C3D1001851FA /* AssignmentObject.swift in Sources */,
+				3E0B39BD1C6C1AA8000E89EF /* HomeQuestionCell.swift in Sources */,
 				3EE015A41BBDCD9600F74966 /* imageViewViewController.swift in Sources */,
+				3E0B39B91C6C1702000E89EF /* HomeTopicCell.swift in Sources */,
 				3EE7D0091C26783A00DE2DA2 /* mcNAVI.swift in Sources */,
 				3E2842581C3AFE1500579FAF /* CommentCell.swift in Sources */,
 				3E89323E1BBAF06000EB0217 /* AnswersTableViewCell.swift in Sources */,
@@ -766,6 +793,7 @@
 				3EE015A01BBB821300F74966 /* MyClassTableViewCell.swift in Sources */,
 				3E62931B1C418F9A00C8473D /* DateExtension.swift in Sources */,
 				3EE7D00B1C27065000DE2DA2 /* SearchTVC.swift in Sources */,
+				3E381CC81C69A03E00DAD08F /* AssAnswerCell.swift in Sources */,
 				3E3CD4351C3393800071DE06 /* ViewPhotoAnswerCell.swift in Sources */,
 				3E4E9DC41C4B363700CC5BFA /* CommyObject.swift in Sources */,
 				3E381CC21C684C9100DAD08F /* AssNAVI.swift in Sources */,

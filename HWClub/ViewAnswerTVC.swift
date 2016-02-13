@@ -11,12 +11,22 @@ import Parse
 
 class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
 
+    
+    @IBOutlet var UNWans : UIButton!
+
+    var qS : [Int] = [0,1,2,3,4,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,55,4,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,55,4,4,55,5,5,5,5,5,55]
+    
+    var QuestionID : String?
+    var theQ : String?
+    var chit : String?
     var theDappers = [String]()
     var theAnswer : String?
     var theAnswerID : String?
     let lBlue = UIColor(red: 134/255, green: 218/255, blue: 233/255, alpha: 1)
     var theDate : NSDate?
     var AnswerProviderID : String?
+    var userPic : UIImage?
+    var AnswererUsername : String?
 
     var dapNUMs = [Int]()
     var theNotifyUser : String?
@@ -73,15 +83,26 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2 + commentsArray.count
+        return 3 + commentsArray.count
     }
 
     //325
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         switch indexPath.row{
-
+//Q-REFER
+            
+            
         case 0:
+            let cell : QLabelCell = tableView.dequeueReusableCellWithIdentifier("Q-REFER", forIndexPath: indexPath) as! QLabelCell
+            tableview.rowHeight = 95
+            if self.theQ != nil{
+                cell.qLabel.text = self.theQ
+            }
+            return cell
+
+            
+        case 1:
             let cell : ViewAnswerCell = tableView.dequeueReusableCellWithIdentifier("answerContentCell", forIndexPath: indexPath) as! ViewAnswerCell
             tableview.rowHeight = UITableViewAutomaticDimension
             tableview.estimatedRowHeight = 325
@@ -91,10 +112,17 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
             if self.theDate != nil{
                 cell.dateLabel.text = dts(self.theDate!)
             }
-            
+            if self.userPic != nil{
+                cell.proPic.image = userPic!
+                cell.proPic.layer.cornerRadius = 23
+                cell.proPic.layer.masksToBounds = true
+            }
+            if self.AnswererUsername != nil{
+                cell.usernameLabel.text = self.AnswererUsername!
+            }
             
             return cell
-        case 1:
+        case 2:
             
             let cell : ViewAnswerAllOptionsCell = tableView.dequeueReusableCellWithIdentifier("aBcell", forIndexPath: indexPath) as! ViewAnswerAllOptionsCell
             tableview.rowHeight = 80
@@ -118,7 +146,7 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
             
         default:
             let cell : aCommentCell = tableView.dequeueReusableCellWithIdentifier("acommentCell", forIndexPath: indexPath) as! aCommentCell
-            let rico = indexPath.row - 2
+            let rico = indexPath.row - 3
             tableview.rowHeight = 138
             cell.delegate = self
 
@@ -162,13 +190,47 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
         
     }
     
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if qS[indexPath.row] == 0{
+            
+            if self.chit == "seggy"{
+                // Segue OVER
+                //            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.performSegueWithIdentifier("QLabelToA", sender: self)
+                //            })
+            }else{
+                // Unwind Segue
+                print("UNWINDING")
+//                self.UNWans.sendActionsForControlEvents(.TouchUpInside)
+                //            performSegueWithIdentifier("photoTVC", sender: self) //photoTVC
+            }
+        }
+
+    }
+    
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "QLabelToA"{
+            let vc : AnswersTableViewController = segue.destinationViewController as! AnswersTableViewController
+            
+            //            vc.QuestionerID = self.askers[row!]
+            vc.QuestionID = self.QuestionID
+            //            vc.theClass = self.theClassname
+            //            vc.theAssignment = self.theAssignment
+            //            vc.theTeacher = self.theTeachername
+            vc.theQuestion = self.theQ
+            
+        }else{
         let vc : AddCommentVC = segue.destinationViewController as! AddCommentVC
         
         vc.AnswerProviderID = self.AnswerProviderID!
         vc.AnswerID = self.theAnswerID!
         vc.theSay = "AnswerComment"
         vc.seggyCheck = "VATVC"
+        }
 
     }
 

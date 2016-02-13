@@ -1,24 +1,22 @@
 //
-//  ViewPhotoAnswerCell.swift
-//  HWClub
+//  AssTopicCell.swift
+//  Dac
 //
-//  Created by Lyndon Samual McKay on 12/29/15.
-//  Copyright © 2015 Lyndon Samual McKay. All rights reserved.
+//  Created by Lyndon Samual McKay on 2/8/16.
+//  Copyright © 2016 Lyndon Samual McKay. All rights reserved.
 //
 
 import UIKit
 
-class ViewPhotoAnswerCell: UITableViewCell {
+class AssTopicCell: UITableViewCell {
 
+    @IBOutlet var topicLabel: UILabel!
+    @IBOutlet var WHatLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
-
-    @IBOutlet var answerLabel: UILabel!
     
     
-    @IBOutlet var usernameLabel: UILabel!
-
-    @IBOutlet var proPic: UIImageView!
-
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
