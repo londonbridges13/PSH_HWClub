@@ -23,6 +23,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
 
     @IBOutlet var contine: UIView!
 
+    var sgeControl = 0
     var ToppyPosts = [FullClassPost]()
     var QuestionPosts = [FullClassPost]()
     var wAgo : NSDate = NSDate().minusDays(6)
@@ -196,56 +197,108 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         if segue.identifier == "myAss"{
             let vc : MyClassesTableViewController = segue.destinationViewController as! MyClassesTableViewController
         }
-        
+        if segue.identifier == "NewLessonVC"{
+            let vc : NewLessonVC = segue.destinationViewController as! NewLessonVC
+            
+            vc.theSchool = self.theSchool
+            vc.theClass = self.theClass
+            vc.theTeacher = self.theTeacher
+            
+        }
         if segue.identifier == "classToASS"{
             let vc : QuestionsTableViewController = segue.destinationViewController as! QuestionsTableViewController
-            
-            let row = tableView.indexPathForSelectedRow?.row
-            
-            vc.assID = self.cPost[row!].theAssignmentID
-            vc.theTeachername = self.cPost[row!].theTeacher!
-            vc.theClassname = self.cPost[row!].theClass
-            vc.theAssignment = self.cPost[row!].theLesson
-            vc.theSchool = self.theSchool
-            //            vc.derp = "not nil"
+            if sgeControl == 1 || sgeControl == 2{
+                let row = tableView.indexPathForSelectedRow!
+                    .row - 1
+                
+                vc.assID = self.cPost[row].theAssignmentID
+                vc.theTeachername = self.cPost[row].theTeacher!
+                vc.theClassname = self.cPost[row].theClass
+                vc.theAssignment = self.cPost[row].theLesson
+                vc.theSchool = self.theSchool
+                //            vc.derp = "not nil"
+            }else{
+                let row = tableView.indexPathForSelectedRow?.row
+                
+                vc.assID = self.cPost[row!].theAssignmentID
+                vc.theTeachername = self.cPost[row!].theTeacher!
+                vc.theClassname = self.cPost[row!].theClass
+                vc.theAssignment = self.cPost[row!].theLesson
+                vc.theSchool = self.theSchool
+                //            vc.derp = "not nil"
+            }
         }
         
         if segue.identifier == "classQtoPVA"{
             let vc : ViewPhotoAnswerTVC = segue.destinationViewController as! ViewPhotoAnswerTVC
-            
-            let row = tableView.indexPathForSelectedRow?.row
-            
-            vc.theAnswerID = self.cPost[row!].theAnswerID
-            vc.derp = "not nil"
-            vc.chit = "seggy"
-            vc.theQ = self.cPost[row!].theQuestion
-            vc.QuestionID = self.cPost[row!].theQuestionID
-            if self.cPost[row!].POSTERNAME != nil{
-                vc.AnswererUsername = self.cPost[row!].POSTERNAME!
-            }
-            if self.cPost[row!].proCachy != nil{
-                vc.userPic = self.cPost[row!].proCachy
+            if sgeControl == 1 || sgeControl == 2{
+                let row = tableView.indexPathForSelectedRow!.row - 1
+                
+                vc.theAnswerID = self.cPost[row].theAnswerID
+                vc.derp = "not nil"
+                vc.chit = "seggy"
+                vc.theQ = self.cPost[row].theQuestion
+                vc.QuestionID = self.cPost[row].theQuestionID
+                if self.cPost[row].POSTERNAME != nil{
+                    vc.AnswererUsername = self.cPost[row].POSTERNAME!
+                }
+                if self.cPost[row].proCachy != nil{
+                    vc.userPic = self.cPost[row].proCachy
+                }
+            }else{
+                let row = tableView.indexPathForSelectedRow?.row
+                
+                vc.theAnswerID = self.cPost[row!].theAnswerID
+                vc.derp = "not nil"
+                vc.chit = "seggy"
+                vc.theQ = self.cPost[row!].theQuestion
+                vc.QuestionID = self.cPost[row!].theQuestionID
+                if self.cPost[row!].POSTERNAME != nil{
+                    vc.AnswererUsername = self.cPost[row!].POSTERNAME!
+                }
+                if self.cPost[row!].proCachy != nil{
+                    vc.userPic = self.cPost[row!].proCachy
+                }
             }
         }
         
         if segue.identifier == "classQtoVA"{
             let vc : ViewAnswerTVC = segue.destinationViewController as! ViewAnswerTVC
             
-            let row = tableView.indexPathForSelectedRow?.row
-            
-            if  self.cPost[row!].theAnswer != nil{
-                vc.theAnswer = self.cPost[row!].theAnswer!
-            }
-            vc.derp = "not nil"
-            vc.theAnswerID = self.cPost[row!].theAnswerID!
-            vc.chit = "seggy"
-            vc.theQ = self.cPost[row!].theQuestion
-            vc.QuestionID = self.cPost[row!].theQuestionID
-            if self.cPost[row!].POSTERNAME != nil{
-                vc.AnswererUsername = self.cPost[row!].POSTERNAME!
-            }
-            if self.cPost[row!].proCachy != nil{
-                vc.userPic = self.cPost[row!].proCachy
+            if sgeControl == 1 || sgeControl == 2{
+                let row = tableView.indexPathForSelectedRow!.row - 1
+                
+                if  self.cPost[row].theAnswer != nil{
+                    vc.theAnswer = self.cPost[row].theAnswer!
+                }
+                vc.derp = "not nil"
+                vc.theAnswerID = self.cPost[row].theAnswerID!
+                vc.chit = "seggy"
+                vc.theQ = self.cPost[row].theQuestion
+                vc.QuestionID = self.cPost[row].theQuestionID
+               if self.cPost[row].POSTERNAME != nil{
+                    vc.AnswererUsername = self.cPost[row].POSTERNAME!
+                }
+                if self.cPost[row].proCachy != nil{
+                    vc.userPic = self.cPost[row].proCachy
+                }
+            }else{
+                let row = tableView.indexPathForSelectedRow?.row
+                
+                if  self.cPost[row!].theAnswer != nil{
+                    vc.theAnswer = self.cPost[row!].theAnswer!
+                }
+                vc.derp = "not nil"
+                vc.theAnswerID = self.cPost[row!].theAnswerID!
+                vc.chit = "seggy"
+                vc.theQ = self.cPost[row!].theQuestion
+                vc.QuestionID = self.cPost[row!].theQuestionID
+                if self.cPost[row!].POSTERNAME != nil{
+                    vc.AnswererUsername = self.cPost[row!].POSTERNAME!
+                }
+                if self.cPost[row!].proCachy != nil{
+                    vc.userPic = self.cPost[row!].proCachy
+                }
             }
 
         }
@@ -254,38 +307,69 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             // Send QuestionID
             let vc : AnswersTableViewController = segue.destinationViewController as! AnswersTableViewController
             
-            
-            let row = tableView.indexPathForSelectedRow?.row
-            
-            if self.cPost[row!].theClass != nil{
-                vc.theClass = self.cPost[row!].theClass!
-            }
-            if self.proppie != nil{
-                vc.proppie = self.proppie!
-            }
-            if self.cPost[row!].AskerID != nil{
-                vc.QuestionerID = self.cPost[row!].AskerID
-            }
-            if self.cPost[row!].theQuestionID != nil{
-                vc.QuestionID = self.cPost[row!].theQuestionID
-            }else{print("no QuestionID")}
-            if self.cPost[row!].theQuestion != nil{
-                vc.theQuestion = self.cPost[row!].theQuestion
+            if sgeControl == 1 || sgeControl == 2{
+                let row = tableView.indexPathForSelectedRow!.row - 1
+                
+                if self.cPost[row].theClass != nil{
+                    vc.theClass = self.cPost[row].theClass!
+                }
+                if self.proppie != nil{
+                    vc.proppie = self.proppie!
+                }
+                if self.cPost[row].AskerID != nil{
+                    vc.QuestionerID = self.cPost[row].AskerID
+                }
+                if self.cPost[row].theQuestionID != nil{
+                    vc.QuestionID = self.cPost[row].theQuestionID
+                }else{print("no QuestionID")}
+                if self.cPost[row].theQuestion != nil{
+                    vc.theQuestion = self.cPost[row].theQuestion
+                }
+            }else{
+                let row = tableView.indexPathForSelectedRow?.row
+                
+                if self.cPost[row!].theClass != nil{
+                    vc.theClass = self.cPost[row!].theClass!
+                }
+                if self.proppie != nil{
+                    vc.proppie = self.proppie!
+                }
+                if self.cPost[row!].AskerID != nil{
+                    vc.QuestionerID = self.cPost[row!].AskerID
+                }
+                if self.cPost[row!].theQuestionID != nil{
+                    vc.QuestionID = self.cPost[row!].theQuestionID
+                }else{print("no QuestionID")}
+                if self.cPost[row!].theQuestion != nil{
+                    vc.theQuestion = self.cPost[row!].theQuestion
+                }
             }
         }
 
         else if segue.identifier == "iQ"{
-        let vc: QuestionsTableViewController = segue.destinationViewController as! QuestionsTableViewController
-        let ASSS = tableView.indexPathForSelectedRow?.row
-        if self.proppie != nil{
-            vc.proppie = self.proppie!
-        }
-        vc.theAssignment = "\(AssignmentsArray[ASSS!])"
-        vc.assID = "\(assys[ASSS!])"
-        vc.theClassname = theClass
-        vc.theSchool = self.theSchool
-        vc.theTeachername = theTeacher
-        
+            let vc: QuestionsTableViewController = segue.destinationViewController as! QuestionsTableViewController
+            
+            if sgeControl == 1 || sgeControl == 2{
+                let ASSS = tableView.indexPathForSelectedRow!.row - 1
+                if self.proppie != nil{
+                    vc.proppie = self.proppie!
+                }
+                vc.theAssignment = "\(AssignmentsArray[ASSS])"
+                vc.assID = "\(assys[ASSS])"
+                vc.theClassname = theClass
+                vc.theSchool = self.theSchool
+                vc.theTeachername = theTeacher
+            }else{
+                let ASSS = tableView.indexPathForSelectedRow?.row
+                if self.proppie != nil{
+                    vc.proppie = self.proppie!
+                }
+                vc.theAssignment = "\(AssignmentsArray[ASSS!])"
+                vc.assID = "\(assys[ASSS!])"
+                vc.theClassname = theClass
+                vc.theSchool = self.theSchool
+                vc.theTeachername = theTeacher
+            }
 /* POTENTIAL SOLUTION TO ALL PROBLEMS
         if let fergy = tableView.indexPathForSelectedRow?.row{
             var had = classArray[fergy]
@@ -498,24 +582,24 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                 
             case 0:
                 return 1
-                
             case 1:
                 if AssignmentsArray.count != 0{
                     return AssignmentsArray.count
                 }else{
                     return 2
                 }
-                
             default:
                 return 0
-                
-                
             }
         
         }else{
+            if sgeControl == 1 || sgeControl == 2{
+                return cPost.count + 1
+
+            }else{
                 return cPost.count // hpost array.count
-            
             }
+        }
 
         
             
@@ -528,12 +612,9 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
 
         
         if self.derp != "KLM"{
-            
             switch (indexPath.section){
-                
             case 0:
                 let cell : AssignmentHeaderViewCell = tableView.dequeueReusableCellWithIdentifier("assHeadercell", forIndexPath: indexPath) as! AssignmentHeaderViewCell
-                
                 func preQuery(){
                     // goes in viewwillappear
                     let Class = PFQuery(className: "ClassesFollowed")
@@ -615,121 +696,228 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                 let cell : AssTopicCell = tableView.dequeueReusableCellWithIdentifier("AssTopicCell", forIndexPath: indexPath) as! AssTopicCell
                 return cell
             }
+            
         }else{
             
-            if cPost[indexPath.row].Type == "Ass"{
-                
-            // New Assignments TableView
-            let cell : AssTopicCell = tableView.dequeueReusableCellWithIdentifier("AssTopicCell", forIndexPath: indexPath) as! AssTopicCell
-                if self.cPost[indexPath.row].theLesson != nil{
-                    cell.WHatLabel.text = " New Topic Added: \"\(self.cPost[indexPath.row].theLesson!)\""
-                    cell.topicLabel.text = "\(self.cPost[indexPath.row].theLesson!)"
+            let indexPathh = indexPath.row - 1
+            
+            if sgeControl == 1 || sgeControl == 2{
+                if indexPath.row == 0 && sgeControl == 1{
+                    let cell : AssQuestionAskCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionAskCell", forIndexPath: indexPath) as! AssQuestionAskCell
+                    return cell
+                }else if indexPath.row == 0 && sgeControl == 2{
+                    let cell : AssAddTopicCell = tableView.dequeueReusableCellWithIdentifier("AssAddTopicCell", forIndexPath: indexPath) as! AssAddTopicCell
+                    return cell
                 }else{
+                    if cPost[indexPathh].Type == "Ass"{
+                        
+                        // New Assignments TableView
+                        let cell : AssTopicCell = tableView.dequeueReusableCellWithIdentifier("AssTopicCell", forIndexPath: indexPath) as! AssTopicCell
+                        if self.cPost[indexPathh].theLesson != nil{
+                            cell.WHatLabel.text = " New Topic Added: \"\(self.cPost[indexPathh].theLesson!)\""
+                            cell.topicLabel.text = "\(self.cPost[indexPathh].theLesson!)"
+                        }else{
+                        }
+                        if self.cPost[indexPathh].date != nil{
+                            cell.dateLabel.text = dts(self.cPost[indexPathh].date!)
+                        }
+                        
+                        tableView.rowHeight = UITableViewAutomaticDimension
+                        tableView.estimatedRowHeight = 106
+                        //                tableview.rowHeight = 106
+                        return cell
+                    }else if cPost[indexPathh].Type == "Q"{
+                        
+                        tableView.rowHeight = UITableViewAutomaticDimension
+                        tableView.estimatedRowHeight = 107
+                        // New Assignments TableView
+                        let cell : AssQuestionCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionCell", forIndexPath: indexPath) as! AssQuestionCell
+                        cell.WHatLabel.text = cPost[indexPathh].What!
+                        if self.cPost[indexPathh].theLesson != nil{
+                            cell.topicLabel.text = "\(self.cPost[indexPathh].theLesson!)"
+                        }else{
+                            cell.topicLabel.text = ""
+                        }
+                        //                cell.usernameLabel.text = cPost[indexPathh].POSTERNAME
+                        cell.dateLabel.text = dts(cPost[indexPathh].date!)
+                        //                cell.classnameLabel.text = cPost[indexPathh].theClass!
+                        return cell
+                    }
+                    else{
+                        var celli : UITableViewCell?
+                        if cPost[indexPathh].hasIMG == false{
+                            let cell : AssAnswerCell = tableView.dequeueReusableCellWithIdentifier("AssAnswerCell", forIndexPath: indexPath) as! AssAnswerCell
+                            tableView.rowHeight = UITableViewAutomaticDimension
+                            tableView.estimatedRowHeight = 145
+                            cell.dateLabel.text = dts(cPost[indexPathh].date!)
+                            //                    cell.whatLabel.text = hPosts[indexPathh].What!
+                            if cPost[indexPathh].theQuestion != nil{
+                                cell.QuestionLabel.text = cPost[indexPathh].theQuestion!
+                            }
+                            if cPost[indexPathh].theAnswer != nil{
+                                cell.AnswerLabel.text = cPost[indexPathh].theAnswer!
+                            }
+                            if cPost[indexPathh].POSTERNAME != nil{
+                                cell.usernameLabel.text = cPost[indexPathh].POSTERNAME!
+                            }
+                            if cPost[indexPathh].theLesson != nil{
+                                cell.topicLabel.text = cPost[indexPathh].theLesson!
+                            }else{
+                                cell.topicLabel.text = ""
+                            }
+                            if cPost[indexPathh].proCachy != nil{
+                                cell.proPicIMGView.image = cPost[indexPathh].proCachy
+                                cell.proPicIMGView.layer.cornerRadius = 18
+                                cell.proPicIMGView.layer.masksToBounds = true
+                            }
+                            celli = cell
+                            //                    return cell
+                        }else{
+                            let cell : AssAnswerPicCell = tableView.dequeueReusableCellWithIdentifier("AssAnswerPicCell", forIndexPath: indexPath) as! AssAnswerPicCell
+                            
+                            tableView.rowHeight = UITableViewAutomaticDimension
+                            tableView.estimatedRowHeight = 360 //260
+                            
+                            
+                            cell.dateLabel.text = dts(cPost[indexPathh].date!)
+                            cell.QuestionLabel.text = cPost[indexPathh].theQuestion!
+                            cell.AnswerLabel.text = cPost[indexPathh].theAnswer!
+                            
+                            if cPost[indexPathh].cachedIMGDATA != nil{
+                                cell.AnswerPicIMGView.image = UIImage(data: cPost[indexPathh].cachedIMGDATA!)
+                                print("YUYUYUYUYUDODODODODODOl")
+                            }else{
+                                print("NONONOcachedIMGDATANpupupu")
+                            }
+                            if cPost[indexPathh].cachedIMG != nil{
+                                cell.AnswerPicIMGView.image = cPost[indexPathh].cachedIMG!
+                            }
+                            //                    cell.whatLabel.text = hPosts[indexPathh].What!
+                            cell.usernameLabel.text = cPost[indexPathh].POSTERNAME!
+                            if cPost[indexPathh].theLesson != nil{
+                                cell.topicLabel.text = cPost[indexPathh].theLesson!
+                            }
+                            if cPost[indexPathh].proCachy != nil{
+                                cell.proPicIMGView.image = cPost[indexPathh].proCachy
+                                cell.proPicIMGView.layer.cornerRadius = 18
+                                cell.proPicIMGView.layer.masksToBounds = true
+                            }
+                            celli = cell
+                            //                    return cell
+                        }
+                        
+                        return celli!
+                    }
                 }
-                if self.cPost[indexPath.row].date != nil{
+//                }else{
+//                    let cell : AssAddTopicCell = tableView.dequeueReusableCellWithIdentifier("AssAddTopicCell", forIndexPath: indexPath) as! AssAddTopicCell
+//                    return cell
+//
+//                    
+//                }
+            }else{
+                if cPost[indexPath.row].Type == "Ass"{
+                    
+                    // New Assignments TableView
+                    let cell : AssTopicCell = tableView.dequeueReusableCellWithIdentifier("AssTopicCell", forIndexPath: indexPath) as! AssTopicCell
+                    if self.cPost[indexPath.row].theLesson != nil{
+                        cell.WHatLabel.text = " New Topic Added: \"\(self.cPost[indexPath.row].theLesson!)\""
+                        cell.topicLabel.text = "\(self.cPost[indexPath.row].theLesson!)"
+                    }else{
+                    }
+                    if self.cPost[indexPath.row].date != nil{
                         cell.dateLabel.text = dts(self.cPost[indexPath.row].date!)
-                }
-
-                tableView.rowHeight = UITableViewAutomaticDimension
-                tableView.estimatedRowHeight = 106
-//                tableview.rowHeight = 106
-
-
-            return cell
-            }else if cPost[indexPath.row].Type == "Q"{
-                
-                tableView.rowHeight = UITableViewAutomaticDimension
-                tableView.estimatedRowHeight = 107
-                
-                
-                // New Assignments TableView
-                let cell : AssQuestionCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionCell", forIndexPath: indexPath) as! AssQuestionCell
-                cell.WHatLabel.text = cPost[indexPath.row].What!
-                if self.cPost[indexPath.row].theLesson != nil{
-                    cell.topicLabel.text = "\(self.cPost[indexPath.row].theLesson!)"
-                }else{
-                    cell.topicLabel.text = ""
-                }
-//                cell.usernameLabel.text = cPost[indexPath.row].POSTERNAME
-                cell.dateLabel.text = dts(cPost[indexPath.row].date!)
-//                cell.classnameLabel.text = cPost[indexPath.row].theClass!
-                
-                
-                return cell
-            }
-            else{
-                var celli : UITableViewCell?
-
-                if cPost[indexPath.row].hasIMG == false{
-                    let cell : AssAnswerCell = tableView.dequeueReusableCellWithIdentifier("AssAnswerCell", forIndexPath: indexPath) as! AssAnswerCell
+                    }
                     
                     tableView.rowHeight = UITableViewAutomaticDimension
-                    tableView.estimatedRowHeight = 145
-                    cell.dateLabel.text = dts(cPost[indexPath.row].date!)
-                    //                    cell.whatLabel.text = hPosts[indexPath.row].What!
-                    if cPost[indexPath.row].theQuestion != nil{
-                        cell.QuestionLabel.text = cPost[indexPath.row].theQuestion!
-                    }
-                    if cPost[indexPath.row].theAnswer != nil{
-                        cell.AnswerLabel.text = cPost[indexPath.row].theAnswer!
-                    }
-                    if cPost[indexPath.row].POSTERNAME != nil{
-                        cell.usernameLabel.text = cPost[indexPath.row].POSTERNAME!
-                    }
-                    if cPost[indexPath.row].theLesson != nil{
-                        cell.topicLabel.text = cPost[indexPath.row].theLesson!
+                    tableView.estimatedRowHeight = 106
+                    //                tableview.rowHeight = 106
+                    return cell
+                }else if cPost[indexPath.row].Type == "Q"{
+                    
+                    tableView.rowHeight = UITableViewAutomaticDimension
+                    tableView.estimatedRowHeight = 107
+                    // New Assignments TableView
+                    let cell : AssQuestionCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionCell", forIndexPath: indexPath) as! AssQuestionCell
+                    cell.WHatLabel.text = cPost[indexPath.row].What!
+                    if self.cPost[indexPath.row].theLesson != nil{
+                        cell.topicLabel.text = "\(self.cPost[indexPath.row].theLesson!)"
                     }else{
                         cell.topicLabel.text = ""
                     }
-                    if cPost[indexPath.row].proCachy != nil{
-                        cell.proPicIMGView.image = cPost[indexPath.row].proCachy
-                        cell.proPicIMGView.layer.cornerRadius = 18
-                        cell.proPicIMGView.layer.masksToBounds = true
-                    }
-                    
-                    celli = cell
-
-//                    return cell
-                }else{
-                    let cell : AssAnswerPicCell = tableView.dequeueReusableCellWithIdentifier("AssAnswerPicCell", forIndexPath: indexPath) as! AssAnswerPicCell
-                    
-                    tableView.rowHeight = UITableViewAutomaticDimension
-                    tableView.estimatedRowHeight = 360 //260
-                    
-                    
+                    //                cell.usernameLabel.text = cPost[indexPath.row].POSTERNAME
                     cell.dateLabel.text = dts(cPost[indexPath.row].date!)
-                    cell.QuestionLabel.text = cPost[indexPath.row].theQuestion!
-                    cell.AnswerLabel.text = cPost[indexPath.row].theAnswer!
-                    
-                    if cPost[indexPath.row].cachedIMGDATA != nil{
-                        cell.AnswerPicIMGView.image = UIImage(data: cPost[indexPath.row].cachedIMGDATA!)
-                        print("YUYUYUYUYUDODODODODODOl")
-                    }else{
-                        print("NONONOcachedIMGDATANpupupu")
-                    }
-                    if cPost[indexPath.row].cachedIMG != nil{
-                        cell.AnswerPicIMGView.image = cPost[indexPath.row].cachedIMG!
-                    }
-                    //                    cell.whatLabel.text = hPosts[indexPath.row].What!
-                    cell.usernameLabel.text = cPost[indexPath.row].POSTERNAME!
-                    if cPost[indexPath.row].theLesson != nil{
-                    cell.topicLabel.text = cPost[indexPath.row].theLesson!
-                    }
-                    if cPost[indexPath.row].proCachy != nil{
-                        cell.proPicIMGView.image = cPost[indexPath.row].proCachy
-                        cell.proPicIMGView.layer.cornerRadius = 18
-                        cell.proPicIMGView.layer.masksToBounds = true
-                    }
-
-                    
-                    
-                    celli = cell
-
-//                    return cell
+                    //                cell.classnameLabel.text = cPost[indexPath.row].theClass!
+                    return cell
                 }
-                
-                return celli!
+                else{
+                    var celli : UITableViewCell?
+                    if cPost[indexPath.row].hasIMG == false{
+                        let cell : AssAnswerCell = tableView.dequeueReusableCellWithIdentifier("AssAnswerCell", forIndexPath: indexPath) as! AssAnswerCell
+                        tableView.rowHeight = UITableViewAutomaticDimension
+                        tableView.estimatedRowHeight = 145
+                        cell.dateLabel.text = dts(cPost[indexPath.row].date!)
+                        //                    cell.whatLabel.text = hPosts[indexPath.row].What!
+                        if cPost[indexPath.row].theQuestion != nil{
+                            cell.QuestionLabel.text = cPost[indexPath.row].theQuestion!
+                        }
+                        if cPost[indexPath.row].theAnswer != nil{
+                            cell.AnswerLabel.text = cPost[indexPath.row].theAnswer!
+                        }
+                        if cPost[indexPath.row].POSTERNAME != nil{
+                            cell.usernameLabel.text = cPost[indexPath.row].POSTERNAME!
+                        }
+                        if cPost[indexPath.row].theLesson != nil{
+                            cell.topicLabel.text = cPost[indexPath.row].theLesson!
+                        }else{
+                            cell.topicLabel.text = ""
+                        }
+                        if cPost[indexPath.row].proCachy != nil{
+                            cell.proPicIMGView.image = cPost[indexPath.row].proCachy
+                            cell.proPicIMGView.layer.cornerRadius = 18
+                            cell.proPicIMGView.layer.masksToBounds = true
+                        }
+                        celli = cell
+                        //                    return cell
+                    }else{
+                        let cell : AssAnswerPicCell = tableView.dequeueReusableCellWithIdentifier("AssAnswerPicCell", forIndexPath: indexPath) as! AssAnswerPicCell
+                        
+                        tableView.rowHeight = UITableViewAutomaticDimension
+                        tableView.estimatedRowHeight = 360 //260
+                        
+                        
+                        cell.dateLabel.text = dts(cPost[indexPath.row].date!)
+                        cell.QuestionLabel.text = cPost[indexPath.row].theQuestion!
+                        cell.AnswerLabel.text = cPost[indexPath.row].theAnswer!
+                        
+                        if cPost[indexPath.row].cachedIMGDATA != nil{
+                            cell.AnswerPicIMGView.image = UIImage(data: cPost[indexPath.row].cachedIMGDATA!)
+                            print("YUYUYUYUYUDODODODODODOl")
+                        }else{
+                            print("NONONOcachedIMGDATANpupupu")
+                        }
+                        if cPost[indexPath.row].cachedIMG != nil{
+                            cell.AnswerPicIMGView.image = cPost[indexPath.row].cachedIMG!
+                        }
+                        //                    cell.whatLabel.text = hPosts[indexPath.row].What!
+                        cell.usernameLabel.text = cPost[indexPath.row].POSTERNAME!
+                        if cPost[indexPath.row].theLesson != nil{
+                            cell.topicLabel.text = cPost[indexPath.row].theLesson!
+                        }
+                        if cPost[indexPath.row].proCachy != nil{
+                            cell.proPicIMGView.image = cPost[indexPath.row].proCachy
+                            cell.proPicIMGView.layer.cornerRadius = 18
+                            cell.proPicIMGView.layer.masksToBounds = true
+                        }
+                        celli = cell
+                        //                    return cell
+                    }
+                    
+                    return celli!
+                }
+
             }
+            
         }
     
     }
@@ -786,17 +974,21 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     
     func SeggyIndexZero(){
         self.cPost = self.cachedPosts
+        sgeControl = 0
         tableView.reloadData()
     }
     
     func SeggyIndexOne(){
         self.cPost = self.QuestionPosts
+        sgeControl = 1
         tableView.reloadData()
     }
     
     func SeggyIndexTwo(){
         self.cPost = self.ToppyPosts
+        sgeControl = 2
         tableView.reloadData()
+
     }
     
     

@@ -113,6 +113,8 @@
 		3EA8476F1C4C703600EB8A25 /* AddQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA8476E1C4C703600EB8A25 /* AddQuestionVC.swift */; };
 		3EA92E101BDEF8690056B795 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA92E0F1BDEF8690056B795 /* iAd.framework */; };
 		3EB2C71E1C24F24100A308B3 /* AnswerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2C71D1C24F24100A308B3 /* AnswerObject.swift */; };
+		3EC0AA2B1C701410008566CB /* AssQuestionAskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AA2A1C701410008566CB /* AssQuestionAskCell.swift */; };
+		3EC0AA2D1C701467008566CB /* AssAddTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AA2C1C701467008566CB /* AssAddTopicCell.swift */; };
 		3EC2455E1C6A58DF00F7288E /* AssAnswerPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */; };
 		3EC4B7461C2E2D00000B878D /* proNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7451C2E2D00000B878D /* proNAVI.swift */; };
 		3EC4B7481C2E5666000B878D /* ProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7471C2E5666000B878D /* ProfileTVC.swift */; };
@@ -283,6 +285,8 @@
 		3EA8476E1C4C703600EB8A25 /* AddQuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddQuestionVC.swift; sourceTree = "<group>"; };
 		3EA92E0F1BDEF8690056B795 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3EB2C71D1C24F24100A308B3 /* AnswerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerObject.swift; sourceTree = "<group>"; };
+		3EC0AA2A1C701410008566CB /* AssQuestionAskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssQuestionAskCell.swift; sourceTree = "<group>"; };
+		3EC0AA2C1C701467008566CB /* AssAddTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssAddTopicCell.swift; sourceTree = "<group>"; };
 		3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssAnswerPicCell.swift; sourceTree = "<group>"; };
 		3EC4B7451C2E2D00000B878D /* proNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = proNAVI.swift; sourceTree = "<group>"; };
 		3EC4B7471C2E5666000B878D /* ProfileTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTVC.swift; sourceTree = "<group>"; };
@@ -400,6 +404,8 @@
 				3E62931A1C418F9A00C8473D /* DateExtension.swift */,
 				3E558C0E1BB39A90009E5170 /* AppDelegate.swift */,
 				3E3FC01B1BB8DB4B00E6D4B8 /* Main.storyboard */,
+				3EC0AA2A1C701410008566CB /* AssQuestionAskCell.swift */,
+				3EC0AA2C1C701467008566CB /* AssAddTopicCell.swift */,
 				3E381CC71C69A03E00DAD08F /* AssAnswerCell.swift */,
 				3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */,
 				3EA8476E1C4C703600EB8A25 /* AddQuestionVC.swift */,
@@ -738,6 +744,7 @@
 				3E3CD4331C3387900071DE06 /* ViewPhotoAnswerTVC.swift in Sources */,
 				3E6F22631C361394002D5802 /* HomeCell1.swift in Sources */,
 				3E28425A1C3B3F3000579FAF /* AddCommentVC.swift in Sources */,
+				3EC0AA2B1C701410008566CB /* AssQuestionAskCell.swift in Sources */,
 				3E699AAE1C2F6BCE003BAF53 /* settingsNAVI.swift in Sources */,
 				3E4ABBF51C2F7BFD001E8D15 /* HomeTVC.swift in Sources */,
 				3EB2C71E1C24F24100A308B3 /* AnswerObject.swift in Sources */,
@@ -777,6 +784,7 @@
 				3E6F226D1C3794C3002D5802 /* NoClassHomeCell.swift in Sources */,
 				3E6293191C41897C00C8473D /* CVCalendarKitExtensions.swift in Sources */,
 				3E381CBC1C68106000DAD08F /* SideBarSchoolCell.swift in Sources */,
+				3EC0AA2D1C701467008566CB /* AssAddTopicCell.swift in Sources */,
 				3E08D4AD1BB4DA560092EF8B /* SecondViewController.swift in Sources */,
 				3E6F226F1C37BBE1002D5802 /* UserData.swift in Sources */,
 				3EA66E321C3C7B0900FFDDF3 /* EnterEmailVC.swift in Sources */,

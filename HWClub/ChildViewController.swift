@@ -14,7 +14,6 @@ protocol Childing{
     func SeggyIndexZero()
     func SeggyIndexOne()
     func SeggyIndexTwo()
-    
 }
 
 
