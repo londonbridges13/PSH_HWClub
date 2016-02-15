@@ -361,7 +361,9 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "classToAss"{
-        let vc : AssignmentsTableViewController = segue.destinationViewController as! AssignmentsTableViewController
+//            let vc : AssignmentsTableViewController = segue.destinationViewController as! AssignmentsTableViewController
+            let vc : OtherAssignmentsTableViewController = segue.destinationViewController as! OtherAssignmentsTableViewController
+            //OtherAssignmentsTableViewController
         let codeIndex = tableview.indexPathForSelectedRow!.row
         print(codeIndex)
         print("UPPPPP")
@@ -369,6 +371,8 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
         //vc.CHold = className
         vc.theTeacher = "\(teacherNameArray[codeIndex])"
         vc.derp = "FINDER"
+//        vc.derp = "KLM"
+        vc.theSchool = self.theSchool
         // NOT DONE HERE
         } else {
             let vc : SearchTVC = segue.destinationViewController as! SearchTVC
@@ -410,7 +414,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
                 print(yeet.objectId)
                 print("whats that up there?")
                 if yeet.objectId != nil{
-                    self.postQuestion("Group Chat", assID: yeet.objectId!)
+                    self.postQuestion("ChatHub", assID: yeet.objectId!)
                 }
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
 //                self.ConG()
@@ -441,7 +445,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
         aQ["assignmentId"] = assID
         aQ["usernameID"] = (cUser?.objectId)!
         
-        aQ["question"] = "Group Chat" // Must = "Group Chat"
+        aQ["question"] = "ChatHub" // Must = ChatHub //"Group Chat"
         aQ.saveInBackgroundWithBlock { (suc:Bool, errror:NSError?) -> Void in
             if suc == true{
 //                self.gogoo()

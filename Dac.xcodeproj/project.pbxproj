@@ -122,6 +122,8 @@
 		3EC0AA3F1C714D95008566CB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA3E1C714D95008566CB /* AdSupport.framework */; };
 		3EC0AA411C714DBA008566CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA401C714DBA008566CB /* CoreMedia.framework */; };
 		3EC0AA431C714DFE008566CB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA421C714DFE008566CB /* AVFoundation.framework */; };
+		3EC0AA451C7230E5008566CB /* OtherChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AA441C7230E5008566CB /* OtherChildViewController.swift */; };
+		3EC0AA471C723B40008566CB /* OtherAssignmentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AA461C723B40008566CB /* OtherAssignmentsTableViewController.swift */; };
 		3EC2455E1C6A58DF00F7288E /* AssAnswerPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */; };
 		3EC4B7461C2E2D00000B878D /* proNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7451C2E2D00000B878D /* proNAVI.swift */; };
 		3EC4B7481C2E5666000B878D /* ProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7471C2E5666000B878D /* ProfileTVC.swift */; };
@@ -301,6 +303,8 @@
 		3EC0AA3E1C714D95008566CB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		3EC0AA401C714DBA008566CB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		3EC0AA421C714DFE008566CB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3EC0AA441C7230E5008566CB /* OtherChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherChildViewController.swift; sourceTree = "<group>"; };
+		3EC0AA461C723B40008566CB /* OtherAssignmentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherAssignmentsTableViewController.swift; sourceTree = "<group>"; };
 		3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssAnswerPicCell.swift; sourceTree = "<group>"; };
 		3EC4B7451C2E2D00000B878D /* proNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = proNAVI.swift; sourceTree = "<group>"; };
 		3EC4B7471C2E5666000B878D /* ProfileTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTVC.swift; sourceTree = "<group>"; };
@@ -425,6 +429,8 @@
 			isa = PBXGroup;
 			children = (
 				3E381CC31C68E97300DAD08F /* ChildViewController.swift */,
+				3EC0AA441C7230E5008566CB /* OtherChildViewController.swift */,
+				3EC0AA461C723B40008566CB /* OtherAssignmentsTableViewController.swift */,
 				3E0B39B61C6B8E9C000E89EF /* AssQuestionCell.swift */,
 				3E6293161C41897C00C8473D /* CVCalendarKitOperators.swift */,
 				3E6293171C41897C00C8473D /* CVCalendarKitExtensions.swift */,
@@ -806,6 +812,7 @@
 				3EE7D0091C26783A00DE2DA2 /* mcNAVI.swift in Sources */,
 				3E2842581C3AFE1500579FAF /* CommentCell.swift in Sources */,
 				3E89323E1BBAF06000EB0217 /* AnswersTableViewCell.swift in Sources */,
+				3EC0AA451C7230E5008566CB /* OtherChildViewController.swift in Sources */,
 				3E8932321BB9B68B00EB0217 /* QuestionTableViewCell.swift in Sources */,
 				3E4ABBF31C2F7A26001E8D15 /* notiNAVI.swift in Sources */,
 				3EA8476F1C4C703600EB8A25 /* AddQuestionVC.swift in Sources */,
@@ -843,6 +850,7 @@
 				3E6F22691C362BE8002D5802 /* NotiCell1.swift in Sources */,
 				3E5E09DE1C3F30AD0020A73A /* FindSchoolsNAVI.swift in Sources */,
 				3E08D4B21BB4EEF80092EF8B /* SidebarViewController.swift in Sources */,
+				3EC0AA471C723B40008566CB /* OtherAssignmentsTableViewController.swift in Sources */,
 				3E35AC081C1FD30D00169C2C /* findNAVI.swift in Sources */,
 				3EA66E2E1C3C7AAE00FFDDF3 /* EnterUsernameVC.swift in Sources */,
 			);

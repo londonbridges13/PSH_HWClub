@@ -250,6 +250,9 @@ class MyClassesTableViewController: UITableViewController {
             
             let miko = tableView.indexPathForSelectedRow?.row
             vc.derp = "MCL"
+            vc.derp = "KLM"
+            vc.theSchool = self.theSchool
+
             
             if self.proppie != nil{
                 vc.proppie = self.proppie!

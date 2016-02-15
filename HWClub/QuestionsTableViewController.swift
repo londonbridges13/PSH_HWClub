@@ -41,7 +41,7 @@ class QuestionsTableViewController: UITableViewController, toAnswerDelegate, SEG
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if theQuestion == "Group Chat"{
+        if theAssignment == "Group Chat"{
             self.naviTITLE.setTitle("Group Chat", forState: .Normal)
         }
         LoadingDesign()
@@ -370,6 +370,7 @@ class QuestionsTableViewController: UITableViewController, toAnswerDelegate, SEG
             cell.answerQButton.alpha = 1
             if questionArray[indexPath.row] == "Group Chat"{
                 cell.answerQButton.alpha = 0
+                cell.questionLabel.text = "ChatHub"
             }
 
             }else{

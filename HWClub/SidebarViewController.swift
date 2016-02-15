@@ -36,12 +36,16 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
 
     let yy = CH_Username()
     
+    var tealler = UIColor(red: 9/255, green: 209/255, blue: 196/255, alpha: 1)
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        UINavigationBar.appearance().barTintColor = tealler
+
 //        tableView.setContentOffset(CGPointZero, animated:true)
 
 //        yy.delegate = self
+
         queryMyClasses()
         queryNotiis()
         
@@ -67,8 +71,9 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+//        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
 
+        view.endEditing(true)
 //        yy.delegate = self
 
 //        notiNumLabel.layer.cornerRadius = 16
@@ -77,7 +82,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
 //            usernameLabel.text = "@\((cUser?.username)!)"
         }
         userInfoQuery()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+//        UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
 //        if self.notiNumLabel.text == "0"{
 //            self.notiNumLabel.alpha = 0 //0
@@ -232,10 +237,15 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                 if let results = results as [PFObject]?{
                     self.notinum = results.count
                     self.tableView.reloadData()
+//                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
 //                    self.notiNumLabel.text = "\(results.count)"
 //                    self.notiNumLabel.alpha = 1 //0
                     if results.count == 0 {
-//                        self.notiNumLabel.alpha = 0                        
+                        self.view.endEditing(false)
+                        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
+//                        self.notiNumLabel.alpha = 0
                     }
                 }
             }
@@ -282,6 +292,8 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                     }
                     self.tableView.reloadData()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    self.view.endEditing(false)
+
                 }
             }else{
                 print("\(error) ..... \(error!.userInfo)")
@@ -361,9 +373,12 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
             if self.oldPic != nil{
                 vc.proppie = self.oldPic!
             }
-            vc.theTeacher = "\(myTeacherArray[miko])"
-            vc.theClass = "\(myClassArray[miko)"
-            vc.theSchool = self.theSchool!
+//            if myTeacherArray[tableView.indexPathForSelectedRow?.row - 4] != nil{
+            if myTeacherArray[miko] != ""{
+                vc.theTeacher = "\(myTeacherArray[miko])"
+                vc.theClass = "\(myClassArray[miko)"
+                vc.theSchool = self.theSchool!
+            }
         }
         if segue.identifier == "toNOTI"{
             let vvc : notiNAVI = segue.destinationViewController as! notiNAVI

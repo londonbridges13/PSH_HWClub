@@ -19,7 +19,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     @IBOutlet var MCL : UIButton!
     @IBOutlet var FINDER : UIButton!
     @IBOutlet var menuButton: UIBarButtonItem!
-
+    @IBOutlet var OtherContine: UIView!
     @IBOutlet var contine: UIView!
 
     var sgeControl = 0
@@ -85,7 +85,15 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                 //   self.revealViewController().rearViewRevealWidth = 200
             }
         }else{
+            // OtherChildViewController
+            KLMpreQuery()
+            previewOP()
+            let cvc = childViewControllers.first as! OtherChildViewController
+            cvc.delegate = self
             
+            cvc.teacherLabel.text = self.theTeacher!
+            cvc.myLabel.text = self.theClass!
+            self.derp = "KLM"
         }
         
 //        showActivityIndicatory(self.view)
@@ -596,20 +604,26 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         // #warning Incomplete implementation, return the number of rows
         
         if self.derp != "KLM"{
-            switch (section){
+            if sgeControl == 1 || sgeControl == 2{
+                return cPost.count + 1
                 
-            case 0:
-                return 1
-            case 1:
-                if AssignmentsArray.count != 0{
-                    return AssignmentsArray.count
-                }else{
-                    return 2
-                }
-            default:
-                return 0
+            }else{
+                return cPost.count // hpost array.count
             }
-        
+//            switch (section){
+//                
+//            case 0:
+//                return 1
+//            case 1:
+//                if AssignmentsArray.count != 0{
+//                    return AssignmentsArray.count
+//                }else{
+//                    return 2
+//                }
+//            default:
+//                return 0
+//            }
+//        
         }else{
             if sgeControl == 1 || sgeControl == 2{
                 return cPost.count + 1

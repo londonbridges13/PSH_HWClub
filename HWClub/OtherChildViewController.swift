@@ -1,14 +1,15 @@
 //
-//  ChildViewController.swift
-//  uisegmentInContainerCell
+//  OtherChildViewController.swift
+//  Dac
 //
-//  Created by Lyndon Samual McKay on 2/6/16.
+//  Created by Lyndon Samual McKay on 2/15/16.
 //  Copyright © 2016 Lyndon Samual McKay. All rights reserved.
 //
 
 import UIKit
 
-protocol Childing{
+
+protocol OtherChilding{
     func followClass()
     func unfollowClass()
     func SeggyIndexZero()
@@ -17,7 +18,7 @@ protocol Childing{
 }
 
 
-class ChildViewController: UIViewController {
+class OtherChildViewController: UIViewController {
 
     
     @IBOutlet var myLabel : UILabel!
@@ -32,15 +33,15 @@ class ChildViewController: UIViewController {
     var delegate = Childing?()
     
     let dRed = UIColor(red: 234/255, green: 141/255, blue: 158/255, alpha: 1)
-
+    
     
     var shepard : String?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         follow.setTitle("Follow", forState: UIControlState.Normal)
-
+        
         if shepard != nil{
             myLabel.text = shepard!
         }
@@ -52,7 +53,7 @@ class ChildViewController: UIViewController {
         saysom.layer.borderWidth = 1
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,19 +61,19 @@ class ChildViewController: UIViewController {
     
     
     
-//    
-//    func yeah(){
-//        
-//        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
-//        dispatch_after(time, dispatch_get_main_queue()) {
-//
-//        let red = self.parentViewController as! ViewController
-//        
-//        red.talk = "Yea BOI"
-//            
-//        }
-//    }
-
+    //
+    //    func yeah(){
+    //
+    //        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+    //        dispatch_after(time, dispatch_get_main_queue()) {
+    //
+    //        let red = self.parentViewController as! ViewController
+    //
+    //        red.talk = "Yea BOI"
+    //
+    //        }
+    //    }
+    
     
     
     
@@ -93,8 +94,8 @@ class ChildViewController: UIViewController {
                 delegate.SeggyIndexOne()
             }
         case 2:
-           print("Viewing Topics")
-           if let delegate = self.delegate {
+            print("Viewing Topics")
+            if let delegate = self.delegate {
                 delegate.SeggyIndexTwo()
             }
         default: break
@@ -108,9 +109,9 @@ class ChildViewController: UIViewController {
     @IBAction func jacked(sender: AnyObject){
         
         if let delegate = self.delegate{
-//            delegate.yeah("Yea BOI")
+            //            delegate.yeah("Yea BOI")
             // SEGGY TO
-
+            
         }
     }
     
@@ -128,7 +129,7 @@ class ChildViewController: UIViewController {
             //followButton.layer.borderColor = dRed.CGColor
             follow.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             follow.backgroundColor = dRed
-//            follow.alpha = 1
+            //            follow.alpha = 1
             
         }else{
             if let delegate = self.delegate {
@@ -140,27 +141,14 @@ class ChildViewController: UIViewController {
             
             // change the color of the follow button
             follow.setTitle("Follow", forState: UIControlState.Normal)
-//            follow.layer.borderColor = UIColor.lightGrayColor().CGColor
+            //            follow.layer.borderColor = UIColor.lightGrayColor().CGColor
             follow.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             follow.backgroundColor = UIColor.lightGrayColor()
-//            newLessonButton.alpha = 0
+            //            newLessonButton.alpha = 0
             
             
         }
         
     }
     
-
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

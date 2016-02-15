@@ -81,7 +81,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
         super.viewDidLoad()
         
         if theQuestion == "Group Chat"{
-            self.naviTITLE.setTitle("Group Chat", forState: .Normal)
+            self.naviTITLE.setTitle("ChatHub", forState: .Normal)
         }
 
         print(SeeAnswer)
@@ -793,6 +793,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
                 cell.QLabel.text = "\(self.theQuestion!)"
             }
             if theQuestion == "Group Chat"{
+                cell.QLabel.text = "ChatHub"
                 cell.answerButton.setTitle(" | Post", forState: .Normal)
             }
             //tableView.rowHeight = 209

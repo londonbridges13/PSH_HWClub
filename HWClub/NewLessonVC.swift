@@ -13,17 +13,62 @@ class NewLessonVC: UIViewController {
 
     @IBOutlet var newTopicTX: UITextField!
     @IBOutlet var senditButty: UIButton!
+    @IBOutlet var uwnOther : UIButton!
     
+    let cUser = PFUser.currentUser()
     var checker = [String]()
     var theTopic : String?
     var theSchool : String?
     var theClass : String?
     var theTeacher : String?
     var groupChat = "Group Chat"
+    var diko : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         newTopicTX.becomeFirstResponder()
         // Do any additional setup after loading the view.
+        
+        print(diko)
+        print("diko up")
+        if diko != nil{
+            newTopicTX.resignFirstResponder()
+            var alert = SCLAlertView()
+            alert.addButton("Follow Class", action: { () -> Void in
+                self.followClass()
+            })
+            alert.addButton("Go Back", action: { () -> Void in
+                //
+                self.uwnOther.sendActionsForControlEvents(.TouchUpInside)
+            })
+            alert.showCloseButton = false
+            alert.showNotice("Hold Up", subTitle: "Not Following this Class")
+
+        }
+    }
+
+    
+    func followClass(){
+        //        print("Followed Class")
+        
+        let Class = PFObject(className: "ClassesFollowed")
+        Class["classesFollowed"] = self.theClass
+        Class["teacherName"] = self.theTeacher
+        Class["UserID"] = (cUser?.objectId)! // here
+        if self.theSchool != nil{
+            Class["School"] = self.theSchool
+            //self.addOne()
+        }
+        Class["Username"] = "\((cUser?.username)!)"
+        Class.saveInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+            if (success == true){
+                self.diko = nil
+                print("Followed Class")
+            }else{
+                print(error?.description)
+            }
+        }
+        
     }
 
     @IBAction func AddIt(sender: AnyObject) {
