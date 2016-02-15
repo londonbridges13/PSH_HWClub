@@ -17,12 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var tx : Int?
     
-
+    
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
 
+        var sdk: STAStartAppSDK = STAStartAppSDK.sharedInstance()
+        sdk.appID = "201986052"
+        sdk.devID = "104057493"
+        
+        sdk.preferences = STASDKPreferences.prefrencesWithAge(18, andGender: STAGender_Undefined)
+
+        
         application.statusBarStyle = UIStatusBarStyle.LightContent
         // instead of
         // UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)

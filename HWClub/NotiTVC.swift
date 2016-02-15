@@ -17,6 +17,9 @@ class NotiTVC: UITableViewController {
     let cUser = PFUser.currentUser()
     @IBOutlet var menuButton : UIBarButtonItem!
     
+    var proppie : UIImage?
+    var School : String?
+    
     let queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
     var nT : String?
     var Sc : String?
@@ -769,6 +772,12 @@ class NotiTVC: UITableViewController {
         if segue.identifier == "Answered"{
             let vc : ViewAnswerTVC = segue.destinationViewController as! ViewAnswerTVC
             // plus SpecialQuery
+            if proppie != nil{
+                vc.userPic = proppie!
+            }
+            if School != nil{
+                vc.School = School
+            }
             vc.derp = "not nil"
             if self.notis[row!].theAnswer != nil{
                 vc.theAnswer = self.notis[row!].theAnswer!
@@ -784,6 +793,12 @@ class NotiTVC: UITableViewController {
             //just trying something
 //            vc.thePic = self.thepic! // convert to uiimage
 //            vc.theAnswer = self.notis[row!].theAnswer!
+            if proppie != nil{
+                vc.userPic = proppie!
+            }
+            if School != nil{
+                vc.School = School
+            }
             vc.derp = "not nil"
             vc.theQ = self.notis[row!].theQuestion
             vc.chit = "seggy"

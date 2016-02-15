@@ -16,6 +16,7 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
 
     var qS : [Int] = [0,1,2,3,4,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,55,4,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,55,4,4,55,5,5,5,5,5,55]
     
+    var School : String?
     var QuestionID : String?
     var theQ : String?
     var chit : String?
@@ -45,7 +46,7 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(AnswerProviderID)
-        
+        ADCount()
         if derp != nil{
             self.answerQuery()
 //            wacthIT()
@@ -422,6 +423,22 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
         
     }
 
+    
+    
+    
+    func ADCount(){
+        let oneTcent = PFObject(className: "VAPageViews")
+        if self.School != nil{
+            oneTcent["School"] = self.School
+        }
+        oneTcent.saveInBackground()
+    }
+    
+    
+    
+    
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

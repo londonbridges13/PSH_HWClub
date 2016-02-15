@@ -14,6 +14,9 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     @IBOutlet var naviItem: UINavigationItem!
     @IBOutlet var pullToReloadButton: UIButton!
 
+    
+    @IBOutlet var naviTITLE: UIButton!
+
     //let lBlue = UIColor(red: 134/255, green: 218/255, blue: 233/255, alpha: 1)
     let teal : UIColor = UIColor(red: 52, green: 185, blue: 208, alpha: 1)
     let lBlue  = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 1)
@@ -77,6 +80,10 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if theQuestion == "Group Chat"{
+            self.naviTITLE.setTitle("Group Chat", forState: .Normal)
+        }
+
         print(SeeAnswer)
         if SeeAnswer != nil{
 //            self.theQuestion = SeeAnswer!
@@ -785,7 +792,9 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             if self.theQuestion != nil{
                 cell.QLabel.text = "\(self.theQuestion!)"
             }
-            
+            if theQuestion == "Group Chat"{
+                cell.answerButton.setTitle(" | Post", forState: .Normal)
+            }
             //tableView.rowHeight = 209
             //tableview.rowHeight = 209
             return cell
@@ -1137,6 +1146,9 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             let roww = tableView.indexPathForSelectedRow?.row //{
                 let row = roww! - 1
 
+            if theSchool != nil{
+                vc.School = self.theSchool
+            }
                 let index = tableView.indexPathForSelectedRow
 
 
@@ -1182,6 +1194,9 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
          
             let vc: ViewAnswerTVC = segue.destinationViewController as! ViewAnswerTVC
             
+            if theSchool != nil{
+                vc.School = self.theSchool
+            }
             let roww = tableView.indexPathForSelectedRow?.row //{
                 
                 let row = roww! - 1

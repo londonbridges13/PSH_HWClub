@@ -25,6 +25,9 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     let teal  = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 1)
     let cUser = PFUser.currentUser()
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,7 +78,14 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
         
         
         
+
     }
+    
+
+
+    
+    
+    
     /*if error == nil {
     // The find succeeded.
     println("Successfully retrieved \(objects!.count) scores.")
@@ -193,6 +203,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
                     self.teacherNameArray.removeAll()
                     self.tableview.reloadData()
                     self.FindClasses()
+                    self.sendher() // Adding New Topic: "Group Chat"
                 } else{
                     
                     print(error?.description)
@@ -340,13 +351,16 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        print("Selected")
         className = "\(classnameArray[indexPath.row])"
         teachName = "\(teacherNameArray[indexPath.row])"
+//        performSegueWithIdentifier("classToAss", sender: self)
         
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "classToAss"){
+        
+        if segue.identifier == "classToAss"{
         let vc : AssignmentsTableViewController = segue.destinationViewController as! AssignmentsTableViewController
         let codeIndex = tableview.indexPathForSelectedRow!.row
         print(codeIndex)
@@ -384,6 +398,62 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
 
+    func sendher(){
+//        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        let yeet = PFObject(className: "Assignments")
+        yeet["assignmentName"] = "Group Chat"
+        yeet["School"] = theSchool
+        yeet["classname"] = ccc
+        yeet["teacherName"] = ttt
+        yeet.saveInBackgroundWithBlock { (suc :Bool, error:NSError?) -> Void in
+            if suc == true {
+                print(yeet.objectId)
+                print("whats that up there?")
+                if yeet.objectId != nil{
+                    self.postQuestion("Group Chat", assID: yeet.objectId!)
+                }
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+//                self.ConG()
+//                self.senditButty.sendActionsForControlEvents(.TouchUpInside)
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            }else{
+                print(error?.description)
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                
+            }
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            
+        }
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
+    }
+
+    
+    func postQuestion(q: String, assID : String){
+        let aQ = PFObject(className: "Questions")
+        aQ["School"] = theSchool!
+        aQ["teacherName"] = ttt!
+        aQ["classname"] = ccc!
+        aQ["username"] = (cUser?.username)!
+        aQ["assignmentName"] = "Group Chat"
+        aQ["numberOfAnswers"] = 0
+        aQ["hasAnImage"] = false // for now
+        aQ["assignmentId"] = assID
+        aQ["usernameID"] = (cUser?.objectId)!
+        
+        aQ["question"] = "Group Chat" // Must = "Group Chat"
+        aQ.saveInBackgroundWithBlock { (suc:Bool, errror:NSError?) -> Void in
+            if suc == true{
+//                self.gogoo()
+            }else{
+                print(errror?.description)
+            }
+        }
+    }
+    
+
+    
+    
     func LoadingDesign(){
         
         let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height - 60)

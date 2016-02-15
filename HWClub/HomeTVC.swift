@@ -46,7 +46,7 @@ class HomeTVC: UITableViewController {
     var proppie : PFFile?
     var prepre = 0
     var gogo = 0
-    
+    var School : String?
     var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
     
     
@@ -1379,7 +1379,9 @@ class HomeTVC: UITableViewController {
             let vc : ViewPhotoAnswerTVC = segue.destinationViewController as! ViewPhotoAnswerTVC
             
             let row = tableView.indexPathForSelectedRow?.row
-            
+
+            vc.School = self.theSchool[0]
+
             vc.theAnswerID = self.hPosts[row!].theAnswerID
             vc.derp = "not nil"
             vc.chit = "seggy"
@@ -1397,7 +1399,9 @@ class HomeTVC: UITableViewController {
             let vc : ViewAnswerTVC = segue.destinationViewController as! ViewAnswerTVC
             
             let row = tableView.indexPathForSelectedRow?.row
-
+            
+            vc.School = self.theSchool[0]
+            
             if  self.hPosts[row!].theAnswer != nil{
                 vc.theAnswer = self.hPosts[row!].theAnswer!
             }
@@ -1418,6 +1422,7 @@ class HomeTVC: UITableViewController {
             // Send QuestionID
             let vc : AnswersTableViewController = segue.destinationViewController as! AnswersTableViewController
             
+            vc.theSchool = self.theSchool[0]
             
             let row = tableView.indexPathForSelectedRow?.row
 

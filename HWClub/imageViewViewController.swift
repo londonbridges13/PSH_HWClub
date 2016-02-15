@@ -8,6 +8,9 @@
 
 import UIKit
 import iAd
+import Parse
+
+
 class imageViewViewController: UIViewController , UIScrollViewDelegate, ADBannerViewDelegate {
     
 
@@ -15,10 +18,16 @@ class imageViewViewController: UIViewController , UIScrollViewDelegate, ADBanner
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet var theImageView: UIImageView!
     var theImage: UIImage?
+    var School : String?
+    var startAppBanner: STABannerView?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.scrollView.minimumZoomScale = 1.0
+        ADCount()
+        
+        self.scrollView.minimumZoomScale = 0.8
         self.scrollView.maximumZoomScale = 6
         
         self.canDisplayBannerAds = true
@@ -32,6 +41,27 @@ class imageViewViewController: UIViewController , UIScrollViewDelegate, ADBanner
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if (startAppBanner == nil) {
+            startAppBanner = STABannerView(size: STA_AutoAdSize, autoOrigin: STAAdOrigin_Bottom, withView: self.view, withDelegate: nil);
+            self.view.addSubview(startAppBanner!)
+        }
+    }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation)  {
+        // notify StartApp auto Banner orientation change
+        startAppBanner!.didRotateFromInterfaceOrientation(fromInterfaceOrientation)
+        super.didRotateFromInterfaceOrientation(fromInterfaceOrientation)
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        // notify StartApp auto Banner orientation change
+        startAppBanner!.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,6 +98,16 @@ class imageViewViewController: UIViewController , UIScrollViewDelegate, ADBanner
         return self.theImageView
     }
 
+    
+    
+    func ADCount(){
+        let oneTcent = PFObject(className: "IMGPageViews")
+        if self.School != nil{
+            oneTcent["School"] = self.School
+        }
+        oneTcent.saveInBackground()
+    }
+    
     
     /*
     // MARK: - Navigation

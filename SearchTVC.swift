@@ -41,7 +41,23 @@ class SearchTVC: UITableViewController, UISearchResultsUpdating, UINavigationBar
         self.definesPresentationContext = false;
         
         self.tableView.reloadData()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        dismissKeyboard()
+    }
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+        resultSearchController.resignFirstResponder()
+        resultSearchController.active = false
+    }
+    
     
     
     

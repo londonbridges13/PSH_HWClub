@@ -15,7 +15,7 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
     @IBOutlet var UNWans : UIButton!
 
     
-    
+    var School : String?
     var qS : [Int] = [0,1,2,3,4,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,55,4,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,554,4,55,5,5,5,5,5,55,4,4,55,5,5,5,5,5,55]
     var theDappers = [String]()
     var chit : String?
@@ -57,6 +57,8 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ADCount()
         
         if derp != nil{
             self.answerQuery()
@@ -282,6 +284,9 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
         }else{
             let vc : imageViewViewController = segue.destinationViewController as! imageViewViewController
         if self.thePic != nil{
+            if School != nil{
+                vc.School = School
+            }
             vc.theImage = self.thePic!
         }
         vc.theImage = self.thePic!
@@ -639,7 +644,13 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
     
     
     
-    
+    func ADCount(){
+        let oneTcent = PFObject(className: "VPAPageViews")
+        if self.School != nil{
+            oneTcent["School"] = self.School
+        }
+        oneTcent.saveInBackground()
+    }
     
     
     

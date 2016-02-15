@@ -18,7 +18,6 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     @IBOutlet var tableview: UITableView!
     @IBOutlet var MCL : UIButton!
     @IBOutlet var FINDER : UIButton!
-    
     @IBOutlet var menuButton: UIBarButtonItem!
 
     @IBOutlet var contine: UIView!
@@ -56,6 +55,10 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     let dRed = UIColor(red: 234/255, green: 141/255, blue: 158/255, alpha: 1)
 
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -154,6 +157,13 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         numQuArray.removeAll()
         createDateArray.removeAll()
         array.removeAll()
+        cPost.removeAll()
+        if self.derp == "KLM"{
+            let cvc = self.childViewControllers.first as! ChildViewController
+            cvc.delegate = self
+            cvc.segmentControl.selectedSegmentIndex = 0
+        }
+        previewOP()
 //        self.queryAssignments()
         self.userInfoQuery()
     }
@@ -234,6 +244,9 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             if sgeControl == 1 || sgeControl == 2{
                 let row = tableView.indexPathForSelectedRow!.row - 1
                 
+                if theSchool != nil{
+                    vc.School = self.theSchool
+                }
                 vc.theAnswerID = self.cPost[row].theAnswerID
                 vc.derp = "not nil"
                 vc.chit = "seggy"
@@ -265,6 +278,9 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         if segue.identifier == "classQtoVA"{
             let vc : ViewAnswerTVC = segue.destinationViewController as! ViewAnswerTVC
             
+            if theSchool != nil{
+                vc.School = self.theSchool
+            }
             if sgeControl == 1 || sgeControl == 2{
                 let row = tableView.indexPathForSelectedRow!.row - 1
                 
@@ -306,6 +322,8 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             // Send AnswerID Over
             // Send QuestionID
             let vc : AnswersTableViewController = segue.destinationViewController as! AnswersTableViewController
+            
+            vc.theSchool = self.theSchool
             
             if sgeControl == 1 || sgeControl == 2{
                 let row = tableView.indexPathForSelectedRow!.row - 1
@@ -704,9 +722,11 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             if sgeControl == 1 || sgeControl == 2{
                 if indexPath.row == 0 && sgeControl == 1{
                     let cell : AssQuestionAskCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionAskCell", forIndexPath: indexPath) as! AssQuestionAskCell
+                    tableView.rowHeight = 51
                     return cell
                 }else if indexPath.row == 0 && sgeControl == 2{
                     let cell : AssAddTopicCell = tableView.dequeueReusableCellWithIdentifier("AssAddTopicCell", forIndexPath: indexPath) as! AssAddTopicCell
+                    tableView.rowHeight = 51
                     return cell
                 }else{
                     if cPost[indexPathh].Type == "Ass"{

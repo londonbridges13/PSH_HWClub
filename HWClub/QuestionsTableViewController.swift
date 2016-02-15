@@ -14,7 +14,8 @@ class QuestionsTableViewController: UITableViewController, toAnswerDelegate, SEG
 
     
     @IBOutlet var askQButton: UIButton!
-    
+    @IBOutlet var naviTITLE: UIButton!
+
     @IBOutlet var tableview: UITableView!
     var refreshControlelol = UIRefreshControl()
     var tranQ : String?
@@ -39,6 +40,10 @@ class QuestionsTableViewController: UITableViewController, toAnswerDelegate, SEG
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if theQuestion == "Group Chat"{
+            self.naviTITLE.setTitle("Group Chat", forState: .Normal)
+        }
         LoadingDesign()
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -49,6 +54,7 @@ class QuestionsTableViewController: UITableViewController, toAnswerDelegate, SEG
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         print(self.theAssignment!)
         print(self.theTeachername!)
@@ -362,6 +368,9 @@ class QuestionsTableViewController: UITableViewController, toAnswerDelegate, SEG
 //            cell.circle.layer.cornerRadius = 32
             cell.questionLabel.text = "\(questionArray[indexPath.row])"
             cell.answerQButton.alpha = 1
+            if questionArray[indexPath.row] == "Group Chat"{
+                cell.answerQButton.alpha = 0
+            }
 
             }else{
                 if indexPath.row == 0{

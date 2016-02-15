@@ -18,6 +18,9 @@ class SidebarMyClassCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        myClassLabel.layer.cornerRadius = 8
+        myClassLabel.layer.masksToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

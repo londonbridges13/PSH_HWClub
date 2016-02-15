@@ -115,6 +115,13 @@
 		3EB2C71E1C24F24100A308B3 /* AnswerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2C71D1C24F24100A308B3 /* AnswerObject.swift */; };
 		3EC0AA2B1C701410008566CB /* AssQuestionAskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AA2A1C701410008566CB /* AssQuestionAskCell.swift */; };
 		3EC0AA2D1C701467008566CB /* AssAddTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AA2C1C701467008566CB /* AssAddTopicCell.swift */; };
+		3EC0AA381C714C51008566CB /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EC0AA361C714C50008566CB /* StartApp.bundle */; };
+		3EC0AA391C714C51008566CB /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA371C714C51008566CB /* StartApp.framework */; };
+		3EC0AA3B1C714D4D008566CB /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA3A1C714D4C008566CB /* CoreTelephony.framework */; };
+		3EC0AA3D1C714D81008566CB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA3C1C714D81008566CB /* StoreKit.framework */; };
+		3EC0AA3F1C714D95008566CB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA3E1C714D95008566CB /* AdSupport.framework */; };
+		3EC0AA411C714DBA008566CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA401C714DBA008566CB /* CoreMedia.framework */; };
+		3EC0AA431C714DFE008566CB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA421C714DFE008566CB /* AVFoundation.framework */; };
 		3EC2455E1C6A58DF00F7288E /* AssAnswerPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */; };
 		3EC4B7461C2E2D00000B878D /* proNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7451C2E2D00000B878D /* proNAVI.swift */; };
 		3EC4B7481C2E5666000B878D /* ProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7471C2E5666000B878D /* ProfileTVC.swift */; };
@@ -287,6 +294,13 @@
 		3EB2C71D1C24F24100A308B3 /* AnswerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerObject.swift; sourceTree = "<group>"; };
 		3EC0AA2A1C701410008566CB /* AssQuestionAskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssQuestionAskCell.swift; sourceTree = "<group>"; };
 		3EC0AA2C1C701467008566CB /* AssAddTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssAddTopicCell.swift; sourceTree = "<group>"; };
+		3EC0AA361C714C50008566CB /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StartApp.bundle; sourceTree = "<group>"; };
+		3EC0AA371C714C51008566CB /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StartApp.framework; sourceTree = "<group>"; };
+		3EC0AA3A1C714D4C008566CB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		3EC0AA3C1C714D81008566CB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		3EC0AA3E1C714D95008566CB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		3EC0AA401C714DBA008566CB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		3EC0AA421C714DFE008566CB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssAnswerPicCell.swift; sourceTree = "<group>"; };
 		3EC4B7451C2E2D00000B878D /* proNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = proNAVI.swift; sourceTree = "<group>"; };
 		3EC4B7471C2E5666000B878D /* ProfileTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTVC.swift; sourceTree = "<group>"; };
@@ -311,6 +325,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EC0AA431C714DFE008566CB /* AVFoundation.framework in Frameworks */,
+				3EC0AA411C714DBA008566CB /* CoreMedia.framework in Frameworks */,
+				3E558C521BB39BA2009E5170 /* QuartzCore.framework in Frameworks */,
+				3EC0AA3F1C714D95008566CB /* AdSupport.framework in Frameworks */,
+				3EC0AA3D1C714D81008566CB /* StoreKit.framework in Frameworks */,
+				3E558C541BB39BC3009E5170 /* SystemConfiguration.framework in Frameworks */,
+				3EC0AA3B1C714D4D008566CB /* CoreTelephony.framework in Frameworks */,
 				3EF323EB1C65979F00D1EA57 /* libc++.tbd in Frameworks */,
 				3EA92E101BDEF8690056B795 /* iAd.framework in Frameworks */,
 				3EF323EE1C659CC100D1EA57 /* RealmSwift.framework in Frameworks */,
@@ -318,8 +339,6 @@
 				3E5718411C38427C00B98463 /* ParseUI.framework in Frameworks */,
 				3E558C561BB39BDF009E5170 /* libz.tbd in Frameworks */,
 				3EF323E81C65971600D1EA57 /* Realm.framework in Frameworks */,
-				3E558C541BB39BC3009E5170 /* SystemConfiguration.framework in Frameworks */,
-				3E558C521BB39BA2009E5170 /* QuartzCore.framework in Frameworks */,
 				3E558C4E1BB39B82009E5170 /* Security.framework in Frameworks */,
 				3E558C4C1BB39B74009E5170 /* CFNetwork.framework in Frameworks */,
 				3E558C4A1BB39B69009E5170 /* CoreLocation.framework in Frameworks */,
@@ -329,6 +348,7 @@
 				3E558C461BB39B39009E5170 /* AudioToolbox.framework in Frameworks */,
 				3EF323EC1C659CC100D1EA57 /* Realm.framework in Frameworks */,
 				3E5718431C38429A00B98463 /* Bolts.framework in Frameworks */,
+				3EC0AA391C714C51008566CB /* StartApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,11 +383,18 @@
 		3E558C021BB39A90009E5170 = {
 			isa = PBXGroup;
 			children = (
+				3EC0AA421C714DFE008566CB /* AVFoundation.framework */,
+				3EC0AA401C714DBA008566CB /* CoreMedia.framework */,
+				3EC0AA3E1C714D95008566CB /* AdSupport.framework */,
+				3EC0AA3C1C714D81008566CB /* StoreKit.framework */,
+				3EC0AA3A1C714D4C008566CB /* CoreTelephony.framework */,
 				3E0B39BC1C6C1AA8000E89EF /* HomeQuestionCell.swift */,
 				3E381CC51C69727100DAD08F /* AssTopicCell.swift */,
 				3E381CBB1C68106000DAD08F /* SideBarSchoolCell.swift */,
 				3E381CBD1C6813AA00DAD08F /* SidebarMyClassCell.swift */,
 				3E381CBF1C6819BF00DAD08F /* SideBarNotiCell.swift */,
+				3EC0AA361C714C50008566CB /* StartApp.bundle */,
+				3EC0AA371C714C51008566CB /* StartApp.framework */,
 				3EF323EA1C65979F00D1EA57 /* libc++.tbd */,
 				3EA92E0F1BDEF8690056B795 /* iAd.framework */,
 				3E558C551BB39BDF009E5170 /* libz.tbd */,
@@ -676,6 +703,7 @@
 				3E08D4BB1BB4F1BA0092EF8B /* menu@3x.png in Resources */,
 				3E08D4B91BB4F1BA0092EF8B /* menu.png in Resources */,
 				3E558C161BB39A90009E5170 /* Assets.xcassets in Resources */,
+				3EC0AA381C714C51008566CB /* StartApp.bundle in Resources */,
 				3E08D4B81BB4F1BA0092EF8B /* Contents.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -915,7 +943,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = HWClub/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1005,7 +1033,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = HWClub/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1141,7 +1169,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = HWClub/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1168,7 +1196,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = HWClub/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

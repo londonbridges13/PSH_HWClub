@@ -160,7 +160,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                 let cell : SidebarMyClassCell = tableView.dequeueReusableCellWithIdentifier("sideMyClass", forIndexPath: indexPath) as! SidebarMyClassCell
                 tableView.rowHeight = 79
                 if myClassArray.count != 0{
-                    cell.myClassLabel.text = "- \(self.myClassArray[indexPath.row - 4])"
+                    cell.myClassLabel.text = "  - \(self.myClassArray[indexPath.row - 4])"
                 }
                 return cell
             }
@@ -364,6 +364,16 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
             vc.theTeacher = "\(myTeacherArray[miko])"
             vc.theClass = "\(myClassArray[miko)"
             vc.theSchool = self.theSchool!
+        }
+        if segue.identifier == "toNOTI"{
+            let vvc : notiNAVI = segue.destinationViewController as! notiNAVI
+            let vc : NotiTVC = vvc.viewControllers.first as! NotiTVC
+            if newPic != nil{
+                vc.proppie = self.newPic!
+            }
+            if self.theSchool != nil{
+                vc.School = theSchool
+            }
         }
     }
     
