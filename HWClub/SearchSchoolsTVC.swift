@@ -250,17 +250,17 @@ class SearchSchoolsTVC: UITableViewController, UISearchResultsUpdating, UINaviga
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        unfollowClass()
+        let _ = unfollowClass()
         if (self.resultSearchController.active) {
             let cO = self.allResults[indexPath.row]
 //            sendC = cO.classname
             let cell : SearchSchoolCell = tableView.cellForRowAtIndexPath(indexPath) as! SearchSchoolCell
             
-            followNewSchoolBYSTRING(cell.SchoolLabel.text!)
+            let _ = followNewSchoolBYSTRING(cell.SchoolLabel.text!)
             
         }else{
             if let row = tableView.indexPathForSelectedRow?.row{
-                self.followNewSchool(row)
+                let _ = self.followNewSchool(row)
             }
         }
 
@@ -310,7 +310,7 @@ class SearchSchoolsTVC: UITableViewController, UISearchResultsUpdating, UINaviga
                     for result in results{
                         let theIdo = result.objectId
                         if theIdo != nil{
-                            self.deleteThatClass(theIdo!)
+                            let _ = self.deleteThatClass(theIdo!)
                         }
                     }
                 }

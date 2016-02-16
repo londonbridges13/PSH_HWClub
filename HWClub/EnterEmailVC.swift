@@ -52,7 +52,7 @@ class EnterEmailVC: UIViewController, UITextFieldDelegate  {
         if self.EmailTF.text != nil{
             
             if isValidEmail(EmailTF.text!) == true{
-                checkForEmail(EmailTF.text!)
+                let _ = checkForEmail(EmailTF.text!)
             }else{
                 print("inValid Email")
                 self.invalidLabel.text = "Invalid Email"
@@ -83,7 +83,7 @@ class EnterEmailVC: UIViewController, UITextFieldDelegate  {
             if error == nil{
                 if results?.count == 0{
                     print("your good")
-                    self.addUser()
+                    let _ = self.addUser()
                 }else{
                     print("This email has been used")
                     //Already Registered this Email

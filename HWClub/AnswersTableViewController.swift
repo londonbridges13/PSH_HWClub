@@ -357,7 +357,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     func dappedIt(objyID:String){
         print("Dapped It")
         
-        DapAnswer(objyID)
+        let _ = DapAnswer(objyID)
 //        dapNotifyUser(<#T##notiUserid: String##String#>, cDapORaDap: <#T##String#>, giverUserName: <#T##String#>, pAoRvA: <#T##String#>, answerID: <#T##String#>, proppie: <#T##PFFile#>, theMessage: <#T##String#>)
         let path = tableView.indexPathForSelectedRow
         if path?.row != nil{

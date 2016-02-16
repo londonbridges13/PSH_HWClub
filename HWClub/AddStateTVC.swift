@@ -88,7 +88,7 @@ class AddStateTVC: UITableViewController {
         aS.saveInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
             if success == true{
                 print("Saved, move on")
-                self.followNewSchool()
+                let _ = self.followNewSchool()
             }else{
                 print(error?.description)
             }
@@ -158,7 +158,7 @@ class AddStateTVC: UITableViewController {
         
         if self.theState != nil{
             theState = States[row!]
-            addSchool()
+            let _ = addSchool()
         }
         
     }

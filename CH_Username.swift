@@ -43,7 +43,19 @@ class CH_Username: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func goChange(sender: AnyObject) {
-        
+        self.theUsername = self.usernameTX.text
+
+        while theUsername!.characters.last == " "{
+            //            if theTopic?.characters.last == " "{
+            print("remove")
+            //                theTopic = newTopicTX.text
+            print("\(theUsername)ttt")
+            var toko = theUsername!.substringToIndex(theUsername!.endIndex.predecessor())
+            self.theUsername = toko
+            print("\(theUsername)ttt")
+        }
+
+
         if usernameTX?.text!.characters.count < 5{
             print("Username is too Short!")
             //Show Short water later
@@ -55,8 +67,8 @@ class CH_Username: UIViewController, UITextFieldDelegate {
             theSay = "yes"
             
             if theSay == "yes"{
-                self.theUsername = self.usernameTX.text
-                checkForUsername(theUsername!)
+//                self.theUsername = self.usernameTX.text
+                let _ = checkForUsername(theUsername!)
             }else{
                 // show INVALID LABEL
                 print("Invalid username")
@@ -95,7 +107,7 @@ class CH_Username: UIViewController, UITextFieldDelegate {
                     if results!.count > 0{
                         self.cThat()
                     }else{
-                        self.chUserName()
+                        let _ = self.chUserName()
                     }
                     
                     
@@ -114,10 +126,12 @@ class CH_Username: UIViewController, UITextFieldDelegate {
     
     
     func sendher(){
-        self.theUsername = self.usernameTX.text
+        if self.theUsername == nil{
+            self.theUsername = self.usernameTX.text
+        }
         if let delegate = self.delegate{
-            delegate.queryNotiis()
-            delegate.userInfoQuery()
+            let _ = delegate.queryNotiis()
+            let _ = delegate.userInfoQuery()
         }
 //        let yy = SidebarViewController()
 //        yy.userInfoQuery()

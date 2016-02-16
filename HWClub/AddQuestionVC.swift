@@ -14,7 +14,10 @@ class AddQuestionVC: UIViewController {
     @IBOutlet var qeustionTX: UITextView!
     
     @IBOutlet var sendItButton: UIButton!
+    @IBOutlet var uwnOther: UIButton!
+    @IBOutlet var senditButty: UIButton!
     
+    var GotHERE : String?
     var theTopic : String?
     var theSchool : String?
     var theClass : String?
@@ -22,20 +25,63 @@ class AddQuestionVC: UIViewController {
     var proppie : PFFile?
     var assID : String?
     let cUser = PFUser.currentUser()
-
+    var diko : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         qeustionTX.becomeFirstResponder()
+
+        print(diko)
+        print("diko up")
+        if diko != nil{
+            qeustionTX.resignFirstResponder()
+            var alert = SCLAlertView()
+            alert.addButton("Follow Class", action: { () -> Void in
+                let _ = self.followClass()
+                self.qeustionTX.becomeFirstResponder()
+            })
+            alert.addButton("Go Back", action: { () -> Void in
+                //
+                self.uwnOther.sendActionsForControlEvents(.TouchUpInside)
+                self.senditButty.sendActionsForControlEvents(.TouchUpInside)
+            })
+            alert.showCloseButton = false
+            alert.showNotice("Hold Up", subTitle: "Not Following this Class")
+            
+        }
+
         // Do any additional setup after loading the view.
+    }
+    
+    func followClass(){
+        //        print("Followed Class")
+        
+        let Class = PFObject(className: "ClassesFollowed")
+        Class["classesFollowed"] = self.theClass
+        Class["teacherName"] = self.theTeacher
+        Class["UserID"] = (cUser?.objectId)! // here
+        if self.theSchool != nil{
+            Class["School"] = self.theSchool
+            //self.addOne()
+        }
+        Class["Username"] = "\((cUser?.username)!)"
+        Class.saveInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+            if (success == true){
+                self.diko = nil
+                print("Followed Class")
+            }else{
+                print(error?.description)
+            }
+        }
+        
     }
     @IBAction func Doner(sender: AnyObject) {
         if qeustionTX.text.characters.count > 6{
             if qeustionTX.text.characters.last != "?"{
                 qeustionTX.text = "\(qeustionTX.text)?"
-                postQuestion(qeustionTX.text)
+                let _ = postQuestion(qeustionTX.text)
             }else{
-                postQuestion(qeustionTX.text)
+                let _ = postQuestion(qeustionTX.text)
             }
         }else{
             print("Question too Short")
@@ -71,7 +117,13 @@ class AddQuestionVC: UIViewController {
     
     func gogoo(){
         ConG()
-        self.sendItButton.sendActionsForControlEvents(.TouchUpInside)
+//        if GotHERE == nil{
+            self.sendItButton.sendActionsForControlEvents(.TouchUpInside)
+//        }else{
+            // Got here from assignment or otherassignment TVC
+            self.senditButty.sendActionsForControlEvents(.TouchUpInside)
+            self.uwnOther.sendActionsForControlEvents(.TouchUpInside)
+//        }
     }
 
     

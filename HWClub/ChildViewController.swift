@@ -14,6 +14,7 @@ protocol Childing{
     func SeggyIndexZero()
     func SeggyIndexOne()
     func SeggyIndexTwo()
+    func saySomething()
 }
 
 
@@ -25,6 +26,7 @@ class ChildViewController: UIViewController {
     @IBOutlet var follow : UIButton!
     @IBOutlet var saysom : UIButton!
     
+    var GroupChatGot : String?
 //    @IBOutlet var seggy : UISegmentedControl!
     
     @IBOutlet var segmentControl: UISegmentedControl!
@@ -33,10 +35,14 @@ class ChildViewController: UIViewController {
     
     let dRed = UIColor(red: 234/255, green: 141/255, blue: 158/255, alpha: 1)
 
-    
+    var GroupChatID : String?
+    var ChatHubID : String?
     var shepard : String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        if GroupChatGot == nil{
+            saysom.enabled = false
+        }
 
         
         follow.setTitle("Follow", forState: UIControlState.Normal)
@@ -58,9 +64,11 @@ class ChildViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func allowSaySom(){
+        saysom.enabled = true
+    }
     
-    
-//    
+//
 //    func yeah(){
 //        
 //        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
@@ -109,8 +117,9 @@ class ChildViewController: UIViewController {
         
         if let delegate = self.delegate{
 //            delegate.yeah("Yea BOI")
-            // SEGGY TO
-
+            // SEGGY TO Answer
+            print("SaySomthing")
+            delegate.saySomething()
         }
     }
     

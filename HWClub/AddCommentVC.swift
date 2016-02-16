@@ -69,11 +69,11 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
         if self.proppie == nil{
 //            dispatch_async(queue, { () -> Void in
             self.quickQuery()
-            self.sendComment()
+            let _ = self.sendComment()
 
 //            })
         }else{
-            self.sendComment()
+            let _ = self.sendComment()
             print("happytappy")}
     }
     
@@ -144,7 +144,7 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
                 aC.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
                     if (success == true){
                         print("Added Comment")
-                        self.notifyUser(self.AnswerProviderID!)
+                        let _ = self.notifyUser(self.AnswerProviderID!)
                     }else{
                         print(error?.description)
                     }
@@ -171,7 +171,7 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
         noti.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
             if (success == true){
                 print("Notified User, and Done")
-                self.pushNotify(self.AnswerProviderID!)
+                let _ = self.pushNotify(self.AnswerProviderID!)
                 self.itt()
             }else{
                 print(error?.description)

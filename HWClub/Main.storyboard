@@ -6257,7 +6257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6J6-Ax-vZw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5142.75" y="2047.875"/>
+            <point key="canvasLocation" x="5403.75" y="1995.375"/>
         </scene>
         <!--Assignments Table View Controller-->
         <scene sceneID="Bow-IB-Eqb">
@@ -7192,6 +7192,9 @@
                                             <state key="normal" title="Ask Question">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="6Qh-aY-M64" kind="show" identifier="sToAddQuestionVC" id="wst-ei-Q4R"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
@@ -7295,15 +7298,19 @@
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1500"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="PuX-5f-FQ6">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="contine" destination="bx8-p2-nZd" id="efk-fj-huT"/>
                         <outlet property="menuButton" destination="Z1O-oy-1In" id="hQw-Ni-TJh"/>
                         <segue destination="SiB-Ua-jtu" kind="show" identifier="iQ" id="taA-7p-6a0"/>
+                        <segue destination="oCq-py-3aZ" kind="show" identifier="assTVcToAnswer" id="cKK-vO-aks"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C7b-fr-0Cd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5536.5" y="2574"/>
+            <point key="canvasLocation" x="5682" y="2874"/>
         </scene>
         <!--AssNAVI-->
         <scene sceneID="rkf-yi-neS">
@@ -8000,6 +8007,7 @@
                                     <outlet property="WHatLabel" destination="3jX-hS-bPS" id="04o-WC-EO0"/>
                                     <outlet property="dateLabel" destination="pmr-p8-ySI" id="TKT-gV-sjd"/>
                                     <outlet property="topicLabel" destination="JkM-VE-ZCK" id="Txs-Cj-Es6"/>
+                                    <segue destination="SiB-Ua-jtu" kind="show" identifier="oclassToASS" id="bHL-Uh-zTt"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AssAnswerCell" rowHeight="145" id="JdC-tH-LfU" customClass="AssAnswerCell" customModule="Dac" customModuleProvider="target">
@@ -8519,6 +8527,9 @@
                                             <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                 <rect key="frame" x="108" y="10" width="160" height="30"/>
                                             </variation>
+                                            <connections>
+                                                <segue destination="6Qh-aY-M64" kind="show" identifier="toAddQuestionVC" id="y5R-xw-JiX"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -8566,7 +8577,11 @@
                             </state>
                         </button>
                     </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="1568"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="cp7-Ns-qJc">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="FINDER" destination="6DZ-4L-0qM" id="iYh-qa-zhT"/>
                         <outlet property="MCL" destination="3w9-FM-uVO" id="C4e-NC-PLy"/>
@@ -8574,6 +8589,7 @@
                         <outlet property="tableview" destination="ljA-oQ-wIC" id="IpQ-cf-yxs"/>
                         <segue destination="qRO-uF-TFX" kind="show" id="jr1-0W-bqv"/>
                         <segue destination="SiB-Ua-jtu" kind="show" identifier="oiQ" id="hgI-k3-yj8"/>
+                        <segue destination="oCq-py-3aZ" kind="show" identifier="oAssTVcToAnswer" id="JNk-gv-P29"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="THf-lp-7NX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -8595,7 +8611,7 @@
                 </button>
                 <exit id="3JL-II-zWI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5389.5" y="1226.25"/>
+            <point key="canvasLocation" x="5491.5" y="1038"/>
         </scene>
         <!--Other Child View Controller-->
         <scene sceneID="rku-RI-ZO5">
@@ -9526,9 +9542,27 @@
                     <connections>
                         <outlet property="qeustionTX" destination="F8h-dW-Fqz" id="x6C-yS-RwJ"/>
                         <outlet property="sendItButton" destination="brK-1k-6Oy" id="EIV-Cp-itO"/>
+                        <outlet property="senditButty" destination="DIU-OB-BpZ" id="h5F-W8-K9a"/>
+                        <outlet property="uwnOther" destination="4gP-Kg-pDs" id="dgv-El-fi2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2x3-es-BeO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4gP-Kg-pDs">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="uwnOther"/>
+                    <connections>
+                        <segue destination="Ta6-WR-Kyc" kind="unwind" unwindAction="unwindSegOtherASS:" id="M4B-Yz-z8G"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DIU-OB-BpZ">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="senditButty"/>
+                    <connections>
+                        <segue destination="Ta6-WR-Kyc" kind="unwind" unwindAction="unwindSegueASS:" id="poi-jo-jec"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="brK-1k-6Oy">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -11320,7 +11354,7 @@
                     </connections>
                 </button>
             </objects>
-            <point key="canvasLocation" x="7483.5" y="1436.25"/>
+            <point key="canvasLocation" x="7315.5" y="1424.25"/>
         </scene>
         <!--View Photo AnswerTVC-->
         <scene sceneID="gLV-c5-BPL">
@@ -12408,11 +12442,30 @@
                         <outlet property="addPhotoButton" destination="H07-Qu-a9u" id="LnR-JY-L4x"/>
                         <outlet property="answerTXT" destination="wsn-uo-JCc" id="ll2-c2-nwQ"/>
                         <outlet property="doneButton" destination="Vok-YX-18D" id="cPB-9F-b9r"/>
+                        <outlet property="naviTITLE" destination="qKF-2L-azn" id="P6X-So-0Xz"/>
+                        <outlet property="senditButty" destination="TfS-n8-3tf" id="Cxm-bx-xih"/>
                         <outlet property="shortAnswerTX" destination="3D6-0E-eKP" id="IOF-u2-G6A"/>
                         <outlet property="unwindBuuton" destination="PX6-v6-Kne" id="hDg-UR-UC7"/>
+                        <outlet property="uwnOther" destination="bm8-7N-Ntz" id="4rH-fI-WEz"/>
                         <segue destination="b0j-at-SKv" kind="show" identifier="picview" id="hbg-oZ-9mf"/>
                     </connections>
                 </viewController>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bm8-7N-Ntz">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="uwnOther"/>
+                    <connections>
+                        <segue destination="Kcp-tC-gPu" kind="unwind" unwindAction="unwindSegOtherASS:" id="YMm-4j-LH5"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TfS-n8-3tf">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="senditButty"/>
+                    <connections>
+                        <segue destination="Kcp-tC-gPu" kind="unwind" unwindAction="unwindSegueASS:" id="6Lu-xd-9mf"/>
+                    </connections>
+                </button>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WUa-7b-ZCv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PX6-v6-Kne">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -13197,7 +13250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZc-Hf-Y9A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6475.5" y="2553.75"/>
+            <point key="canvasLocation" x="6514.5" y="2754.75"/>
         </scene>
     </scenes>
     <resources>
@@ -13230,14 +13283,15 @@
         <segue reference="UGY-pk-WNj"/>
         <segue reference="RCe-rA-I72"/>
         <segue reference="PsB-1a-q3Q"/>
+        <segue reference="wW6-qp-qR9"/>
         <segue reference="qk7-57-2em"/>
         <segue reference="kMj-t9-Qat"/>
         <segue reference="hgI-k3-yj8"/>
-        <segue reference="qfS-c6-K5G"/>
+        <segue reference="y5R-xw-JiX"/>
         <segue reference="sz5-A8-vFL"/>
-        <segue reference="wW6-qp-qR9"/>
+        <segue reference="JNk-gv-P29"/>
         <segue reference="i5f-qx-2Pj"/>
-        <segue reference="Zp4-lH-dH6"/>
         <segue reference="hbg-oZ-9mf"/>
+        <segue reference="Yp1-7j-Kbl"/>
     </inferredMetricsTieBreakers>
 </document>

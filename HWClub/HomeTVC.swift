@@ -50,6 +50,10 @@ class HomeTVC: UITableViewController {
     var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
     
     
+    override func viewDidDisappear(animated: Bool) {
+        view.endEditing(true)
+        print("viewDidDisappear")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,7 +133,7 @@ class HomeTVC: UITableViewController {
 //        preQuery()
         
 
-            self.previewOP()
+        let _ = self.previewOP()
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 10/3 * Int64(NSEC_PER_SEC))
         dispatch_after(time, dispatch_get_main_queue()) {
             self.removeLoading()
@@ -144,7 +148,7 @@ class HomeTVC: UITableViewController {
 //        piko()
         self.refreshControl = refreshControlelol
         self.refreshControlelol.addTarget(self, action: "DidRefreshStrings", forControlEvents: UIControlEvents.ValueChanged)
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -157,6 +161,8 @@ class HomeTVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+
+    
     
     
     func piko(){
@@ -230,7 +236,7 @@ class HomeTVC: UITableViewController {
     
     
     
-    
+
     
     func previewOP(){
 

@@ -35,11 +35,12 @@ class NewLessonVC: UIViewController {
             newTopicTX.resignFirstResponder()
             var alert = SCLAlertView()
             alert.addButton("Follow Class", action: { () -> Void in
-                self.followClass()
+                let _ = self.followClass()
             })
             alert.addButton("Go Back", action: { () -> Void in
                 //
                 self.uwnOther.sendActionsForControlEvents(.TouchUpInside)
+                self.senditButty.sendActionsForControlEvents(.TouchUpInside)
             })
             alert.showCloseButton = false
             alert.showNotice("Hold Up", subTitle: "Not Following this Class")
@@ -88,7 +89,7 @@ class NewLessonVC: UIViewController {
             if newTopicTX?.text!.characters.count > 3{
                         //            theTopic = newTopicTX.text
                 self.LoadingDesign()
-                checkAndUpload(theTopic!)
+                let _ = checkAndUpload(theTopic!)
                 //
             }else{CGTooShort()}
         }else{
@@ -156,6 +157,7 @@ class NewLessonVC: UIViewController {
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 self.ConG()
                 self.senditButty.sendActionsForControlEvents(.TouchUpInside)
+                self.uwnOther.sendActionsForControlEvents(.TouchUpInside)
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
             }else{
                 print(error?.description)

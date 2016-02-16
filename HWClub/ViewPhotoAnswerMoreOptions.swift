@@ -45,7 +45,7 @@ class ViewPhotoAnswerMoreOptions: UITableViewCell {
                 self.dapButton.setTitle("| \(dappers.count + 1) Dap", forState: .Normal)
             DapAnswer(AnswerID!)
                 if AnswerProviderID != cUser!.objectId!{
-                    dapNotifyUser(AnswerProviderID!, cDapORaDap: "DapAnswer", giverUserName: cUser!.username!, pAoRvA: "Answer", answerID: AnswerID!, proppie: proppie!, theMessage: "\(cUser!.username!) just Dapped your Answer")
+                    let _ = dapNotifyUser(AnswerProviderID!, cDapORaDap: "DapAnswer", giverUserName: cUser!.username!, pAoRvA: "Answer", answerID: AnswerID!, proppie: proppie!, theMessage: "\(cUser!.username!) just Dapped your Answer")
                 }
             }else{
                 // remove dap, remove objectid

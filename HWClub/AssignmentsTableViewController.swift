@@ -49,6 +49,8 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     var theSchool : String?
     var theClass : String?
     var theTeacher : String?
+    var GroupChatID : String?  // For Say Something Button
+    var ChatID : String?     // For Say Something Button
     
     var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
 
@@ -57,7 +59,10 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        GroupChatInfo()
 
+        KLMpreQuery()
+        self.userInfoQuery()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,14 +163,56 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     }
 
     
+    
+    func GroupChatInfo(){
+        print("GroupChatInfo")
+        let jim = PFQuery(className: "Questions")
+        jim.whereKey("School", equalTo: self.theSchool!)
+        jim.whereKey("classname", equalTo: self.theClass!)
+        jim.whereKey("teacherName", equalTo: self.theTeacher!)
+        jim.whereKey("assignmentName", equalTo: "Group Chat")
+        jim.whereKey("question", equalTo: "ChatHub")
+        jim.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+            if error == nil{
+                if let results = results as [PFObject]?{
+                    for result in results{
+//                        let aChatHubID = result["QuestionID"] as? String // QuestionID
+                        let aGroupChatId = result["assignmentId"] as? String // TopicID
+                        
+                        if aGroupChatId != nil{
+                            self.GroupChatID = aGroupChatId
+                            print("assignmentId : \(aGroupChatId!)")
+                        }
+//                        if aChatHubID != nil{
+                            self.ChatID = result.objectId
+                            print("GotCHat\(result.objectId)")
+//                            print("chID : \(aChatHubID)")
+                        
+//                        }
+                        let cvc = self.childViewControllers.first as! ChildViewController
+                        cvc.allowSaySom()
+                    }
+                }
+            }else{
+                print(error.debugDescription)
+            }
+        }
+    }
+
+    
+    
     @IBAction func unwindSegueASS(segue:UIStoryboardSegue){
+        cachedPosts.removeAll()
         teacherArray.removeAll()
         classArray.removeAll()
         AssignmentsArray.removeAll()
         numQuArray.removeAll()
         createDateArray.removeAll()
         array.removeAll()
+        ToppyPosts.removeAll()
+        QuestionPosts.removeAll()
         cPost.removeAll()
+        
         if self.derp == "KLM"{
             let cvc = self.childViewControllers.first as! ChildViewController
             cvc.delegate = self
@@ -221,6 +268,9 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             vc.theSchool = self.theSchool
             vc.theClass = self.theClass
             vc.theTeacher = self.theTeacher
+            if self.isFollowing == false{
+                vc.diko = "NotFollowing"
+            }
             
         }
         if segue.identifier == "classToASS"{
@@ -323,6 +373,35 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                 if self.cPost[row!].proCachy != nil{
                     vc.userPic = self.cPost[row!].proCachy
                 }
+            }
+
+        }
+        if segue.identifier == "sToAddQuestionVC"{
+            let vc : AddQuestionVC = segue.destinationViewController as! AddQuestionVC
+            
+            vc.theTopic = "Group Chat"
+            vc.theSchool = self.theSchool
+            vc.theClass = self.theClass
+            vc.theTeacher = self.theTeacher
+            vc.assID = self.GroupChatID
+            
+            if self.isFollowing == false{
+                vc.diko = "NotFollowing"
+            }
+        }
+        if segue.identifier == "assTVcToAnswer"{
+            let vc : AddHWViewController = segue.destinationViewController as! AddHWViewController
+            
+            vc.naviTITLE.setTitle("Say It", forState: .Normal)
+            vc.theClass = self.theClass
+            vc.theTeacher = self.theTeacher
+            vc.theSchool = self.theSchool
+            vc.theQuestion = "ChatHub"
+            vc.seger = "assTVcToAnswer"
+            vc.QuestionID = self.ChatID
+            vc.QuestionerID = "Su9eRf8ID"
+            if self.isFollowing == false{
+                vc.diko = "NotFollowing"
             }
 
         }
@@ -433,6 +512,10 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     }
 
     
+    func saySomething(){
+        performSegueWithIdentifier("assTVcToAnswer", sender: self)
+    }
+
     
     
     

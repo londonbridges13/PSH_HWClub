@@ -134,13 +134,36 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
             // IF ERROR CHECK THIS AREA
 
             print("pressed")
-            if newClass.text?.characters.count > 3{
-                if newTeach.text?.characters.count > 3{
+            
+            self.ccc = newClass.text
+            self.ttt = newTeach.text
+            
+            while self.ccc!.characters.last == " "{
+                //            if theTopic?.characters.last == " "{
+                print("remove")
+                //                theTopic = newTopicTX.text
+                print("\(self.ccc)ttt")
+                var toko = self.ccc!.substringToIndex(self.ccc!.endIndex.predecessor())
+                self.ccc = toko
+                print("\(self.ccc)ttt")
+            }
+            while self.ttt!.characters.last == " "{
+                //            if theTopic?.characters.last == " "{
+                print("remove")
+                //                theTopic = newTopicTX.text
+                print("\(self.ttt)ttt")
+                var toko = self.ttt!.substringToIndex(self.ttt!.endIndex.predecessor())
+                self.ttt = toko
+                print("\(self.ttt)ttt")
+            }
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1/13 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+            if self.ccc!.characters.count > 3{
+                if self.ttt!.characters.count > 3{
                     
-                    self.ccc = newClass.text
-                    self.ttt = newTeach.text
-                    if newClass.text?.characters.count > 3 && newTeach.text?.characters.count > 3{
-                        self.checkForUsername(self.ccc!, tTextfield: self.ttt!)
+                    
+                    if self.ccc!.characters.count > 3 && self.ttt!.characters.count > 3{
+                        let _ = self.checkForUsername(self.ccc!, tTextfield: self.ttt!)
                     }
                     
                     self.tableview.reloadData()
@@ -149,8 +172,8 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }else{
                 self.NoCongClass()
+                }
             }
-            
             
         }
         
@@ -175,7 +198,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
                     if results!.count > 0{
                         self.NoCongEXISTS() // Sorry this Class Already Exists
                     }else{
-                        self.addThat()
+                        let _ = self.addThat()
                     }
                     
                     
@@ -292,7 +315,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
                         let aTeacher = result["teacherName"] as! String
                         self.classnameArray.append(aClass)
                         self.teacherNameArray.append(aTeacher)
-               
+                    
                         print(aClass)
                         print(aTeacher)
                         
@@ -370,8 +393,8 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
         vc.theClass = "\(classnameArray[codeIndex])"
         //vc.CHold = className
         vc.theTeacher = "\(teacherNameArray[codeIndex])"
-        vc.derp = "FINDER"
-//        vc.derp = "KLM"
+//        vc.derp = "FINDER"
+        vc.derp = "KLM"
         vc.theSchool = self.theSchool
         // NOT DONE HERE
         } else {
@@ -438,12 +461,12 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
         aQ["School"] = theSchool!
         aQ["teacherName"] = ttt!
         aQ["classname"] = ccc!
-        aQ["username"] = (cUser?.username)!
+        aQ["username"] = "Su9eRf8USER"
         aQ["assignmentName"] = "Group Chat"
         aQ["numberOfAnswers"] = 0
         aQ["hasAnImage"] = false // for now
         aQ["assignmentId"] = assID
-        aQ["usernameID"] = (cUser?.objectId)!
+        aQ["usernameID"] = "Su9eRf8ID"
         
         aQ["question"] = "ChatHub" // Must = ChatHub //"Group Chat"
         aQ.saveInBackgroundWithBlock { (suc:Bool, errror:NSError?) -> Void in

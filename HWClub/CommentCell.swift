@@ -58,7 +58,7 @@ class CommentCell: UITableViewCell {
             //Removefunc is in dapComment below
             if let delegate = self.delegate{
                 print(obID)
-                delegate.dapComment(obID!)
+                let _ = delegate.dapComment(obID!)
             }
             if RdNUM == 1{
                 dapButton.setTitle(" | \(RdNUM) Dap", forState: .Normal)
@@ -74,9 +74,9 @@ class CommentCell: UITableViewCell {
             
             if let delegate = self.delegate{
                 print(obID)
-                delegate.dapComment(obID!)
+                let _ = delegate.dapComment(obID!)
                 if proppie != nil{
-                    dapNotifyUser(self.CommenterID!, cDapORaDap: "DapComment", giverUserName: cUser!.username!, pAoRvA: "Answer", answerID: theAnswerID!, proppie: self.proppie!, theMessage: self.theAnswer!)
+                    let _ = dapNotifyUser(self.CommenterID!, cDapORaDap: "DapComment", giverUserName: cUser!.username!, pAoRvA: "Answer", answerID: theAnswerID!, proppie: self.proppie!, theMessage: self.theAnswer!)
                 }else{print("No proppie")}
             }
             if AdNUM == 1{

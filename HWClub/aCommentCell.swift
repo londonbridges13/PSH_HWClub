@@ -50,7 +50,7 @@ class aCommentCell: UITableViewCell {
             //Removefunc is in dapComment below
             if let delegate = self.delegate{
                 print(obID)
-                delegate.dapComment(obID!)
+                let _ = delegate.dapComment(obID!)
             }
             if RdNUM == 1{
                 dapButton.setTitle(" | \(RdNUM) Dap", forState: .Normal)
@@ -66,7 +66,7 @@ class aCommentCell: UITableViewCell {
             
             if let delegate = self.delegate{
                 print(obID)
-                delegate.dapComment(obID!)
+                let _ = delegate.dapComment(obID!)
             }
             if AdNUM == 1{
                 dapButton.setTitle(" | \(AdNUM) Dap", forState: .Normal)

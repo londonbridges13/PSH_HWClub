@@ -50,6 +50,8 @@
         var theSchool : String?
         var theClass : String?
         var theTeacher : String?
+        var GroupChatID : String?  // For Say Something Button
+        var ChatID : String?     // For Say Something Button
         
         var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
         
@@ -60,6 +62,9 @@
             super.viewWillAppear(animated)
             print("DERP")
             print("\(derp)")
+            KLMpreQuery()
+            GroupChatInfo()
+            self.userInfoQuery()
             
         }
         override func viewDidLoad() {
@@ -80,17 +85,15 @@
                 cvc.teacherLabel.text = self.theTeacher!
                 cvc.myLabel.text = self.theClass!
                 
-                if self.revealViewController() != nil {
-                    menuButton.target = self.revealViewController()
-                    menuButton.action = "revealToggle:"
-                    self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-                    
-                    // Uncomment to change the width of menu
-                    //   self.revealViewController().rearViewRevealWidth = 200
-                }
+//                if self.revealViewController() != nil {
+//                    menuButton.target = self.revealViewController()
+//                    menuButton.action = "revealToggle:"
+//                    self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+//                    
+//                }
             }else{
-                // OtherChildViewController
-                KLMpreQuery()
+                
+//                KLMpreQuery()
                 previewOP()
                 let cvc = childViewControllers.first as! ChildViewController
                 cvc.delegate = self
@@ -152,8 +155,28 @@
             
             //this is me combining two different arrays, hitting two birds with one stone a me lad!!
             // this is vital to the follow function in DAC adding multiple arrays
-            
-            self.tableView.reloadData()
+            LoadingDesign()
+//            
+//            if self.derp == "KLM"{
+//                let cvc = self.childViewControllers.first as! ChildViewController
+//                cvc.delegate = self
+//                cvc.segmentControl.selectedSegmentIndex = 0
+//            }
+//            teacherArray.removeAll()
+//            classArray.removeAll()
+//            AssignmentsArray.removeAll()
+//            numQuArray.removeAll()
+//            createDateArray.removeAll()
+//            array.removeAll()
+//            cPost.removeAll()
+//            
+//
+//            previewOP()
+//            self.userInfoQuery()
+//            KLMpreQuery()
+
+            sleep(1)
+            removeLoading()
             
             // This ends the loading indicator
             self.refreshControlelol.endRefreshing()
@@ -163,6 +186,7 @@
         
         
         @IBAction func unwindSegOtherASS(segue:UIStoryboardSegue){
+            cachedPosts.removeAll()
             teacherArray.removeAll()
             classArray.removeAll()
             AssignmentsArray.removeAll()
@@ -170,15 +194,22 @@
             createDateArray.removeAll()
             array.removeAll()
             cPost.removeAll()
+            ToppyPosts.removeAll()
+            QuestionPosts.removeAll()
+            
             if self.derp == "KLM"{
                 let cvc = self.childViewControllers.first as! ChildViewController
                 cvc.delegate = self
                 cvc.segmentControl.selectedSegmentIndex = 0
             }
-            previewOP()
-            //        self.queryAssignments()
+//            previewOP()
+            KLMqueryAssignments()
             self.userInfoQuery()
+            KLMpreQuery()
+            //        self.queryAssignments()
         }
+        
+        
         
         func removeLoading(){
             if let viewWithTag = self.view.viewWithTag(90) {
@@ -217,6 +248,19 @@
                 let vc : FindClassViewController = segue.destinationViewController as! FindClassViewController
                 
                 
+            }
+            if segue.identifier == "toAddQuestionVC"{
+                let vc : AddQuestionVC = segue.destinationViewController as! AddQuestionVC
+                
+                vc.theTopic = "Group Chat"
+                vc.theSchool = self.theSchool
+                vc.theClass = self.theClass
+                vc.theTeacher = self.theTeacher
+                vc.assID = self.GroupChatID
+                
+                if self.isFollowing == false{
+                    vc.diko = "NotFollowing"
+                }
             }
             if segue.identifier == "omyAss"{
                 let vc : MyClassesTableViewController = segue.destinationViewController as! MyClassesTableViewController
@@ -290,7 +334,22 @@
                     }
                 }
             }
-            
+            if segue.identifier == "oAssTVcToAnswer"{
+                let vc : AddHWViewController = segue.destinationViewController as! AddHWViewController
+                
+                vc.naviTITLE.setTitle("Say It", forState: .Normal)
+                vc.theClass = self.theClass
+                vc.theTeacher = self.theTeacher
+                vc.theSchool = self.theSchool
+                
+                vc.theQuestion = "ChatHub"
+                vc.seger = "assTVcToAnswer"
+                vc.QuestionID = self.ChatID
+                vc.QuestionerID = "Su9eRf8ID"
+                if self.isFollowing == false{
+                    vc.diko = "NotFollowing"
+                }
+            }
             if segue.identifier == "oclassQtoVA"{
                 let vc : ViewAnswerTVC = segue.destinationViewController as! ViewAnswerTVC
                 
@@ -388,8 +447,8 @@
                     if self.proppie != nil{
                         vc.proppie = self.proppie!
                     }
-                    vc.theAssignment = "\(AssignmentsArray[ASSS])"
-                    vc.assID = "\(assys[ASSS])"
+                    vc.theAssignment = "\(cPost[ASSS].theLesson)" //work
+                    vc.assID = cPost[ASSS].ObjectID   //"\(assys[ASSS!])"
                     vc.theClassname = theClass
                     vc.theSchool = self.theSchool
                     vc.theTeachername = theTeacher
@@ -398,8 +457,8 @@
                     if self.proppie != nil{
                         vc.proppie = self.proppie!
                     }
-                    vc.theAssignment = "\(AssignmentsArray[ASSS!])"
-                    vc.assID = "\(assys[ASSS!])"
+                    vc.theAssignment = "\(cPost[ASSS!].theLesson)" //work
+                    vc.assID = cPost[ASSS!].ObjectID   //"\(assys[ASSS!])"
                     vc.theClassname = theClass
                     vc.theSchool = self.theSchool
                     vc.theTeachername = theTeacher
@@ -413,6 +472,40 @@
             }
             
         }
+        
+        
+        func GroupChatInfo(){
+            print("GroupChatInfo")
+            let jim = PFQuery(className: "Questions")
+            jim.whereKey("School", equalTo: self.theSchool!)
+            jim.whereKey("className", equalTo: self.theClass!)
+            jim.whereKey("teacherName", equalTo: self.theTeacher!)
+            jim.whereKey("assignmentName", equalTo: "Group Chat")
+            jim.whereKey("Question", equalTo: "ChatHub")
+            jim.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+                if error == nil{
+                    if let results = results as [PFObject]?{
+                        for result in results{
+                            let aChatHubID = result["QuestionID"] as? String // QuestionID
+                            let aGroupChatId = result["assignmentID"] as? String // TopicID
+                            
+                            if aGroupChatId != nil{
+                                self.GroupChatID = aGroupChatId
+                                print("gcID : \(aGroupChatId)")
+                            }
+                            if aChatHubID != nil{
+                                self.ChatID = aChatHubID
+                                print("chID : \(aChatHubID)")
+
+                            }
+                        }
+                    }
+                }else{
+                    print(error.debugDescription)
+                }
+            }
+        }
+        
         
         
         
@@ -429,7 +522,7 @@
                             if thisSchool != nil{
                                 self.theSchool = thisSchool!
                                 if self.derp != "KLM"{
-                                    self.queryAssignments()
+//                                    self.queryAssignments()
                                 }
                             }else{
                                 print("No School Found")
@@ -440,6 +533,10 @@
             }
         }
         
+        
+        func saySomething(){
+            performSegueWithIdentifier("oAssTVcToAnswer", sender: self)
+        }
         
         
         
@@ -602,7 +699,7 @@
         override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
             // #warning Incomplete implementation, return the number of sections
             if self.derp != "KLM"{
-                return 2
+                return 1 //2
             }else{
                 return 1
             }
@@ -649,7 +746,6 @@
         override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
             // Configure the cell...
-            
             
             if self.derp != "KLM"{
                 switch (indexPath.section){
@@ -971,9 +1067,15 @@
         
         override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
             if self.derp != "KLM"{
-                if AssignmentsArray.count != 0{
-                    if self.isFollowing == true{
-                        performSegueWithIdentifier("oiQ", sender: self)
+            
+            print(ToppyPosts.count)
+                if ToppyPosts.count != 0{
+                    if assID.count >= indexPath.row{
+                        if assID[indexPath.row] == cPost[indexPath.row].ObjectID{
+                            if self.isFollowing == true {
+                                performSegueWithIdentifier("oiQ", sender: self)
+                            }
+                        }
                     }
                 }
                 

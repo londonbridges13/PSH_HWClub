@@ -18,10 +18,15 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     @IBOutlet var BackToAButton: UIButton!
     
     
+    @IBOutlet var naviTITLE: UIButton!
+    
+    
+    
     var longA : String?
     var shortA : String?
 
-    
+    var theTeacher : String?
+    var theSchool : String?
     
     var QuestionID : String?
     var QuestionerID : String?
@@ -31,7 +36,8 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     var proppie : PFFile?
     var theClass : String?
     var seger : String?
-    
+    var diko : String?
+
     var howMEhere : String?
     // set teachername, class name, assignment, and question
     @IBOutlet var actINDI: UIActivityIndicatorView!
@@ -57,6 +63,9 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     @IBOutlet var addPhotoButton: UIButton!
     
+    @IBOutlet var uwnOther: UIButton!
+    @IBOutlet var senditButty: UIButton!
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        LoadingDesign()
@@ -71,6 +80,27 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
 
 //        LoadingDesign()
 //        self.answerTXT.becomeFirstResponder()
+        
+        print(diko)
+        print("diko up")
+        if diko != nil{
+            var alert = SCLAlertView()
+            alert.addButton("Follow Class", action: { () -> Void in
+                print(self.theClass)
+                print(self.theTeacher)
+                print(self.theSchool)
+                let _ = self.followClass()
+                self.answerTXT.becomeFirstResponder()
+            })
+            alert.addButton("Go Back", action: { () -> Void in
+                //
+                self.uwnOther.sendActionsForControlEvents(.TouchUpInside)
+                self.senditButty.sendActionsForControlEvents(.TouchUpInside)
+            })
+            alert.showCloseButton = false
+            alert.showInfo("Hold Up", subTitle: "Not Following this Class")
+            
+        }
 
         self.ImgView.image = UIImage(named: "Flat-Camera-Icon")
         print(howMEhere)
@@ -102,6 +132,28 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     }
     
 
+    
+    func followClass(){
+        
+        let Class = PFObject(className: "ClassesFollowed")
+        Class["classesFollowed"] = self.theClass
+        Class["teacherName"] = self.theTeacher
+        Class["UserID"] = (cUser?.objectId)! // here
+        if self.theSchool != nil{
+            Class["School"] = self.theSchool
+            //self.addOne()
+        }
+        Class["Username"] = "\((cUser?.username)!)"
+        Class.saveInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+            if (success == true){
+                self.diko = nil
+                print("Followed Class")
+            }else{
+                print(error?.description)
+            }
+        }
+        
+    }
 
     
     
@@ -165,7 +217,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             
             removeLoading()
         }else{
-            ParsePart()
+            let _ = ParsePart()
         }
 
     }
@@ -439,9 +491,12 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     func itt(){
         self.unwindBuuton.sendActionsForControlEvents(.TouchUpInside)
+        self.uwnOther.sendActionsForControlEvents(.TouchUpInside)
+        self.senditButty.sendActionsForControlEvents(.TouchUpInside)
     }
     
     @IBAction func unwindING(sender: AnyObject) {
+        
         
         if self.howMEhere == nil{
             self.BackToAButton.sendActionsForControlEvents(.TouchUpInside)
@@ -558,7 +613,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
 
             removeLoading()
         }else{
-            ParsePart()
+            let _ = ParsePart()
         }
         //actINDI.startAnimating()
         

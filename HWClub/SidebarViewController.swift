@@ -72,7 +72,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-
+        
         view.endEditing(true)
 //        yy.delegate = self
 
@@ -254,6 +254,25 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     
     
     
+//    
+//    func revealController(revealController: SWRevealViewController!, didMoveToPosition position: FrontViewPosition) {
+//        if(position.rawValue == 4)
+//        {
+//            //move to rear
+//            self.revealViewController().frontViewController.view.userInteractionEnabled =  false
+//            print("JKJKJKJKJ")
+//        }
+//        else if (position.rawValue == 3)
+//        {
+//            //move to front - dashboard VC
+//            self.revealViewController().frontViewController.view.userInteractionEnabled =  true
+//        }
+//    }
+//    func revealController(revealController: SWRevealViewController!, willMoveToPosition position: FrontViewPosition) {
+//        
+//        //will perform the same function as the above delegate method.
+//    }
+
     
     
     
@@ -303,6 +322,9 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     }
     
 
+    
+    
+    
     
     
     

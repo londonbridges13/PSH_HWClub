@@ -299,7 +299,7 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
     
     func dapComment(objy:String){
         
-        DapComment(objy)
+        let _ = DapComment(objy)
     }
     
     func RemovedapComment(objy:String){
