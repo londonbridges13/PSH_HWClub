@@ -19,6 +19,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     
     var myTeacherArray : [String] = [String]()
     var myClassArray : [String] = [String]()
+    var uniq : [String] = [String]()
     
     var oldPic : PFFile?
     var ido : String?
@@ -40,7 +41,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UINavigationBar.appearance().barTintColor = tealler
+        view.endEditing(true)
 
 //        tableView.setContentOffset(CGPointZero, animated:true)
 
@@ -48,7 +49,10 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
 
         queryMyClasses()
         queryNotiis()
-        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/13 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.view.endEditing(false)
+        }
 //        tableView.setContentOffset(CGPointZero, animated:true)
 
     }
@@ -309,7 +313,8 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                         self.tableView.reloadData()
                         
                     }
-                    self.tableView.reloadData()
+//                    self.tableView.reloadData()
+                    self.sortIt()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     self.view.endEditing(false)
 
@@ -322,7 +327,44 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     }
     
 
+    func sortIt(){
+        
+        //        hPosts.removeAll()
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
+        //        if self.cachedPosts.count > 1{
+        if self.myClassArray.count > 1{
+            print("rerere")
+            //            print(self.hPosts[0].date)
+            //            print(self.hPosts[0].date)
+            print(myClassArray.count)
+            var checker = [String]()
+            
+            for each in myClassArray{
+                //            for each in hPosts{
+                if checker.contains(each) == false {//&& each.date!.isGreaterThan(self.wAgo) == true{// && each.date! >= self.wAgo {
+                    checker.append(each)
+                    uniq.append(each)
+                    print(myClassArray.count)
+                    print(myClassArray.count)
+                }else{
+                    print("WE GOTONE")
+                }
+                //                }
+            }
+            self.myClassArray = uniq
+            //            displayedPosts.addObjectsFromArray(allPosts.subarrayWithRange(NSMakeRange(0, 6)))
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
+            
+            uniq.removeAll()
+            //            cachedPosts.removeAll
+            print("reloaded")
+        }
+    }
     
+
     
     
     

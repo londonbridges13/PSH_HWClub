@@ -567,12 +567,20 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                         print(result.createdAt)
                         
 //                        self.tableView.reloadData()
+                        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/13 * Int64(NSEC_PER_SEC))
+                        dispatch_after(time, dispatch_get_main_queue()) {
+                            self.removeLoading()
+                        }
+                    }
+                    let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/13 * Int64(NSEC_PER_SEC))
+                    dispatch_after(time, dispatch_get_main_queue()) {
                         self.removeLoading()
                     }
+                }
+                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/13 * Int64(NSEC_PER_SEC))
+                dispatch_after(time, dispatch_get_main_queue()) {
                     self.removeLoading()
                 }
-                self.removeLoading()
-
                 
                 
             }else{
@@ -660,8 +668,10 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         dispatch_after(time, dispatch_get_main_queue()) {
             //put your code which should be executed with a delay here
             
-            self.removeLoading()
-            
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/13 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.removeLoading()
+            }
         }
         //        }
     }
@@ -1221,7 +1231,10 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         thisUser.whereKey("Username", equalTo: (cUser?.username)!)
         thisUser.getObjectInBackgroundWithId(id!) { (results:PFObject?, error :NSError?) -> Void in
             if error != nil{
-                self.removeLoading30()
+                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/13 * Int64(NSEC_PER_SEC))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    self.removeLoading30()
+                }
                 print(error?.description)
             }else if let results = results  {
                 UIApplication.sharedApplication().beginIgnoringInteractionEvents()
@@ -1248,8 +1261,14 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
 //                results["numOfClasses"] = cNum
                 
                 results.saveInBackground()
-                self.removeLoading30()
-                self.removeLoading()
+                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/13 * Int64(NSEC_PER_SEC))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    self.removeLoading30()
+                }
+                let itime = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/13 * Int64(NSEC_PER_SEC))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    self.removeLoading()
+                }
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 
             }
@@ -1291,7 +1310,10 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         }else if self.derp == "FINDER"{
             self.FINDER.sendActionsForControlEvents(.TouchUpInside)
         }else{
-            removeLoading()
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/13 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.removeLoading()
+            }
             print("Working here")
         }
     }
@@ -1780,9 +1802,12 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             //            displayedPosts.addObjectsFromArray(allPosts.subarrayWithRange(NSMakeRange(0, 6)))
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
-                self.removeLoading()
+                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/13 * Int64(NSEC_PER_SEC))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    self.removeLoading()
+                }
             })
-            removeLoading()
+//            removeLoading()
             uniq.removeAll()
             //            cachedPosts.removeAll
             print("reloaded")
