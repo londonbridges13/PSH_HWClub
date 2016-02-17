@@ -11,6 +11,8 @@ import UIKit
 class SidebarMyClassCell: UITableViewCell {
 
     
+    var theClass : String?
+    var theTeacher : String?
     
     @IBOutlet var myClassLabel: UILabel!
     

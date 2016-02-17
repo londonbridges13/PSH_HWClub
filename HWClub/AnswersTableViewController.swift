@@ -75,12 +75,18 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     
     @IBOutlet weak var tableview: UITableView!
     
+
     @IBOutlet var jojjQQQ: UIButton!
     var ti = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if theQuestion == "Group Chat"{
+            self.naviTITLE.setTitle("ChatHub", forState: .Normal)
+        }
+        if theQuestion == "ChatHub"{
             self.naviTITLE.setTitle("ChatHub", forState: .Normal)
         }
 
@@ -90,30 +96,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
         }
         naviItem.backBarButtonItem?.tintColor = UIColor.whiteColor()
         
-
-        let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height - 60)
-        let testView : UIView = UIView(frame: testFrame)
-        testView.backgroundColor = whitty
-        testView.alpha = 1
-        testView.tag = 90
-        self.view.addSubview(testView)
-        
-        let aFrame = CGRectMake((testView.frame.size.height / 4), 96, 80, 80)
-        
-        let loadingView: UIView = UIView()
-        loadingView.frame = aFrame //CGRectMake(0, 0, 80, 80)
-        loadingView.backgroundColor = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 1)
-        loadingView.clipsToBounds = true
-        loadingView.layer.cornerRadius = 40
-        testView.addSubview(loadingView)
-        
-        
-        let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-        myActivityIndicator.color = UIColor.whiteColor()
-        myActivityIndicator.frame = aFrame
-        myActivityIndicator.hidden = false
-        myActivityIndicator.startAnimating()
-        testView.addSubview(myActivityIndicator)
+//        self.LoadingDesign()
         
 
         refreshControlelol.backgroundColor = UIColor(red: 233/255, green: 242/255, blue: 240/255, alpha: 0.69)
@@ -133,7 +116,9 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
         piko()
 
 //        queryAnswers()
-        self.ststst()
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.ststst()
+        }
         
         //tableView.reloadData()
         tableView.allowsMultipleSelection = true
@@ -155,6 +140,11 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
         vArray.removeAll()
         
         LoadingDesign()
+        
+        let tgime = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+        dispatch_after(tgime, dispatch_get_main_queue()) {
+            self.removeLoading()
+        }
         
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -208,12 +198,13 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
 //            self.qI = t
             print(self.qI)
             queryAnswers()
-        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/2 * Int64(NSEC_PER_SEC))
-        dispatch_after(time, dispatch_get_main_queue()) {
-            self.removeLoading()
-            UIApplication.sharedApplication().endIgnoringInteractionEvents()
-
-        }
+        LoadingDesign()
+//        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
+//        dispatch_after(time, dispatch_get_main_queue()) {
+//            self.removeLoading()
+//            self.tableView.reloadData()
+//            self.tableview.reloadData()
+//            UIApplication.sharedApplication().endIgnoringInteractionEvents()
 //        }
     }
     
@@ -244,8 +235,14 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
             self.tableView.reloadData()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
+            self.tableView.reloadData()
+
             uniq.removeAll()
             print("reloaded")
+            self.removeLoading()
         }
     }
 
@@ -254,6 +251,15 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         print("trying")
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.removeLoading()
+            self.tableView.reloadData()
+            self.tableview.reloadData()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            //            self.removeLoading()
+            
+        }
 //        self.tableview.reloadData()
         print("viewwillappear")
         
@@ -289,6 +295,12 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
 //            self.Answers.removeAll()
 
         }
+        
+        let tgime = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+        dispatch_after(tgime, dispatch_get_main_queue()) {
+            self.removeLoading()
+        }
+
         //this is me combining two different arrays, hitting two birds with one stone a me lad!!
         // this is vital to the follow function in DAC adding multiple arrays
 //        self.Answers.removeAll()
@@ -688,7 +700,10 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
                         
                         
                     }
-                    self.sortIt()
+                    let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+                    dispatch_after(time, dispatch_get_main_queue()) {
+                        self.sortIt()
+                    }
 //                    self.tableview.reloadData()
                     if self.Answers.count > 0 {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -786,6 +801,8 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
 //        if indexPath.section == 0{
         if indexPath.row == 0{
 
+            tableview.rowHeight = 209
+
             let cell : AnswerQHeaderCell = tableView.dequeueReusableCellWithIdentifier("answerHeaderCell", forIndexPath: indexPath) as! AnswerQHeaderCell
             tableview.rowHeight = 209
 
@@ -793,6 +810,10 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
                 cell.QLabel.text = "\(self.theQuestion!)"
             }
             if theQuestion == "Group Chat"{
+                cell.QLabel.text = "ChatHub"
+                cell.answerButton.setTitle(" | Post", forState: .Normal)
+            }
+            if theQuestion == "ChatHub"{
                 cell.QLabel.text = "ChatHub"
                 cell.answerButton.setTitle(" | Post", forState: .Normal)
             }
@@ -814,7 +835,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             print(self.Answers[indexPathO].lAnswer)
             print("happyhappyhappy")
             cell.dappers = self.Answers[indexPathO].Dappers
-            cell.dapsButton.layer.borderColor = lBlue.CGColor
+//            cell.dapsButton.layer.borderColor = lBlue.CGColor
             print(self.Answers[indexPathO].date!)
             cell.dateLabel.text = "\(dts(self.Answers[indexPathO].date!))"
             if self.theClass != nil{
@@ -823,7 +844,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
 //                cell.classLabel.text = self.Answers[indexPath.row].classname
             }
             if self.Answers[indexPathO].sAnswer != nil{
-                cell.shortAnswerLabel.text = self.Answers[indexPathO].sAnswer!
+//                cell.shortAnswerLabel.text = self.Answers[indexPathO].sAnswer!
             }else{cell.shortAnswerLabel.text = ""}
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
@@ -841,7 +862,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             
             if self.Answers[indexPathO].ppPic != nil{
                 cell.circle.image = self.Answers[indexPathO].ppPic
-                cell.circle.layer.cornerRadius = 31
+                cell.circle.layer.cornerRadius = 18
                 cell.circle.layer.masksToBounds = true
             }else{print("no ppPic   ")}
             
@@ -850,7 +871,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             cell.AnswerID = self.Answers[indexPathO].AnswerID
             cell.AnswerProviderID = self.Answers[indexPathO].AnswerProviderID
             cell.theSay = self.Answers[indexPathO].theSay
-            self.tableview.estimatedRowHeight = 465.0
+            self.tableview.estimatedRowHeight = 379.0//465.0
             self.tableview.rowHeight = UITableViewAutomaticDimension
             
 
@@ -932,15 +953,15 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             
             
             if self.Answers[indexPathO].sAnswer != nil{
-                cell.answerLabel.text = self.Answers[indexPathO].sAnswer!
+//                cell.answerLabel.text = self.Answers[indexPathO].sAnswer!
             }else{cell.answerLabel.text = ""}
             
-            cell.circle.layer.cornerRadius = 31
+            cell.circle.layer.cornerRadius = 18
             cell.circle.layer.masksToBounds = true
             cell.fullAnswerLabel.text = theAnswer.lAnswer
             if self.Answers[indexPathO].ppPic != nil{
                 cell.circle.image = self.Answers[indexPathO].ppPic
-                cell.circle.layer.cornerRadius = 31
+                cell.circle.layer.cornerRadius = 18
                 cell.circle.layer.masksToBounds = true
 
             }else{print("no ppPic   ")}
@@ -957,11 +978,11 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
                 cell.classLabel.text = self.theClass!
 //                cell.classLabel.text = self.Answers[indexPath.row].classname
             }
-            cell.circle.layer.cornerRadius = 31
-            cell.dapButton.layer.borderColor = lBlue.CGColor
+            cell.circle.layer.cornerRadius = 18
+//            cell.dapButton.layer.borderColor = lBlue.CGColor
             //            });
             tableview.rowHeight = UITableViewAutomaticDimension
-            tableview.estimatedRowHeight = 281.0
+            tableview.estimatedRowHeight = 181.0 //281.0
             
 //            tableview.rowHeight = 300.0
             

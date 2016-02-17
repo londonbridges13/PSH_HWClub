@@ -31,6 +31,8 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     var sentIMG : UIImage?
     var sendingIMG : Bool?
     
+    var theClass : String?
+    var theTeacher : String?
     var user : String?
     
     let cUser = PFUser.currentUser()
@@ -41,6 +43,10 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.myClassArray.removeAll()
+        self.myTeacherArray.removeAll()
+        
         view.endEditing(true)
 
 //        tableView.setContentOffset(CGPointZero, animated:true)
@@ -85,7 +91,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
         if cUser != nil{
 //            usernameLabel.text = "@\((cUser?.username)!)"
         }
-        userInfoQuery()
+        let _ = userInfoQuery()
 //        UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
 //        if self.notiNumLabel.text == "0"{
@@ -168,15 +174,35 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
             }else{
                 let cell : SidebarMyClassCell = tableView.dequeueReusableCellWithIdentifier("sideMyClass", forIndexPath: indexPath) as! SidebarMyClassCell
                 tableView.rowHeight = 79
-                if myClassArray.count != 0{
-                    cell.myClassLabel.text = "  - \(self.myClassArray[indexPath.row - 4])"
+                if myClassArray.count >= indexPath.row - 4 && myTeacherArray.count >= indexPath.row - 4{
+                    if myClassArray.count != 0{
+                        cell.myClassLabel.text = "  - \(self.myClassArray[indexPath.row - 4])"
+                        cell.theTeacher = self.myTeacherArray[indexPath.row - 4]
+                        cell.theClass = self.myClassArray[indexPath.row - 4]
+                    }
+                    cell.userInteractionEnabled = true
+                }else{
+//                    cell.userInteractionEnabled = false
                 }
                 return cell
             }
 //        }
     }
     
-    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row > 4{
+            let cell : SidebarMyClassCell = tableView.dequeueReusableCellWithIdentifier("sideMyClass", forIndexPath: indexPath) as! SidebarMyClassCell
+            tableView.rowHeight = 79
+
+            self.theTeacher = cell.theTeacher
+            self.theClass = cell.theClass
+            
+            if theClass != nil && theTeacher != nil{
+                print("GOOD TO GO CLASS")
+//                performSegueWithIdentifier("Sidebar Class", sender: self)
+            }
+        }
+    }
     
     
     func userInfoQuery(){
@@ -281,12 +307,12 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     
     
     func queryMyClasses(){
-
-        self.myClassArray.removeAll()
-        self.myTeacherArray.removeAll()
+//
+//        self.myClassArray.removeAll()
+//        self.myTeacherArray.removeAll()
         
         let myClassQuery = PFQuery(className: "ClassesFollowed")
-        
+//        myClassQuery.whereKey("teacherName", containedIn: myTeacherArray)
         myClassQuery.whereKey("UserID", equalTo: cUser!.objectId!)
         if self.theSchool != nil{
             //            myClassQuery.whereKey("School", equalTo: self.theSchool!)
@@ -310,7 +336,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                         print("GOT MILK")
                         print(myClass)
                         print(myTeacher)
-                        self.tableView.reloadData()
+//                        self.tableView.reloadData()
                         
                     }
 //                    self.tableView.reloadData()
@@ -424,26 +450,41 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "Sidebar Class"{
-            let navi : AssNAVI = segue.destinationViewController as! AssNAVI
-            
-            let vc = navi.viewControllers.first as! AssignmentsTableViewController
-            
-//            let vc : AssignmentsTableViewController = segue.destinationViewController as! AssignmentsTableViewController
-            
-            let miko = (tableView.indexPathForSelectedRow?.row)! - 4
-            vc.derp = "KLM" // Might need to change
-            
-            if self.oldPic != nil{
-                vc.proppie = self.oldPic!
-            }
-//            if myTeacherArray[tableView.indexPathForSelectedRow?.row - 4] != nil{
-            if myTeacherArray[miko] != ""{
-                vc.theTeacher = "\(myTeacherArray[miko])"
-                vc.theClass = "\(myClassArray[miko)"
+            if segue.identifier == "Sidebar Class"{
+                let navi : AssNAVI = segue.destinationViewController as! AssNAVI
+                
+                let vc = navi.viewControllers.first as! AssignmentsTableViewController
+                
+                //            let vc : AssignmentsTableViewController = segue.destinationViewController as! AssignmentsTableViewController
+                
+                let miko = tableView.indexPathForSelectedRow!.row - 4
+                vc.derp = "KLM" // Might need to change
+                
+                if self.oldPic != nil{
+                    vc.proppie = self.oldPic!
+                }
+                
                 vc.theSchool = self.theSchool!
+                if theClass != nil && theTeacher != nil{
+                    print("Cloud FLOW")
+                    vc.theTeacher = theTeacher
+                    vc.theClass = theClass
+                }else{
+                    print("From Source")
+//                    if myTeacherArray[miko] != ""{
+                    if myTeacherArray.count != 0{
+                        vc.theTeacher = "\(myTeacherArray[miko])"
+                    }else{
+                         vc.theTeacher = "Error"
+                    }
+                    if myClassArray.count != 0{
+                        vc.theClass = "\(myClassArray[miko)"
+                    }else{
+                        vc.theClass = "Bad Internet Connection"
+                    }
+//                    }
+                }
             }
-        }
         if segue.identifier == "toNOTI"{
             let vvc : notiNAVI = segue.destinationViewController as! notiNAVI
             let vc : NotiTVC = vvc.viewControllers.first as! NotiTVC

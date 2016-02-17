@@ -45,10 +45,10 @@ class AnswerIMGCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code   
         
-        dapsButton.layer.borderColor = lBlue.CGColor
-        dapsButton.layer.borderWidth = 1
-        dapsButton.layer.borderColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).CGColor
-        dapsButton.layer.cornerRadius = 8 //15
+//        dapsButton.layer.borderColor = lBlue.CGColor
+//        dapsButton.layer.borderWidth = 1
+//        dapsButton.layer.borderColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).CGColor
+//        dapsButton.layer.cornerRadius = 8 //15
         
 
         //spinning.startAnimating()

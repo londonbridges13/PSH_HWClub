@@ -40,10 +40,10 @@ class AnswersTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        dapButton.layer.borderColor = lBlue.CGColor
-        dapButton.layer.borderWidth = 1
-        dapButton.layer.borderColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).CGColor
-        dapButton.layer.cornerRadius = 8
+//        dapButton.layer.borderColor = lBlue.CGColor
+//        dapButton.layer.borderWidth = 1
+//        dapButton.layer.borderColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).CGColor
+//        dapButton.layer.cornerRadius = 8
     }
 
     @IBAction func FlagButtonTapped() {

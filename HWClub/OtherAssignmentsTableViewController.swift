@@ -10,7 +10,7 @@
     import UIKit
     import Parse
     
-    class OtherAssignmentsTableViewController: UITableViewController,AssignmentDelagate, OtherChilding,Childing {
+    class OtherAssignmentsTableViewController: UITableViewController,AssignmentDelagate,Childing {
         
         // let queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED.rawValue, 0)
         
@@ -62,8 +62,9 @@
             super.viewWillAppear(animated)
             print("DERP")
             print("\(derp)")
-            KLMpreQuery()
             GroupChatInfo()
+
+            KLMpreQuery()
             self.userInfoQuery()
             
         }
@@ -478,10 +479,10 @@
             print("GroupChatInfo")
             let jim = PFQuery(className: "Questions")
             jim.whereKey("School", equalTo: self.theSchool!)
-            jim.whereKey("className", equalTo: self.theClass!)
+            jim.whereKey("classname", equalTo: self.theClass!)
             jim.whereKey("teacherName", equalTo: self.theTeacher!)
             jim.whereKey("assignmentName", equalTo: "Group Chat")
-            jim.whereKey("Question", equalTo: "ChatHub")
+            jim.whereKey("question", equalTo: "ChatHub")
             jim.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
                 if error == nil{
                     if let results = results as [PFObject]?{
@@ -491,13 +492,13 @@
                             
                             if aGroupChatId != nil{
                                 self.GroupChatID = aGroupChatId
-                                print("gcID : \(aGroupChatId)")
+                                print("assignmentId : \(aGroupChatId)")
                             }
-                            if aChatHubID != nil{
-                                self.ChatID = aChatHubID
-                                print("chID : \(aChatHubID)")
-
-                            }
+                            self.ChatID = result.objectId
+                            print("GotCHat\(result.objectId)")
+                            
+                            let cvc = self.childViewControllers.first as! ChildViewController
+                            let _ = cvc.allowSaySom()
                         }
                     }
                 }else{

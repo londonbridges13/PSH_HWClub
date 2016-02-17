@@ -31,7 +31,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userInfoQuery()
+        let _ = userInfoQuery()
         
         let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height - 60)
         let testView : UIView = UIView(frame: testFrame)

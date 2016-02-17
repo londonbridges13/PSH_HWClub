@@ -67,14 +67,24 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if theTeacher == "Error"{
+            print("EROROROROROROORORO")
+            let cvc = childViewControllers.first as! ChildViewController
+            cvc.view.userInteractionEnabled = false
+
+            quickICcheck()
+            
+            self.view.endEditing(false)
+            self.view.userInteractionEnabled = false
+        }
 
         
         if derp == "KLM"{
 //        tableview.rowHeight = UITableViewAutomaticDimension
 //        tableview.estimatedRowHeight = 106
             
-            KLMpreQuery()
-            previewOP()
+            let _ = KLMpreQuery()
+            let _ = previewOP()
             let cvc = childViewControllers.first as! ChildViewController
             cvc.delegate = self
             
@@ -93,7 +103,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             // OtherChildViewController
             KLMpreQuery()
             previewOP()
-            let cvc = childViewControllers.first as! OtherChildViewController
+            let cvc = childViewControllers.first as! ChildViewController
             cvc.delegate = self
             
             cvc.teacherLabel.text = self.theTeacher!
@@ -129,11 +139,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         testView.addSubview(myActivityIndicator)
         
 
-//        let thread = NSThread(target: self, selector: "Assignments", object: nil)
-
-//        thread.start()
-            //self.queryAssignments()
-            self.userInfoQuery()
+        self.userInfoQuery()
         
         
         print(theClass)
@@ -190,7 +196,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                         
 //                        }
                         let cvc = self.childViewControllers.first as! ChildViewController
-                        cvc.allowSaySom()
+                        let _ = cvc.allowSaySom()
                     }
                 }
             }else{
@@ -218,9 +224,9 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             cvc.delegate = self
             cvc.segmentControl.selectedSegmentIndex = 0
         }
-        previewOP()
+        let _ = previewOP()
 //        self.queryAssignments()
-        self.userInfoQuery()
+        let _ = self.userInfoQuery()
     }
     
     func removeLoading(){
@@ -1348,6 +1354,18 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     }
     
 
+    
+    func quickICcheck(){
+            print("No Connetion")
+            var alert = SCLAlertView()
+            alert.addButton("Okay", action: { () -> Void in
+            })
+            alert.showCloseButton = false
+            alert.showWarning("Bad Connection", subTitle: "You have a bad Internet Connection")
+    }
+    
+
+    
     
     
     

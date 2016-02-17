@@ -40,7 +40,8 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
     @IBOutlet var Anum : UILabel!
     @IBOutlet var Cnum : UILabel!
     
-    
+    let dRed = UIColor(red: 234/255, green: 141/255, blue: 158/255, alpha: 1)
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(false)
         userInfoQuery()
@@ -59,6 +60,8 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
         profilePictureButton.layer.borderWidth = 2
         profilePictureButton.layer.borderColor = UIColor.whiteColor().CGColor
         
+//        imagePicker.navigationBar.translucent = false
+//        imagePicker.navigationBar.backgroundColor = dRed
         
         if cUser != nil{
             user = "@\((cUser?.username)!)"
@@ -105,6 +108,18 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
         // #warning Incomplete implementation, return the number of rows
         return 5
     }
+    
+    
+//    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool)
+//    {
+//        imagePicker.navigationBar.tintColor = .whiteColor()
+//        imagePicker.navigationBar.titleTextAttributes = [
+//            NSForegroundColorAttributeName : UIColor.whiteColor()
+//        ]
+//        
+//    }
+    
+    
     
     func userInfoQuery(){
         let qUser = PFQuery(className: "_User")
@@ -242,6 +257,21 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
     @IBAction func ChangePicture(sender: AnyObject) {
         let optionMenu = UIAlertController(title: nil, message: "Change Profile Picture", preferredStyle: .ActionSheet)
         
+        //DBSWORD OPtion
+        let beASwordOption = UIAlertAction(title: "Be a Sword", style: .Destructive) { (alert: UIAlertAction) -> Void in
+            let dbSWORD = UIImage(named: "dbSWORD")
+            let _ = self.picToParse(dbSWORD!)
+            self.profilePictureButton.setImage(dbSWORD, forState: .Normal)
+            self.profilePictureButton.imageView?.image = dbSWORD
+            self.profilePictureButton.imageView?.contentMode = .ScaleAspectFit
+            self.profilePictureButton.layer.cornerRadius = 33
+            self.profilePictureButton.layer.masksToBounds = true
+            self.profilePictureButton.layer.borderWidth = 2
+            self.profilePictureButton.layer.borderColor = UIColor.whiteColor().CGColor
+            
+            self.seggy()
+
+        }
         // 2
         let TPAction = UIAlertAction(title: "Take Photo", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -274,6 +304,7 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
         // 4
         optionMenu.addAction(TPAction)
         optionMenu.addAction(PLAction)
+        optionMenu.addAction(beASwordOption)
         optionMenu.addAction(cancelAction)
         
         // 5
@@ -294,9 +325,16 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
         
         
         let image = UIImagePickerController()
+        
+        image.navigationBar.translucent = false
+        image.navigationBar.barStyle = .BlackTranslucent
+        image.navigationBar.barTintColor = dRed
         image.delegate = self
         image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         // if error change this back to uiimage... sourcetype.photolibrary
+        image.navigationBar.barStyle = .BlackTranslucent
+        image.navigationBar.barTintColor = dRed
+
         self.presentViewController(image, animated: true, completion: nil)
         
     }

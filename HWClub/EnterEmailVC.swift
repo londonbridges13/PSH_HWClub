@@ -36,7 +36,7 @@ class EnterEmailVC: UIViewController, UITextFieldDelegate  {
     
 
     func propicfunc()-> PFFile{
-        let img = UIImage(named: "dbSWORD")
+        let img = UIImage(named: "UserPPic")
         let theData = UIImageJPEGRepresentation(img!, 1)
         let bb = PFFile(data: theData!)
         return bb

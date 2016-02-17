@@ -27,7 +27,7 @@ class SearchTVC: UITableViewController, UISearchResultsUpdating, UINavigationBar
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         allResults.removeAll()
         
-        ststst()
+        let _ = ststst()
         
         
         self.resultSearchController = UISearchController(searchResultsController: nil)
@@ -67,15 +67,16 @@ class SearchTVC: UITableViewController, UISearchResultsUpdating, UINavigationBar
             var t = self.qI + 1
             self.qI = t
             print(self.qI)
-            classSearch()
+            let _ = classSearch()
         }
     }
 
     
     func classSearch(){
         let mike = PFQuery(className: "Classes")
-        mike.whereKey("School", equalTo: self.School!)  // when you build the profile for universal use
-        
+        if School != nil{
+            mike.whereKey("School", equalTo: self.School!)  // when you build the profile for universal use
+        }
         if self.qI == 2{
             mike.skip = 1000
             print("skipped")

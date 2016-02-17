@@ -129,7 +129,7 @@ class HomeTVC: UITableViewController {
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        quickQuery()
+        let _ = quickQuery()
 //        preQuery()
         
 
@@ -138,7 +138,8 @@ class HomeTVC: UITableViewController {
         dispatch_after(time, dispatch_get_main_queue()) {
             self.removeLoading()
             self.prepre = 1
-            
+            self.view.userInteractionEnabled = true
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
         }
         
         
@@ -179,11 +180,20 @@ class HomeTVC: UITableViewController {
     
     func DidRefreshStrings(){
         
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 10/3 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.removeLoading()
+            self.prepre = 1
+            self.view.userInteractionEnabled = true
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        }
         
         LoadingDesign()
         
         if self.gogo == 0{
-            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+//            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            self.view.userInteractionEnabled = false
+
             self.refreshControlelol.endRefreshing()
 
             print(gogo)
@@ -237,9 +247,44 @@ class HomeTVC: UITableViewController {
     
     
 
+    func ICcheck(){
+        if Reachability.isConnectedToNetwork() == true{
+            print("No Connetion")
+            var alert = SCLAlertView()
+            alert.addButton("Okay", action: { () -> Void in
+            })
+            alert.showCloseButton = false
+            alert.showNotice("Bad Connection", subTitle: "You have a bad Internet Connection")
+            
+            self.view.userInteractionEnabled = true
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        }
+        self.view.userInteractionEnabled = true
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+    }
+    
+    func quickICcheck(){
+        if Reachability.isConnectedToNetwork() == false{
+            print("No Connetion")
+            var alert = SCLAlertView()
+            alert.addButton("Okay", action: { () -> Void in
+            })
+            alert.showCloseButton = false
+            alert.showWarning("Bad Connection", subTitle: "You have a bad Internet Connection")
+            
+            self.view.userInteractionEnabled = true
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        }
+        self.view.userInteractionEnabled = true
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+    }
+    
+    
+    
     
     func previewOP(){
 
+        
         // Give cachedIDS SomeJuicy Data bytes
         let ALLPosts = realm.objects(RealmHomePost).sorted("date")
         //        self.cachedPosts = ALLPosts as HomePost
@@ -299,8 +344,11 @@ class HomeTVC: UITableViewController {
         }
         
 //
-//        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/2 * Int64(NSEC_PER_SEC))
-//        dispatch_after(time, dispatch_get_main_queue()) {
+//        let itime = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 9/2 * Int64(NSEC_PER_SEC))
+//        dispatch_after(itime, dispatch_get_main_queue()) {
+//            self.ICcheck()
+//        }
+    
         
         self.LoadingDesign()
         if self.gogo == 0{
@@ -650,6 +698,7 @@ class HomeTVC: UITableViewController {
                 }
             }else{
                 print(error?.description)
+                self.quickICcheck()
             }
         }
     }
@@ -662,8 +711,10 @@ class HomeTVC: UITableViewController {
         
         
         
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+//        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        self.view.userInteractionEnabled = false
 
+        
         let Class = PFQuery(className: "ClassesFollowed")
         print(cUser!.objectId!)
         Class.whereKey("UserID", equalTo: (cUser?.objectId)!)
@@ -701,12 +752,15 @@ class HomeTVC: UITableViewController {
                     self.queryAssignments()
                     //if statement here
                     self.sortIt()
-                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+//                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    self.view.userInteractionEnabled = true
+
 //                    self.tableView.reloadData()
 
                 }
             }else{
                 print(error.debugDescription)
+                self.quickICcheck()
             }
         }
         
@@ -798,6 +852,9 @@ class HomeTVC: UITableViewController {
 //                    self.tableView.reloadData()
 
                 }
+            }else{
+                print(error?.description)
+                self.quickICcheck()
             }
         }
 //        }
@@ -882,7 +939,8 @@ class HomeTVC: UITableViewController {
                     }
                     sleep(1/2)
 //                    self.removeLoading()
-                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+//                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    self.view.userInteractionEnabled = true
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //                        self.tableView.reloadData()
                         self.sortIt()
@@ -891,7 +949,10 @@ class HomeTVC: UITableViewController {
                 }
             }else{
                 print("Error \(error)  \(error?.userInfo)")
-                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                self.quickICcheck()
+//                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                self.view.userInteractionEnabled = true
+
                 self.sortIt()
             }
             
@@ -1080,6 +1141,9 @@ class HomeTVC: UITableViewController {
 //                    }
                 }
                 self.sortIt()
+            }else{
+                print(error?.description)
+                self.quickICcheck()
             }
         }
     }
@@ -1088,7 +1152,12 @@ class HomeTVC: UITableViewController {
     func sortIt(){
         
 //        hPosts.removeAll()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+//        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/2 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.view.userInteractionEnabled = true
+        }
 
 //        if self.cachedPosts.count > 1{
         if self.hPosts.count > 1{

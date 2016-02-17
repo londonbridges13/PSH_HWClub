@@ -127,6 +127,7 @@
 		3EC2455E1C6A58DF00F7288E /* AssAnswerPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */; };
 		3EC4B7461C2E2D00000B878D /* proNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7451C2E2D00000B878D /* proNAVI.swift */; };
 		3EC4B7481C2E5666000B878D /* ProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7471C2E5666000B878D /* ProfileTVC.swift */; };
+		3EC5A8451C73D0EA007F7716 /* InternetConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC5A8441C73D0EA007F7716 /* InternetConnect.swift */; };
 		3EE0159C1BBB540300F74966 /* QuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE0159B1BBB540300F74966 /* QuestionsTableViewController.swift */; };
 		3EE0159E1BBB81F300F74966 /* MyClassesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE0159D1BBB81F300F74966 /* MyClassesTableViewController.swift */; };
 		3EE015A01BBB821300F74966 /* MyClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE0159F1BBB821300F74966 /* MyClassTableViewCell.swift */; };
@@ -308,6 +309,7 @@
 		3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssAnswerPicCell.swift; sourceTree = "<group>"; };
 		3EC4B7451C2E2D00000B878D /* proNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = proNAVI.swift; sourceTree = "<group>"; };
 		3EC4B7471C2E5666000B878D /* ProfileTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTVC.swift; sourceTree = "<group>"; };
+		3EC5A8441C73D0EA007F7716 /* InternetConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetConnect.swift; sourceTree = "<group>"; };
 		3EE0159B1BBB540300F74966 /* QuestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsTableViewController.swift; sourceTree = "<group>"; };
 		3EE0159D1BBB81F300F74966 /* MyClassesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClassesTableViewController.swift; sourceTree = "<group>"; };
 		3EE0159F1BBB821300F74966 /* MyClassTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClassTableViewCell.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 		3E558C021BB39A90009E5170 = {
 			isa = PBXGroup;
 			children = (
+				3EC5A8441C73D0EA007F7716 /* InternetConnect.swift */,
 				3EC0AA421C714DFE008566CB /* AVFoundation.framework */,
 				3EC0AA401C714DBA008566CB /* CoreMedia.framework */,
 				3EC0AA3E1C714D95008566CB /* AdSupport.framework */,
@@ -839,6 +842,7 @@
 				3E381CC81C69A03E00DAD08F /* AssAnswerCell.swift in Sources */,
 				3E3CD4351C3393800071DE06 /* ViewPhotoAnswerCell.swift in Sources */,
 				3E4E9DC41C4B363700CC5BFA /* CommyObject.swift in Sources */,
+				3EC5A8451C73D0EA007F7716 /* InternetConnect.swift in Sources */,
 				3E381CC21C684C9100DAD08F /* AssNAVI.swift in Sources */,
 				3E9DDBE11BB65B4000A0EB77 /* FindClassTableViewCell.swift in Sources */,
 				3E08D4BD1BB4F2B00092EF8B /* ProfileViewController.swift in Sources */,
@@ -930,7 +934,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "38e178b9-cc01-44b0-badc-a3485c732afc";
 				SDKROOT = iphoneos;
@@ -945,6 +949,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HWClub",
@@ -1019,7 +1024,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "38e178b9-cc01-44b0-badc-a3485c732afc";
@@ -1035,6 +1040,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HWClub",
@@ -1115,7 +1121,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "38e178b9-cc01-44b0-badc-a3485c732afc";
@@ -1155,7 +1161,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "38e178b9-cc01-44b0-badc-a3485c732afc";
@@ -1171,6 +1177,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HWClub",
@@ -1198,6 +1205,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HWClub",
