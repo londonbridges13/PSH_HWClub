@@ -44,11 +44,13 @@ class ViewAnswerAllOptionsCell: UITableViewCell {
                 self.dapButton.setTitle("| \(dappers.count + 1) Dap", forState: .Normal)
 
             DapAnswer(AnswerID!)
-                if AnswerProviderID != cUser!.objectId!{
-                    let _ = dapNotifyUser(AnswerProviderID!, cDapORaDap: "DapAnswer", giverUserName: cUser!.username!, pAoRvA: "Answer", answerID: AnswerID!, proppie: proppie!, theMessage: "\(cUser!.username!) just Dapped your Answer")
+                if AnswerProviderID != nil{
+                    if AnswerProviderID != cUser!.objectId!{
+                        let _ = dapNotifyUser(AnswerProviderID!, cDapORaDap: "DapAnswer", giverUserName: cUser!.username!, pAoRvA: "Answer", answerID: AnswerID!, proppie: proppie!, theMessage: "\(cUser!.username!) just Dapped your Answer")
+                    }
+                }else{
+                    // remove dap, remove objectid
                 }
-            }else{
-                // remove dap, remove objectid
             }
         }
     }

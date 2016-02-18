@@ -137,6 +137,7 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
                         self.ido = theIDO!
                         if School != nil{
                             self.SchoolLabel.text = School!
+                            self.theSchool = School!
                         }else{
                             self.SchoolLabel.text = "No School"
                             print("User Has No School")
@@ -478,15 +479,20 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "mcNAVI"{
+            let vc : MyClassesTableViewController = segue.destinationViewController as! MyClassesTableViewController
+            
+            vc.theSchool = self.theSchool
+        }
     }
-    */
+
 
 }
 extension UIImage {

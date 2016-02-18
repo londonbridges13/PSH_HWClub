@@ -101,6 +101,11 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             alert.showInfo("Hold Up", subTitle: "Not Following this Class")
             
         }
+        
+        if self.theClass == nil {//|| self.QuestionID == nil || self.QuestionerID == nil{
+            
+            self.quickICcheck()
+        }
 
         self.ImgView.image = UIImage(named: "Flat-Camera-Icon")
         print(howMEhere)
@@ -131,7 +136,27 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        Parse.cancelPreviousPerformRequestsWithTarget(self)
+    }
 
+    func quickICcheck(){
+        print("No Connetion")
+        var alert = SCLAlertView()
+        alert.addButton("Okay", action: { () -> Void in
+//            self.unwindBuuton.sendActionsForControlEvents(.TouchUpInside)
+//            self.uwnOther.sendActionsForControlEvents(.TouchUpInside)
+//            self.senditButty.sendActionsForControlEvents(.TouchUpInside)
+        })
+        alert.showCloseButton = false
+        alert.showWarning("Bad Connection", subTitle: "You have BBad Internet Connection")
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.view.userInteractionEnabled = true
+        }
+    }
+    
+    
     
     func followClass(){
         
@@ -205,6 +230,11 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     
     @IBAction func newSendFunc(sender: AnyObject) {
+        if self.theClass == nil {//|| self.QuestionID == nil || self.QuestionerID == nil{
+            
+            self.quickICcheck()
+            self.view.userInteractionEnabled = false
+        }
         if answerTXT.text == "Tap to Answer"{
             answerTXT.text = ""
         }
@@ -217,7 +247,11 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             
             removeLoading()
         }else{
-            let _ = ParsePart()
+            if self.proppie != nil{
+                let _ = self.ParsePart()
+            }else{
+                let _ = self.quickQuery()
+            }
         }
 
     }
@@ -598,6 +632,16 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         answerTXT.resignFirstResponder()
         shortAnswerTX.resignFirstResponder()
         print("pushed")
+        if self.theClass == nil {//|| self.QuestionID == nil || self.QuestionerID == nil{
+            
+            self.quickICcheck()
+            self.view.userInteractionEnabled = false
+            
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.view.userInteractionEnabled = true
+            }
+        }
         if answerTXT.text == "Tap to Answer"{
             answerTXT.text = ""
         }
@@ -613,7 +657,11 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
 
             removeLoading()
         }else{
-            let _ = ParsePart()
+            if self.proppie != nil{
+                let _ = self.ParsePart()
+            }else{
+                self.quickQuery()
+            }
         }
         //actINDI.startAnimating()
         

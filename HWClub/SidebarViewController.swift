@@ -17,9 +17,12 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     var imagePicker: UIImagePickerController!
 //    @IBOutlet var notiNumLabel: UILabel!
     
-    var myTeacherArray : [String] = [String]()
-    var myClassArray : [String] = [String]()
+    var myTeacherArray = [String]()
+    var myClassArray = [String]()
     var uniq : [String] = [String]()
+    var cachedTeachers = [String]()
+    var cachedClasses = [String]()
+    var ouniq : [String] = [String]()
     
     var oldPic : PFFile?
     var ido : String?
@@ -120,7 +123,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4 + myClassArray.count // myClassArray.count + 4     //5
+        return myClassArray.count + 4 // myClassArray.count + 4     //5
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -174,11 +177,11 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
             }else{
                 let cell : SidebarMyClassCell = tableView.dequeueReusableCellWithIdentifier("sideMyClass", forIndexPath: indexPath) as! SidebarMyClassCell
                 tableView.rowHeight = 79
-                if myClassArray.count >= indexPath.row - 4 && myTeacherArray.count >= indexPath.row - 4{
-                    if myClassArray.count != 0{
-                        cell.myClassLabel.text = "  - \(self.myClassArray[indexPath.row - 4])"
-                        cell.theTeacher = self.myTeacherArray[indexPath.row - 4]
-                        cell.theClass = self.myClassArray[indexPath.row - 4]
+                if cachedClasses.count >= indexPath.row - 4 && cachedTeachers.count >= indexPath.row - 4{
+                    if cachedClasses.count != 0{
+                        cell.myClassLabel.text = "  - \(self.cachedClasses[indexPath.row - 4])"
+                        cell.theTeacher = self.cachedTeachers[indexPath.row - 4]
+                        cell.theClass = self.cachedClasses[indexPath.row - 4]
                     }
                     cell.userInteractionEnabled = true
                 }else{
@@ -189,21 +192,21 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
 //        }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row > 4{
-            let cell : SidebarMyClassCell = tableView.dequeueReusableCellWithIdentifier("sideMyClass", forIndexPath: indexPath) as! SidebarMyClassCell
-            tableView.rowHeight = 79
-
-            self.theTeacher = cell.theTeacher
-            self.theClass = cell.theClass
-            
-            if theClass != nil && theTeacher != nil{
-                print("GOOD TO GO CLASS")
-//                performSegueWithIdentifier("Sidebar Class", sender: self)
-            }
-        }
-    }
-    
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        if indexPath.row > 4{
+//            let cell : SidebarMyClassCell = tableView.dequeueReusableCellWithIdentifier("sideMyClass", forIndexPath: indexPath) as! SidebarMyClassCell
+//            tableView.rowHeight = 79
+//
+//            self.theTeacher = cell.theTeacher
+//            self.theClass = cell.theClass
+//            
+//            if theClass != nil && theTeacher != nil{
+//                print("GOOD TO GO CLASS")
+////                performSegueWithIdentifier("Sidebar Class", sender: self)
+//            }
+//        }
+//    }
+//    
     
     func userInfoQuery(){
         
@@ -312,7 +315,9 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
 //        self.myTeacherArray.removeAll()
         
         let myClassQuery = PFQuery(className: "ClassesFollowed")
-//        myClassQuery.whereKey("teacherName", containedIn: myTeacherArray)
+        if cachedClasses.count != 0{
+//            myClassQuery.whereKey("classesFollowed", notContainedIn: cachedClasses)
+        }
         myClassQuery.whereKey("UserID", equalTo: cUser!.objectId!)
         if self.theSchool != nil{
             //            myClassQuery.whereKey("School", equalTo: self.theSchool!)
@@ -320,7 +325,8 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
             print("theSchool equals nil")
         }
         myClassQuery.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
-            
+//            self.cachedClasses.removeAll()
+//            self.cachedTeachers.removeAll()
             if error == nil{
                 
                 if let results = results as [PFObject]?{
@@ -333,6 +339,8 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                         self.myClassArray.append(myClass)
                         self.myTeacherArray.append(myTeacher)
                         
+//                        self.checkClassArray.append(myClass)
+
                         print("GOT MILK")
                         print(myClass)
                         print(myTeacher)
@@ -340,7 +348,23 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                         
                     }
 //                    self.tableView.reloadData()
-                    self.sortIt()
+                    if self.myClassArray != self.cachedClasses || self.myTeacherArray != self.cachedTeachers{
+                        if self.cachedClasses.count == 0{
+                            self.cachedClasses.removeAll()
+                            self.cachedTeachers.removeAll()
+                        }
+                        print("New Class Set")
+                        if self.myClassArray.count > 1{
+                            self.sortIt()
+                        }else{
+                            self.cachedTeachers = self.myTeacherArray
+                            self.cachedClasses = self.myClassArray
+                            
+                            self.tableView.reloadData()
+                        }
+                    }else{
+                        print("Same Class Set")
+                    }
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     self.view.endEditing(false)
 
@@ -354,7 +378,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     
 
     func sortIt(){
-        
+
         //        hPosts.removeAll()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
         
@@ -379,12 +403,32 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                 //                }
             }
             self.myClassArray = uniq
+            self.cachedClasses = uniq
+            
+            // FOR TEACHERS NOW
+            var oChecker = [String]()
+            for each in myTeacherArray{
+                //            for each in hPosts{
+                if oChecker.contains(each) == false {//&& each.date!.isGreaterThan(self.wAgo) == true{// && each.date! >= self.wAgo {
+                    oChecker.append(each)
+                    ouniq.append(each)
+                }else{
+                    print("WE GOTONE")
+                }
+            }
+            
+            self.myTeacherArray = ouniq
+            self.cachedTeachers = ouniq
+            
+            
+            
             //            displayedPosts.addObjectsFromArray(allPosts.subarrayWithRange(NSMakeRange(0, 6)))
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
             })
             
             uniq.removeAll()
+            ouniq.removeAll()
             //            cachedPosts.removeAll
             print("reloaded")
         }
@@ -472,13 +516,13 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                 }else{
                     print("From Source")
 //                    if myTeacherArray[miko] != ""{
-                    if myTeacherArray.count != 0{
-                        vc.theTeacher = "\(myTeacherArray[miko])"
+                    if cachedTeachers.count != 0{
+                        vc.theTeacher = "\(cachedTeachers[miko])"
                     }else{
                          vc.theTeacher = "Error"
                     }
-                    if myClassArray.count != 0{
-                        vc.theClass = "\(myClassArray[miko)"
+                    if cachedClasses.count != 0{
+                        vc.theClass = "\(cachedClasses[miko)"
                     }else{
                         vc.theClass = "Bad Internet Connection"
                     }
@@ -494,6 +538,12 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
             if self.theSchool != nil{
                 vc.School = theSchool
             }
+        }
+        if segue.identifier == "mcNAVI"{
+            let vvc : mcNAVI = segue.destinationViewController as! mcNAVI
+            let vc : MyClassesTableViewController = vvc.viewControllers.first as! MyClassesTableViewController
+            
+            vc.theSchool = self.theSchool
         }
     }
     

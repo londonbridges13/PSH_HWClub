@@ -34,6 +34,16 @@ class AddSchoolVC: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func addSchoolName(){
+        while self.schoolTF?.text!.characters.last == " "{
+            //            if theTopic?.characters.last == " "{
+            print("remove")
+            //                theTopic = newTopicTX.text
+            print("\(self.schoolTF?.text!)ttt")
+            var toko = self.schoolTF?.text!.substringToIndex((self.schoolTF?.text!.endIndex.predecessor())!)
+            self.schoolTF?.text! = toko!
+            print("\(self.schoolTF?.text!)ttt")
+        }
+        
         if schoolTF.text?.characters.count > 2{
             
             self.SchoolName = schoolTF.text!

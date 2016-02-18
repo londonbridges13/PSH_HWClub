@@ -39,7 +39,7 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
     let cUser = PFUser.currentUser()
     var commentersNames = [String]()
     var proppie : PFFile?
-
+    var theClassname : String?
     
     
     @IBOutlet var tableview: UITableView!
@@ -219,6 +219,8 @@ class ViewAnswerTVC: UITableViewController,aCommentCellDelegate {
             
             //            vc.QuestionerID = self.askers[row!]
             vc.QuestionID = self.QuestionID
+            vc.theClass = self.theClassname
+
             //            vc.theClass = self.theClassname
             //            vc.theAssignment = self.theAssignment
             //            vc.theTeacher = self.theTeachername

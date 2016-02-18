@@ -1462,6 +1462,9 @@ class HomeTVC: UITableViewController {
             vc.chit = "seggy"
             vc.theQ = self.hPosts[row!].theQuestion
             vc.QuestionID = self.hPosts[row!].theQuestionID
+            if self.hPosts[row!].theClass != nil{
+                vc.theClassname = self.hPosts[row!].theClass
+            }
             if self.hPosts[row!].POSTERNAME != nil{
                 vc.AnswererUsername = self.hPosts[row!].POSTERNAME!
             }
@@ -1485,6 +1488,9 @@ class HomeTVC: UITableViewController {
             vc.chit = "seggy"
             vc.theQ = self.hPosts[row!].theQuestion
             vc.QuestionID = self.hPosts[row!].theQuestionID
+            if self.hPosts[row!].theClass != nil{
+                vc.theClassname = self.hPosts[row!].theClass
+            }
             if self.hPosts[row!].POSTERNAME != nil{
                 vc.AnswererUsername = self.hPosts[row!].POSTERNAME!
             }

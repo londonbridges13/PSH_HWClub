@@ -313,6 +313,9 @@
                     vc.chit = "seggy"
                     vc.theQ = self.cPost[row].theQuestion
                     vc.QuestionID = self.cPost[row].theQuestionID
+                    if self.cPost[row].theClass != nil{
+                        vc.theClassname = self.cPost[row].theClass
+                    }
                     if self.cPost[row].POSTERNAME != nil{
                         vc.AnswererUsername = self.cPost[row].POSTERNAME!
                     }
@@ -362,6 +365,9 @@
                     
                     if  self.cPost[row].theAnswer != nil{
                         vc.theAnswer = self.cPost[row].theAnswer!
+                    }
+                    if self.cPost[row].theClass != nil{
+                        vc.theClassname = self.cPost[row].theClass
                     }
                     vc.derp = "not nil"
                     vc.theAnswerID = self.cPost[row].theAnswerID!

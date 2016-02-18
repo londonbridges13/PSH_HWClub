@@ -246,12 +246,12 @@ class MyClassesTableViewController: UITableViewController {
             //vc.theTeacher = "\(myTeacherArray[miko!])"
             //vc.theClass = "\(myClassArray[miko!])"
         }else{
-            let vc : AssignmentsTableViewController = segue.destinationViewController as! AssignmentsTableViewController
+            let vc : OtherAssignmentsTableViewController = segue.destinationViewController as! OtherAssignmentsTableViewController
             
             let miko = tableView.indexPathForSelectedRow?.row
             vc.derp = "MCL"
             vc.derp = "KLM"
-            vc.theSchool = self.theSchool
+            vc.theSchool = self.theSchool!
 
             
             if self.proppie != nil{

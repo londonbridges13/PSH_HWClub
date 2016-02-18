@@ -368,7 +368,7 @@ class QuestionsTableViewController: UITableViewController, toAnswerDelegate, SEG
 //            cell.circle.layer.cornerRadius = 32
             cell.questionLabel.text = "\(questionArray[indexPath.row])"
             cell.answerQButton.alpha = 1
-            if questionArray[indexPath.row] == "Group Chat"{
+            if questionArray[indexPath.row] == "ChatHub"{
                 cell.answerQButton.alpha = 0
                 cell.questionLabel.text = "ChatHub"
             }

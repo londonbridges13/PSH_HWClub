@@ -526,7 +526,9 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
                                 self.theQuestion = q!
                             }
                             if aClass != nil{
-                                self.theClass = aClass
+                                if self.theClass == nil{
+                                    self.theClass = aClass
+                                }
                                 aObject.classname = aClass!
                             }
                             if username != nil{
@@ -1158,8 +1160,15 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             }else{
                 vc.QuestionerID = PFUser.currentUser()?.objectId!
             }
-            vc.theClass = self.theClass
 
+            if self.Answers.count != 0{
+                if Answers[0].classname.characters.count != 0{
+                    vc.theClass = self.Answers[0].classname
+                }
+            }
+            if self.theClass != nil{
+                vc.theClass = self.theClass
+            }
         }
 
         if segue.identifier == "photoTVC"{

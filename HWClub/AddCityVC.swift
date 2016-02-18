@@ -34,6 +34,16 @@ class AddCityVC: UIViewController, UITextFieldDelegate  {
     
     
     @IBAction func addLocation(){
+        while self.cityTF?.text!.characters.last == " "{
+            //            if theTopic?.characters.last == " "{
+            print("remove")
+            //                theTopic = newTopicTX.text
+            print("\(self.cityTF?.text!)ttt")
+            var toko = self.cityTF?.text!.substringToIndex((self.cityTF?.text!.endIndex.predecessor())!)
+            self.cityTF?.text! = toko!
+            print("\(self.cityTF?.text!)ttt")
+        }
+        
         if cityTF.text?.characters.count > 2{
             
             self.City_County = cityTF.text!

@@ -47,6 +47,13 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
         print(theSay)
         print(userNotiID)
         print(AnswerProviderID)
+        
+        
+        if self.theSay == nil || self.AnswerProviderID == nil || self.AnswerID == nil{
+            quickICcheck()
+        }
+        
+        
         // Do any additional setup after loading the view.
         
     }
@@ -60,16 +67,26 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
         self.commentTV.isFirstResponder()
 
     }
-    
+    override func viewWillDisappear(animated: Bool) {
+        Parse.cancelPreviousPerformRequestsWithTarget(self)
+    }
     @IBAction func Doner(sender: AnyObject) {
         self.dr.sendActionsForControlEvents(.TouchUpInside)
     }
     
     @IBAction func doIT(sender: AnyObject) {
+        self.dr.userInteractionEnabled = false
+
         if self.proppie == nil{
 //            dispatch_async(queue, { () -> Void in
             self.quickQuery()
-            let _ = self.sendComment()
+            
+//            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+//            dispatch_after(time, dispatch_get_main_queue()) {
+//                if self.proppie == nil{
+//                    let _ = self.sendComment()
+//                }
+//            }
 
 //            })
         }else{
@@ -96,16 +113,29 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
         }else{
             print("OtherUNWINDER")
 
-            self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
-            self.presentingViewController?.viewDidLoad()
+            let _ = self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+            let _ = self.presentingViewController?.viewDidLoad()
         }
     }
     
     
     
+    func quickICcheck(){
+        print("No Connetion")
+        var alert = SCLAlertView()
+        alert.addButton("Close", action: { () -> Void in
+//            let _ = self.itt()
+        })
+        alert.showCloseButton = false
+        alert.showWarning("Bad Connection", subTitle: "You have Bad Internet Connection")
+    }
+    
+    
     
     
     func sendComment(){
+        
+        self.dr.userInteractionEnabled = false
         if cUser != nil{
             print((self.cUser!.objectId)!)
             let iooo = (self.cUser!.objectId)!
@@ -147,6 +177,7 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
                         let _ = self.notifyUser(self.AnswerProviderID!)
                     }else{
                         print(error?.description)
+                        self.dr.userInteractionEnabled = true
                     }
                 })
 

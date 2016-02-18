@@ -42,7 +42,7 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
     var cUser = PFUser.currentUser()    
     var commentersNames = [String]()
     var commentersPics = [PFFile]()
-//    var theClassname : String?
+    var theClassname : String?
 //    var theTeachername: String?
 //    var theSchool : String?
 //    var theAssignment : String?
@@ -259,7 +259,7 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
             
             //            vc.QuestionerID = self.askers[row!]
             vc.QuestionID = self.QuestionID
-            //            vc.theClass = self.theClassname
+//            vc.theClass = self.theClassname
             //            vc.theAssignment = self.theAssignment
             //            vc.theTeacher = self.theTeachername
             vc.theQuestion = self.theQ
@@ -270,7 +270,7 @@ class ViewPhotoAnswerTVC: UITableViewController, CommentCellDelegate {
             
             //            vc.QuestionerID = self.askers[row!]
             vc.QuestionID = self.QuestionID
-            //            vc.theClass = self.theClassname
+            vc.theClass = self.theClassname
             //            vc.theAssignment = self.theAssignment
             //            vc.theTeacher = self.theTeachername
             vc.theQuestion = self.theQ

@@ -96,6 +96,42 @@ class AddStateTVC: UITableViewController {
 
     }
     
+    /*
+    func addSchool(){
+    
+    let cE = PFQuery(className: "Schools")
+    cE.whereKey("Title", equalTo: self.SchoolName!)
+    cE.whereKey("City_County", equalTo: self.City_County!)
+    cE.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+    if error == nil{
+    if results?.count == 0{
+    print("your good")
+    
+    let aS = PFObject(className: "Schools")
+    aS["Title"] = self.SchoolName!
+    aS["City_County"] = self.City_County!
+    aS["State"] = self.theState!
+    aS.saveInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+    if success == true{
+    print("Saved, move on")
+    let _ = self.followNewSchool()
+    }else{
+    print(error?.description)
+    }
+    }
+    
+    }else{
+    print("This email has been used")
+    //Already Registered this Email
+    
+    }
+    }
+    }
+    
+    }
+
+
+*/
     
     func followNewSchool(){
         if let currentUser = PFUser.currentUser(){

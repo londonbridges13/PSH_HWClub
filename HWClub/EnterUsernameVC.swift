@@ -44,6 +44,16 @@ class EnterUsernameVC: UIViewController, UITextFieldDelegate   {
         // Check for Username Validation
         self.checker.removeAll()
 //
+        while self.UsernameTF?.text!.characters.last == " "{
+            //            if theTopic?.characters.last == " "{
+            print("remove")
+            //                theTopic = newTopicTX.text
+            print("\(self.UsernameTF?.text!)ttt")
+            var toko = self.UsernameTF?.text!.substringToIndex((self.UsernameTF?.text!.endIndex.predecessor())!)
+            self.UsernameTF?.text! = toko!
+            print("\(self.UsernameTF?.text!)ttt")
+        }
+
         if UsernameTF?.text!.characters.count < 5{
             print("Username is too Short!")
             //Show Short water later

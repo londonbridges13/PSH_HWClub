@@ -518,7 +518,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="23"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="DSz-oz-9ei"/>
@@ -1545,7 +1545,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="23"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" secureTextEntry="YES"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="5hM-x0-Z1S"/>
@@ -1731,7 +1731,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="23"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="7kL-tx-HRj"/>
@@ -4653,7 +4653,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="1cL-xc-7wM" kind="show" id="UGY-pk-WNj"/>
+                                            <segue destination="1cL-xc-7wM" kind="show" identifier="mcNAVI" id="UGY-pk-WNj"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -13076,21 +13076,21 @@
         <image name="yellowlockerroom" width="375" height="109"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LIq-Rx-h94"/>
         <segue reference="VXe-1w-4DG"/>
+        <segue reference="LIq-Rx-h94"/>
+        <segue reference="wst-ei-Q4R"/>
+        <segue reference="TeD-qg-wKC"/>
+        <segue reference="g4c-KI-uAp"/>
+        <segue reference="UGY-pk-WNj"/>
         <segue reference="q3A-tV-ccu"/>
         <segue reference="PsB-1a-q3Q"/>
+        <segue reference="qfS-c6-K5G"/>
+        <segue reference="JNk-gv-P29"/>
         <segue reference="jr1-0W-bqv"/>
         <segue reference="bHL-Uh-zTt"/>
-        <segue reference="qfS-c6-K5G"/>
-        <segue reference="sz5-A8-vFL"/>
-        <segue reference="JNk-gv-P29"/>
         <segue reference="Wct-MS-k77"/>
+        <segue reference="mAc-b4-gfm"/>
         <segue reference="J5F-HI-gc9"/>
-        <segue reference="g4c-KI-uAp"/>
-        <segue reference="TeD-qg-wKC"/>
-        <segue reference="wst-ei-Q4R"/>
-        <segue reference="UGY-pk-WNj"/>
         <segue reference="NpO-ab-Ojt"/>
     </inferredMetricsTieBreakers>
 </document>

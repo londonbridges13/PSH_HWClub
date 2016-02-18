@@ -316,6 +316,12 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                 vc.chit = "seggy"
                 vc.theQ = self.cPost[row].theQuestion
                 vc.QuestionID = self.cPost[row].theQuestionID
+                if self.cPost[row].theClass != nil{
+                    vc.theClassname = self.cPost[row].theClass
+                }
+                if self.theClass != nil{
+                    vc.theClassname = self.theClass
+                }
                 if self.cPost[row].POSTERNAME != nil{
                     vc.AnswererUsername = self.cPost[row].POSTERNAME!
                 }
@@ -332,6 +338,12 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                 vc.QuestionID = self.cPost[row!].theQuestionID
                 if self.cPost[row!].POSTERNAME != nil{
                     vc.AnswererUsername = self.cPost[row!].POSTERNAME!
+                }
+                if self.cPost[row!].theClass != nil{
+                    vc.theClassname = self.cPost[row!].theClass
+                }
+                if self.theClass != nil{
+                    vc.theClassname = self.theClass
                 }
                 if self.cPost[row!].proCachy != nil{
                     vc.userPic = self.cPost[row!].proCachy
@@ -356,11 +368,17 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                 vc.chit = "seggy"
                 vc.theQ = self.cPost[row].theQuestion
                 vc.QuestionID = self.cPost[row].theQuestionID
+                if self.cPost[row].theClass != nil{
+                    vc.theClassname = self.cPost[row].theClass
+                }
                if self.cPost[row].POSTERNAME != nil{
                     vc.AnswererUsername = self.cPost[row].POSTERNAME!
                 }
                 if self.cPost[row].proCachy != nil{
                     vc.userPic = self.cPost[row].proCachy
+                }
+                if self.theClass != nil{
+                    vc.theClassname = self.theClass
                 }
             }else{
                 let row = tableView.indexPathForSelectedRow?.row
@@ -376,8 +394,14 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                 if self.cPost[row!].POSTERNAME != nil{
                     vc.AnswererUsername = self.cPost[row!].POSTERNAME!
                 }
+                if self.cPost[row!].theClass != nil{
+                    vc.theClassname = self.cPost[row!].theClass
+                }
                 if self.cPost[row!].proCachy != nil{
                     vc.userPic = self.cPost[row!].proCachy
+                }
+                if self.theClass != nil{
+                    vc.theClassname = self.theClass
                 }
             }
 
@@ -398,7 +422,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         if segue.identifier == "assTVcToAnswer"{
             let vc : AddHWViewController = segue.destinationViewController as! AddHWViewController
             
-            vc.naviTITLE.setTitle("Say It", forState: .Normal)
+            vc.naviTITLE.setTitle("Post", forState: .Normal)
             vc.theClass = self.theClass
             vc.theTeacher = self.theTeacher
             vc.theSchool = self.theSchool

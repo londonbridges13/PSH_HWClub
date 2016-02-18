@@ -783,8 +783,12 @@ class NotiTVC: UITableViewController {
                 vc.theAnswer = self.notis[row!].theAnswer!
             }
             vc.theAnswerID = self.notis[row!].theAnswerID!
+            
+            vc.AnswererUsername = cUser?.username!
+            
 //            self.queryNotiis()
 
+//            if self.notis[row!].
         }
         
         if segue.identifier == "PAnswered"{
