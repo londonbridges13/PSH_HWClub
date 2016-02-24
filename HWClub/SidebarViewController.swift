@@ -51,7 +51,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
         self.myTeacherArray.removeAll()
         
         view.endEditing(true)
-
+        
 //        tableView.setContentOffset(CGPointZero, animated:true)
 
 //        yy.delegate = self
@@ -123,7 +123,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myClassArray.count + 4 // myClassArray.count + 4     //5
+        return cachedClasses.count + 4 // myClassArray.count + 4     //5
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -356,6 +356,8 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                         print("New Class Set")
                         if self.myClassArray.count > 1{
                             self.sortIt()
+                            self.tableView.reloadData()
+
                         }else{
                             self.cachedTeachers = self.myTeacherArray
                             self.cachedClasses = self.myClassArray

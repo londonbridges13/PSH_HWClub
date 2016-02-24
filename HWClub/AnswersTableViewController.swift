@@ -210,6 +210,8 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     
     func sortIt(){
         
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
         if self.Answers.count > 1{
             print("rerere")
             print(self.Answers[0].date)
@@ -244,6 +246,9 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             print("reloaded")
             self.removeLoading()
         }
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        self.removeLoading()
+
     }
 
     
@@ -301,6 +306,10 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             self.removeLoading()
         }
 
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.removeLoading()
+        }
         //this is me combining two different arrays, hitting two birds with one stone a me lad!!
         // this is vital to the follow function in DAC adding multiple arrays
 //        self.Answers.removeAll()
@@ -496,6 +505,12 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
 
             if error == nil{
                 
+                if results?.count == 0{
+                    let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+                    dispatch_after(time, dispatch_get_main_queue()) {
+                        self.sortIt()
+                    }
+                }
                 if let results = results as [PFObject]?{
                     
                     for result in results{
