@@ -50,6 +50,9 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
         
         
         if self.theSay == nil || self.AnswerProviderID == nil || self.AnswerID == nil{
+            print("theSay \(theSay)")
+            print("AnswerProviderID \(AnswerProviderID)")
+            print("AnswerID \(AnswerID)")
             quickICcheck()
         }
         

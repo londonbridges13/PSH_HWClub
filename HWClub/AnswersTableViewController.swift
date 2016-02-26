@@ -25,6 +25,9 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
     var tS : String?
     var aI : String?
     var apI : String?
+    var etS : String?
+    var eaI : String?
+    var eapI : String?
     var SeeAnswer : String?
     var qI = 0
     var proppie : PFFile?
@@ -398,7 +401,45 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
         self.tS = say
         self.aI = aID
         self.apI = aPID
+        self.etS = say
+        self.eaI = aID
+        self.eapI = aPID
+  
+        print("1___")
+
+        print(self.etS)
+        print(self.eaI)
+        print(self.eapI)
+
+        print("___")
+
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.tS = say
+            self.aI = aID
+            self.apI = aPID
+            self.etS = say
+            self.eaI = aID
+            self.eapI = aPID
+            
+            print("2___")
+            
+            print(self.etS)
+            print(self.eaI)
+            print(self.eapI)
+            
+            print("___")
+            if self.tS == nil{
+                print("say GOON BAD")
+                self.tS = say
+            }
+            if self.aI == nil{
+                print("aI GOON BAD")
+                self.aI = aID
+            }
+            if self.apI == nil{
+                print("apI GOON BAD")
+                self.apI = aPID
+            }
             self.performSegueWithIdentifier("APVComment", sender: self)
         }
     }
@@ -619,6 +660,7 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
                             }
                             aObject.date = result.createdAt!
                             aObject.AnswerID = result.objectId
+                            
                             aObject.theSay = "PAnswerComment"
                             
                             self.Answers.append(aObject)
@@ -953,6 +995,12 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             }
             cell.usernameLabel.text = self.Answers[indexPathO].username
 
+            cell.numDaps = self.Answers[indexPathO].numOfDaps!
+            //            cell.answerLabel.text = theAnswer.lAnswer
+            cell.AnswerID = self.Answers[indexPathO].AnswerID
+            cell.AnswerProviderID = self.Answers[indexPathO].AnswerProviderID
+            cell.theSay = self.Answers[indexPathO].theSay
+            
             //let bbArray = self.bothArray as NSArray
             //cell.answerLabel?.text = "\(bbArray[indexPath.row])"
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -986,15 +1034,16 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             
             
             
-            cell.numDaps = self.Answers[indexPathO].numOfDaps!
-//            cell.answerLabel.text = theAnswer.lAnswer
-            cell.AnswerID = self.Answers[indexPathO].AnswerID
-            cell.AnswerProviderID = self.Answers[indexPathO].AnswerProviderID
-            cell.theSay = self.Answers[indexPathO].theSay
+//            cell.numDaps = self.Answers[indexPathO].numOfDaps!
+////            cell.answerLabel.text = theAnswer.lAnswer
+//            cell.AnswerID = self.Answers[indexPathO].AnswerID
+//            cell.AnswerProviderID = self.Answers[indexPathO].AnswerProviderID
+//            cell.theSay = self.Answers[indexPathO].theSay
             if self.theClass != nil{
                 cell.classLabel.text = self.theClass!
 //                cell.classLabel.text = self.Answers[indexPath.row].classname
             }
+         
             cell.circle.layer.cornerRadius = 18
 //            cell.dapButton.layer.borderColor = lBlue.CGColor
             //            });
@@ -1232,9 +1281,19 @@ class AnswersTableViewController: UITableViewController,CustomCellDelegate,IMGCu
             
             let vc: AddCommentVC = segue.destinationViewController as! AddCommentVC
             
-            vc.theSay = self.tS
-            vc.AnswerProviderID = self.apI
-            vc.AnswerID = self.aI
+            vc.theSay = self.etS
+            vc.AnswerProviderID = self.eapI
+            vc.AnswerID = self.eaI
+            
+            if self.tS == nil{
+                vc.theSay = self.etS
+            }else{print("tikigoog")}
+            if self.apI == nil{
+                vc.AnswerProviderID = self.eapI
+            }else{print("tikigoog")}
+            if self.aI == nil{
+                vc.AnswerID = self.eaI
+            }else{print("tikigoog")}
         }
         else if segue.identifier == "TextView"{
          

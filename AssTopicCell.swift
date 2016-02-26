@@ -15,7 +15,7 @@ class AssTopicCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     
     
-    
+     
     
     override func awakeFromNib() {
         super.awakeFromNib()
