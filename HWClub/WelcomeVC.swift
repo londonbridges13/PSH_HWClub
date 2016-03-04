@@ -8,8 +8,10 @@
 import Darwin
 import UIKit
 import Parse
+import SafariServices
 
-class WelcomeVC: UIViewController, UITextFieldDelegate {
+
+class WelcomeVC: UIViewController, UITextFieldDelegate, SFSafariViewControllerDelegate{
 
     @IBOutlet var LoginButton: UIButton!
     @IBOutlet var SignUpButton: UIButton!
@@ -35,38 +37,38 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
         ePP.delegate = self
         
         
-        LoginButton.layer.cornerRadius = 13
+        LoginButton.layer.cornerRadius = 9//13
         LoginButton.layer.borderColor = UIColor.whiteColor().CGColor
         LoginButton.layer.borderWidth = 1
-        LoginButton.layer.shadowRadius = 1.5
-        LoginButton.layer.shadowOpacity = 0.5
-        LoginButton.layer.shadowOffset = CGSizeMake(0, 1)
-        LoginButton.layer.shadowColor = UIColor.blackColor().CGColor
+//        LoginButton.layer.shadowRadius = 1.5
+//        LoginButton.layer.shadowOpacity = 0.5
+//        LoginButton.layer.shadowOffset = CGSizeMake(0, 1)
+//        LoginButton.layer.shadowColor = UIColor.blackColor().CGColor
         //LoginButton.layer.masksToBounds = true
 
-        SignUpButton.layer.cornerRadius = 13
+        SignUpButton.layer.cornerRadius = 9//13
         SignUpButton.layer.borderColor = UIColor.whiteColor().CGColor
         SignUpButton.layer.borderWidth = 1
-        SignUpButton.layer.shadowRadius = 1.5
-        SignUpButton.layer.shadowOpacity = 0.5
-        SignUpButton.layer.shadowOffset = CGSizeMake(0, 1)
-        SignUpButton.layer.shadowColor = UIColor.blackColor().CGColor
+//        SignUpButton.layer.shadowRadius = 1.5
+//        SignUpButton.layer.shadowOpacity = 0.5
+//        SignUpButton.layer.shadowOffset = CGSizeMake(0, 1)
+//        SignUpButton.layer.shadowColor = UIColor.blackColor().CGColor
         
-        letsGoButton.layer.cornerRadius = 13
+        letsGoButton.layer.cornerRadius = 9//13
         letsGoButton.layer.borderColor = UIColor.whiteColor().CGColor
         letsGoButton.layer.borderWidth = 1
-        letsGoButton.layer.shadowRadius = 1.5
-        letsGoButton.layer.shadowOpacity = 0.5
-        letsGoButton.layer.shadowOffset = CGSizeMake(0, 1)
-        letsGoButton.layer.shadowColor = UIColor.blackColor().CGColor
+//        letsGoButton.layer.shadowRadius = 1.5
+//        letsGoButton.layer.shadowOpacity = 0.5
+//        letsGoButton.layer.shadowOffset = CGSizeMake(0, 1)
+//        letsGoButton.layer.shadowColor = UIColor.blackColor().CGColor
         
-        CancelButton.layer.cornerRadius = 13
+        CancelButton.layer.cornerRadius = 9//13
         CancelButton.layer.borderColor = UIColor.whiteColor().CGColor
         CancelButton.layer.borderWidth = 1
-        CancelButton.layer.shadowRadius = 1.5
-        CancelButton.layer.shadowOpacity = 0.5
-        CancelButton.layer.shadowOffset = CGSizeMake(0, 1)
-        CancelButton.layer.shadowColor = UIColor.blackColor().CGColor
+//        CancelButton.layer.shadowRadius = 1.5
+//        CancelButton.layer.shadowOpacity = 0.5
+//        CancelButton.layer.shadowOffset = CGSizeMake(0, 1)
+//        CancelButton.layer.shadowColor = UIColor.blackColor().CGColor
 
 
         // Do any additional setup after loading the view.
@@ -206,6 +208,26 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
        // alert.showInfo("Login", subTitle: "Enter your Username and Password")
         
     }
+    
+    
+    
+    
+    
+    @IBAction func pripoli(sender: AnyObject) {
+        let svc = SFSafariViewController(URL: NSURL(string: "https://kayco.xyz/Dac")!)
+        
+        svc.delegate = self
+        
+        presentViewController(svc, animated: true, completion: nil)
+    }
+    
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        print("Success")
+    }
+    
+    
+    
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

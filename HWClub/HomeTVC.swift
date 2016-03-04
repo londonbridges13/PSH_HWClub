@@ -648,17 +648,21 @@ class HomeTVC: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("Going somewhere")
-        if hPosts[indexPath.row].AskerID != nil && hPosts[indexPath.row].AskerID != ""{
-            print("viewAs")
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.performSegueWithIdentifier("homeToAnswer", sender: self)
-            })
-        }
-        if hPosts[indexPath.row].theAssignmentID != nil && hPosts[indexPath.row].theAssignmentID != ""{
-            print("viewQs")
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.performSegueWithIdentifier("homeToASS", sender: self)
-            })
+        if hPosts.count == 0{
+            
+        }else{
+            if hPosts[indexPath.row].AskerID != nil && hPosts[indexPath.row].AskerID != ""{
+                print("viewAs")
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.performSegueWithIdentifier("homeToAnswer", sender: self)
+                })
+            }
+            if hPosts[indexPath.row].theAssignmentID != nil && hPosts[indexPath.row].theAssignmentID != ""{
+                print("viewQs")
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.performSegueWithIdentifier("homeToASS", sender: self)
+                })
+            }
         }
     }
     

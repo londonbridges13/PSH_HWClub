@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -154,7 +154,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6wA-qS-dVJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zA7-PR-0MF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dac" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kr-1q-2Fb">
@@ -381,27 +381,6 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsO-jj-2yZ">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="qcH-Hk-Rtk"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="Terms of Use"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="qcH-Hk-Rtk"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="qcH-Hk-Rtk"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <segue destination="Kwb-XN-a7j" kind="showDetail" id="XUy-pQ-lD0"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By using this app you agree to the" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTC-43-unT">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
@@ -409,7 +388,7 @@
                                     <constraint firstAttribute="height" constant="21" id="cDt-rr-OBE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -424,6 +403,48 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsO-jj-2yZ">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qcH-Hk-Rtk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="Terms of Use /"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="qcH-Hk-Rtk"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="qcH-Hk-Rtk"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="Kwb-XN-a7j" kind="showDetail" id="XUy-pQ-lD0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-Ba-MHi">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="lAU-kW-1fI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                <state key="normal" title="Privacy Policy"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="lAU-kW-1fI"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="lAU-kW-1fI"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="pripoli:" destination="8T2-Yw-zZj" eventType="touchUpInside" id="aDq-2V-ped"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -437,6 +458,8 @@
                             <constraint firstItem="x6c-IG-Q1f" firstAttribute="leading" secondItem="zA7-PR-0MF" secondAttribute="leadingMargin" constant="33" id="EhU-JB-WZT"/>
                             <constraint firstItem="emn-Kc-AOY" firstAttribute="centerX" secondItem="zA7-PR-0MF" secondAttribute="centerX" id="H9X-UC-IQ7"/>
                             <constraint firstItem="FmD-4g-NHh" firstAttribute="centerX" secondItem="zA7-PR-0MF" secondAttribute="centerX" id="Isp-EO-PKe"/>
+                            <constraint firstItem="6wA-qS-dVJ" firstAttribute="top" secondItem="hu8-Ba-MHi" secondAttribute="bottom" id="KmW-uI-fQl"/>
+                            <constraint firstItem="hu8-Ba-MHi" firstAttribute="leading" secondItem="PsO-jj-2yZ" secondAttribute="trailing" constant="2" id="Rch-Ox-dse"/>
                             <constraint firstItem="6wA-qS-dVJ" firstAttribute="top" secondItem="iTC-43-unT" secondAttribute="bottom" constant="5" id="U5G-1p-Xbf"/>
                             <constraint firstItem="9W9-RQ-8sa" firstAttribute="centerX" secondItem="zA7-PR-0MF" secondAttribute="centerX" id="Wey-Ek-jWs"/>
                             <constraint firstItem="5Kr-1q-2Fb" firstAttribute="centerX" secondItem="zA7-PR-0MF" secondAttribute="centerX" id="Yaj-fr-DwG"/>
@@ -469,36 +492,39 @@
                                 <exclude reference="emn-Kc-AOY"/>
                                 <exclude reference="9W9-RQ-8sa"/>
                                 <exclude reference="Xnv-UK-PNL"/>
-                                <exclude reference="PsO-jj-2yZ"/>
                                 <exclude reference="iTC-43-unT"/>
+                                <exclude reference="PsO-jj-2yZ"/>
+                                <exclude reference="hu8-Ba-MHi"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="4yG-Nh-Jiu"/>
-                                <exclude reference="vOy-Nb-6HM"/>
-                                <exclude reference="Yaj-fr-DwG"/>
-                                <exclude reference="zEX-JI-TdE"/>
-                                <exclude reference="7VA-1J-VYq"/>
-                                <exclude reference="fN1-de-9Md"/>
-                                <exclude reference="gym-0r-zj3"/>
-                                <exclude reference="bPC-hr-8ad"/>
-                                <exclude reference="Isp-EO-PKe"/>
-                                <exclude reference="fKh-sP-eoe"/>
-                                <exclude reference="H9X-UC-IQ7"/>
-                                <exclude reference="bJY-k4-6aP"/>
-                                <exclude reference="wG7-Qy-gA5"/>
-                                <exclude reference="8Nk-HV-jdx"/>
-                                <exclude reference="Wey-Ek-jWs"/>
-                                <exclude reference="896-ZZ-rol"/>
-                                <exclude reference="EhU-JB-WZT"/>
-                                <exclude reference="jv5-UA-kZB"/>
-                                <exclude reference="uJh-fl-QTl"/>
-                                <exclude reference="1E3-fZ-SlI"/>
-                                <exclude reference="eca-3G-z9e"/>
-                                <exclude reference="u0K-ZL-9bv"/>
+                                <exclude reference="KmW-uI-fQl"/>
                                 <exclude reference="U5G-1p-Xbf"/>
                                 <exclude reference="l4B-m0-k3e"/>
                                 <exclude reference="lE7-MM-HsT"/>
                                 <exclude reference="xSu-oZ-QBW"/>
+                                <exclude reference="Isp-EO-PKe"/>
+                                <exclude reference="fKh-sP-eoe"/>
+                                <exclude reference="7VA-1J-VYq"/>
+                                <exclude reference="fN1-de-9Md"/>
+                                <exclude reference="gym-0r-zj3"/>
+                                <exclude reference="8Nk-HV-jdx"/>
+                                <exclude reference="Wey-Ek-jWs"/>
+                                <exclude reference="eca-3G-z9e"/>
+                                <exclude reference="u0K-ZL-9bv"/>
+                                <exclude reference="H9X-UC-IQ7"/>
+                                <exclude reference="Rch-Ox-dse"/>
+                                <exclude reference="bJY-k4-6aP"/>
+                                <exclude reference="wG7-Qy-gA5"/>
+                                <exclude reference="896-ZZ-rol"/>
+                                <exclude reference="EhU-JB-WZT"/>
+                                <exclude reference="jv5-UA-kZB"/>
+                                <exclude reference="uJh-fl-QTl"/>
+                                <exclude reference="Yaj-fr-DwG"/>
+                                <exclude reference="zEX-JI-TdE"/>
+                                <exclude reference="bPC-hr-8ad"/>
+                                <exclude reference="1E3-fZ-SlI"/>
+                                <exclude reference="4yG-Nh-Jiu"/>
+                                <exclude reference="vOy-Nb-6HM"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -512,36 +538,39 @@
                                 <include reference="emn-Kc-AOY"/>
                                 <include reference="9W9-RQ-8sa"/>
                                 <include reference="Xnv-UK-PNL"/>
-                                <include reference="PsO-jj-2yZ"/>
                                 <include reference="iTC-43-unT"/>
+                                <include reference="PsO-jj-2yZ"/>
+                                <include reference="hu8-Ba-MHi"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="4yG-Nh-Jiu"/>
-                                <include reference="vOy-Nb-6HM"/>
-                                <include reference="Yaj-fr-DwG"/>
-                                <include reference="zEX-JI-TdE"/>
-                                <include reference="7VA-1J-VYq"/>
-                                <include reference="fN1-de-9Md"/>
-                                <include reference="gym-0r-zj3"/>
-                                <include reference="bPC-hr-8ad"/>
-                                <include reference="Isp-EO-PKe"/>
-                                <include reference="fKh-sP-eoe"/>
-                                <include reference="H9X-UC-IQ7"/>
-                                <exclude reference="bJY-k4-6aP"/>
-                                <include reference="wG7-Qy-gA5"/>
-                                <include reference="8Nk-HV-jdx"/>
-                                <include reference="Wey-Ek-jWs"/>
-                                <exclude reference="896-ZZ-rol"/>
-                                <exclude reference="EhU-JB-WZT"/>
-                                <include reference="jv5-UA-kZB"/>
-                                <include reference="uJh-fl-QTl"/>
-                                <include reference="1E3-fZ-SlI"/>
-                                <include reference="eca-3G-z9e"/>
-                                <exclude reference="u0K-ZL-9bv"/>
+                                <include reference="KmW-uI-fQl"/>
                                 <include reference="U5G-1p-Xbf"/>
                                 <include reference="l4B-m0-k3e"/>
                                 <include reference="lE7-MM-HsT"/>
                                 <include reference="xSu-oZ-QBW"/>
+                                <include reference="Isp-EO-PKe"/>
+                                <include reference="fKh-sP-eoe"/>
+                                <include reference="7VA-1J-VYq"/>
+                                <include reference="fN1-de-9Md"/>
+                                <include reference="gym-0r-zj3"/>
+                                <include reference="8Nk-HV-jdx"/>
+                                <include reference="Wey-Ek-jWs"/>
+                                <include reference="eca-3G-z9e"/>
+                                <exclude reference="u0K-ZL-9bv"/>
+                                <include reference="H9X-UC-IQ7"/>
+                                <include reference="Rch-Ox-dse"/>
+                                <exclude reference="bJY-k4-6aP"/>
+                                <include reference="wG7-Qy-gA5"/>
+                                <exclude reference="896-ZZ-rol"/>
+                                <exclude reference="EhU-JB-WZT"/>
+                                <include reference="jv5-UA-kZB"/>
+                                <include reference="uJh-fl-QTl"/>
+                                <include reference="Yaj-fr-DwG"/>
+                                <include reference="zEX-JI-TdE"/>
+                                <include reference="bPC-hr-8ad"/>
+                                <include reference="1E3-fZ-SlI"/>
+                                <include reference="4yG-Nh-Jiu"/>
+                                <include reference="vOy-Nb-6HM"/>
                             </mask>
                         </variation>
                     </view>
@@ -558,7 +587,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFa-Og-g5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="210.75" y="976.875"/>
+            <point key="canvasLocation" x="210" y="976.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="lmA-Ox-l26">
@@ -569,12 +598,13 @@
                         <viewControllerLayoutGuide type="bottom" id="5jn-w2-goz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="epl-cL-QG6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkC-p7-w7D">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Dac - Classrooom Q&amp;A App End User License Agreement
+                                <string key="text">Dac - Classrooom Q&amp;A App End User License Agreement
 
 This End User License Agreement (“Agreement”) is between you and Dac - Classrooom Q&amp;A and governs use of this app made available through the Apple App Store. By installing the Dac - Classrooom Q&amp;A App, you agree to be bound by this Agreement and understand that there is no tolerance for objectionable content. If you do not agree with the terms and conditions of this Agreement, you are not entitled to use the Dac - Classrooom Q&amp;A App.
 
@@ -619,7 +649,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
 
 
 
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -636,10 +666,10 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 <exclude reference="UkC-p7-w7D"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="FtJ-2j-GZO"/>
                                 <exclude reference="8hC-wu-Pj0"/>
                                 <exclude reference="O6a-KD-nlF"/>
                                 <exclude reference="o9g-lf-VQV"/>
-                                <exclude reference="FtJ-2j-GZO"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -647,10 +677,10 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 <include reference="UkC-p7-w7D"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="FtJ-2j-GZO"/>
                                 <include reference="8hC-wu-Pj0"/>
                                 <include reference="O6a-KD-nlF"/>
                                 <include reference="o9g-lf-VQV"/>
-                                <include reference="FtJ-2j-GZO"/>
                             </mask>
                         </variation>
                     </view>
@@ -4413,14 +4443,35 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                         <action selector="ChangePicture:" destination="wGr-Fc-lSt" eventType="touchUpInside" id="NiU-MB-emi"/>
                                                     </connections>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-camera-128" translatesAutoresizingMaskIntoConstraints="NO" id="YjC-kY-9VC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="AYQ-co-lKs"/>
+                                                        <constraint firstAttribute="width" constant="23" id="rik-8r-ZZ0"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="AYQ-co-lKs"/>
+                                                            <exclude reference="rik-8r-ZZ0"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="AYQ-co-lKs"/>
+                                                            <include reference="rik-8r-ZZ0"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="YjC-kY-9VC" firstAttribute="leading" secondItem="HFb-fv-F49" secondAttribute="trailing" constant="-23" id="0K8-KJ-WPR"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="uUu-jT-hRX" secondAttribute="bottom" constant="-8" id="D2f-g9-uq2"/>
                                                 <constraint firstItem="uUu-jT-hRX" firstAttribute="top" secondItem="LXE-85-ipV" secondAttribute="topMargin" constant="-8" id="ECf-E0-kKe"/>
                                                 <constraint firstItem="14Y-TK-fW5" firstAttribute="leading" secondItem="HFb-fv-F49" secondAttribute="trailing" constant="23" id="GPM-mn-h1n"/>
                                                 <constraint firstItem="uUu-jT-hRX" firstAttribute="leading" secondItem="LXE-85-ipV" secondAttribute="leadingMargin" constant="-8" id="KAW-pB-JFA"/>
                                                 <constraint firstItem="HFb-fv-F49" firstAttribute="leading" secondItem="LXE-85-ipV" secondAttribute="leadingMargin" id="gUu-iI-XRO"/>
                                                 <constraint firstItem="14Y-TK-fW5" firstAttribute="top" secondItem="LXE-85-ipV" secondAttribute="topMargin" constant="27" id="kOX-e7-ri8"/>
+                                                <constraint firstItem="YjC-kY-9VC" firstAttribute="top" secondItem="HFb-fv-F49" secondAttribute="bottom" constant="-22" id="lPd-zK-1tl"/>
                                                 <constraint firstItem="HFb-fv-F49" firstAttribute="top" secondItem="LXE-85-ipV" secondAttribute="topMargin" constant="12" id="pfL-Ra-r8x"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="uUu-jT-hRX" secondAttribute="trailing" constant="-8" id="zea-Wd-LoB"/>
                                             </constraints>
@@ -4429,16 +4480,19 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="uUu-jT-hRX"/>
                                                     <exclude reference="14Y-TK-fW5"/>
                                                     <exclude reference="HFb-fv-F49"/>
+                                                    <exclude reference="YjC-kY-9VC"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="gUu-iI-XRO"/>
-                                                    <exclude reference="pfL-Ra-r8x"/>
-                                                    <exclude reference="GPM-mn-h1n"/>
-                                                    <exclude reference="kOX-e7-ri8"/>
                                                     <exclude reference="D2f-g9-uq2"/>
                                                     <exclude reference="ECf-E0-kKe"/>
                                                     <exclude reference="KAW-pB-JFA"/>
                                                     <exclude reference="zea-Wd-LoB"/>
+                                                    <exclude reference="gUu-iI-XRO"/>
+                                                    <exclude reference="pfL-Ra-r8x"/>
+                                                    <exclude reference="0K8-KJ-WPR"/>
+                                                    <exclude reference="lPd-zK-1tl"/>
+                                                    <exclude reference="GPM-mn-h1n"/>
+                                                    <exclude reference="kOX-e7-ri8"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -4446,16 +4500,19 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <include reference="uUu-jT-hRX"/>
                                                     <include reference="14Y-TK-fW5"/>
                                                     <include reference="HFb-fv-F49"/>
+                                                    <include reference="YjC-kY-9VC"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="gUu-iI-XRO"/>
-                                                    <include reference="pfL-Ra-r8x"/>
-                                                    <include reference="GPM-mn-h1n"/>
-                                                    <include reference="kOX-e7-ri8"/>
                                                     <include reference="D2f-g9-uq2"/>
                                                     <include reference="ECf-E0-kKe"/>
                                                     <include reference="KAW-pB-JFA"/>
                                                     <include reference="zea-Wd-LoB"/>
+                                                    <include reference="gUu-iI-XRO"/>
+                                                    <include reference="pfL-Ra-r8x"/>
+                                                    <include reference="0K8-KJ-WPR"/>
+                                                    <include reference="lPd-zK-1tl"/>
+                                                    <include reference="GPM-mn-h1n"/>
+                                                    <include reference="kOX-e7-ri8"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -9768,7 +9825,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Q-REFER" rowHeight="95" id="8TE-bl-SUu" customClass="QLabelCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="95"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8TE-bl-SUu" id="ypv-aQ-QKQ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
@@ -9834,7 +9891,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="answerContentCell" rowHeight="220" id="ozz-Ia-wJf" customClass="ViewAnswerCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="187" width="375" height="220"/>
+                                <rect key="frame" x="0.0" y="123" width="375" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ozz-Ia-wJf" id="7wJ-jN-K76">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
@@ -9996,7 +10053,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="aBcell" rowHeight="80" id="GVA-4o-RwA" customClass="ViewAnswerAllOptionsCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="407" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="343" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GVA-4o-RwA" id="WCL-Et-MUL">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -10131,7 +10188,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="acommentCell" rowHeight="138" id="B4B-sz-6gv" customClass="aCommentCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="487" width="375" height="138"/>
+                                <rect key="frame" x="0.0" y="423" width="375" height="138"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B4B-sz-6gv" id="JrQ-6p-H1o">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
@@ -10397,7 +10454,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                         <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <button key="tableFooterView" opaque="NO" alpha="0.01" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rtJ-Rm-J3j">
-                            <rect key="frame" x="0.0" y="861" width="375" height="30"/>
+                            <rect key="frame" x="0.0" y="797" width="375" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.22336492259999999" green="0.44061426370000001" blue="0.67897773689999996" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Pull to Refresh">
@@ -10409,7 +10466,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                         </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="answerHeaderCell" rowHeight="209" id="gfz-eq-Zlx" customClass="AnswerQHeaderCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="209"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="209"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gfz-eq-Zlx" id="jqS-vY-oaw">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="209"/>
@@ -10606,7 +10663,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="aCell" rowHeight="181" id="FmW-Vg-Vgx" customClass="AnswersTableViewCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="301" width="375" height="181"/>
+                                <rect key="frame" x="0.0" y="237" width="375" height="181"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FmW-Vg-Vgx" id="pUD-Om-rHg">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="181"/>
@@ -10920,7 +10977,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="a2Cell" rowHeight="379" id="20l-md-3dY" customClass="AnswerIMGCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="482" width="375" height="379"/>
+                                <rect key="frame" x="0.0" y="418" width="375" height="379"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="20l-md-3dY" id="JFO-y6-PmZ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="379"/>
@@ -11362,7 +11419,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="qLabel" rowHeight="95" id="NPg-A2-Iym" customClass="QLabelCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="414" height="95"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NPg-A2-Iym" id="1fr-Qc-0Kq">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
@@ -11428,7 +11485,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="answerDisplayCell" rowHeight="103" id="Hcz-4z-bKA" customClass="ViewPhotoAnswerCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="187" width="414" height="103"/>
+                                <rect key="frame" x="0.0" y="123" width="414" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hcz-4z-bKA" id="9QB-AK-a9l">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
@@ -11572,7 +11629,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="photodisplay" rowHeight="407" id="W3v-cm-jDz" customClass="ViewPhotoAnswerPhotoCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="290" width="414" height="407"/>
+                                <rect key="frame" x="0.0" y="226" width="414" height="407"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W3v-cm-jDz" id="rds-hj-0lG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="407"/>
@@ -11650,7 +11707,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="buttonscell" rowHeight="80" id="xMb-pj-4cz" customClass="ViewPhotoAnswerMoreOptions" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="697" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="633" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xMb-pj-4cz" id="sro-Yy-6Xe">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -11813,7 +11870,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="commentCell" rowHeight="138" id="hCc-jQ-qsK" customClass="CommentCell" customModule="Dac" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="777" width="414" height="138"/>
+                                <rect key="frame" x="0.0" y="713" width="414" height="138"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hCc-jQ-qsK" id="7nB-fh-iNz">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="138"/>
@@ -12098,7 +12155,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="36" y="46" width="234" height="346"/>
+                                            <rect key="frame" x="36" y="46" width="234" height="390"/>
                                             <mask key="constraints">
                                                 <exclude reference="9qJ-tS-z3C"/>
                                                 <exclude reference="gYt-Ta-jHZ"/>
@@ -12135,7 +12192,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="7" y="64" width="306" height="438"/>
+                                    <rect key="frame" x="7" y="20" width="306" height="482"/>
                                     <mask key="subviews">
                                         <include reference="2Bu-pf-Fu1"/>
                                     </mask>
@@ -12813,7 +12870,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.76035753692932551" green="0.94257721018970586" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="iHO-Yc-voY" firstAttribute="leading" secondItem="oke-UW-bSV" secondAttribute="leadingMargin" constant="-20" id="3SE-IO-hBX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iHO-Yc-voY" secondAttribute="trailing" constant="-20" id="Kk2-JW-pae"/>
@@ -13288,6 +13345,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
         <image name="commentIcon" width="90" height="90"/>
         <image name="dbSWORD" width="45" height="45"/>
         <image name="fist" width="17" height="15"/>
+        <image name="icon-camera-128" width="64" height="64"/>
         <image name="labelblueback" width="149" height="36"/>
         <image name="lightbulb" width="15" height="23"/>
         <image name="menu" width="38" height="38"/>
@@ -13297,19 +13355,19 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
     <inferredMetricsTieBreakers>
         <segue reference="LIq-Rx-h94"/>
         <segue reference="VXe-1w-4DG"/>
-        <segue reference="UGY-pk-WNj"/>
+        <segue reference="hex-re-RoU"/>
+        <segue reference="b88-7Z-kEW"/>
         <segue reference="q3A-tV-ccu"/>
-        <segue reference="PsB-1a-q3Q"/>
-        <segue reference="bHL-Uh-zTt"/>
-        <segue reference="jr1-0W-bqv"/>
-        <segue reference="wst-ei-Q4R"/>
-        <segue reference="g4c-KI-uAp"/>
-        <segue reference="NpO-ab-Ojt"/>
-        <segue reference="WKF-IA-i01"/>
-        <segue reference="mAc-b4-gfm"/>
-        <segue reference="yP6-e0-SdD"/>
+        <segue reference="fGt-O5-wsb"/>
+        <segue reference="LSi-jR-cwh"/>
         <segue reference="Wct-MS-k77"/>
         <segue reference="i5f-qx-2Pj"/>
         <segue reference="Zp4-lH-dH6"/>
+        <segue reference="PsB-1a-q3Q"/>
+        <segue reference="jr1-0W-bqv"/>
+        <segue reference="UGY-pk-WNj"/>
+        <segue reference="NpO-ab-Ojt"/>
+        <segue reference="wst-ei-Q4R"/>
+        <segue reference="g4c-KI-uAp"/>
     </inferredMetricsTieBreakers>
 </document>

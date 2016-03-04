@@ -21,6 +21,8 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        feedbackTxTView.becomeFirstResponder()
+        
 //        if self.revealViewController() != nil {
 //            menuButton.target = self.revealViewController()
 //            menuButton.action = "revealToggle:"
