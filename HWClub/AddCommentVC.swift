@@ -130,7 +130,7 @@ class AddCommentVC: UIViewController, UITextViewDelegate {
 //            let _ = self.itt()
         })
         alert.showCloseButton = false
-        alert.showWarning("Bad Connection", subTitle: "You have Bad Internet Connection")
+        alert.showWarning("Network Error", subTitle: "")
     }
     
     

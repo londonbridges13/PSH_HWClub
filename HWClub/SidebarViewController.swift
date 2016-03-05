@@ -141,10 +141,10 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                     cell.proPic.image = self.newPic
                 }
                 if self.theSchool != nil{
-                    cell.SchoolLabel.text = self.theSchool!
+                    cell.SchoolLabel.text = "\(self.theSchool!)🏫"
                 }
                 if cUser?.username != nil{
-                    cell.usernameLabel.text = cUser!.username!
+                    cell.usernameLabel.text = "@\(cUser!.username!)"
                 }
                 return cell
 

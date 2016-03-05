@@ -85,14 +85,14 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         print("diko up")
         if diko != nil{
             var alert = SCLAlertView()
-            alert.addButton("Follow Class", action: { () -> Void in
+            alert.addButton("Follow Class 🏃", action: { () -> Void in
                 print(self.theClass)
                 print(self.theTeacher)
                 print(self.theSchool)
                 let _ = self.followClass()
                 self.answerTXT.becomeFirstResponder()
             })
-            alert.addButton("Go Back", action: { () -> Void in
+            alert.addButton("Go Back ⛔️", action: { () -> Void in
                 //
                 self.uwnOther.sendActionsForControlEvents(.TouchUpInside)
                 self.senditButty.sendActionsForControlEvents(.TouchUpInside)
@@ -149,7 +149,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
 //            self.senditButty.sendActionsForControlEvents(.TouchUpInside)
         })
         alert.showCloseButton = false
-        alert.showWarning("Bad Connection", subTitle: "You have BBad Internet Connection")
+        alert.showWarning("Network Error", subTitle: "")
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
         dispatch_after(time, dispatch_get_main_queue()) {
             self.view.userInteractionEnabled = true
@@ -172,7 +172,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         Class.saveInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
             if (success == true){
                 self.diko = nil
-                print("Followed Class")
+                print("Followed Class 🏃")
             }else{
                 print(error?.description)
             }
@@ -245,6 +245,9 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             // THERE's Nothing
             //Type Something
             
+            let alert = SCLAlertView()
+            alert.showInfo("Too Short", subTitle: "Type a little more")
+            removeLoading()
             removeLoading()
         }else{
             if self.proppie != nil{
@@ -806,16 +809,13 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         }
         LoadingDesign()
         var htht = shortAnswerTX.text!.characters.count + answerTXT.text.characters.count
-        //        if shortAnswerTX.text == "" && answerTXT.text == "Tap to Answer"{//answerTXT.text == "" ||
         if htht <= 2{
-            // THERE's Nothing
-            //Type Something
             
             let alert = SCLAlertView()
             alert.showInfo("Too Short", subTitle: "Type a little more")
             removeLoading()
         }else{
-            self.NewSenderButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+//            self.NewSenderButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
         }
     }
     

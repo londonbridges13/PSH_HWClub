@@ -246,6 +246,8 @@ class HomeTVC: UITableViewController {
     
     
     
+   
+
 
     func ICcheck(){
         if Reachability.isConnectedToNetwork() == true{
@@ -470,7 +472,24 @@ class HomeTVC: UITableViewController {
                 
                 return cell
 
+            }else if hPosts[indexPath.row].Type == "newbie"{
+                //                    tableView.rowHeight = UITableViewAutomaticDimension
+                tableView.rowHeight = 60
+                
+                print("JIJIJIONJION")
+                let cell : AssNewMemberCell = tableView.dequeueReusableCellWithIdentifier("newbieCell", forIndexPath: indexPath) as! AssNewMemberCell
+                if hPosts[indexPath.row].POSTERNAME != nil && hPosts[indexPath.row].theClass != nil{
+                    cell.newMEMLabel.text = "\(hPosts[indexPath.row].POSTERNAME!) just joined \(self.hPosts[indexPath.row].theClass!)"
+                }
+                if hPosts[indexPath.row].date != nil{
+                    cell.dateLabel.text = "\(dts(hPosts[indexPath.row].date!))"
+                }
+                
+                
+                return cell
+                
             }
+
             
             else {//if hPosts[indexPath.row].Type == "A"{
                 //homeCellA
@@ -846,6 +865,9 @@ class HomeTVC: UITableViewController {
                         self.hPosts.append(aO)
                         self.cachedPosts.append(aO)
                     }
+                    if self.theSchool.count != 0{
+                        self.memberClassQuery()
+                    }
                     self.queryQuestions()
                     let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
                     dispatch_after(time, dispatch_get_main_queue()) {
@@ -863,6 +885,52 @@ class HomeTVC: UITableViewController {
         }
 //        }
     }
+    
+    
+    
+    
+    func memberClassQuery(){
+        let Class = PFQuery(className: "ClassesFollowed")
+        Class.whereKey("classesFollowed", containedIn: self.classes)
+        Class.whereKey("teacherName", containedIn: self.teachers)
+        Class.whereKey("School", equalTo: self.theSchool[0])
+        
+        Class.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+            if error == nil{
+                if let results = results as [PFObject]?{
+                    for result in results{
+                        var mo = MemberObject()
+                        var cmo = HomePost()
+                        
+                        let aUsername = result["Username"] as? String
+                        let aClass = result["classesFollowed"] as? String
+                        
+                        cmo.Type = "newbie"
+                        cmo.theClass = aClass
+                        cmo.IDCheck = result.objectId!
+                        
+                        if aClass != nil{
+                            cmo.theClass = aClass
+                        }
+                        if aUsername != nil{
+                            mo.username = aUsername
+                            cmo.POSTERNAME = aUsername
+                            print("New Joiner\(aUsername!)")
+                        }
+                        mo.date = result.createdAt!
+                        cmo.date = result.createdAt!
+                        
+                        self.hPosts.append(cmo)
+                        self.cachedPosts.append(cmo)
+                        //                            self.Classmates.append(mo)
+                        
+                    }
+                }
+            }
+        }
+        
+    }
+    
     
     
     

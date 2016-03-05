@@ -259,7 +259,7 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
         let optionMenu = UIAlertController(title: nil, message: "Change Profile Picture", preferredStyle: .ActionSheet)
         
         //DBSWORD OPtion
-        let beASwordOption = UIAlertAction(title: "Be a Sword", style: .Destructive) { (alert: UIAlertAction) -> Void in
+        let beASwordOption = UIAlertAction(title: "Be a Sword🗡", style: .Destructive) { (alert: UIAlertAction) -> Void in
             let dbSWORD = UIImage(named: "dbSWORD")
             let _ = self.picToParse(dbSWORD!)
             self.profilePictureButton.setImage(dbSWORD, forState: .Normal)
@@ -274,7 +274,7 @@ class ProfileTVC: UITableViewController, UINavigationControllerDelegate, UIImage
 
         }
         // 2
-        let TPAction = UIAlertAction(title: "Take Photo", style: .Default, handler: {
+        let TPAction = UIAlertAction(title: "📷Take Photo", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             self.takePic()
             print("From Camera")

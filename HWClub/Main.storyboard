@@ -445,6 +445,27 @@
                                     <action selector="pripoli:" destination="8T2-Yw-zZj" eventType="touchUpInside" id="aDq-2V-ped"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="9er" translatesAutoresizingMaskIntoConstraints="NO" id="Rb0-oW-MVT">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Boj-NU-KTc">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="184"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="184" id="dsn-yJ-vM1"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Boj-NU-KTc"/>
+                                        <exclude reference="dsn-yJ-vM1"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Boj-NU-KTc"/>
+                                        <include reference="dsn-yJ-vM1"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -461,8 +482,10 @@
                             <constraint firstItem="6wA-qS-dVJ" firstAttribute="top" secondItem="hu8-Ba-MHi" secondAttribute="bottom" id="KmW-uI-fQl"/>
                             <constraint firstItem="hu8-Ba-MHi" firstAttribute="leading" secondItem="PsO-jj-2yZ" secondAttribute="trailing" constant="2" id="Rch-Ox-dse"/>
                             <constraint firstItem="6wA-qS-dVJ" firstAttribute="top" secondItem="iTC-43-unT" secondAttribute="bottom" constant="5" id="U5G-1p-Xbf"/>
+                            <constraint firstItem="Rb0-oW-MVT" firstAttribute="centerY" secondItem="zA7-PR-0MF" secondAttribute="centerY" id="WTf-BV-K60"/>
                             <constraint firstItem="9W9-RQ-8sa" firstAttribute="centerX" secondItem="zA7-PR-0MF" secondAttribute="centerX" id="Wey-Ek-jWs"/>
                             <constraint firstItem="5Kr-1q-2Fb" firstAttribute="centerX" secondItem="zA7-PR-0MF" secondAttribute="centerX" id="Yaj-fr-DwG"/>
+                            <constraint firstItem="Rb0-oW-MVT" firstAttribute="centerX" secondItem="zA7-PR-0MF" secondAttribute="centerX" id="Yx8-Us-M6P"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kAb-rz-4A2" secondAttribute="trailing" constant="33" id="bJY-k4-6aP"/>
                             <constraint firstItem="Xnv-UK-PNL" firstAttribute="centerX" secondItem="zA7-PR-0MF" secondAttribute="centerX" id="bPC-hr-8ad"/>
                             <constraint firstItem="PsO-jj-2yZ" firstAttribute="leading" secondItem="iTC-43-unT" secondAttribute="trailing" constant="12" id="eca-3G-z9e">
@@ -495,36 +518,39 @@
                                 <exclude reference="iTC-43-unT"/>
                                 <exclude reference="PsO-jj-2yZ"/>
                                 <exclude reference="hu8-Ba-MHi"/>
+                                <exclude reference="Rb0-oW-MVT"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="4yG-Nh-Jiu"/>
+                                <exclude reference="vOy-Nb-6HM"/>
+                                <exclude reference="Yaj-fr-DwG"/>
+                                <exclude reference="zEX-JI-TdE"/>
+                                <exclude reference="bPC-hr-8ad"/>
+                                <exclude reference="WTf-BV-K60"/>
+                                <exclude reference="Yx8-Us-M6P"/>
+                                <exclude reference="7VA-1J-VYq"/>
+                                <exclude reference="fN1-de-9Md"/>
+                                <exclude reference="gym-0r-zj3"/>
+                                <exclude reference="Isp-EO-PKe"/>
+                                <exclude reference="fKh-sP-eoe"/>
+                                <exclude reference="H9X-UC-IQ7"/>
+                                <exclude reference="bJY-k4-6aP"/>
+                                <exclude reference="wG7-Qy-gA5"/>
+                                <exclude reference="8Nk-HV-jdx"/>
+                                <exclude reference="Wey-Ek-jWs"/>
+                                <exclude reference="896-ZZ-rol"/>
+                                <exclude reference="EhU-JB-WZT"/>
+                                <exclude reference="jv5-UA-kZB"/>
+                                <exclude reference="uJh-fl-QTl"/>
+                                <exclude reference="1E3-fZ-SlI"/>
+                                <exclude reference="eca-3G-z9e"/>
+                                <exclude reference="u0K-ZL-9bv"/>
                                 <exclude reference="KmW-uI-fQl"/>
                                 <exclude reference="U5G-1p-Xbf"/>
                                 <exclude reference="l4B-m0-k3e"/>
                                 <exclude reference="lE7-MM-HsT"/>
                                 <exclude reference="xSu-oZ-QBW"/>
-                                <exclude reference="Isp-EO-PKe"/>
-                                <exclude reference="fKh-sP-eoe"/>
-                                <exclude reference="7VA-1J-VYq"/>
-                                <exclude reference="fN1-de-9Md"/>
-                                <exclude reference="gym-0r-zj3"/>
-                                <exclude reference="8Nk-HV-jdx"/>
-                                <exclude reference="Wey-Ek-jWs"/>
-                                <exclude reference="eca-3G-z9e"/>
-                                <exclude reference="u0K-ZL-9bv"/>
-                                <exclude reference="H9X-UC-IQ7"/>
                                 <exclude reference="Rch-Ox-dse"/>
-                                <exclude reference="bJY-k4-6aP"/>
-                                <exclude reference="wG7-Qy-gA5"/>
-                                <exclude reference="896-ZZ-rol"/>
-                                <exclude reference="EhU-JB-WZT"/>
-                                <exclude reference="jv5-UA-kZB"/>
-                                <exclude reference="uJh-fl-QTl"/>
-                                <exclude reference="Yaj-fr-DwG"/>
-                                <exclude reference="zEX-JI-TdE"/>
-                                <exclude reference="bPC-hr-8ad"/>
-                                <exclude reference="1E3-fZ-SlI"/>
-                                <exclude reference="4yG-Nh-Jiu"/>
-                                <exclude reference="vOy-Nb-6HM"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -541,36 +567,39 @@
                                 <include reference="iTC-43-unT"/>
                                 <include reference="PsO-jj-2yZ"/>
                                 <include reference="hu8-Ba-MHi"/>
+                                <include reference="Rb0-oW-MVT"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="4yG-Nh-Jiu"/>
+                                <include reference="vOy-Nb-6HM"/>
+                                <include reference="Yaj-fr-DwG"/>
+                                <include reference="zEX-JI-TdE"/>
+                                <include reference="bPC-hr-8ad"/>
+                                <include reference="WTf-BV-K60"/>
+                                <include reference="Yx8-Us-M6P"/>
+                                <include reference="7VA-1J-VYq"/>
+                                <include reference="fN1-de-9Md"/>
+                                <include reference="gym-0r-zj3"/>
+                                <include reference="Isp-EO-PKe"/>
+                                <include reference="fKh-sP-eoe"/>
+                                <include reference="H9X-UC-IQ7"/>
+                                <exclude reference="bJY-k4-6aP"/>
+                                <include reference="wG7-Qy-gA5"/>
+                                <include reference="8Nk-HV-jdx"/>
+                                <include reference="Wey-Ek-jWs"/>
+                                <exclude reference="896-ZZ-rol"/>
+                                <exclude reference="EhU-JB-WZT"/>
+                                <include reference="jv5-UA-kZB"/>
+                                <include reference="uJh-fl-QTl"/>
+                                <include reference="1E3-fZ-SlI"/>
+                                <include reference="eca-3G-z9e"/>
+                                <exclude reference="u0K-ZL-9bv"/>
                                 <include reference="KmW-uI-fQl"/>
                                 <include reference="U5G-1p-Xbf"/>
                                 <include reference="l4B-m0-k3e"/>
                                 <include reference="lE7-MM-HsT"/>
                                 <include reference="xSu-oZ-QBW"/>
-                                <include reference="Isp-EO-PKe"/>
-                                <include reference="fKh-sP-eoe"/>
-                                <include reference="7VA-1J-VYq"/>
-                                <include reference="fN1-de-9Md"/>
-                                <include reference="gym-0r-zj3"/>
-                                <include reference="8Nk-HV-jdx"/>
-                                <include reference="Wey-Ek-jWs"/>
-                                <include reference="eca-3G-z9e"/>
-                                <exclude reference="u0K-ZL-9bv"/>
-                                <include reference="H9X-UC-IQ7"/>
                                 <include reference="Rch-Ox-dse"/>
-                                <exclude reference="bJY-k4-6aP"/>
-                                <include reference="wG7-Qy-gA5"/>
-                                <exclude reference="896-ZZ-rol"/>
-                                <exclude reference="EhU-JB-WZT"/>
-                                <include reference="jv5-UA-kZB"/>
-                                <include reference="uJh-fl-QTl"/>
-                                <include reference="Yaj-fr-DwG"/>
-                                <include reference="zEX-JI-TdE"/>
-                                <include reference="bPC-hr-8ad"/>
-                                <include reference="1E3-fZ-SlI"/>
-                                <include reference="4yG-Nh-Jiu"/>
-                                <include reference="vOy-Nb-6HM"/>
                             </mask>
                         </variation>
                     </view>
@@ -581,6 +610,7 @@
                         <outlet property="SignUpButton" destination="kAb-rz-4A2" id="xC8-e1-OiW"/>
                         <outlet property="ePP" destination="FmD-4g-NHh" id="Nig-f5-mwr"/>
                         <outlet property="eUU" destination="k8u-dK-3Nb" id="CsH-jC-FFC"/>
+                        <outlet property="icons" destination="Rb0-oW-MVT" id="1vp-Vd-0m9"/>
                         <outlet property="invalidLabel" destination="Xnv-UK-PNL" id="YR7-vn-pX2"/>
                         <outlet property="letsGoButton" destination="emn-Kc-AOY" id="dl3-iI-DoT"/>
                     </connections>
@@ -2208,7 +2238,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                 </mask>
                                             </variation>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No HighSchool Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0U-gM-GnL">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No HighSchool Found 🏫" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="D0U-gM-GnL">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Az0-Rx-dWL"/>
@@ -2376,7 +2406,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WiL-xO-Dmd">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🏡Home " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WiL-xO-Dmd">
                                             <rect key="frame" x="47" y="28" width="108" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="108" id="MUg-Bv-Syk"/>
@@ -2404,7 +2434,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2J-cX-kb4">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=" 🔔Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2J-cX-kb4">
                                             <rect key="frame" x="47" y="28" width="108" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="169" id="030-8V-QWK"/>
@@ -2502,7 +2532,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find Class" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbV-Kc-RHh">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔎Find Class" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbV-Kc-RHh">
                                             <rect key="frame" x="55" y="29" width="89" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="89" id="1m2-YK-9Tv">
@@ -3797,7 +3827,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="208"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Posts Yet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObR-XG-eqT">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Look Lost" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObR-XG-eqT">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="24"/>
                                             <color key="textColor" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
@@ -3806,11 +3836,11 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkz-oa-J7F">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="102" id="8Hp-0w-b5J"/>
+                                                <constraint firstAttribute="width" constant="184" id="8Hp-0w-b5J"/>
                                                 <constraint firstAttribute="height" constant="32" id="imO-FH-GbI"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                                            <state key="normal" title="Find Class">
+                                            <state key="normal" title="Go Find Classes🔍">
                                                 <color key="titleColor" red="0.20392156862745098" green="0.72549019607843135" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <variation key="default">
@@ -4339,6 +4369,125 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                     <outlet property="WHatLabel" destination="E3s-S5-6tn" id="LBg-Rw-7xC"/>
                                     <outlet property="dateLabel" destination="gLN-ec-fga" id="d6t-V1-sdh"/>
                                     <outlet property="topicLabel" destination="vBk-3b-LyW" id="Bu3-qv-crl"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="newbieCell" rowHeight="60" id="Oj7-yN-VDB" customClass="AssNewMemberCell" customModule="Dac" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oj7-yN-VDB" id="iXv-ER-UAJ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spencer Jew just joined Geology" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mSH-Dg-9fd">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today @ 7:31" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBu-Zp-jmx">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="cPv-bb-dDB"/>
+                                                <constraint firstAttribute="width" constant="83" id="umB-zm-5d3"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                            <color key="textColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="cPv-bb-dDB"/>
+                                                    <exclude reference="umB-zm-5d3"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="cPv-bb-dDB"/>
+                                                    <include reference="umB-zm-5d3"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlusUserPPic" translatesAutoresizingMaskIntoConstraints="NO" id="5VR-Fc-6os">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="F3n-ES-YA6"/>
+                                                <constraint firstAttribute="width" constant="30" id="tKo-iH-crD"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="F3n-ES-YA6"/>
+                                                    <exclude reference="tKo-iH-crD"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="F3n-ES-YA6"/>
+                                                    <include reference="tKo-iH-crD"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5VR-Fc-6os" firstAttribute="leading" secondItem="iXv-ER-UAJ" secondAttribute="leadingMargin" id="EdP-Tg-stI"/>
+                                        <constraint firstItem="mSH-Dg-9fd" firstAttribute="top" secondItem="iXv-ER-UAJ" secondAttribute="topMargin" constant="7" id="FUK-Au-g5E"/>
+                                        <constraint firstItem="mSH-Dg-9fd" firstAttribute="trailing" secondItem="iXv-ER-UAJ" secondAttribute="trailingMargin" id="Gqh-EU-WJb">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                        </constraint>
+                                        <constraint firstItem="mSH-Dg-9fd" firstAttribute="bottom" secondItem="iXv-ER-UAJ" secondAttribute="bottomMargin" id="HUc-If-zQD"/>
+                                        <constraint firstItem="5VR-Fc-6os" firstAttribute="centerY" secondItem="iXv-ER-UAJ" secondAttribute="centerY" id="IA6-8H-j6v"/>
+                                        <constraint firstItem="mSH-Dg-9fd" firstAttribute="trailing" secondItem="iXv-ER-UAJ" secondAttribute="trailingMargin" constant="15" id="JNb-wv-Bcl"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dBu-Zp-jmx" secondAttribute="trailing" constant="-8" id="LTj-nu-WcR"/>
+                                        <constraint firstItem="dBu-Zp-jmx" firstAttribute="top" secondItem="iXv-ER-UAJ" secondAttribute="topMargin" constant="-8" id="RaS-jM-Pne"/>
+                                        <constraint firstItem="mSH-Dg-9fd" firstAttribute="top" secondItem="iXv-ER-UAJ" secondAttribute="topMargin" id="SCb-yb-FNy"/>
+                                        <constraint firstItem="mSH-Dg-9fd" firstAttribute="leading" secondItem="5VR-Fc-6os" secondAttribute="trailing" constant="21" id="eYc-5t-EMD"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="mSH-Dg-9fd" secondAttribute="trailing" constant="31" id="fnR-ya-QrC"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="mSH-Dg-9fd" secondAttribute="bottom" constant="6" id="uRS-qP-Wbr"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="mSH-Dg-9fd"/>
+                                            <exclude reference="dBu-Zp-jmx"/>
+                                            <exclude reference="5VR-Fc-6os"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="EdP-Tg-stI"/>
+                                            <exclude reference="IA6-8H-j6v"/>
+                                            <exclude reference="FUK-Au-g5E"/>
+                                            <exclude reference="Gqh-EU-WJb"/>
+                                            <exclude reference="HUc-If-zQD"/>
+                                            <exclude reference="JNb-wv-Bcl"/>
+                                            <exclude reference="SCb-yb-FNy"/>
+                                            <exclude reference="eYc-5t-EMD"/>
+                                            <exclude reference="fnR-ya-QrC"/>
+                                            <exclude reference="uRS-qP-Wbr"/>
+                                            <exclude reference="LTj-nu-WcR"/>
+                                            <exclude reference="RaS-jM-Pne"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="mSH-Dg-9fd"/>
+                                            <include reference="dBu-Zp-jmx"/>
+                                            <include reference="5VR-Fc-6os"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="EdP-Tg-stI"/>
+                                            <include reference="IA6-8H-j6v"/>
+                                            <include reference="FUK-Au-g5E"/>
+                                            <exclude reference="Gqh-EU-WJb"/>
+                                            <exclude reference="HUc-If-zQD"/>
+                                            <exclude reference="JNb-wv-Bcl"/>
+                                            <exclude reference="SCb-yb-FNy"/>
+                                            <include reference="eYc-5t-EMD"/>
+                                            <include reference="fnR-ya-QrC"/>
+                                            <include reference="uRS-qP-Wbr"/>
+                                            <include reference="LTj-nu-WcR"/>
+                                            <include reference="RaS-jM-Pne"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dateLabel" destination="dBu-Zp-jmx" id="g3Y-Yc-fox"/>
+                                    <outlet property="newMEMLabel" destination="mSH-Dg-9fd" id="kX9-hD-5id"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -7534,6 +7683,119 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                     <outlet property="addTopicButton" destination="j3b-tG-jgw" id="z0E-Ym-t0L"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="newbieCell" rowHeight="60" id="89W-UK-Xtv" customClass="AssNewMemberCell" customModule="Dac" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="89W-UK-Xtv" id="Wth-sJ-jgi">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spencer Jew just joined the Class" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="clk-kG-HWV">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today @ 7:31" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5T4-cf-Zv3">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="dF0-oU-p82"/>
+                                                <constraint firstAttribute="width" constant="83" id="wGi-U8-8Jk"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                            <color key="textColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="dF0-oU-p82"/>
+                                                    <exclude reference="wGi-U8-8Jk"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="dF0-oU-p82"/>
+                                                    <include reference="wGi-U8-8Jk"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlusUserPPic" translatesAutoresizingMaskIntoConstraints="NO" id="d9W-Dd-Emx">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="ofK-G6-wvJ"/>
+                                                <constraint firstAttribute="width" constant="30" id="u1E-X5-HPc"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="ofK-G6-wvJ"/>
+                                                    <exclude reference="u1E-X5-HPc"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="ofK-G6-wvJ"/>
+                                                    <include reference="u1E-X5-HPc"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="clk-kG-HWV" firstAttribute="bottom" secondItem="Wth-sJ-jgi" secondAttribute="bottomMargin" id="4YA-vD-6Ci"/>
+                                        <constraint firstItem="5T4-cf-Zv3" firstAttribute="top" secondItem="Wth-sJ-jgi" secondAttribute="topMargin" constant="-8" id="ATb-BG-1wR"/>
+                                        <constraint firstItem="clk-kG-HWV" firstAttribute="trailing" secondItem="Wth-sJ-jgi" secondAttribute="trailingMargin" id="Pan-ip-sgR">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                        </constraint>
+                                        <constraint firstItem="clk-kG-HWV" firstAttribute="top" secondItem="Wth-sJ-jgi" secondAttribute="topMargin" id="YdT-QB-csb"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="clk-kG-HWV" secondAttribute="bottom" constant="6" id="fpD-hf-gsE"/>
+                                        <constraint firstItem="clk-kG-HWV" firstAttribute="top" secondItem="Wth-sJ-jgi" secondAttribute="topMargin" constant="7" id="gBa-K4-mIs"/>
+                                        <constraint firstItem="clk-kG-HWV" firstAttribute="leading" secondItem="d9W-Dd-Emx" secondAttribute="trailing" constant="21" id="jat-4c-9Os"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="5T4-cf-Zv3" secondAttribute="trailing" constant="-8" id="kXT-xg-RRU"/>
+                                        <constraint firstItem="d9W-Dd-Emx" firstAttribute="leading" secondItem="Wth-sJ-jgi" secondAttribute="leadingMargin" id="uKb-Op-BZG"/>
+                                        <constraint firstItem="d9W-Dd-Emx" firstAttribute="centerY" secondItem="Wth-sJ-jgi" secondAttribute="centerY" id="y5Q-c1-CgY"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="clk-kG-HWV"/>
+                                            <exclude reference="5T4-cf-Zv3"/>
+                                            <exclude reference="d9W-Dd-Emx"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="uKb-Op-BZG"/>
+                                            <exclude reference="y5Q-c1-CgY"/>
+                                            <exclude reference="4YA-vD-6Ci"/>
+                                            <exclude reference="Pan-ip-sgR"/>
+                                            <exclude reference="YdT-QB-csb"/>
+                                            <exclude reference="fpD-hf-gsE"/>
+                                            <exclude reference="gBa-K4-mIs"/>
+                                            <exclude reference="jat-4c-9Os"/>
+                                            <exclude reference="ATb-BG-1wR"/>
+                                            <exclude reference="kXT-xg-RRU"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="clk-kG-HWV"/>
+                                            <include reference="5T4-cf-Zv3"/>
+                                            <include reference="d9W-Dd-Emx"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="uKb-Op-BZG"/>
+                                            <include reference="y5Q-c1-CgY"/>
+                                            <exclude reference="4YA-vD-6Ci"/>
+                                            <include reference="Pan-ip-sgR"/>
+                                            <exclude reference="YdT-QB-csb"/>
+                                            <include reference="fpD-hf-gsE"/>
+                                            <include reference="gBa-K4-mIs"/>
+                                            <include reference="jat-4c-9Os"/>
+                                            <include reference="ATb-BG-1wR"/>
+                                            <include reference="kXT-xg-RRU"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dateLabel" destination="5T4-cf-Zv3" id="gme-EO-uug"/>
+                                    <outlet property="newMEMLabel" destination="clk-kG-HWV" id="QNd-eb-fan"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="7Xp-it-6D5" id="zvf-cb-PGb"/>
@@ -7661,9 +7923,6 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="0.0" y="129" width="375" height="32"/>
-                                            </variation>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcB-Ye-35V">
                                             <rect key="frame" x="227" y="18" width="133" height="53"/>
@@ -7683,7 +7942,8 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="k8T-Rl-Pof"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="206" y="67" width="96" height="32"/>
                                                 <mask key="constraints">
                                                     <include reference="ApN-cZ-pTG"/>
                                                     <exclude reference="NMJ-Eq-eOx"/>
@@ -7711,8 +7971,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="oGb-0S-9Qv"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="271" y="27" width="77" height="32"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
                                                     <exclude reference="0mQ-xr-Nky"/>
                                                     <include reference="PIB-iG-GLN"/>
@@ -7842,8 +8101,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="RCq-bF-bVm"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="18" y="37" width="340" height="25"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
                                                     <include reference="RCq-bF-bVm"/>
                                                 </mask>
@@ -7865,8 +8123,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="wjx-Uo-Ngg"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="8" y="79" width="359" height="21"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
                                                     <exclude reference="0ND-ui-5Ed"/>
                                                     <include reference="PQZ-ip-JAP"/>
@@ -7960,6 +8217,9 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                             <state key="normal" title="Add New Topic">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="80" y="10" width="160" height="30"/>
+                                            </variation>
                                             <connections>
                                                 <segue destination="qRO-uF-TFX" kind="show" identifier="oNewLessonVC" id="qk7-57-2em"/>
                                             </connections>
@@ -8019,7 +8279,8 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="hZo-27-hwv"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="233" y="0.0" width="79" height="21"/>
                                                 <mask key="constraints">
                                                     <exclude reference="0u7-QZ-vz7"/>
                                                     <include reference="H6R-Z7-bq7"/>
@@ -8034,6 +8295,9 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.20587585410000001" green="0.20587585410000001" blue="0.20587585410000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="35" y="31" width="250" height="38"/>
+                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Homework" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.64999997615814209" translatesAutoresizingMaskIntoConstraints="NO" id="G41-ec-BJZ">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -8142,7 +8406,8 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="ksa-rc-Ocs"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="233" y="8" width="79" height="21"/>
                                                 <mask key="constraints">
                                                     <include reference="6qK-sa-u01"/>
                                                     <exclude reference="Uq1-MC-Xgf"/>
@@ -8157,6 +8422,9 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" red="0.46973828359999997" green="0.46973828359999997" blue="0.46973828359999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="35" y="39" width="250" height="38"/>
+                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Homework" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.64999997615814209" translatesAutoresizingMaskIntoConstraints="NO" id="JkM-VE-ZCK">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -8279,7 +8547,8 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="vuF-Lu-pjq"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="19" y="32" width="282" height="29"/>
                                                 <mask key="constraints">
                                                     <include reference="vuF-Lu-pjq"/>
                                                 </mask>
@@ -8329,7 +8598,8 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="ylb-g3-yHr"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="233" y="5" width="79" height="21"/>
                                                 <mask key="constraints">
                                                     <exclude reference="Nle-Ew-ALK"/>
                                                     <exclude reference="uMY-Ng-pvm"/>
@@ -8351,7 +8621,8 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="WrK-aa-a07"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="50" y="69" width="251" height="42"/>
                                                 <mask key="constraints">
                                                     <include reference="WrK-aa-a07"/>
                                                 </mask>
@@ -8554,7 +8825,8 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="xLe-YR-u2l"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="50" y="284" width="251" height="42"/>
                                                 <mask key="constraints">
                                                     <include reference="xLe-YR-u2l"/>
                                                 </mask>
@@ -8572,7 +8844,8 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="yZd-RE-WU9"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="40" y="72" width="240" height="204"/>
                                                 <mask key="constraints">
                                                     <include reference="yZd-RE-WU9"/>
                                                 </mask>
@@ -8616,7 +8889,8 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="VQG-UP-Pij"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="19" y="35" width="282" height="29"/>
                                                 <mask key="constraints">
                                                     <include reference="VQG-UP-Pij"/>
                                                 </mask>
@@ -8641,7 +8915,8 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                                     <exclude reference="tBU-Lk-v5g"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="233" y="5" width="79" height="21"/>
                                                 <mask key="constraints">
                                                     <include reference="RsA-X5-G0C"/>
                                                     <include reference="lJY-Gx-xxL"/>
@@ -8766,6 +9041,9 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                             <state key="normal" title="Ask Question">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="80" y="10" width="160" height="30"/>
+                                            </variation>
                                             <connections>
                                                 <segue destination="6Qh-aY-M64" kind="show" identifier="toAddQuestionVC" id="y5R-xw-JiX"/>
                                             </connections>
@@ -8799,6 +9077,121 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                     <outlet property="askButton" destination="R5P-AJ-QPO" id="rl6-KA-Phu"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="newbieCell" rowHeight="60" id="mpO-rl-wV0" customClass="AssNewMemberCell" customModule="Dac" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mpO-rl-wV0" id="0nG-cb-np5">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spencer Jew just joined the Class" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="OIk-OI-b9l">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="59" y="15" width="253" height="30"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today @ 7:31" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBa-1Z-ZMF">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="83" id="8Q3-er-TBT"/>
+                                                <constraint firstAttribute="height" constant="21" id="HDG-d1-xRx"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                            <color key="textColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="HDG-d1-xRx"/>
+                                                    <exclude reference="8Q3-er-TBT"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="237" y="0.0" width="83" height="21"/>
+                                                <mask key="constraints">
+                                                    <include reference="HDG-d1-xRx"/>
+                                                    <include reference="8Q3-er-TBT"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlusUserPPic" translatesAutoresizingMaskIntoConstraints="NO" id="zmd-uv-W08">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="qbc-iS-uTt"/>
+                                                <constraint firstAttribute="height" constant="30" id="uXE-e8-9lP"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="uXE-e8-9lP"/>
+                                                    <exclude reference="qbc-iS-uTt"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="uXE-e8-9lP"/>
+                                                    <include reference="qbc-iS-uTt"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="gBa-1Z-ZMF" secondAttribute="trailing" constant="-8" id="GzU-ic-uaw"/>
+                                        <constraint firstItem="OIk-OI-b9l" firstAttribute="top" secondItem="0nG-cb-np5" secondAttribute="topMargin" constant="7" id="OmT-gF-QwS"/>
+                                        <constraint firstItem="zmd-uv-W08" firstAttribute="centerY" secondItem="0nG-cb-np5" secondAttribute="centerY" id="RYO-Cl-izZ"/>
+                                        <constraint firstItem="OIk-OI-b9l" firstAttribute="top" secondItem="0nG-cb-np5" secondAttribute="topMargin" id="VIs-sJ-dHA"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="OIk-OI-b9l" secondAttribute="bottom" constant="6" id="Xbd-ld-AME"/>
+                                        <constraint firstItem="OIk-OI-b9l" firstAttribute="leading" secondItem="zmd-uv-W08" secondAttribute="trailing" constant="21" id="csI-Bh-yOS"/>
+                                        <constraint firstItem="zmd-uv-W08" firstAttribute="leading" secondItem="0nG-cb-np5" secondAttribute="leadingMargin" id="czi-ne-El8"/>
+                                        <constraint firstItem="OIk-OI-b9l" firstAttribute="bottom" secondItem="0nG-cb-np5" secondAttribute="bottomMargin" id="eEZ-fp-9gl"/>
+                                        <constraint firstItem="gBa-1Z-ZMF" firstAttribute="top" secondItem="0nG-cb-np5" secondAttribute="topMargin" constant="-8" id="gLl-CY-ebk"/>
+                                        <constraint firstItem="OIk-OI-b9l" firstAttribute="trailing" secondItem="0nG-cb-np5" secondAttribute="trailingMargin" id="s9M-tb-Kb9"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="OIk-OI-b9l"/>
+                                            <exclude reference="gBa-1Z-ZMF"/>
+                                            <exclude reference="zmd-uv-W08"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="RYO-Cl-izZ"/>
+                                            <exclude reference="czi-ne-El8"/>
+                                            <exclude reference="OmT-gF-QwS"/>
+                                            <exclude reference="VIs-sJ-dHA"/>
+                                            <exclude reference="Xbd-ld-AME"/>
+                                            <exclude reference="csI-Bh-yOS"/>
+                                            <exclude reference="eEZ-fp-9gl"/>
+                                            <exclude reference="s9M-tb-Kb9"/>
+                                            <exclude reference="GzU-ic-uaw"/>
+                                            <exclude reference="gLl-CY-ebk"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="OIk-OI-b9l"/>
+                                            <include reference="gBa-1Z-ZMF"/>
+                                            <include reference="zmd-uv-W08"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="RYO-Cl-izZ"/>
+                                            <include reference="czi-ne-El8"/>
+                                            <include reference="OmT-gF-QwS"/>
+                                            <exclude reference="VIs-sJ-dHA"/>
+                                            <include reference="Xbd-ld-AME"/>
+                                            <include reference="csI-Bh-yOS"/>
+                                            <exclude reference="eEZ-fp-9gl"/>
+                                            <include reference="s9M-tb-Kb9"/>
+                                            <include reference="GzU-ic-uaw"/>
+                                            <include reference="gLl-CY-ebk"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dateLabel" destination="gBa-1Z-ZMF" id="9tq-OI-vKW"/>
+                                    <outlet property="newMEMLabel" destination="OIk-OI-b9l" id="phR-AI-v9h"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Voi-dy-FaU" id="mp1-gk-uIK"/>
@@ -8816,8 +9209,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                             </state>
                         </button>
                     </navigationItem>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="1568"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="cp7-Ns-qJc">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
@@ -12475,7 +12867,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                             <rect key="frame" x="127" y="7" width="67" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
-                            <state key="normal" title="Answer">
+                            <state key="normal" title="Post">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -13205,7 +13597,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <segments>
                                             <segment title="All"/>
-                                            <segment title="Questions"/>
+                                            <segment title="Questions 🤔"/>
                                             <segment title="Topics"/>
                                         </segments>
                                         <color key="tintColor" red="0.3803921569" green="0.82352941180000006" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -13221,7 +13613,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
                                             <constraint firstAttribute="width" constant="160" id="NVl-eX-bgS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
-                                        <state key="normal" title="Say Something">
+                                        <state key="normal" title="📢  Say Something   ">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -13339,6 +13731,7 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
         <image name="MoreMK" width="27" height="6"/>
         <image name="MoreMK 3" width="71" height="40"/>
         <image name="P" width="32" height="32"/>
+        <image name="PlusUserPPic" width="256" height="256"/>
         <image name="S" width="32" height="32"/>
         <image name="SettingsIcon" width="40" height="40"/>
         <image name="U" width="32" height="32"/>
@@ -13360,14 +13753,14 @@ Dac - Classrooom Q&amp;A shall not be obligated to indemnify or defend you with 
         <segue reference="q3A-tV-ccu"/>
         <segue reference="fGt-O5-wsb"/>
         <segue reference="LSi-jR-cwh"/>
-        <segue reference="Wct-MS-k77"/>
-        <segue reference="i5f-qx-2Pj"/>
-        <segue reference="Zp4-lH-dH6"/>
         <segue reference="PsB-1a-q3Q"/>
-        <segue reference="jr1-0W-bqv"/>
+        <segue reference="y5R-xw-JiX"/>
+        <segue reference="JNk-gv-P29"/>
+        <segue reference="qk7-57-2em"/>
+        <segue reference="wW6-qp-qR9"/>
+        <segue reference="hbg-oZ-9mf"/>
+        <segue reference="E7W-cf-w3m"/>
         <segue reference="UGY-pk-WNj"/>
         <segue reference="NpO-ab-Ojt"/>
-        <segue reference="wst-ei-Q4R"/>
-        <segue reference="g4c-KI-uAp"/>
     </inferredMetricsTieBreakers>
 </document>

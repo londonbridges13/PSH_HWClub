@@ -130,7 +130,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
 
         
 
-        addV.addButton("Done") { () -> Void in
+        addV.addButton("Done ✅") { () -> Void in
             // IF ERROR CHECK THIS AREA
 
             print("pressed")
@@ -177,7 +177,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
             
         }
         
-        addV.addButton("Cancel") { () -> Void in
+        addV.addButton("Cancel ❌") { () -> Void in
             
         }
         

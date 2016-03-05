@@ -27,9 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sdk.appID = "201986052"
         sdk.devID = "104057493"
         
-        sdk.preferences = STASDKPreferences.prefrencesWithAge(18, andGender: STAGender_Undefined)
+//        sdk.preferences = STASDKPreferences.prefrencesWithAge(18, andGender: STAGender_Undefined)
 
-//        sdk.disableReturnAd()
         
         
         application.statusBarStyle = UIStatusBarStyle.LightContent

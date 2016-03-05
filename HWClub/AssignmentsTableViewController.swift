@@ -22,6 +22,9 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     @IBOutlet var OtherContine: UIView!
     @IBOutlet var contine: UIView!
 
+    
+    var Classmates = [MemberObject]()
+    
     var sgeControl = 0
     var ToppyPosts = [FullClassPost]()
     var QuestionPosts = [FullClassPost]()
@@ -205,6 +208,45 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         }
     }
 
+    
+    
+    func memberClassQuery(){
+        let Class = PFQuery(className: "ClassesFollowed")
+        Class.whereKey("classesFollowed", equalTo: self.theClass!)
+        Class.whereKey("teacherName", equalTo: self.theTeacher!)
+        Class.whereKey("School", equalTo: self.theSchool!)
+        
+        Class.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+            if error == nil{
+                if let results = results as [PFObject]?{
+                    for result in results{
+                        var mo = MemberObject()
+                        var cmo = FullClassPost()
+                        
+                        let aUsername = result["Username"] as? String
+                        
+                        cmo.Type = "newbie"
+
+                        cmo.IDCheck = result.objectId!
+                        if aUsername != nil{
+                            mo.username = aUsername
+                            cmo.POSTERNAME = aUsername
+                            print("New Joiner\(aUsername!)")
+                        }
+                            mo.date = result.createdAt!
+                            cmo.date = result.createdAt!
+                        
+                        self.cPost.append(cmo)
+                        self.cachedPosts.append(cmo)
+                        self.Classmates.append(mo)
+                        
+                    }
+                }
+            }
+        }
+        
+    }
+    
     
     
     @IBAction func unwindSegueASS(segue:UIStoryboardSegue){
@@ -685,6 +727,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         
 //        self.LoadingDesign()
         if self.gogo == 0{
+            self.memberClassQuery()
             self.KLMqueryAssignments()
             self.gogo += 1
             print(self.gogo)
@@ -883,7 +926,8 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                         tableView.estimatedRowHeight = 106
                         //                tableview.rowHeight = 106
                         return cell
-                    }else if cPost[indexPathh].Type == "Q"{
+                    }
+                    if cPost[indexPathh].Type == "Q"{
                         
                         tableView.rowHeight = UITableViewAutomaticDimension
                         tableView.estimatedRowHeight = 107
@@ -899,7 +943,24 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                         cell.dateLabel.text = dts(cPost[indexPathh].date!)
                         //                cell.classnameLabel.text = cPost[indexPathh].theClass!
                         return cell
+                    }else if cPost[indexPathh].Type == "newbie"{
+                        print("JIJIJIONJION")
+//                        tableView.rowHeight = UITableViewAutomaticDimension
+                        tableView.rowHeight = 60
+
+                        let cell : AssNewMemberCell = tableView.dequeueReusableCellWithIdentifier("newbieCell", forIndexPath: indexPath) as! AssNewMemberCell
+                        
+                        if cPost[indexPath.row].POSTERNAME != nil{
+                            cell.newMEMLabel.text = "\(cPost[indexPath.row].POSTERNAME!) just joined the Class"
+                        }
+                        if cPost[indexPath.row].date != nil{
+                            cell.dateLabel.text = "\(dts(cPost[indexPath.row].date!))"
+                        }
+                        
+                        return cell
+                        
                     }
+
                     else{
                         var celli : UITableViewCell?
                         if cPost[indexPathh].hasIMG == false{
@@ -990,7 +1051,8 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                     tableView.estimatedRowHeight = 106
                     //                tableview.rowHeight = 106
                     return cell
-                }else if cPost[indexPath.row].Type == "Q"{
+                }
+                if cPost[indexPath.row].Type == "Q"{
                     
                     tableView.rowHeight = UITableViewAutomaticDimension
                     tableView.estimatedRowHeight = 107
@@ -1006,6 +1068,22 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                     cell.dateLabel.text = dts(cPost[indexPath.row].date!)
                     //                cell.classnameLabel.text = cPost[indexPath.row].theClass!
                     return cell
+                }else if cPost[indexPath.row].Type == "newbie"{
+//                    tableView.rowHeight = UITableViewAutomaticDimension
+                    tableView.rowHeight = 60
+                    
+                    print("JIJIJIONJION")
+                    let cell : AssNewMemberCell = tableView.dequeueReusableCellWithIdentifier("newbieCell", forIndexPath: indexPath) as! AssNewMemberCell
+                    if cPost[indexPath.row].POSTERNAME != nil{
+                        cell.newMEMLabel.text = "\(cPost[indexPath.row].POSTERNAME!) just joined the Class"
+                    }
+                    if cPost[indexPath.row].date != nil{
+                        cell.dateLabel.text = "\(dts(cPost[indexPath.row].date!))"
+                    }
+                    
+                    
+                    return cell
+
                 }
                 else{
                     var celli : UITableViewCell?
@@ -1444,7 +1522,6 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     
     
     func KLMqueryAssignments(){
-        
         //        dispatch_async(dispatch_queue_create("underground", nil)) {
         
         let Ass = PFQuery(className: "Assignments")

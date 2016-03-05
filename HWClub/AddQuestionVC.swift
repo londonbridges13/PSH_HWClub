@@ -36,11 +36,11 @@ class AddQuestionVC: UIViewController {
         if diko != nil{
             qeustionTX.resignFirstResponder()
             var alert = SCLAlertView()
-            alert.addButton("Follow Class", action: { () -> Void in
+            alert.addButton("Follow Class 🏃", action: { () -> Void in
                 let _ = self.followClass()
                 self.qeustionTX.becomeFirstResponder()
             })
-            alert.addButton("Go Back", action: { () -> Void in
+            alert.addButton("Go Back ⛔️", action: { () -> Void in
                 //
                 self.uwnOther.sendActionsForControlEvents(.TouchUpInside)
                 self.senditButty.sendActionsForControlEvents(.TouchUpInside)

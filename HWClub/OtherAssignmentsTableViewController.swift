@@ -481,6 +481,47 @@
         }
         
         
+        
+        func memberClassQuery(){
+            let Class = PFQuery(className: "ClassesFollowed")
+            Class.whereKey("classesFollowed", equalTo: self.theClass!)
+            Class.whereKey("teacherName", equalTo: self.theTeacher!)
+            Class.whereKey("School", equalTo: self.theSchool!)
+            
+            Class.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) -> Void in
+                if error == nil{
+                    if let results = results as [PFObject]?{
+                        for result in results{
+                            var mo = MemberObject()
+                            var cmo = FullClassPost()
+                            
+                            let aUsername = result["Username"] as? String
+                            
+                            cmo.Type = "newbie"
+                            
+                            cmo.IDCheck = result.objectId!
+                            if aUsername != nil{
+                                mo.username = aUsername
+                                cmo.POSTERNAME = aUsername
+                                print("New Joiner\(aUsername!)")
+                            }
+                            mo.date = result.createdAt!
+                            cmo.date = result.createdAt!
+                            
+                            self.cPost.append(cmo)
+                            self.cachedPosts.append(cmo)
+//                            self.Classmates.append(mo)
+                            
+                        }
+                    }
+                }
+            }
+            
+        }
+        
+
+        
+        
         func GroupChatInfo(){
             print("GroupChatInfo")
             let jim = PFQuery(className: "Questions")
@@ -676,6 +717,7 @@
             
             //        self.LoadingDesign()
             if self.gogo == 0{
+                memberClassQuery()
                 self.KLMqueryAssignments()
                 self.gogo += 1
                 print(self.gogo)
@@ -887,7 +929,24 @@
                             cell.dateLabel.text = dts(cPost[indexPathh].date!)
                             //                cell.classnameLabel.text = cPost[indexPathh].theClass!
                             return cell
+                        }else if cPost[indexPathh].Type == "newbie"{
+                            //                    tableView.rowHeight = UITableViewAutomaticDimension
+                            tableView.rowHeight = 60
+                            
+                            print("JIJIJIONJION")
+                            let cell : AssNewMemberCell = tableView.dequeueReusableCellWithIdentifier("newbieCell", forIndexPath: indexPath) as! AssNewMemberCell
+                            if cPost[indexPath.row].POSTERNAME != nil{
+                                cell.newMEMLabel.text = "\(cPost[indexPath.row].POSTERNAME!) just joined the Class"
+                            }
+                            if cPost[indexPath.row].date != nil{
+                                cell.dateLabel.text = "\(dts(cPost[indexPath.row].date!))"
+                            }
+                            
+                            
+                            return cell
+                            
                         }
+
                         else{
                             var celli : UITableViewCell?
                             if cPost[indexPathh].hasIMG == false{
@@ -994,6 +1053,22 @@
                         cell.dateLabel.text = dts(cPost[indexPath.row].date!)
                         //                cell.classnameLabel.text = cPost[indexPath.row].theClass!
                         return cell
+                    }else if cPost[indexPath.row].Type == "newbie"{
+                        //                    tableView.rowHeight = UITableViewAutomaticDimension
+                        tableView.rowHeight = 60
+                        
+                        print("JIJIJIONJION")
+                        let cell : AssNewMemberCell = tableView.dequeueReusableCellWithIdentifier("newbieCell", forIndexPath: indexPath) as! AssNewMemberCell
+                        if cPost[indexPath.row].POSTERNAME != nil{
+                            cell.newMEMLabel.text = "\(cPost[indexPath.row].POSTERNAME!) just joined the Class"
+                        }
+                        if cPost[indexPath.row].date != nil{
+                            cell.dateLabel.text = "\(dts(cPost[indexPath.row].date!))"
+                        }
+                        
+                        
+                        return cell
+                        
                     }
                     else{
                         var celli : UITableViewCell?

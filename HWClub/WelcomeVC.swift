@@ -18,11 +18,13 @@ class WelcomeVC: UIViewController, UITextFieldDelegate, SFSafariViewControllerDe
     @IBOutlet var letsGoButton: UIButton!
     @IBOutlet var CancelButton: UIButton!
     
+    @IBOutlet var icons: UIImageView!
     @IBOutlet weak var eUU: UITextField!
     @IBOutlet weak var ePP: UITextField!
     @IBOutlet var invalidLabel : UILabel!
     
     var greeny = UIColor(red: 49/255, green: 175/255, blue: 112/255, alpha: 1)
+    var bluey = UIColor(red: 60/255, green: 197/255, blue: 217/255, alpha: 1)
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        LoginButton.layer.shadowRadius = 5
@@ -36,6 +38,10 @@ class WelcomeVC: UIViewController, UITextFieldDelegate, SFSafariViewControllerDe
         eUU.delegate = self
         ePP.delegate = self
         
+        icons.layer.cornerRadius = 93
+        icons.layer.masksToBounds = true
+        icons.layer.borderWidth = 8
+        icons.layer.borderColor = bluey.CGColor
         
         LoginButton.layer.cornerRadius = 9//13
         LoginButton.layer.borderColor = UIColor.whiteColor().CGColor
