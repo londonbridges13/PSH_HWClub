@@ -48,7 +48,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     var imagePicker: UIImagePickerController!
     
-    @IBOutlet var shortAnswerTX: UITextField! = nil
+//    @IBOutlet var shortAnswerTX: UITextField! = nil
     @IBOutlet var NewSenderButton: UIButton!
     @IBOutlet var doneButton: UIBarButtonItem!
     
@@ -72,7 +72,12 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
 //        self.answerTXT.becomeFirstResponder()
 //        self.answerTXT.delegate = self
 //        self.answerTXT.becomeFirstResponder()
-
+        if diko == nil{
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.answerTXT.becomeFirstResponder()
+            }
+        }
 
     }
     override func viewDidLoad() {
@@ -100,6 +105,11 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             alert.showCloseButton = false
             alert.showInfo("Hold Up", subTitle: "Not Following this Class")
             
+        }else{
+//            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+//            dispatch_after(time, dispatch_get_main_queue()) {
+//                self.answerTXT.becomeFirstResponder()
+//            }
         }
         
         if self.theClass == nil {//|| self.QuestionID == nil || self.QuestionerID == nil{
@@ -115,13 +125,19 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         print(seger)
         
         quickQuery()
-        self.shortAnswerTX.delegate = self
+//        self.shortAnswerTX.delegate = self
         
 //        self.shortAnswerTX.becomeFirstResponder()
 
         self.answerTXT.delegate = self
-        answerTXT.text = "Tap to Answer"
-        answerTXT.textColor = UIColor.lightGrayColor()
+        answerTXT.text = ""//"Tap to Post"
+//        answerTXT.textColor = UIColor.lightGrayColor()
+        
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        }
 //        self.answerTXT.becomeFirstResponder()
 
 //        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 5/9 * Int64(NSEC_PER_SEC))
@@ -235,11 +251,11 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             self.quickICcheck()
             self.view.userInteractionEnabled = false
         }
-        if answerTXT.text == "Tap to Answer"{
+        if answerTXT.text == "Tap to Post"{
             answerTXT.text = ""
         }
         LoadingDesign()
-        var htht = shortAnswerTX.text!.characters.count + answerTXT.text.characters.count
+        var htht = answerTXT.text.characters.count
 //        if shortAnswerTX.text == "" && answerTXT.text == "Tap to Answer"{//answerTXT.text == "" ||
         if htht <= 2{
             // THERE's Nothing
@@ -247,6 +263,9 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             
             let alert = SCLAlertView()
             alert.showInfo("Too Short", subTitle: "Type a little more")
+            if self.answerTXT.text == ""{
+                self.answerTXT.text = "Tap to Post"
+            }
             removeLoading()
             removeLoading()
         }else{
@@ -261,26 +280,17 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     func sendAnswers(){
         
-        if shortAnswerTX.text != "" || answerTXT.text != ""{
+        if  answerTXT.text != ""{
  
-            if shortAnswerTX.text == nil{
-                shortAnswerTX.text = answerTXT.text
-                self.shortA = answerTXT.text
-            }else if shortAnswerTX.text == ""{
-                shortAnswerTX.text = answerTXT.text
-                self.shortA = answerTXT.text
-            }else if shortAnswerTX.text != ""{
-                self.shortA = shortAnswerTX.text
-            }
             
             if answerTXT.text.characters.count < 3{// == "Tap to Answer"{
                 print("Full House")
-                answerTXT.text = shortAnswerTX.text
-                longA = shortAnswerTX.text
-            }else if answerTXT.text == "Tap to Answer"{
+//                answerTXT.text = shortAnswerTX.text
+//                longA = shortAnswerTX.text
+            }else if answerTXT.text == "Tap to Post"{
                 print("Full House")
-                answerTXT.text = shortAnswerTX.text
-                longA = shortAnswerTX.text
+//                answerTXT.text = shortAnswerTX.text
+//                longA = shortAnswerTX.text
             }else{
                 self.longA = answerTXT.text
             }
@@ -310,7 +320,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     func ParsePart(){
         LoadingDesign()
         answerTXT.endEditing(true)
-        shortAnswerTX.endEditing(true)
+//        shortAnswerTX.endEditing(true)
         sendAnswers()
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -338,9 +348,9 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             answer["hasAnImage"] = self.sendingIMG!
             answer["username"] = self.klkl?.username!
             if self.shortA != nil{
-                answer["shortAnswer"] = self.shortA!//self.shortAnswerTX.text!
+                answer["shortAnswer"] = ""//self.shortA!//self.shortAnswerTX.text!
             }else{
-                answer["shortAnswer"] = self.longA!//self.shortAnswerTX.text!
+                answer["shortAnswer"] = ""//self.longA!//self.shortAnswerTX.text!
             }
             answer["numOfDaps"] = 0
             answer["QuestionID"] = self.QuestionID
@@ -395,7 +405,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
                 answer["Answer"] = self.answerTXT.text!
                 answer["hasAnImage"] = self.sendingIMG!
                 answer["username"] = self.klkl?.username!
-                answer["shortAnswer"] = self.shortAnswerTX.text!
+                answer["shortAnswer"] = ""//self.shortAnswerTX.text!
           
             answer["numOfDaps"] = 0
                 answer["QuestionID"] = self.QuestionID
@@ -633,7 +643,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
     @IBAction func Done(sender: AnyObject) {
         answerTXT.resignFirstResponder()
-        shortAnswerTX.resignFirstResponder()
+//        shortAnswerTX.resignFirstResponder()
         print("pushed")
         if self.theClass == nil {//|| self.QuestionID == nil || self.QuestionerID == nil{
             
@@ -645,11 +655,11 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
                 self.view.userInteractionEnabled = true
             }
         }
-        if answerTXT.text == "Tap to Answer"{
+        if answerTXT.text == "Tap to Post"{
             answerTXT.text = ""
         }
         LoadingDesign()
-        var htht = shortAnswerTX.text!.characters.count + answerTXT.text.characters.count
+        var htht = answerTXT.text.characters.count
         //        if shortAnswerTX.text == "" && answerTXT.text == "Tap to Answer"{//answerTXT.text == "" ||
         if htht <= 2{
             // THERE's Nothing
@@ -657,8 +667,12 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
             
             let alert = SCLAlertView()
             alert.showInfo("Too Short", subTitle: "Type a little more")
-
             removeLoading()
+            
+            if self.answerTXT.text == ""{
+                self.answerTXT.text = "Tap to Post"
+            }
+            
         }else{
             if self.proppie != nil{
                 let _ = self.ParsePart()
@@ -761,9 +775,9 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
     
 
     func textViewShouldBeginEditing(textView: UITextView) -> Bool{
-        if textView.text == "Tap to Answer"{
+        if textView.text == "Tap to Post"{
             textView.text = ""
-            textView.textColor = self.dGray
+//            textView.textColor = self.dGray
             
         }
         
@@ -776,7 +790,7 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         // Setup the buttons to be put in the system.
         //let Ditem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dopi") )
 //        let Ditem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: Selector("dopi"))
-        let Ditem = UIBarButtonItem(title: "Send", style: .Done, target: self, action: Selector("dopi"))
+        let Ditem = UIBarButtonItem(title: "Done", style: .Done, target: self, action: Selector("disss"))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil);
         
         let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Camera, target: self, action: Selector("tipi"))
@@ -794,6 +808,9 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         self.addPhotoButton.sendActionsForControlEvents(.TouchUpInside)
     }
     
+    func disss(){
+        self.answerTXT.resignFirstResponder()
+    }
     
     func dopi(){
 //        LoadingDesign()
@@ -802,17 +819,20 @@ class AddHWViewController: UIViewController, UITextViewDelegate,UITextFieldDeleg
         
 //        actINDI.startAnimating()
         answerTXT.resignFirstResponder()
-        shortAnswerTX.resignFirstResponder()
+//        shortAnswerTX.resignFirstResponder()
         print("pushed")
-        if answerTXT.text == "Tap to Answer"{
+        if answerTXT.text == "Tap to Post"{
             answerTXT.text = ""
         }
         LoadingDesign()
-        var htht = shortAnswerTX.text!.characters.count + answerTXT.text.characters.count
+        var htht = answerTXT.text.characters.count
         if htht <= 2{
             
             let alert = SCLAlertView()
             alert.showInfo("Too Short", subTitle: "Type a little more")
+            if self.answerTXT.text == ""{
+                self.answerTXT.text = "Tap to Post"
+            }
             removeLoading()
         }else{
 //            self.NewSenderButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)

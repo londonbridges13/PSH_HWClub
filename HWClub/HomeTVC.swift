@@ -18,6 +18,17 @@ class HomeTVC: UITableViewController {
 
     var wAgo : NSDate = NSDate().minusDays(6)
     @IBOutlet var menuButton: UIBarButtonItem!
+    
+//    var leftBarButton: ENMBadgedBarButtonItem?
+
+    @IBOutlet weak var newsletter: UIButton!
+    
+    @IBOutlet var NewsletterButton: UIButton!
+    
+    
+    
+    
+    
     var theSay : String?
     var refreshControlelol = UIRefreshControl()
     var array : [String] = [String]()
@@ -57,6 +68,28 @@ class HomeTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        NewsletterButton.layer.cornerRadius = 15
+        NewsletterButton.frame.size.width = 30
+        
+        
+//        self.newsletter.badgeEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 15)
+//        
+//        newsletter.badgeString = "1"
+//        
+//        newsletter.badgeBackgroundColor = UIColor.redColor()
+
+//        self.navigationItem.leftBarButtonItem!.badgeValue = "5"; //your value
+//        self.newsletter.badge //your value
+
+        
+//        
+//        let newBarButton = ENMBadgedBarButtonItem(customView: newsletter, value: "1")
+//        leftBarButton = newBarButton
+//        navigationItem.rightBarButtonItem = leftBarButton
+
+        
         
         
         try! self.realm.write {
@@ -455,7 +488,9 @@ class HomeTVC: UITableViewController {
                 
                 tableView.rowHeight = UITableViewAutomaticDimension
                 tableView.estimatedRowHeight = 107
-                
+                if hPosts[indexPath.row].What == "ChatHub"{
+                    tableView.rowHeight = 0
+                }
                 
                 // New Assignments TableView
                 let cell : HomeQuestionCell = tableView.dequeueReusableCellWithIdentifier("HomeQuestionCell", forIndexPath: indexPath) as! HomeQuestionCell
@@ -601,8 +636,9 @@ class HomeTVC: UITableViewController {
             let cell : NoClassHomeCell = tableView.dequeueReusableCellWithIdentifier("noClass", forIndexPath: indexPath) as! NoClassHomeCell
             
             cell.findClassButton.layer.borderColor = teal.CGColor
+            cell.findClassButton.backgroundColor = UIColor.whiteColor()
             tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.estimatedRowHeight = 209
+            tableView.estimatedRowHeight = 400  // 209
             
             // Configure the cell...
             
@@ -612,8 +648,9 @@ class HomeTVC: UITableViewController {
             let cell : NoClassHomeCell = tableView.dequeueReusableCellWithIdentifier("noClass", forIndexPath: indexPath) as! NoClassHomeCell
             
             cell.findClassButton.layer.borderColor = teal.CGColor
+            cell.findClassButton.backgroundColor = UIColor.whiteColor()
             tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.estimatedRowHeight = 209
+            tableView.estimatedRowHeight = 400 // 209
             
             // Configure the cell...
             
@@ -904,6 +941,7 @@ class HomeTVC: UITableViewController {
                         
                         let aUsername = result["Username"] as? String
                         let aClass = result["classesFollowed"] as? String
+                        let aTeach = result["teacherName"] as? String
                         
                         cmo.Type = "newbie"
                         cmo.theClass = aClass
@@ -911,6 +949,9 @@ class HomeTVC: UITableViewController {
                         
                         if aClass != nil{
                             cmo.theClass = aClass
+                        }
+                        if aTeach != nil{
+                            cmo.theTeacher = aTeach!
                         }
                         if aUsername != nil{
                             mo.username = aUsername
@@ -1509,6 +1550,19 @@ class HomeTVC: UITableViewController {
         // Pass the selected object to the new view controller.
         //homeQtoPVA
         //homeToASS
+        //newbieSeggy
+        if segue.identifier == "newbieSeggy"{
+            let vc : OtherAssignmentsTableViewController = segue.destinationViewController as! OtherAssignmentsTableViewController
+            
+            let row = tableView.indexPathForSelectedRow?.row
+            
+//            vc.assID = self.hPosts[row!].theAssignmentID
+            vc.theTeacher = self.hPosts[row!].theTeacher!
+            vc.theClass = self.hPosts[row!].theClass
+//            vc.theAssignment = self.hPosts[row!].theLesson
+            vc.theSchool = self.theSchool[0]
+            //            vc.derp = "not nil"
+        }
         if segue.identifier == "homeToASS"{
             let vc : QuestionsTableViewController = segue.destinationViewController as! QuestionsTableViewController
             

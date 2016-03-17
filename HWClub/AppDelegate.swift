@@ -29,7 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        sdk.preferences = STASDKPreferences.prefrencesWithAge(18, andGender: STAGender_Undefined)
 
-        
+        #if DEBUG
+            ElastiCode .devModeWithLogging(elastiCodeLogLevelErrors)
+        #endif
+        ElastiCode .startSession("hykgeysip95wblegu8vvhwfj", onBoardingVersion: "1.0")
         
         application.statusBarStyle = UIStatusBarStyle.LightContent
         // instead of

@@ -42,8 +42,8 @@ class SearchTVC: UITableViewController, UISearchResultsUpdating, UINavigationBar
         
         self.tableView.reloadData()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+//        view.addGestureRecognizer(tap)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -57,7 +57,6 @@ class SearchTVC: UITableViewController, UISearchResultsUpdating, UINavigationBar
         resultSearchController.resignFirstResponder()
         resultSearchController.active = false
     }
-    
     
     
     
@@ -144,7 +143,8 @@ class SearchTVC: UITableViewController, UISearchResultsUpdating, UINavigationBar
     
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
+//        view.endEditing(false)
+
         if self.resultSearchController.active {
             return self.filteredResults.count
         }else{
@@ -192,7 +192,9 @@ class SearchTVC: UITableViewController, UISearchResultsUpdating, UINavigationBar
         
         sendC = cell.classLabel.text
         sendT = cell.teacherLabel.text
-        performSegueWithIdentifier("searchToAss", sender: nil)
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.performSegueWithIdentifier("searchToAss", sender: nil)
+        }
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -229,7 +231,7 @@ class SearchTVC: UITableViewController, UISearchResultsUpdating, UINavigationBar
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let vc : AssignmentsTableViewController = segue.destinationViewController  as! AssignmentsTableViewController
+        let vc : OtherAssignmentsTableViewController = segue.destinationViewController  as! OtherAssignmentsTableViewController
         self.resultSearchController.active = false
         let row = tableView.indexPathForSelectedRow?.row
         
@@ -239,7 +241,7 @@ class SearchTVC: UITableViewController, UISearchResultsUpdating, UINavigationBar
         var id : Int?
         
         //if (self.resultSearchController.active) {
-
+            vc.theSchool = self.School
             vc.theClass = sendC
             vc.theTeacher = sendT
         //}else{

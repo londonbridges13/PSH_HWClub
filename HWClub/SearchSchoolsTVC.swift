@@ -250,6 +250,8 @@ class SearchSchoolsTVC: UITableViewController, UISearchResultsUpdating, UINaviga
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        tableView.setContentOffset(CGPoint(x: 0, y: -60), animated:false)
+
         let _ = unfollowClass()
         if (self.resultSearchController.active) {
             let cO = self.allResults[indexPath.row]
@@ -263,7 +265,8 @@ class SearchSchoolsTVC: UITableViewController, UISearchResultsUpdating, UINaviga
                 let _ = self.followNewSchool(row)
             }
         }
-
+//        tableView.endEditing(true)
+        tableView.userInteractionEnabled = false
     }
     
     

@@ -9,10 +9,12 @@
 import UIKit
 import Parse
 
-class FindClassViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class FindClassViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AddClassDelegate, CreateClassDelegate {
 
     @IBOutlet var menuButton: UIBarButtonItem!
     @IBOutlet var tableview: UITableView!
+    
+    
     var classnameArray : [String] = [String]()
     var teacherNameArray : [String] = [String]()
     var theSay : String?
@@ -25,15 +27,21 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     let teal  = UIColor(red: 52/255, green: 185/255, blue: 208/255, alpha: 1)
     let cUser = PFUser.currentUser()
     
+    var annotationViewController: FC_AnnotationVC?
+
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        presentAnnotation()
+
+        
         let _ = userInfoQuery()
         
-        let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height - 60)
+        let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height)
         let testView : UIView = UIView(frame: testFrame)
         testView.backgroundColor = self.whitty
         testView.alpha = 1
@@ -83,7 +91,16 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     
 
 
+    @IBAction func buttonPressed(sender: AnyObject) {
+//        presentAnnotation()
+    }
     
+    func presentAnnotation() {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FC_AnnotationVC") as! FC_AnnotationVC
+        viewController.alpha = 0.5
+        presentViewController(viewController, animated: true, completion: nil)
+        annotationViewController = viewController
+    }
     
     
     /*if error == nil {
@@ -130,7 +147,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
 
         
 
-        addV.addButton("Done ✅") { () -> Void in
+        addV.addButton("Done") { () -> Void in
             // IF ERROR CHECK THIS AREA
 
             print("pressed")
@@ -177,7 +194,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
             
         }
         
-        addV.addButton("Cancel ❌") { () -> Void in
+        addV.addButton("Cancel") { () -> Void in
             
         }
         
@@ -293,6 +310,76 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
+    func addNewOne(){
+        
+        print("Two Tap")
+        let addV = SCLAlertView()
+        let newClass = addV.addTextField("Class")
+        let newTeach = addV.addTextField("Teacher")
+        
+        newClass.delegate = self
+        newTeach.delegate = self
+        
+        addV.showCloseButton = false
+        
+        
+        
+        
+        addV.addButton("Done") { () -> Void in
+            // IF ERROR CHECK THIS AREA
+            
+            print("pressed")
+            
+            self.ccc = newClass.text
+            self.ttt = newTeach.text
+            
+            while self.ccc!.characters.last == " "{
+                //            if theTopic?.characters.last == " "{
+                print("remove")
+                //                theTopic = newTopicTX.text
+                print("\(self.ccc)ttt")
+                var toko = self.ccc!.substringToIndex(self.ccc!.endIndex.predecessor())
+                self.ccc = toko
+                print("\(self.ccc)ttt")
+            }
+            while self.ttt!.characters.last == " "{
+                //            if theTopic?.characters.last == " "{
+                print("remove")
+                //                theTopic = newTopicTX.text
+                print("\(self.ttt)ttt")
+                var toko = self.ttt!.substringToIndex(self.ttt!.endIndex.predecessor())
+                self.ttt = toko
+                print("\(self.ttt)ttt")
+            }
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1/13 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                if self.ccc!.characters.count > 3{
+                    if self.ttt!.characters.count > 3{
+                        
+                        
+                        if self.ccc!.characters.count > 3 && self.ttt!.characters.count > 3{
+                            let _ = self.checkForUsername(self.ccc!, tTextfield: self.ttt!)
+                        }
+                        
+                        self.tableview.reloadData()
+                    }else{
+                        self.NoCongTeach()
+                    }
+                }else{
+                    self.NoCongClass()
+                }
+            }
+            
+        }
+        
+        addV.addButton("Cancel") { () -> Void in
+            
+        }
+        
+        addV.showInfo("Add Class", subTitle: "Don't see your class, Add it")
+    }
+    
+    
     func FindClasses(){
         
         let CFquery = PFQuery(className: "Classes")
@@ -335,10 +422,10 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if classnameArray.count > 0 {
             theSay = "yes"
-            return classnameArray.count
+            return classnameArray.count + 2
         }else{
             theSay = "no"
-            return 1
+            return 2
         }
 
         //return classnameArray.count
@@ -346,26 +433,57 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if theSay == "yes"{
-            let cell : FindClassTableViewCell = tableview.dequeueReusableCellWithIdentifier("FindClassCell", forIndexPath: indexPath) as! FindClassTableViewCell
             
-            cell.classnameLabel.text = "\(classnameArray[indexPath.row])"
-            cell.teacherNameLabel.text = "\(teacherNameArray[indexPath.row])"
-            // AddClassButton
-            
-            tableview.rowHeight = 80
-            
-            return cell
+            //sittingClass
+            if indexPath.row == 0{
+                let cell = tableView.dequeueReusableCellWithIdentifier("sittingClass", forIndexPath: indexPath)
+                tableview.rowHeight = 129//132
+                return cell
+            }
+            if indexPath.row == 1{
+                let cell : CreateClassCell = tableview.dequeueReusableCellWithIdentifier("CreateClassCell", forIndexPath: indexPath) as! CreateClassCell
+                
+                cell.delegate = self
+                cell.findClassButton.layer.borderColor = teal.CGColor
+                cell.findClassButton.layer.borderWidth = 1
+                cell.findClassButton.layer.cornerRadius = 8
+                
+                tableview.rowHeight = 60
+                
+                return cell
+            }else{
+                let cell : FindClassTableViewCell = tableview.dequeueReusableCellWithIdentifier("FindClassCell", forIndexPath: indexPath) as! FindClassTableViewCell
+                
+                cell.classnameLabel.text = "\(classnameArray[indexPath.row - 2])"
+                cell.teacherNameLabel.text = "\(teacherNameArray[indexPath.row - 2])"
+                // AddClassButton
+                
+                tableview.rowHeight = 80
+                
+                return cell
+            }
 
         }else{
-            let cell : noFindCellClass  = tableView.dequeueReusableCellWithIdentifier("noFindClass", forIndexPath: indexPath) as! noFindCellClass
-            
-            cell.findClassButton.layer.borderColor = teal.CGColor
-            tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.estimatedRowHeight = 209
-            
-            // Configure the cell...
-            
-            return cell
+            if indexPath.row == 0{
+                let cell : noFindCellClass  = tableView.dequeueReusableCellWithIdentifier("noFindClass", forIndexPath: indexPath) as! noFindCellClass
+                
+                cell.delegate = self
+                cell.findClassButton.layer.borderColor = teal.CGColor
+                cell.findClassButton.layer.borderWidth = 1
+                cell.findClassButton.layer.cornerRadius = 8
+                tableView.rowHeight = UITableViewAutomaticDimension
+                tableView.estimatedRowHeight = 400//209
+                
+                // Configure the cell...
+                
+                return cell
+                
+
+            }else{
+                let cell = tableView.dequeueReusableCellWithIdentifier("blank", forIndexPath: indexPath)
+                tableview.rowHeight = 0//132
+                return cell
+            }
 
         }
 
@@ -373,11 +491,13 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        print("Selected")
-        className = "\(classnameArray[indexPath.row])"
-        teachName = "\(teacherNameArray[indexPath.row])"
-//        performSegueWithIdentifier("classToAss", sender: self)
+        if classnameArray.count > 0 && indexPath.row > 1{
+            print("Selected")
+            print(indexPath.row)
+            className = "\(classnameArray[indexPath.row - 2])"
+            teachName = "\(teacherNameArray[indexPath.row - 2])"
+            //        performSegueWithIdentifier("classToAss", sender: self)
+        }
         
     }
     
@@ -390,9 +510,9 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
         let codeIndex = tableview.indexPathForSelectedRow!.row
         print(codeIndex)
         print("UPPPPP")
-        vc.theClass = "\(classnameArray[codeIndex])"
+        vc.theClass = "\(classnameArray[codeIndex - 2])"
         //vc.CHold = className
-        vc.theTeacher = "\(teacherNameArray[codeIndex])"
+        vc.theTeacher = "\(teacherNameArray[codeIndex - 2])"
 //        vc.derp = "FINDER"
         vc.derp = "KLM"
         vc.theSchool = self.theSchool
@@ -483,7 +603,7 @@ class FindClassViewController: UIViewController, UITableViewDataSource, UITableV
     
     func LoadingDesign(){
         
-        let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height - 60)
+        let testFrame : CGRect = CGRectMake(0,0,self.view.frame.width,self.view.frame.height )
         let testView : UIView = UIView(frame: testFrame)
         testView.backgroundColor = self.whitty
         testView.alpha = 1

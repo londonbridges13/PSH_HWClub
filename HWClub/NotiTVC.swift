@@ -85,7 +85,11 @@ class NotiTVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return notis.count
+        if notis.count == 0{
+            return 1
+        }else{
+            return notis.count
+        }
     }
 
     
@@ -186,6 +190,13 @@ class NotiTVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if notis.count == 0{
+            let cell = tableView.dequeueReusableCellWithIdentifier("noNOTIS", forIndexPath: indexPath)
+            tableView.rowHeight = 430
+            return cell
+        }else{
+        
         let cell : NotiCell1 = tableView.dequeueReusableCellWithIdentifier("notiPostCell", forIndexPath: indexPath) as! NotiCell1
         if notis[indexPath.row].theType == "DapAnswer"{
             cell.whatLabel.text = "\(notis[indexPath.row].theGiver!) Dapped your Answer"
@@ -605,6 +616,7 @@ class NotiTVC: UITableViewController {
         // Configure the cell...
 
         return cell
+        }
     }
     
     

@@ -45,7 +45,10 @@ class ChildViewController: UIViewController {
         }
 
         
-        follow.setTitle("Follow", forState: UIControlState.Normal)
+        follow.setTitle("+ Follow  ", forState: UIControlState.Normal)
+        follow.layer.borderColor = dRed.CGColor
+        follow.layer.borderWidth = 1
+
 
         if shepard != nil{
             myLabel.text = shepard!
@@ -126,7 +129,7 @@ class ChildViewController: UIViewController {
     
     @IBAction func followClassPressed(sender: AnyObject) {
         print(follow.titleLabel?.text)
-        if follow.titleLabel?.text == "Follow" {
+        if follow.titleLabel?.text == "+ Follow  "{// "Follow" {
             
             if let delegate = self.delegate {
                 delegate.followClass()
@@ -148,11 +151,11 @@ class ChildViewController: UIViewController {
             }
             
             // change the color of the follow button
-            follow.setTitle("Follow", forState: UIControlState.Normal)
-//            follow.layer.borderColor = UIColor.lightGrayColor().CGColor
-            follow.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            follow.backgroundColor = UIColor.lightGrayColor()
-//            newLessonButton.alpha = 0
+            follow.setTitle("+ Follow  ", forState: UIControlState.Normal) //Follow
+            follow.layer.borderColor = dRed.CGColor
+            follow.layer.borderWidth = 1
+            follow.setTitleColor(dRed, forState: .Normal)
+            follow.backgroundColor = UIColor.whiteColor()//lightGrayColor()
             
             
         }

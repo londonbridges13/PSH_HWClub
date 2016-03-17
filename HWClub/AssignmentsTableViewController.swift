@@ -22,6 +22,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     @IBOutlet var OtherContine: UIView!
     @IBOutlet var contine: UIView!
 
+    @IBOutlet var ShowTipButton: UIButton!
     
     var Classmates = [MemberObject]()
     
@@ -59,6 +60,9 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
 
     let dRed = UIColor(red: 234/255, green: 141/255, blue: 158/255, alpha: 1)
 
+    var annotationViewController: AnnotationViewController?
+
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -323,7 +327,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         }
         if segue.identifier == "classToASS"{
             let vc : QuestionsTableViewController = segue.destinationViewController as! QuestionsTableViewController
-            if sgeControl == 1 || sgeControl == 2{
+            if sgeControl == 1 || sgeControl == 0{
                 let row = tableView.indexPathForSelectedRow!
                     .row - 1
                 
@@ -347,7 +351,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         
         if segue.identifier == "classQtoPVA"{
             let vc : ViewPhotoAnswerTVC = segue.destinationViewController as! ViewPhotoAnswerTVC
-            if sgeControl == 1 || sgeControl == 2{
+            if sgeControl == 1 || sgeControl == 0{
                 let row = tableView.indexPathForSelectedRow!.row - 1
                 
                 if theSchool != nil{
@@ -399,7 +403,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             if theSchool != nil{
                 vc.School = self.theSchool
             }
-            if sgeControl == 1 || sgeControl == 2{
+            if sgeControl == 1 || sgeControl == 0{
                 let row = tableView.indexPathForSelectedRow!.row - 1
                 
                 if  self.cPost[row].theAnswer != nil{
@@ -460,7 +464,20 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             if self.isFollowing == false{
                 vc.diko = "NotFollowing"
             }
-        }
+        }//assTOQ2
+        if segue.identifier == "assTOQ2"{
+            let vc : AddQuestionVC = segue.destinationViewController as! AddQuestionVC
+            
+            vc.theTopic = "Group Chat"
+            vc.theSchool = self.theSchool
+            vc.theClass = self.theClass
+            vc.theTeacher = self.theTeacher
+            vc.assID = self.GroupChatID
+            
+            if self.isFollowing == false{
+                vc.diko = "NotFollowing"
+            }
+        }//assTOQ2
         if segue.identifier == "assTVcToAnswer"{
             let vc : AddHWViewController = segue.destinationViewController as! AddHWViewController
             
@@ -477,6 +494,22 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             }
 
         }
+        if segue.identifier == "assTVcToAnswer2"{
+            let vc : AddHWViewController = segue.destinationViewController as! AddHWViewController
+            
+            vc.naviTITLE.setTitle("Post", forState: .Normal)
+            vc.theClass = self.theClass
+            vc.theTeacher = self.theTeacher
+            vc.theSchool = self.theSchool
+            vc.theQuestion = "ChatHub"
+            vc.seger = "assTVcToAnswer"
+            vc.QuestionID = self.ChatID
+            vc.QuestionerID = "Su9eRf8ID"
+            if self.isFollowing == false{
+                vc.diko = "NotFollowing"
+            }
+            
+        }
         if segue.identifier == "classToAnswer"{
             // Send AnswerID Over
             // Send QuestionID
@@ -484,7 +517,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             
             vc.theSchool = self.theSchool
             
-            if sgeControl == 1 || sgeControl == 2{
+            if sgeControl == 1 || sgeControl == 0{
                 let row = tableView.indexPathForSelectedRow!.row - 1
                 
                 if self.cPost[row].theClass != nil{
@@ -526,7 +559,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         else if segue.identifier == "iQ"{
             let vc: QuestionsTableViewController = segue.destinationViewController as! QuestionsTableViewController
             
-            if sgeControl == 1 || sgeControl == 2{
+            if sgeControl == 1 || sgeControl == 0{
                 let ASSS = tableView.indexPathForSelectedRow!.row - 1
                 if self.proppie != nil{
                     vc.proppie = self.proppie!
@@ -664,6 +697,18 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     }
     
     
+    @IBAction func ShowTip(sender: AnyObject) {
+        presentAnnotation()
+    }
+    
+    func presentAnnotation() {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Annotation") as! AnnotationViewController
+        viewController.alpha = 0.5
+        presentViewController(viewController, animated: true, completion: nil)
+        annotationViewController = viewController
+    }
+    
+    
     
     
     func previewOP(){
@@ -770,7 +815,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         // #warning Incomplete implementation, return the number of rows
         
         if self.derp != "KLM"{
-            if sgeControl == 1 || sgeControl == 2{
+            if sgeControl == 1 || sgeControl == 0{
                 return cPost.count + 1
                 
             }else{
@@ -791,11 +836,11 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
 //            }
 //        
         }else{
-            if sgeControl == 1 || sgeControl == 2{
+            if sgeControl == 1 || sgeControl == 0{
                 return cPost.count + 1
 
             }else{
-                return cPost.count // hpost array.count
+                return cPost.count + 1// hpost array.count
             }
         }
 
@@ -899,7 +944,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             
             let indexPathh = indexPath.row - 1
             
-            if sgeControl == 1 || sgeControl == 2{
+            if sgeControl == 0 || sgeControl == 1 || sgeControl == 2{
                 if indexPath.row == 0 && sgeControl == 1{
                     let cell : AssQuestionAskCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionAskCell", forIndexPath: indexPath) as! AssQuestionAskCell
                     tableView.rowHeight = 51
@@ -907,6 +952,17 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                 }else if indexPath.row == 0 && sgeControl == 2{
                     let cell : AssAddTopicCell = tableView.dequeueReusableCellWithIdentifier("AssAddTopicCell", forIndexPath: indexPath) as! AssAddTopicCell
                     tableView.rowHeight = 51
+                    return cell
+                }else if indexPath.row == 0 && sgeControl == 0{
+                    let cell : PostingOptionsCell = tableView.dequeueReusableCellWithIdentifier("PostingOptionsCell", forIndexPath: indexPath) as! PostingOptionsCell
+                    if ChatID == nil{
+                        cell.PostButton.enabled = false
+                        cell.AskButton.enabled = false
+                    }else{
+                        cell.PostButton.enabled = true
+                        cell.AskButton.enabled = true
+                    }
+                    tableView.rowHeight = 63
                     return cell
                 }else{
                     if cPost[indexPathh].Type == "Ass"{
@@ -931,6 +987,9 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                         
                         tableView.rowHeight = UITableViewAutomaticDimension
                         tableView.estimatedRowHeight = 107
+                        if cPost[indexPathh].What == "ChatHub"{
+                            tableView.rowHeight = 0
+                        }
                         // New Assignments TableView
                         let cell : AssQuestionCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionCell", forIndexPath: indexPath) as! AssQuestionCell
                         cell.WHatLabel.text = cPost[indexPathh].What!
@@ -950,11 +1009,11 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
 
                         let cell : AssNewMemberCell = tableView.dequeueReusableCellWithIdentifier("newbieCell", forIndexPath: indexPath) as! AssNewMemberCell
                         
-                        if cPost[indexPath.row].POSTERNAME != nil{
-                            cell.newMEMLabel.text = "\(cPost[indexPath.row].POSTERNAME!) just joined the Class"
+                        if cPost[indexPathh].POSTERNAME != nil{
+                            cell.newMEMLabel.text = "\(cPost[indexPathh].POSTERNAME!) just joined the Class"
                         }
-                        if cPost[indexPath.row].date != nil{
-                            cell.dateLabel.text = "\(dts(cPost[indexPath.row].date!))"
+                        if cPost[indexPathh].date != nil{
+                            cell.dateLabel.text = "\(dts(cPost[indexPathh].date!))"
                         }
                         
                         return cell
@@ -1027,13 +1086,13 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                         return celli!
                     }
                 }
-//                }else{
-//                    let cell : AssAddTopicCell = tableView.dequeueReusableCellWithIdentifier("AssAddTopicCell", forIndexPath: indexPath) as! AssAddTopicCell
-//                    return cell
-//
-//                    
-//                }
             }else{
+//                if indexPath.row == 0{
+//                    let cell : PostingOptionsCell = tableView.dequeueReusableCellWithIdentifier("PostingOptionsCell", forIndexPath: indexPath) as! PostingOptionsCell
+//                    
+//                    tableView.rowHeight = 63
+//                }
+                
                 if cPost[indexPath.row].Type == "Ass"{
                     
                     // New Assignments TableView
@@ -1056,6 +1115,9 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                     
                     tableView.rowHeight = UITableViewAutomaticDimension
                     tableView.estimatedRowHeight = 107
+                    if cPost[indexPathh].What == "ChatHub"{
+                        tableView.rowHeight = 0
+                    }
                     // New Assignments TableView
                     let cell : AssQuestionCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionCell", forIndexPath: indexPath) as! AssQuestionCell
                     cell.WHatLabel.text = cPost[indexPath.row].What!

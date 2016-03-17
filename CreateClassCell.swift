@@ -1,22 +1,21 @@
 //
-//  noFindCellClass.swift
-//  HWClub
+//  CreateClassCell.swift
+//  Dac
 //
-//  Created by Lyndon Samual McKay on 1/2/16.
+//  Created by Lyndon Samual McKay on 3/7/16.
 //  Copyright © 2016 Lyndon Samual McKay. All rights reserved.
 //
 
 import UIKit
 
-protocol AddClassDelegate{
+protocol CreateClassDelegate{
     func addNewOne()
 }
+class CreateClassCell: UITableViewCell {
 
-class noFindCellClass: UITableViewCell {
-
-    var delegate = AddClassDelegate?()
-    
     @IBOutlet var findClassButton: UIButton!
+    var delegate = CreateClassDelegate?()
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

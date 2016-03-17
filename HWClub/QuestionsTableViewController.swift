@@ -371,18 +371,19 @@ class QuestionsTableViewController: UITableViewController, toAnswerDelegate, SEG
             if questionArray[indexPath.row] == "ChatHub"{
                 cell.answerQButton.alpha = 0
                 cell.questionLabel.text = "ChatHub"
+                tableView.rowHeight = 0
             }
 
             }else{
                 if indexPath.row == 0{
                     self.tableView.estimatedRowHeight = 128
                     self.tableView.rowHeight = UITableViewAutomaticDimension
-                    cell.questionLabel.text = "Here is where you'll see all Questions related to the Topic Above."
+                    cell.questionLabel.text = "Tap the button above to ask a Question"
                     cell.answerQButton.alpha = 0
                 }else if indexPath.row == 1{
                     self.tableView.estimatedRowHeight = 128
                     self.tableView.rowHeight = UITableViewAutomaticDimension
-                    cell.questionLabel.text = "Welcome to your New Class"
+                    cell.questionLabel.text = "Here is where you'll see all Questions related to the Topic Above."
                     cell.answerQButton.alpha = 0
                 }
             }
