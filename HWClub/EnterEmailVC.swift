@@ -15,7 +15,9 @@ class EnterEmailVC: UIViewController, UITextFieldDelegate  {
     var theUsername : String?
     var theEmail :String?
     var thePassword :String?
+    var PhoneNumber : String?
 
+    
     @IBOutlet var Next: UIButton!
     @IBOutlet var EmailTF : UITextField!
     @IBOutlet var invalidLabel : UILabel!
@@ -102,6 +104,7 @@ class EnterEmailVC: UIViewController, UITextFieldDelegate  {
         aU.username = self.theUsername!
         aU.password = self.thePassword!
         aU["setUP"] = "no"
+        aU["PhoneNumber"] = self.PhoneNumber!
         aU["email"] = self.EmailTF.text!
         aU["profilePic"] = propicfunc()
         aU.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in

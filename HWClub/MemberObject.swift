@@ -7,13 +7,16 @@
 //
 
 import Foundation
+import Parse
+
 
 class MemberObject{
     
     var userID : String?
     var username : String?
     var date : NSDate?
-    
+    var pp : PFFile?
+    var proCachy : UIImage?
     
 //    var userID : String?
 

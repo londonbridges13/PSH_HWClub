@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+/*
 protocol OtherChilding{
     func followClass()
     func unfollowClass()
@@ -152,3 +152,6 @@ class OtherChildViewController: UIViewController {
     }
     
 }
+ 
+ 
+ */

@@ -44,7 +44,7 @@ class EnterPasswordVC: UIViewController, UITextFieldDelegate {
         if PasswordTF?.text!.characters.count >= 6{
             
             
-            performSegueWithIdentifier("part3", sender: self)
+            performSegueWithIdentifier("getNum", sender: self)
 //            if PasswordTF.text!.lowercaseString.characters.contains(forbid) {
 //                print("word contains \(forbid)")
 //                invalidLabel.text = "Password cannot contain ')'"
@@ -73,7 +73,10 @@ class EnterPasswordVC: UIViewController, UITextFieldDelegate {
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let vc : EnterEmailVC = segue.destinationViewController as! EnterEmailVC
+        let vc : EnterCellViewController = segue.destinationViewController as! EnterCellViewController
+        
+        
+        
         self.thePassword = PasswordTF.text!
         vc.theUsername = self.theUsername!
         vc.thePassword = self.thePassword!

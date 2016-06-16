@@ -24,6 +24,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
     var cachedClasses = [String]()
     var ouniq : [String] = [String]()
     
+    var PhoneNumber: String?
     var oldPic : PFFile?
     var ido : String?
     var newPic : UIImage?
@@ -109,6 +110,13 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -222,6 +230,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                         let thisSchool = result["School"] as? String
                         let theIDO = result.objectId
                         self.ido = theIDO!
+                        let theNum = result["PhoneNumber"] as? String
                         if thisSchool != nil{
 //                            self.SchoolLabel.text = thisSchool!
                             self.theSchool = thisSchool
@@ -233,6 +242,9 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                             self.displayUserPic(self.oldPic!)
                         }else{
                             print("NO USER PIC")
+                        }
+                        if theNum != nil{
+                            self.PhoneNumber = theNum
                         }
                     }
                 }
@@ -524,7 +536,7 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
                          vc.theTeacher = "Error"
                     }
                     if cachedClasses.count != 0{
-                        vc.theClass = "\(cachedClasses[miko)"
+                        vc.theClass = "\(cachedClasses[miko])"
                     }else{
                         vc.theClass = "Bad Internet Connection"
                     }
@@ -539,6 +551,9 @@ class SidebarViewController: UITableViewController{//, SidebarDelegate {
             }
             if self.theSchool != nil{
                 vc.School = theSchool
+            }
+            if self.PhoneNumber != nil{
+                vc.pNumber = self.PhoneNumber
             }
         }
         if segue.identifier == "mcNAVI"{

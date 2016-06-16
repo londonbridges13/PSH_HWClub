@@ -37,7 +37,12 @@ class NotiTVC: UITableViewController {
     var recieved :Bool?
     var thepic : UIImage?
     
+    var pNumber : String?
+    
     var notis = [NotiPost]()
+    //new
+    var uniq = [NotiPost]()
+    var phoneNotis = [NotiPost]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,6 +141,12 @@ class NotiTVC: UITableViewController {
         if self.notis[indexPath.row].NotiID != nil{
             self.recievedN(self.notis[indexPath.row].NotiID!)
         }
+        
+        if notis[indexPath.row].theType == "Invite"{
+            
+            performSegueWithIdentifier("Invite", sender: self)
+            //                }
+        }
             if notis[indexPath.row].theType == "DapAnswer"{
                 if notis[indexPath.row].theDType == "PAnswer"{
                     
@@ -198,6 +209,58 @@ class NotiTVC: UITableViewController {
         }else{
         
         let cell : NotiCell1 = tableView.dequeueReusableCellWithIdentifier("notiPostCell", forIndexPath: indexPath) as! NotiCell1
+            
+        if notis[indexPath.row].theType == "Invite"{
+            cell.whatLabel.text = "\(notis[indexPath.row].theGiver!) invited you to \(notis[indexPath.row].theClass!)"
+            cell.dateLabel.text = dts(notis[indexPath.row].theDate!)
+            if notis[indexPath.row].Recieved! == false{
+                cell.backgroundColor = UIColor.whiteColor()
+                print("not checked yet")
+            }else{
+                cell.backgroundColor = UIColor(red: 242/255, green:  244/255, blue:  250/255, alpha: 1)
+                print("checked it")
+            }
+            print(dts(notis[indexPath.row].theDate!))
+            // get pics
+            if notis[indexPath.row].profilePic != nil{
+                let theAnswer = notis[indexPath.row]
+                cell.userPic.layer.borderColor = UIColor.whiteColor().CGColor
+                cell.userPic.layer.cornerRadius = 23
+                cell.userPic.layer.masksToBounds = true
+                if theAnswer.cachedIMG != nil{
+                    cell.userPic.image = theAnswer.cachedIMG
+                    print("got cach")
+                }else{
+                    let nono = NSOperationQueue()
+                    let onon : NSBlockOperation = NSBlockOperation(block: {
+                        cell.proPic = self.notis[indexPath.row].profilePic!
+                        print(self.notis[indexPath.row].profilePic!)
+                        cell.proPic!.getDataInBackgroundWithBlock({ (theData: NSData?, error: NSError?) -> Void in
+                            // he said IN not VIOD IN
+                            if let image : UIImage = UIImage(data: theData!){
+                                print("starting img")
+                                //                            self.answerIMGArray.append(image)
+                                theAnswer.cachedIMG = image
+                                print("cached it")
+                                cell.userPic.image = image
+                                //cell.AnswerIMGView.image = self.answerIMGArray[indexPath.row]
+                                dispatch_async(dispatch_get_main_queue()) { // 2
+                                    cell.userPic.image = image
+                                }
+                            }else{
+                                print(error?.description)
+                            }
+                        }) //END
+                        dispatch_async(dispatch_get_main_queue()) { // 2
+                            //                        cell.spinning.stopAnimating()
+                        }
+                    })//BLOCK-END
+                    nono.addOperation(onon)
+                }
+            }
+
+        }
+
         if notis[indexPath.row].theType == "DapAnswer"{
             cell.whatLabel.text = "\(notis[indexPath.row].theGiver!) Dapped your Answer"
             cell.dateLabel.text = dts(notis[indexPath.row].theDate!)
@@ -725,21 +788,391 @@ class NotiTVC: UITableViewController {
                         self.tableView.reloadData()
 //                        self.removeLoading()
                     }
-                    self.removeLoading()
+//                    self.removeLoading()
 
                 }
-                self.removeLoading()
+//                self.removeLoading()
 
             }else{
                 print("\(error) ..... \(error!.userInfo)")
+                if self.pNumber != nil{
+                    self.queryPhoneNotis()
+                }else{
+                    self.removeLoading()
+                }
             }
-            self.removeLoading()
-
+//            self.removeLoading()
+            if self.pNumber != nil{
+                self.queryPhoneNotis()
+            }else{
+                self.removeLoading()
+            }
         }
         
 
         
     }
+    
+    
+    
+    
+    // Phone Notifications Query
+    
+    func queryPhoneNotis(){
+        let qN = PFQuery(className: "Notifications")
+        qN.whereKey("PhoneNumbers", equalTo: (self.pNumber!))
+//        qN.whereKey("PhoneNumber", containsString: "13147089391")//self.pNumber)
+        qN.orderByDescending("createdAt")
+        qN.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil{
+                
+                if let results = results as [PFObject]?{
+                    
+                    for result in results{
+                        let nicki = NotiPost()
+                        
+                        
+                        let type = result["notiType"] as? String
+                        let phoneNumber = result["PhoneNumbers"] as? Int
+                        let giver = result["giverUserName"] as? String
+                        let school = result["School"] as? String
+                        let myTeacher = result["teacherName"] as? String
+                        let myClass = result["classname"] as? String
+                        let lessonAss = result["LessonAss"] as? String
+                        let answer = result["Answer"] as? String
+                        let question = result["Question"] as? String
+                        let comment = result["Comment"] as? String
+                        let dapCount = result["DapCount"] as? String
+                        let proPic = result["profilePic"] as? PFFile
+                        let thePic = result["thePic"] as? PFFile
+                        let recieved = result["recieved"] as? Bool
+                        let aID = result["AnswerID"] as? String
+                        let dType = result["DType"] as? String
+                        let qID = result["QuestionID"] as? String
+                        
+                        
+                        
+                        nicki.theDate = result.createdAt
+                        nicki.NotiID = result.objectId!
+                        
+                        if qID != nil{
+                            nicki.QuestionID = qID!
+                        }
+                        if dType != nil{
+                            nicki.theDType = dType!
+                        }
+                        if aID != nil{
+                            self.aID = aID!
+                            nicki.theAnswerID = aID!
+                        }
+                        if type != nil{
+                            self.nT = type!
+                            nicki.theType = type!
+                        }
+                        if giver != nil{
+                            self.gv = giver!
+                            nicki.theGiver = giver!
+                        }
+                        if school != nil{
+                            self.Sc = school!
+                            nicki.theSchool = school!
+                            print(nicki.theSchool)
+                        }
+                        if myTeacher != nil{
+                            self.Tn = myTeacher!
+                            nicki.theTeacher = myTeacher!
+                        }
+                        if myClass != nil{
+                            self.Cn = myClass!
+                            nicki.theClass = myClass!
+                        }
+                        if lessonAss != nil{
+                            self.LA = lessonAss!
+                            nicki.theLesson = lessonAss!
+                        }
+                        if answer != nil{
+                            self.tA = answer!
+                            nicki.theAnswer = answer!
+                        }
+                        if question != nil{
+                            nicki.theQuestion = question!
+                            self.tQ = question!
+                            //                            nicki.theQuestion = question!
+                        }else{print("no QQQQQ")}
+                        if comment != nil{
+                            self.tC = comment!
+                            nicki.theQComment = comment!
+                            nicki.theAComment = comment!
+                        }
+                        if dapCount != nil{
+                            self.dC = dapCount!
+                            nicki.theDap = dapCount!
+                        }
+                        if proPic != nil{
+                            self.pP = proPic!
+                            nicki.profilePic = proPic!
+                            print(proPic)
+                        }
+                        if thePic != nil{
+                            self.tP = thePic!
+                            nicki.thePic = thePic!
+                        }
+                        if recieved != nil{
+                            self.recieved = recieved!
+                            nicki.Recieved = recieved!
+                        }
+                        self.phoneNotis.append(nicki)
+                        self.tableView.reloadData()
+                        //                        self.removeLoading()
+                    }
+//                    self.removeLoading()
+                    
+                }
+//                self.removeLoading()
+                
+            }else{
+                print("\(error) ..... \(error!.userInfo)")
+                if self.notis.count == 0 && self.phoneNotis.count == 0{
+                    self.removeLoading()
+                }else{
+                    print("Notis.count = \(self.notis.count)")
+                    print("PhoneNotis.count = \(self.phoneNotis.count)")
+
+                    print("running GroupNotis")
+                    //                self.sortIt()
+                    self.queryGroupNotis()
+                }
+
+                //                self.sortIt()
+
+            }
+//            self.removeLoading()
+            if self.notis.count == 0 && self.phoneNotis.count == 0{
+                self.removeLoading()
+            }else{
+                print("Notis.count = \(self.notis.count)")
+                print("PhoneNotis.count = \(self.phoneNotis.count)")
+
+                print("running GroupNotis")
+//                self.sortIt()
+                self.queryGroupNotis()
+            }
+            
+        }
+        
+        
+        
+    }
+    
+
+    
+    func queryGroupNotis(){
+        print("Starting GroupNotis")
+        var userId = self.cUser!.objectId!
+        let qN = PFQuery(className: "Notifications")
+        qN.whereKey("gettersIDs", equalTo: (userId))
+        //        qN.whereKey("PhoneNumber", containsString: "13147089391")//self.pNumber)
+        qN.orderByDescending("createdAt")
+        qN.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil{
+                
+                if let results = results as [PFObject]?{
+                    
+                    for result in results{
+                        let nicki = NotiPost()
+                        
+                        
+                        let type = result["notiType"] as? String
+                        let phoneNumber = result["PhoneNumbers"] as? Int
+                        let getters = result["gettersID"] as? String
+                        let giver = result["giverUserName"] as? String
+                        let school = result["School"] as? String
+                        let myTeacher = result["teacherName"] as? String
+                        let myClass = result["classname"] as? String
+                        let lessonAss = result["LessonAss"] as? String
+                        let answer = result["Answer"] as? String
+                        let question = result["Question"] as? String
+                        let comment = result["Comment"] as? String
+                        let dapCount = result["DapCount"] as? String
+                        let proPic = result["profilePic"] as? PFFile
+                        let thePic = result["thePic"] as? PFFile
+                        let recieved = result["recieved"] as? Bool
+                        let aID = result["AnswerID"] as? String
+                        let dType = result["DType"] as? String
+                        let qID = result["QuestionID"] as? String
+                        
+                        
+                        
+                        nicki.theDate = result.createdAt
+                        nicki.NotiID = result.objectId!
+                        
+                        if qID != nil{
+                            nicki.QuestionID = qID!
+                        }
+                        if dType != nil{
+                            nicki.theDType = dType!
+                        }
+                        if aID != nil{
+                            self.aID = aID!
+                            nicki.theAnswerID = aID!
+                        }
+                        if type != nil{
+                            self.nT = type!
+                            nicki.theType = type!
+                        }
+                        if giver != nil{
+                            self.gv = giver!
+                            nicki.theGiver = giver!
+                        }
+                        if school != nil{
+                            self.Sc = school!
+                            nicki.theSchool = school!
+                            print(nicki.theSchool)
+                        }
+                        if myTeacher != nil{
+                            self.Tn = myTeacher!
+                            nicki.theTeacher = myTeacher!
+                        }
+                        if myClass != nil{
+                            self.Cn = myClass!
+                            nicki.theClass = myClass!
+                        }
+                        if lessonAss != nil{
+                            self.LA = lessonAss!
+                            nicki.theLesson = lessonAss!
+                        }
+                        if answer != nil{
+                            self.tA = answer!
+                            nicki.theAnswer = answer!
+                        }
+                        if question != nil{
+                            nicki.theQuestion = question!
+                            self.tQ = question!
+                            //                            nicki.theQuestion = question!
+                        }else{print("no QQQQQ")}
+                        if comment != nil{
+                            self.tC = comment!
+                            nicki.theQComment = comment!
+                            nicki.theAComment = comment!
+                        }
+                        if dapCount != nil{
+                            self.dC = dapCount!
+                            nicki.theDap = dapCount!
+                        }
+                        if proPic != nil{
+                            self.pP = proPic!
+                            nicki.profilePic = proPic!
+                            print(proPic)
+                        }
+                        if thePic != nil{
+                            self.tP = thePic!
+                            nicki.thePic = thePic!
+                        }
+                        if recieved != nil{
+                            self.recieved = recieved!
+                            nicki.Recieved = recieved!
+                        }
+                        self.phoneNotis.append(nicki)
+                        self.tableView.reloadData()
+                        
+                        
+                        //                        self.removeLoading()
+                    }
+                    //                    self.removeLoading()
+                    
+                }
+                //                self.removeLoading()
+                
+            }else{
+                print("\(error) ..... \(error!.userInfo)")
+                if self.notis.count == 0 && self.phoneNotis.count == 0{
+                    self.removeLoading()
+                }else{
+                    print("Notis.count = \(self.notis.count)")
+                    print("PhoneNotis.count = \(self.phoneNotis.count)")
+                    
+                    print("running sort it")
+                    self.sortIt()
+                }
+                
+                //                self.sortIt()
+                
+            }
+            //            self.removeLoading()
+            if self.notis.count == 0 && self.phoneNotis.count == 0{
+                self.removeLoading()
+            }else{
+                print("Notis.count = \(self.notis.count)")
+                print("PhoneNotis.count = \(self.phoneNotis.count)")
+                
+                print("running sort it")
+                self.sortIt()
+            }
+            
+        }
+    }
+    
+    
+    
+    
+    // Sorting Function
+    
+    func sortIt(){
+        
+//        
+//        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3/2 * Int64(NSEC_PER_SEC))
+//        dispatch_after(time, dispatch_get_main_queue()) {
+//            self.view.userInteractionEnabled = true
+//        }
+        
+        print("Starting SortIt")
+
+        if self.notis.count + self.phoneNotis.count >= 1{
+            print("counting...")
+            //            print(self.notis[0].date)
+            self.phoneNotis.sortInPlace{ $0.theDate!.compare($1.theDate!) == .OrderedDescending}
+            self.notis.sortInPlace{ $0.theDate!.compare($1.theDate!) == .OrderedDescending}
+            //            print(self.notis[0].date)
+            print(notis.count)
+            var checker = [String]()
+            
+            var combinedNotis = self.phoneNotis + self.notis
+            
+            for each in combinedNotis{
+                //            for each in notis{
+                if checker.contains(each.NotiID!) == false {//&& each.date!.isGreaterThan(self.wAgo) == true{// && each.date! >= self.wAgo {
+                    checker.append(each.NotiID!)
+                    uniq.append(each)
+                    print(notis.count)
+                    print(uniq.count)
+                }else{
+                    print("WE Already have it")
+                }
+                //                }
+            }
+            self.notis = uniq
+            print("WE GOTONE")
+            print(notis)
+
+//            self.allPosts.addObjectsFromArray(uniq)
+            //            displayedPosts.addObjectsFromArray(allPosts.subarrayWithRange(NSMakeRange(0, 6)))
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+                self.removeLoading()
+            })
+            
+            uniq.removeAll()
+            //            phoneNotis.removeAll
+            print("reloaded")
+            self.removeLoading()
+
+        }
+    }
+    
+
+    
     
     
     
@@ -839,7 +1272,40 @@ class NotiTVC: UITableViewController {
             vc.SeeAnswer = self.notis[row!].QuestionID
 //            self.queryNotiis()
         }
+        if segue.identifier == "InviteOAss"{
+            let vc : OtherAssignmentsTableViewController = segue.destinationViewController as! OtherAssignmentsTableViewController
+            
+            let row = tableView.indexPathForSelectedRow?.row
+            
+            // testPhoneSegue
+            //            vc.assID = self.hPosts[row!].theAssignmentID
+            vc.theTeacher = self.notis[row!].theTeacher!
+            vc.theClass = self.notis[row!].theClass
+            //            vc.theAssignment = self.hPosts[row!].theLesson
+            vc.theSchool = self.notis[row!].theSchool
+            //            vc.derp = "not nil"
+            
+            //  IF THE INVATATION IS FROM ANOTHER SCHOOL, ALERT USER BEFORE PROCEEDING OR AFTER
 
+        }
+        if segue.identifier == "Invite"{
+            let vc : OtherAssignmentsTableViewController = segue.destinationViewController as! OtherAssignmentsTableViewController
+            
+            let row = tableView.indexPathForSelectedRow?.row
+            if self.notis[row!].theTeacher != nil{
+                vc.theTeacher = self.notis[row!].theTeacher!
+            }
+            if self.notis[row!].theClass != nil{
+                vc.theClass = self.notis[row!].theClass!
+            }
+            if self.notis[row!].theSchool != nil{
+                vc.theSchool = self.notis[row!].theSchool!
+            }
+        }
+        
+        
+        
+        
     }
     
     

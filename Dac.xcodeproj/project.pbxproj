@@ -26,12 +26,13 @@
 		3E1BEB121C8AA89C00B3EBFE /* ElastiCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1BEB101C8AA89C00B3EBFE /* ElastiCode.framework */; };
 		3E2842581C3AFE1500579FAF /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2842571C3AFE1500579FAF /* CommentCell.swift */; };
 		3E28425A1C3B3F3000579FAF /* AddCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2842591C3B3F3000579FAF /* AddCommentVC.swift */; };
+		3E3516BA1CF48DF40016C403 /* EnterCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3516B91CF48DF40016C403 /* EnterCellViewController.swift */; };
+		3E3516BC1CF48E8D0016C403 /* VerifyCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3516BB1CF48E8D0016C403 /* VerifyCodeViewController.swift */; };
 		3E35AC081C1FD30D00169C2C /* findNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35AC071C1FD30D00169C2C /* findNAVI.swift */; };
 		3E381CBC1C68106000DAD08F /* SideBarSchoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CBB1C68106000DAD08F /* SideBarSchoolCell.swift */; };
 		3E381CBE1C6813AA00DAD08F /* SidebarMyClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CBD1C6813AA00DAD08F /* SidebarMyClassCell.swift */; };
 		3E381CC01C6819BF00DAD08F /* SideBarNotiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CBF1C6819BF00DAD08F /* SideBarNotiCell.swift */; };
 		3E381CC21C684C9100DAD08F /* AssNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CC11C684C9100DAD08F /* AssNAVI.swift */; };
-		3E381CC41C68E97300DAD08F /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CC31C68E97300DAD08F /* ChildViewController.swift */; };
 		3E381CC61C69727100DAD08F /* AssTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CC51C69727100DAD08F /* AssTopicCell.swift */; };
 		3E381CC81C69A03E00DAD08F /* AssAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E381CC71C69A03E00DAD08F /* AssAnswerCell.swift */; };
 		3E3C63D61BCAD7FE008AE62D /* AddHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C63D51BCAD7FE008AE62D /* AddHWViewController.swift */; };
@@ -40,7 +41,7 @@
 		3E3CD4351C3393800071DE06 /* ViewPhotoAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3CD4341C3393800071DE06 /* ViewPhotoAnswerCell.swift */; };
 		3E3CD4371C3394E20071DE06 /* ViewPhotoAnswerPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3CD4361C3394E20071DE06 /* ViewPhotoAnswerPhotoCell.swift */; };
 		3E3CD4391C33999C0071DE06 /* ViewPhotoAnswerMoreOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3CD4381C33999C0071DE06 /* ViewPhotoAnswerMoreOptions.swift */; };
-		3E3FC0121BB7B30100E6D4B8 /* AssignmentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FC0111BB7B30100E6D4B8 /* AssignmentsTableViewController.swift */; };
+		3E3FC0121BB7B30100E6D4B8 /* oldAssignmentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FC0111BB7B30100E6D4B8 /* oldAssignmentsTableViewController.swift */; };
 		3E3FC0141BB7B70C00E6D4B8 /* AssignmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FC0131BB7B70C00E6D4B8 /* AssignmentTableViewCell.swift */; };
 		3E3FC0161BB7B74500E6D4B8 /* AssignmentHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FC0151BB7B74500E6D4B8 /* AssignmentHeaderViewCell.swift */; };
 		3E3FC0181BB88E9D00E6D4B8 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FC0171BB88E9D00E6D4B8 /* FeedbackViewController.swift */; };
@@ -63,6 +64,14 @@
 		3E4ABBF31C2F7A26001E8D15 /* notiNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ABBF21C2F7A26001E8D15 /* notiNAVI.swift */; };
 		3E4ABBF51C2F7BFD001E8D15 /* HomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ABBF41C2F7BFD001E8D15 /* HomeTVC.swift */; };
 		3E4ABBF71C2F7C1D001E8D15 /* NotiTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ABBF61C2F7C1D001E8D15 /* NotiTVC.swift */; };
+		3E4C69E81CFCF97500216815 /* EPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C69E21CFCF97500216815 /* EPConstants.swift */; };
+		3E4C69E91CFCF97500216815 /* EPContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C69E31CFCF97500216815 /* EPContact.swift */; };
+		3E4C69EA1CFCF97500216815 /* EPContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C69E41CFCF97500216815 /* EPContactCell.swift */; };
+		3E4C69EB1CFCF97500216815 /* EPContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E4C69E51CFCF97500216815 /* EPContactCell.xib */; };
+		3E4C69EC1CFCF97500216815 /* EPContactsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C69E61CFCF97500216815 /* EPContactsPicker.swift */; };
+		3E4C69ED1CFCF97500216815 /* EPExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C69E71CFCF97500216815 /* EPExtensions.swift */; };
+		3E4C69F11CFD274900216815 /* SearchClassMatesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C69F01CFD274900216815 /* SearchClassMatesTVC.swift */; };
+		3E4C69F31CFD382200216815 /* ClassmateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C69F21CFD382200216815 /* ClassmateCell.swift */; };
 		3E4E9DC41C4B363700CC5BFA /* CommyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E9DC31C4B363700CC5BFA /* CommyObject.swift */; };
 		3E4E9DC61C4B60BA00CC5BFA /* aCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E9DC51C4B60BA00CC5BFA /* aCommentCell.swift */; };
 		3E558C0F1BB39A90009E5170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E558C0E1BB39A90009E5170 /* AppDelegate.swift */; };
@@ -138,7 +147,7 @@
 		3EC0AA411C714DBA008566CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA401C714DBA008566CB /* CoreMedia.framework */; };
 		3EC0AA431C714DFE008566CB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC0AA421C714DFE008566CB /* AVFoundation.framework */; };
 		3EC0AA451C7230E5008566CB /* OtherChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AA441C7230E5008566CB /* OtherChildViewController.swift */; };
-		3EC0AA471C723B40008566CB /* OtherAssignmentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AA461C723B40008566CB /* OtherAssignmentsTableViewController.swift */; };
+		3EC0AA471C723B40008566CB /* oldOtherAssignmentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AA461C723B40008566CB /* oldOtherAssignmentsTableViewController.swift */; };
 		3EC2455E1C6A58DF00F7288E /* AssAnswerPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */; };
 		3EC4B7461C2E2D00000B878D /* proNAVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7451C2E2D00000B878D /* proNAVI.swift */; };
 		3EC4B7481C2E5666000B878D /* ProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4B7471C2E5666000B878D /* ProfileTVC.swift */; };
@@ -153,14 +162,20 @@
 		3EE7D00B1C27065000DE2DA2 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE7D00A1C27065000DE2DA2 /* SearchTVC.swift */; };
 		3EE7D00D1C27088D00DE2DA2 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE7D00C1C27088D00DE2DA2 /* SearchCell.swift */; };
 		3EE7D00F1C270E7700DE2DA2 /* ClassObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE7D00E1C270E7700DE2DA2 /* ClassObject.swift */; };
+		3EED10A41CC88F02009ABE39 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EED10A21CC88F02009ABE39 /* Realm.framework */; };
+		3EED10A51CC88F02009ABE39 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EED10A31CC88F02009ABE39 /* RealmSwift.framework */; };
+		3EED10A61CC88F27009ABE39 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EED10A21CC88F02009ABE39 /* Realm.framework */; };
+		3EED10A71CC88F27009ABE39 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EED10A21CC88F02009ABE39 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EED10A81CC88F27009ABE39 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EED10A31CC88F02009ABE39 /* RealmSwift.framework */; };
+		3EED10A91CC88F27009ABE39 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EED10A31CC88F02009ABE39 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EED10AD1CC894A1009ABE39 /* AssignmentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED10AA1CC894A1009ABE39 /* AssignmentsTableViewController.swift */; };
+		3EED10AE1CC894A1009ABE39 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED10AB1CC894A1009ABE39 /* ChildViewController.swift */; };
+		3EED10AF1CC894A1009ABE39 /* OtherAssignmentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED10AC1CC894A1009ABE39 /* OtherAssignmentsTableViewController.swift */; };
 		3EF323E81C65971600D1EA57 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF323E61C65971500D1EA57 /* Realm.framework */; };
-		3EF323E91C65971600D1EA57 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF323E71C65971600D1EA57 /* RealmSwift.framework */; };
 		3EF323EB1C65979F00D1EA57 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF323EA1C65979F00D1EA57 /* libc++.tbd */; };
-		3EF323EC1C659CC100D1EA57 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF323E61C65971500D1EA57 /* Realm.framework */; };
-		3EF323ED1C659CC100D1EA57 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF323E61C65971500D1EA57 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3EF323EE1C659CC100D1EA57 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF323E71C65971600D1EA57 /* RealmSwift.framework */; };
-		3EF323EF1C659CC100D1EA57 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF323E71C65971600D1EA57 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3EF323F31C66C7DE00D1EA57 /* OldHomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF323F21C66C7DE00D1EA57 /* OldHomeTVC.swift */; };
+		B19E8F9AEAC94D359776B8CE /* libPods-Dac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B1A7B4D4BE1140F6BFF5CA /* libPods-Dac.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,8 +202,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3EF323EF1C659CC100D1EA57 /* RealmSwift.framework in Embed Frameworks */,
-				3EF323ED1C659CC100D1EA57 /* Realm.framework in Embed Frameworks */,
+				3EED10A91CC88F27009ABE39 /* RealmSwift.framework in Embed Frameworks */,
+				3EED10A71CC88F27009ABE39 /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,6 +211,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		29B1A7B4D4BE1140F6BFF5CA /* libPods-Dac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E08D46C1BB429390092EF8B /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
 		3E08D4AC1BB4DA560092EF8B /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		3E08D4AE1BB4ED070092EF8B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -216,12 +232,13 @@
 		3E1BEB101C8AA89C00B3EBFE /* ElastiCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ElastiCode.framework; sourceTree = "<group>"; };
 		3E2842571C3AFE1500579FAF /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		3E2842591C3B3F3000579FAF /* AddCommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentVC.swift; sourceTree = "<group>"; };
+		3E3516B91CF48DF40016C403 /* EnterCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterCellViewController.swift; sourceTree = "<group>"; };
+		3E3516BB1CF48E8D0016C403 /* VerifyCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyCodeViewController.swift; sourceTree = "<group>"; };
 		3E35AC071C1FD30D00169C2C /* findNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = findNAVI.swift; sourceTree = "<group>"; };
 		3E381CBB1C68106000DAD08F /* SideBarSchoolCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SideBarSchoolCell.swift; path = HWClub/SideBarSchoolCell.swift; sourceTree = "<group>"; };
 		3E381CBD1C6813AA00DAD08F /* SidebarMyClassCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarMyClassCell.swift; sourceTree = "<group>"; };
 		3E381CBF1C6819BF00DAD08F /* SideBarNotiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarNotiCell.swift; sourceTree = "<group>"; };
 		3E381CC11C684C9100DAD08F /* AssNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssNAVI.swift; sourceTree = "<group>"; };
-		3E381CC31C68E97300DAD08F /* ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		3E381CC51C69727100DAD08F /* AssTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssTopicCell.swift; sourceTree = "<group>"; };
 		3E381CC71C69A03E00DAD08F /* AssAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssAnswerCell.swift; sourceTree = "<group>"; };
 		3E3C63D51BCAD7FE008AE62D /* AddHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHWViewController.swift; sourceTree = "<group>"; };
@@ -230,7 +247,7 @@
 		3E3CD4341C3393800071DE06 /* ViewPhotoAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPhotoAnswerCell.swift; sourceTree = "<group>"; };
 		3E3CD4361C3394E20071DE06 /* ViewPhotoAnswerPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPhotoAnswerPhotoCell.swift; sourceTree = "<group>"; };
 		3E3CD4381C33999C0071DE06 /* ViewPhotoAnswerMoreOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPhotoAnswerMoreOptions.swift; sourceTree = "<group>"; };
-		3E3FC0111BB7B30100E6D4B8 /* AssignmentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentsTableViewController.swift; sourceTree = "<group>"; };
+		3E3FC0111BB7B30100E6D4B8 /* oldAssignmentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = oldAssignmentsTableViewController.swift; sourceTree = "<group>"; };
 		3E3FC0131BB7B70C00E6D4B8 /* AssignmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentTableViewCell.swift; sourceTree = "<group>"; };
 		3E3FC0151BB7B74500E6D4B8 /* AssignmentHeaderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentHeaderViewCell.swift; sourceTree = "<group>"; };
 		3E3FC0171BB88E9D00E6D4B8 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +270,14 @@
 		3E4ABBF21C2F7A26001E8D15 /* notiNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notiNAVI.swift; sourceTree = "<group>"; };
 		3E4ABBF41C2F7BFD001E8D15 /* HomeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTVC.swift; sourceTree = "<group>"; };
 		3E4ABBF61C2F7C1D001E8D15 /* NotiTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiTVC.swift; sourceTree = "<group>"; };
+		3E4C69E21CFCF97500216815 /* EPConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EPConstants.swift; sourceTree = "<group>"; };
+		3E4C69E31CFCF97500216815 /* EPContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EPContact.swift; sourceTree = "<group>"; };
+		3E4C69E41CFCF97500216815 /* EPContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EPContactCell.swift; sourceTree = "<group>"; };
+		3E4C69E51CFCF97500216815 /* EPContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EPContactCell.xib; sourceTree = "<group>"; };
+		3E4C69E61CFCF97500216815 /* EPContactsPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EPContactsPicker.swift; sourceTree = "<group>"; };
+		3E4C69E71CFCF97500216815 /* EPExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EPExtensions.swift; sourceTree = "<group>"; };
+		3E4C69F01CFD274900216815 /* SearchClassMatesTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchClassMatesTVC.swift; sourceTree = "<group>"; };
+		3E4C69F21CFD382200216815 /* ClassmateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassmateCell.swift; path = Classes/ClassmateCell.swift; sourceTree = "<group>"; };
 		3E4E9DC31C4B363700CC5BFA /* CommyObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommyObject.swift; sourceTree = "<group>"; };
 		3E4E9DC51C4B60BA00CC5BFA /* aCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aCommentCell.swift; sourceTree = "<group>"; };
 		3E558C0B1BB39A90009E5170 /* Dac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -335,7 +360,7 @@
 		3EC0AA401C714DBA008566CB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		3EC0AA421C714DFE008566CB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3EC0AA441C7230E5008566CB /* OtherChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherChildViewController.swift; sourceTree = "<group>"; };
-		3EC0AA461C723B40008566CB /* OtherAssignmentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherAssignmentsTableViewController.swift; sourceTree = "<group>"; };
+		3EC0AA461C723B40008566CB /* oldOtherAssignmentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = oldOtherAssignmentsTableViewController.swift; sourceTree = "<group>"; };
 		3EC2455D1C6A58DF00F7288E /* AssAnswerPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssAnswerPicCell.swift; sourceTree = "<group>"; };
 		3EC4B7451C2E2D00000B878D /* proNAVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = proNAVI.swift; sourceTree = "<group>"; };
 		3EC4B7471C2E5666000B878D /* ProfileTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTVC.swift; sourceTree = "<group>"; };
@@ -350,10 +375,19 @@
 		3EE7D00A1C27065000DE2DA2 /* SearchTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchTVC.swift; path = ../SearchTVC.swift; sourceTree = "<group>"; };
 		3EE7D00C1C27088D00DE2DA2 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCell.swift; path = ../SearchCell.swift; sourceTree = "<group>"; };
 		3EE7D00E1C270E7700DE2DA2 /* ClassObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassObject.swift; sourceTree = "<group>"; };
-		3EF323E61C65971500D1EA57 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
-		3EF323E71C65971600D1EA57 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		3EED10A21CC88F02009ABE39 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		3EED10A31CC88F02009ABE39 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		3EED10AA1CC894A1009ABE39 /* AssignmentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentsTableViewController.swift; sourceTree = "<group>"; };
+		3EED10AB1CC894A1009ABE39 /* ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
+		3EED10AC1CC894A1009ABE39 /* OtherAssignmentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherAssignmentsTableViewController.swift; sourceTree = "<group>"; };
+		3EF323E61C65971500D1EA57 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "/Users/LyndonMcKay/Desktop/Business/DAC:HWClub/HWClub/Realm.framework"; sourceTree = "<absolute>"; };
+		3EF323E71C65971600D1EA57 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "/Users/LyndonMcKay/Desktop/Business/DAC:HWClub/HWClub/RealmSwift.framework"; sourceTree = "<absolute>"; };
 		3EF323EA1C65979F00D1EA57 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3EF323F21C66C7DE00D1EA57 /* OldHomeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldHomeTVC.swift; sourceTree = "<group>"; };
+		A0861CB641FBA0E4B60C1E5D /* Pods-Dac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dac/Pods-Dac.debug.xcconfig"; sourceTree = "<group>"; };
+		C0FA850507779C252B0A2DF5 /* Pods-Dac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dac.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dac/Pods-Dac.release.xcconfig"; sourceTree = "<group>"; };
+		CB2202A5B9C24C3B9CAD3D18 /* Pods-Dac.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dac.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-Dac/Pods-Dac.adhoc.xcconfig"; sourceTree = "<group>"; };
+		D1317D90A2123F0699BE731E /* Pods-Dac.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dac.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-Dac/Pods-Dac.distribution.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -363,29 +397,32 @@
 			files = (
 				3EC0AA431C714DFE008566CB /* AVFoundation.framework in Frameworks */,
 				3EC0AA411C714DBA008566CB /* CoreMedia.framework in Frameworks */,
+				3EED10A81CC88F27009ABE39 /* RealmSwift.framework in Frameworks */,
 				3E558C521BB39BA2009E5170 /* QuartzCore.framework in Frameworks */,
 				3EC0AA3F1C714D95008566CB /* AdSupport.framework in Frameworks */,
 				3EC0AA3D1C714D81008566CB /* StoreKit.framework in Frameworks */,
 				3E558C541BB39BC3009E5170 /* SystemConfiguration.framework in Frameworks */,
 				3EC0AA3B1C714D4D008566CB /* CoreTelephony.framework in Frameworks */,
 				3EF323EB1C65979F00D1EA57 /* libc++.tbd in Frameworks */,
+				3EED10A61CC88F27009ABE39 /* Realm.framework in Frameworks */,
 				3EA92E101BDEF8690056B795 /* iAd.framework in Frameworks */,
 				3EF323EE1C659CC100D1EA57 /* RealmSwift.framework in Frameworks */,
 				3E558C581BB39BF4009E5170 /* libsqlite3.tbd in Frameworks */,
 				3E5718411C38427C00B98463 /* ParseUI.framework in Frameworks */,
+				3EED10A41CC88F02009ABE39 /* Realm.framework in Frameworks */,
 				3E558C561BB39BDF009E5170 /* libz.tbd in Frameworks */,
 				3EF323E81C65971600D1EA57 /* Realm.framework in Frameworks */,
 				3E558C4E1BB39B82009E5170 /* Security.framework in Frameworks */,
 				3E558C4C1BB39B74009E5170 /* CFNetwork.framework in Frameworks */,
 				3E558C4A1BB39B69009E5170 /* CoreLocation.framework in Frameworks */,
 				3E558C481BB39B57009E5170 /* CoreGraphics.framework in Frameworks */,
-				3EF323E91C65971600D1EA57 /* RealmSwift.framework in Frameworks */,
 				3E57183F1C38426300B98463 /* Parse.framework in Frameworks */,
 				3E558C461BB39B39009E5170 /* AudioToolbox.framework in Frameworks */,
-				3EF323EC1C659CC100D1EA57 /* Realm.framework in Frameworks */,
+				3EED10A51CC88F02009ABE39 /* RealmSwift.framework in Frameworks */,
 				3E5718431C38429A00B98463 /* Bolts.framework in Frameworks */,
 				3EC0AA391C714C51008566CB /* StartApp.framework in Frameworks */,
 				3E1BEB121C8AA89C00B3EBFE /* ElastiCode.framework in Frameworks */,
+				B19E8F9AEAC94D359776B8CE /* libPods-Dac.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +465,19 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		3E4C69E11CFCF97500216815 /* EPContactsPicker */ = {
+			isa = PBXGroup;
+			children = (
+				3E4C69E21CFCF97500216815 /* EPConstants.swift */,
+				3E4C69E31CFCF97500216815 /* EPContact.swift */,
+				3E4C69E41CFCF97500216815 /* EPContactCell.swift */,
+				3E4C69E51CFCF97500216815 /* EPContactCell.xib */,
+				3E4C69E61CFCF97500216815 /* EPContactsPicker.swift */,
+				3E4C69E71CFCF97500216815 /* EPExtensions.swift */,
+			);
+			path = EPContactsPicker;
+			sourceTree = "<group>";
+		};
 		3E558C021BB39A90009E5170 = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +493,7 @@
 				3EC0AA3C1C714D81008566CB /* StoreKit.framework */,
 				3EC0AA3A1C714D4C008566CB /* CoreTelephony.framework */,
 				3E0B39BC1C6C1AA8000E89EF /* HomeQuestionCell.swift */,
+				3E4C69F21CFD382200216815 /* ClassmateCell.swift */,
 				3E403D921C8D220D00415BB1 /* AnnotationViewController.swift */,
 				3E403D941C8D36A000415BB1 /* Classes */,
 				3E381CC51C69727100DAD08F /* AssTopicCell.swift */,
@@ -454,16 +505,18 @@
 				3EF323EA1C65979F00D1EA57 /* libc++.tbd */,
 				3EA92E0F1BDEF8690056B795 /* iAd.framework */,
 				3E558C551BB39BDF009E5170 /* libz.tbd */,
+				3EED10A21CC88F02009ABE39 /* Realm.framework */,
+				3EED10A31CC88F02009ABE39 /* RealmSwift.framework */,
 				3E5718421C38429A00B98463 /* Bolts.framework */,
 				3E5718401C38427C00B98463 /* ParseUI.framework */,
 				3E57183E1C38426300B98463 /* Parse.framework */,
 				3E558C571BB39BF4009E5170 /* libsqlite3.tbd */,
-				3EF323E61C65971500D1EA57 /* Realm.framework */,
-				3EF323E71C65971600D1EA57 /* RealmSwift.framework */,
 				3E558C0D1BB39A90009E5170 /* HWClub */,
 				3E558C221BB39A90009E5170 /* HWClubTests */,
 				3E558C2D1BB39A90009E5170 /* HWClubUITests */,
 				3E558C0C1BB39A90009E5170 /* Products */,
+				C91DA30B691173C9AB65BE6C /* Pods */,
+				B6E41953CBAF23AC9AB8EEC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -480,11 +533,15 @@
 		3E558C0D1BB39A90009E5170 /* HWClub */ = {
 			isa = PBXGroup;
 			children = (
+				3E4C69E11CFCF97500216815 /* EPContactsPicker */,
 				3E403DA21C90776100415BB1 /* MIBadgeButton.swift */,
+				3E4C69F01CFD274900216815 /* SearchClassMatesTVC.swift */,
 				3E403DA41C907D5600415BB1 /* ENMBadgedBarButtonItem.swift */,
-				3E381CC31C68E97300DAD08F /* ChildViewController.swift */,
 				3EC0AA441C7230E5008566CB /* OtherChildViewController.swift */,
-				3EC0AA461C723B40008566CB /* OtherAssignmentsTableViewController.swift */,
+				3EC0AA461C723B40008566CB /* oldOtherAssignmentsTableViewController.swift */,
+				3EED10AA1CC894A1009ABE39 /* AssignmentsTableViewController.swift */,
+				3EED10AB1CC894A1009ABE39 /* ChildViewController.swift */,
+				3EED10AC1CC894A1009ABE39 /* OtherAssignmentsTableViewController.swift */,
 				3E403D9D1C8D4E4E00415BB1 /* FC_AnnotationVC.swift */,
 				3E0B39B61C6B8E9C000E89EF /* AssQuestionCell.swift */,
 				3E6293161C41897C00C8473D /* CVCalendarKitOperators.swift */,
@@ -559,7 +616,7 @@
 				3E3FC0191BB8C83700E6D4B8 /* LoadingViewController.swift */,
 				3E3FC0171BB88E9D00E6D4B8 /* FeedbackViewController.swift */,
 				3E699AAD1C2F6BCE003BAF53 /* settingsNAVI.swift */,
-				3E3FC0111BB7B30100E6D4B8 /* AssignmentsTableViewController.swift */,
+				3E3FC0111BB7B30100E6D4B8 /* oldAssignmentsTableViewController.swift */,
 				3E1BEB0D1C8A0B6D00B3EBFE /* MemberObject.swift */,
 				3EA8476C1C4C5D6600EB8A25 /* NewLessonVC.swift */,
 				3E3FC0151BB7B74500E6D4B8 /* AssignmentHeaderViewCell.swift */,
@@ -637,9 +694,30 @@
 			children = (
 				3EA66E2D1C3C7AAE00FFDDF3 /* EnterUsernameVC.swift */,
 				3EA66E2F1C3C7AE800FFDDF3 /* EnterPasswordVC.swift */,
+				3E3516B91CF48DF40016C403 /* EnterCellViewController.swift */,
+				3E3516BB1CF48E8D0016C403 /* VerifyCodeViewController.swift */,
 				3EA66E311C3C7B0900FFDDF3 /* EnterEmailVC.swift */,
 			);
 			name = SignUpProducts;
+			sourceTree = "<group>";
+		};
+		B6E41953CBAF23AC9AB8EEC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B1A7B4D4BE1140F6BFF5CA /* libPods-Dac.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C91DA30B691173C9AB65BE6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A0861CB641FBA0E4B60C1E5D /* Pods-Dac.debug.xcconfig */,
+				C0FA850507779C252B0A2DF5 /* Pods-Dac.release.xcconfig */,
+				D1317D90A2123F0699BE731E /* Pods-Dac.distribution.xcconfig */,
+				CB2202A5B9C24C3B9CAD3D18 /* Pods-Dac.adhoc.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -649,11 +727,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E558C331BB39A90009E5170 /* Build configuration list for PBXNativeTarget "Dac" */;
 			buildPhases = (
+				1B1626554450494229962F8F /* Check Pods Manifest.lock */,
 				3E558C071BB39A90009E5170 /* Sources */,
 				3E558C081BB39A90009E5170 /* Frameworks */,
 				3E558C091BB39A90009E5170 /* Resources */,
 				3EF323F01C659CC200D1EA57 /* Embed Frameworks */,
 				3EF323F11C659E3C00D1EA57 /* ShellScript */,
+				0EA0C9622734F6A102FAA192 /* Embed Pods Frameworks */,
+				E9A30252D2968F0C8BF1501C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -761,6 +842,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E3FC01C1BB8DB4B00E6D4B8 /* Main.storyboard in Resources */,
+				3E4C69EB1CFCF97500216815 /* EPContactCell.xib in Resources */,
 				3E558C191BB39A90009E5170 /* LaunchScreen.storyboard in Resources */,
 				3E08D4BA1BB4F1BA0092EF8B /* menu@2x.png in Resources */,
 				3E08D4BB1BB4F1BA0092EF8B /* menu@3x.png in Resources */,
@@ -789,6 +871,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0EA0C9622734F6A102FAA192 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dac/Pods-Dac-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1B1626554450494229962F8F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		3EF323F11C659E3C00D1EA57 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -801,6 +913,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"\n";
+		};
+		E9A30252D2968F0C8BF1501C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dac/Pods-Dac-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -818,19 +945,24 @@
 				3EE57DF91C32582A0048B602 /* AnswerQHeaderCell.swift in Sources */,
 				3E558C111BB39A90009E5170 /* ViewController.swift in Sources */,
 				3EE0159E1BBB81F300F74966 /* MyClassesTableViewController.swift in Sources */,
+				3E4C69F11CFD274900216815 /* SearchClassMatesTVC.swift in Sources */,
 				3E381CBE1C6813AA00DAD08F /* SidebarMyClassCell.swift in Sources */,
 				3E5718451C38622700B98463 /* noMyClassCell.swift in Sources */,
 				3E381CC01C6819BF00DAD08F /* SideBarNotiCell.swift in Sources */,
-				3E3FC0121BB7B30100E6D4B8 /* AssignmentsTableViewController.swift in Sources */,
+				3E3FC0121BB7B30100E6D4B8 /* oldAssignmentsTableViewController.swift in Sources */,
 				3E4E9DC61C4B60BA00CC5BFA /* aCommentCell.swift in Sources */,
 				3E403DA51C907D5600415BB1 /* ENMBadgedBarButtonItem.swift in Sources */,
 				3E89323C1BBAF04300EB0217 /* AnswersTableViewController.swift in Sources */,
+				3E3516BC1CF48E8D0016C403 /* VerifyCodeViewController.swift in Sources */,
+				3E4C69E91CFCF97500216815 /* EPContact.swift in Sources */,
 				3E7B52FA1C5482BB001851FA /* HomeCellAnswer.swift in Sources */,
+				3E3516BA1CF48DF40016C403 /* EnterCellViewController.swift in Sources */,
 				3E8932341BBA013D00EB0217 /* QHeaderCell.swift in Sources */,
 				3E0B39B71C6B8E9C000E89EF /* AssQuestionCell.swift in Sources */,
 				3E3C63D61BCAD7FE008AE62D /* AddHWViewController.swift in Sources */,
 				3E403E021C9860CB00415BB1 /* oPostingCell.swift in Sources */,
 				3E7ADE101C34D3C400E1C1E4 /* ViewAnswerAllOptionsCell.swift in Sources */,
+				3EED10AD1CC894A1009ABE39 /* AssignmentsTableViewController.swift in Sources */,
 				3E495FAB1C4015A400C02C01 /* loadSETUPVC.swift in Sources */,
 				3EF323F31C66C7DE00D1EA57 /* OldHomeTVC.swift in Sources */,
 				3E3C95E31BC0A283006E7802 /* noIMGViewController.swift in Sources */,
@@ -842,6 +974,7 @@
 				3E699AAE1C2F6BCE003BAF53 /* settingsNAVI.swift in Sources */,
 				3E4ABBF51C2F7BFD001E8D15 /* HomeTVC.swift in Sources */,
 				3EB2C71E1C24F24100A308B3 /* AnswerObject.swift in Sources */,
+				3E4C69E81CFCF97500216815 /* EPConstants.swift in Sources */,
 				3E674B111BB41FCB0044B781 /* SwiftData.swift in Sources */,
 				3E0B39BB1C6C18F1000E89EF /* HomeAnswerCell.swift in Sources */,
 				3EA8476D1C4C5D6600EB8A25 /* NewLessonVC.swift in Sources */,
@@ -850,9 +983,11 @@
 				3E403DA31C90776100415BB1 /* MIBadgeButton.swift in Sources */,
 				3E6293181C41897C00C8473D /* CVCalendarKitOperators.swift in Sources */,
 				3EE0159C1BBB540300F74966 /* QuestionsTableViewController.swift in Sources */,
+				3E4C69EA1CFCF97500216815 /* EPContactCell.swift in Sources */,
 				3E5E09E61C3F61350020A73A /* SearchSchoolCell.swift in Sources */,
 				3E403D931C8D220E00415BB1 /* AnnotationViewController.swift in Sources */,
 				3E3FC0181BB88E9D00E6D4B8 /* FeedbackViewController.swift in Sources */,
+				3EED10AE1CC894A1009ABE39 /* ChildViewController.swift in Sources */,
 				3E403D9C1C8D36A000415BB1 /* SpotlightViewController.swift in Sources */,
 				3E403DA01C8DE53100415BB1 /* CreateClassCell.swift in Sources */,
 				3E5E09DC1C3F2E550020A73A /* SearchSchoolsTVC.swift in Sources */,
@@ -861,6 +996,7 @@
 				3EE7D00D1C27088D00DE2DA2 /* SearchCell.swift in Sources */,
 				3E3FC0161BB7B74500E6D4B8 /* AssignmentHeaderViewCell.swift in Sources */,
 				3E08D46D1BB429390092EF8B /* SCLAlertView.swift in Sources */,
+				3E4C69F31CFD382200216815 /* ClassmateCell.swift in Sources */,
 				3E381CC61C69727100DAD08F /* AssTopicCell.swift in Sources */,
 				3E5718471C38631200B98463 /* noFindCellClass.swift in Sources */,
 				3EE015A21BBCA79600F74966 /* AnswerIMGCell.swift in Sources */,
@@ -889,6 +1025,7 @@
 				3E6F226F1C37BBE1002D5802 /* UserData.swift in Sources */,
 				3E403D9B1C8D36A000415BB1 /* SpotlightView.swift in Sources */,
 				3EA66E321C3C7B0900FFDDF3 /* EnterEmailVC.swift in Sources */,
+				3EED10AF1CC894A1009ABE39 /* OtherAssignmentsTableViewController.swift in Sources */,
 				3E592EA71C2E63E000C0ABCF /* SettingsTVC.swift in Sources */,
 				3E558C0F1BB39A90009E5170 /* AppDelegate.swift in Sources */,
 				3E3CD4391C33999C0071DE06 /* ViewPhotoAnswerMoreOptions.swift in Sources */,
@@ -896,11 +1033,12 @@
 				3E57184B1C39CF3200B98463 /* WelcomeVC.swift in Sources */,
 				3E5E09E41C3F44A60020A73A /* AddStateTVC.swift in Sources */,
 				3E08D4B01BB4ED070092EF8B /* SWRevealViewController.m in Sources */,
-				3E381CC41C68E97300DAD08F /* ChildViewController.swift in Sources */,
 				3EE7D00F1C270E7700DE2DA2 /* ClassObject.swift in Sources */,
 				3EC4B7481C2E5666000B878D /* ProfileTVC.swift in Sources */,
 				3EE015A01BBB821300F74966 /* MyClassTableViewCell.swift in Sources */,
 				3E62931B1C418F9A00C8473D /* DateExtension.swift in Sources */,
+				3E4C69EC1CFCF97500216815 /* EPContactsPicker.swift in Sources */,
+				3E4C69ED1CFCF97500216815 /* EPExtensions.swift in Sources */,
 				3EE7D00B1C27065000DE2DA2 /* SearchTVC.swift in Sources */,
 				3E381CC81C69A03E00DAD08F /* AssAnswerCell.swift in Sources */,
 				3E3CD4351C3393800071DE06 /* ViewPhotoAnswerCell.swift in Sources */,
@@ -921,7 +1059,7 @@
 				3E6F22691C362BE8002D5802 /* NotiCell1.swift in Sources */,
 				3E5E09DE1C3F30AD0020A73A /* FindSchoolsNAVI.swift in Sources */,
 				3E08D4B21BB4EEF80092EF8B /* SidebarViewController.swift in Sources */,
-				3EC0AA471C723B40008566CB /* OtherAssignmentsTableViewController.swift in Sources */,
+				3EC0AA471C723B40008566CB /* oldOtherAssignmentsTableViewController.swift in Sources */,
 				3E35AC081C1FD30D00169C2C /* findNAVI.swift in Sources */,
 				3E403E001C95AAD600415BB1 /* PostingOptionsCell.swift in Sources */,
 				3EA66E2E1C3C7AAE00FFDDF3 /* EnterUsernameVC.swift in Sources */,
@@ -1012,6 +1150,7 @@
 		};
 		3E40473E1C4F023F00F2EB14 /* adHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB2202A5B9C24C3B9CAD3D18 /* Pods-Dac.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1103,6 +1242,7 @@
 		};
 		3E434F131C5E765300AA0BFA /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1317D90A2123F0699BE731E /* Pods-Dac.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1240,6 +1380,7 @@
 		};
 		3E558C341BB39A90009E5170 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0861CB641FBA0E4B60C1E5D /* Pods-Dac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1268,6 +1409,7 @@
 		};
 		3E558C351BB39A90009E5170 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0FA850507779C252B0A2DF5 /* Pods-Dac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1290,6 +1432,7 @@
 				PRODUCT_NAME = Dac;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "HWClub-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};

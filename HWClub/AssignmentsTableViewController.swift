@@ -8,8 +8,9 @@
 
 import UIKit
 import Parse
+import MessageUI
 
-class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, Childing {
+class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, Childing, MFMessageComposeViewControllerDelegate, EPPickerDelegate {
 
    // let queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED.rawValue, 0)
 
@@ -23,6 +24,11 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     @IBOutlet var contine: UIView!
 
     @IBOutlet var ShowTipButton: UIButton!
+
+    
+    var Numbers = [String]()
+
+    var Invitees = [String]()
     
     var Classmates = [MemberObject]()
     
@@ -56,13 +62,11 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     var GroupChatID : String?  // For Say Something Button
     var ChatID : String?     // For Say Something Button
     
-    var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
+    var queue = NSOperationQueue()
 
     let dRed = UIColor(red: 234/255, green: 141/255, blue: 158/255, alpha: 1)
+    let dGreen = UIColor(red: 42/255, green: 182/255, blue: 172/255, alpha: 1)
 
-    var annotationViewController: AnnotationViewController?
-
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -327,7 +331,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         }
         if segue.identifier == "classToASS"{
             let vc : QuestionsTableViewController = segue.destinationViewController as! QuestionsTableViewController
-            if sgeControl == 1 || sgeControl == 0{
+            if sgeControl == 1 || sgeControl == 2{
                 let row = tableView.indexPathForSelectedRow!
                     .row - 1
                 
@@ -351,7 +355,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         
         if segue.identifier == "classQtoPVA"{
             let vc : ViewPhotoAnswerTVC = segue.destinationViewController as! ViewPhotoAnswerTVC
-            if sgeControl == 1 || sgeControl == 0{
+            if sgeControl == 1 || sgeControl == 2{
                 let row = tableView.indexPathForSelectedRow!.row - 1
                 
                 if theSchool != nil{
@@ -403,7 +407,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             if theSchool != nil{
                 vc.School = self.theSchool
             }
-            if sgeControl == 1 || sgeControl == 0{
+            if sgeControl == 1 || sgeControl == 2{
                 let row = tableView.indexPathForSelectedRow!.row - 1
                 
                 if  self.cPost[row].theAnswer != nil{
@@ -464,20 +468,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             if self.isFollowing == false{
                 vc.diko = "NotFollowing"
             }
-        }//assTOQ2
-        if segue.identifier == "assTOQ2"{
-            let vc : AddQuestionVC = segue.destinationViewController as! AddQuestionVC
-            
-            vc.theTopic = "Group Chat"
-            vc.theSchool = self.theSchool
-            vc.theClass = self.theClass
-            vc.theTeacher = self.theTeacher
-            vc.assID = self.GroupChatID
-            
-            if self.isFollowing == false{
-                vc.diko = "NotFollowing"
-            }
-        }//assTOQ2
+        }
         if segue.identifier == "assTVcToAnswer"{
             let vc : AddHWViewController = segue.destinationViewController as! AddHWViewController
             
@@ -494,21 +485,17 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             }
 
         }
-        if segue.identifier == "assTVcToAnswer2"{
-            let vc : AddHWViewController = segue.destinationViewController as! AddHWViewController
+        if segue.identifier == "teamInvite"{
+            let vc : SearchClassMatesTVC = segue.destinationViewController as! SearchClassMatesTVC
             
-            vc.naviTITLE.setTitle("Post", forState: .Normal)
-            vc.theClass = self.theClass
-            vc.theTeacher = self.theTeacher
-            vc.theSchool = self.theSchool
-            vc.theQuestion = "ChatHub"
-            vc.seger = "assTVcToAnswer"
-            vc.QuestionID = self.ChatID
-            vc.QuestionerID = "Su9eRf8ID"
-            if self.isFollowing == false{
-                vc.diko = "NotFollowing"
+            vc.School = self.theSchool
+            vc.theClass = self.theClass!
+            if self.proppie != nil{
+                vc.proppie = self.proppie!
             }
-            
+            if theTeacher != nil{
+                vc.theTeacher = self.theTeacher!
+            }
         }
         if segue.identifier == "classToAnswer"{
             // Send AnswerID Over
@@ -517,7 +504,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             
             vc.theSchool = self.theSchool
             
-            if sgeControl == 1 || sgeControl == 0{
+            if sgeControl == 1 || sgeControl == 2{
                 let row = tableView.indexPathForSelectedRow!.row - 1
                 
                 if self.cPost[row].theClass != nil{
@@ -559,7 +546,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         else if segue.identifier == "iQ"{
             let vc: QuestionsTableViewController = segue.destinationViewController as! QuestionsTableViewController
             
-            if sgeControl == 1 || sgeControl == 0{
+            if sgeControl == 1 || sgeControl == 2{
                 let ASSS = tableView.indexPathForSelectedRow!.row - 1
                 if self.proppie != nil{
                     vc.proppie = self.proppie!
@@ -697,18 +684,6 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     }
     
     
-    @IBAction func ShowTip(sender: AnyObject) {
-        presentAnnotation()
-    }
-    
-    func presentAnnotation() {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Annotation") as! AnnotationViewController
-        viewController.alpha = 0.5
-        presentViewController(viewController, animated: true, completion: nil)
-        annotationViewController = viewController
-    }
-    
-    
     
     
     func previewOP(){
@@ -815,7 +790,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         // #warning Incomplete implementation, return the number of rows
         
         if self.derp != "KLM"{
-            if sgeControl == 1 || sgeControl == 0{
+            if sgeControl == 1 || sgeControl == 2{
                 return cPost.count + 1
                 
             }else{
@@ -836,11 +811,11 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
 //            }
 //        
         }else{
-            if sgeControl == 1 || sgeControl == 0{
+            if sgeControl == 1 || sgeControl == 2{
                 return cPost.count + 1
 
             }else{
-                return cPost.count + 1// hpost array.count
+                return cPost.count // hpost array.count
             }
         }
 
@@ -944,7 +919,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
             
             let indexPathh = indexPath.row - 1
             
-            if sgeControl == 0 || sgeControl == 1 || sgeControl == 2{
+            if sgeControl == 1 || sgeControl == 2{
                 if indexPath.row == 0 && sgeControl == 1{
                     let cell : AssQuestionAskCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionAskCell", forIndexPath: indexPath) as! AssQuestionAskCell
                     tableView.rowHeight = 51
@@ -952,17 +927,6 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                 }else if indexPath.row == 0 && sgeControl == 2{
                     let cell : AssAddTopicCell = tableView.dequeueReusableCellWithIdentifier("AssAddTopicCell", forIndexPath: indexPath) as! AssAddTopicCell
                     tableView.rowHeight = 51
-                    return cell
-                }else if indexPath.row == 0 && sgeControl == 0{
-                    let cell : PostingOptionsCell = tableView.dequeueReusableCellWithIdentifier("PostingOptionsCell", forIndexPath: indexPath) as! PostingOptionsCell
-                    if ChatID == nil{
-                        cell.PostButton.enabled = false
-                        cell.AskButton.enabled = false
-                    }else{
-                        cell.PostButton.enabled = true
-                        cell.AskButton.enabled = true
-                    }
-                    tableView.rowHeight = 63
                     return cell
                 }else{
                     if cPost[indexPathh].Type == "Ass"{
@@ -987,9 +951,6 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                         
                         tableView.rowHeight = UITableViewAutomaticDimension
                         tableView.estimatedRowHeight = 107
-                        if cPost[indexPathh].What == "ChatHub"{
-                            tableView.rowHeight = 0
-                        }
                         // New Assignments TableView
                         let cell : AssQuestionCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionCell", forIndexPath: indexPath) as! AssQuestionCell
                         cell.WHatLabel.text = cPost[indexPathh].What!
@@ -1009,11 +970,11 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
 
                         let cell : AssNewMemberCell = tableView.dequeueReusableCellWithIdentifier("newbieCell", forIndexPath: indexPath) as! AssNewMemberCell
                         
-                        if cPost[indexPathh].POSTERNAME != nil{
-                            cell.newMEMLabel.text = "\(cPost[indexPathh].POSTERNAME!) just joined the Class"
+                        if cPost[indexPath.row].POSTERNAME != nil{
+                            cell.newMEMLabel.text = "\(cPost[indexPath.row].POSTERNAME!) just joined the Class"
                         }
-                        if cPost[indexPathh].date != nil{
-                            cell.dateLabel.text = "\(dts(cPost[indexPathh].date!))"
+                        if cPost[indexPath.row].date != nil{
+                            cell.dateLabel.text = "\(dts(cPost[indexPath.row].date!))"
                         }
                         
                         return cell
@@ -1086,13 +1047,13 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                         return celli!
                     }
                 }
-            }else{
-//                if indexPath.row == 0{
-//                    let cell : PostingOptionsCell = tableView.dequeueReusableCellWithIdentifier("PostingOptionsCell", forIndexPath: indexPath) as! PostingOptionsCell
+//                }else{
+//                    let cell : AssAddTopicCell = tableView.dequeueReusableCellWithIdentifier("AssAddTopicCell", forIndexPath: indexPath) as! AssAddTopicCell
+//                    return cell
+//
 //                    
-//                    tableView.rowHeight = 63
 //                }
-                
+            }else{
                 if cPost[indexPath.row].Type == "Ass"{
                     
                     // New Assignments TableView
@@ -1115,9 +1076,6 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                     
                     tableView.rowHeight = UITableViewAutomaticDimension
                     tableView.estimatedRowHeight = 107
-                    if cPost[indexPathh].What == "ChatHub"{
-                        tableView.rowHeight = 0
-                    }
                     // New Assignments TableView
                     let cell : AssQuestionCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionCell", forIndexPath: indexPath) as! AssQuestionCell
                     cell.WHatLabel.text = cPost[indexPath.row].What!
@@ -2058,7 +2016,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
     
     
     func quickQuery(){
-        
+        var tqueue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
         let pp = PFQuery(className: "_User")
         pp.getObjectInBackgroundWithId((cUser?.objectId)!) { (first:PFObject?, error:NSError?) -> Void in
             if first != nil{
@@ -2069,7 +2027,7 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
                         print("Grabbed the ProfilePic")
                         //self.getPic(pp!)
                         self.proppie = pp!
-                        dispatch_async(self.queue) { () -> Void in
+                        dispatch_async(tqueue) { () -> Void in
 //                            self.UpdateProPIC()
                         }
                         print(pp)
@@ -2081,6 +2039,366 @@ class AssignmentsTableViewController: UITableViewController,AssignmentDelagate, 
         }
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Delegate Method
+    
+//    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+//        self.Invitees = controller.recipients!
+//
+//        switch result.rawValue {
+//            
+//        case MessageComposeResultCancelled.rawValue:
+//            print("Cancelled Message")
+//            
+//        case MessageComposeResultFailed.rawValue:
+//            print("Failed to send Message!")
+//            
+//        case MessageComposeResultSent.rawValue:
+//            print("Message Sent!")
+//
+//            
+//        default:
+//            break;
+//        }
+//            print(controller.recipients?.count)
+//            self.Invitees = controller.recipients!
+//            print(self.Invitees)
+//            print("Above Got it")
+//            
+//            for each in Invitees{
+//                print("Inviting...")
+//                var rick = getDigits(each)
+//                
+//                inviteUser(rick)
+//            }
+//        
+//        controller.dismissViewControllerAnimated(true, completion: nil)
+//    }
+//    
+    
+  
+    
+    
+    // Pushing Button
+    
+    
+    @IBAction func invitePressed(sender: AnyObject) {
+//        self.sendMessage()
+        var alert = SCLAlertView()
+        alert.addButton("Invite From Contacts") { 
+            self.showContacts()
+        }
+        alert.addButton("Invite Classmates") {
+            self.performSegueWithIdentifier("teamInvite", sender: self)
+            
+        }
+        alert.showCloseButton = false
+        alert.showInfo("Invite Friends", subTitle: "")
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Invitations
+    
+    func inviteUser(pNumber: String){
+        
+        print("Inviting \(pNumber)")
+        
+        let noti = PFObject(className: "Notifications")
+        noti["recieved"] = false
+        noti["PhoneNumber"] = pNumber
+        noti["notiType"] = "Invite"
+        noti["giverUserName"] = (cUser?.username)!
+        noti["School"] = self.theSchool!
+        noti["teacherName"] = self.theTeacher!
+        noti["classname"] = self.theClass!
+        noti["profilePic"] = self.proppie!
+        noti["thePic"] = self.proppie!  // setting this up to aviod error
+        
+        noti.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+            if (success == true){
+                print("Notified User, and Done")
+                
+                // SAVE FOR LATER, INVITE EXISTING USERS TO CLASS
+                //                    self.pushNotify(notiUserid)
+                
+            }else{
+                print(error?.description)
+            }
+        })
+    }
+    
+    func pushNotify(notifyThisOne: String){
+        // Find users near a given location
+        let userQuery = PFUser.query()
+        userQuery!.whereKey("objectId", equalTo: notifyThisOne)
+        
+        
+        // Find devices associated with these users
+        let pushQuery = PFInstallation.query()
+        //pushQuery!.whereKey("userID", equalTo: notifyThisOne)
+        pushQuery!.whereKey("user", matchesQuery: userQuery!)
+        
+        
+        // Send push notification to query
+        let push = PFPush()
+        push.setQuery(pushQuery) // Set our Installation query
+        push.setMessage("\(cUser!.username!) invited you to \(theClass!) with \(theTeacher!)")
+        push.sendPushInBackground()
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //MARK: EPContactsPicker delegates
+    func epContactPicker(_: EPContactsPicker, didContactFetchFailed error : NSError)
+    {
+        print("Failed with error \(error.description)")
+    }
+    
+    func epContactPicker(_: EPContactsPicker, didSelectContact contact : EPContact)
+    {
+        print("Contact \(contact.displayName()) has been selected")
+        // Append to Numbers
+        for each in contact.phoneNumbers{
+            print(each.phoneNumber)
+            print("Added: \(getDigits(each.phoneNumber)) to Numbers Array")
+            
+            // Run the numbers through getDigits Func
+            self.Numbers.append(getDigits(each.phoneNumber))
+            // Take Each and Append it to the Phone Numbers in the Notification Class
+            
+        }
+        self.DelayTime()
+    }
+    
+    func epContactPicker(_: EPContactsPicker, didCancel error : NSError)
+    {
+        print("User canceled the selection");
+        Numbers = []
+    }
+    
+    func epContactPicker(_: EPContactsPicker, didSelectMultipleContacts contacts: [EPContact]) {
+        print("The following contacts are selected")
+        for contact in contacts {
+            print("\(contact.displayName())")
+            for each in contact.phoneNumbers{
+                print(each.phoneNumber)
+                
+                print("Added: \(getDigits(each.phoneNumber)) to Numbers Array")
+                // Run the numbers through getDigits Func
+                self.Numbers.append(getDigits(each.phoneNumber))
+                
+            }
+            //            print(contact.phoneNumbers[0].phoneNumber)
+            print("")
+        }
+        
+        self.DelayTime()
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Present Contacts List
+    func showContacts(){
+        
+        let contactPickerScene = EPContactsPicker(delegate: self, multiSelection:true, subtitleCellType: SubtitleCellValue.PhoneNumer)
+        let navigationController = UINavigationController(rootViewController: contactPickerScene)
+        navigationController.navigationBar.barTintColor = self.dGreen
+        self.presentViewController(navigationController, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    // Delay Time
+    
+    func DelayTime(){
+        let triggerTime = (Int64(NSEC_PER_SEC) * 1)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+            self.sendMessage()
+        })
+        
+    }
+    
+    
+    
+    
+    
+    
+    // Send a message
+    func sendMessage() {
+        let messageVC = MFMessageComposeViewController()
+        messageVC.body = "Hey, Come Check Out the \(self.theClass!) GroupChat on Dac. Download Dac: https://appsto.re/us/YSIyab.i"
+        messageVC.recipients = Numbers // Optionally add some tel numbers
+        messageVC.messageComposeDelegate = self
+        
+        presentViewController(messageVC, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    
+    // Conform to the protocol
+    // MARK: - Message Delegate method
+    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+        switch result.rawValue {
+        case MessageComposeResultCancelled.rawValue :
+            print("message canceled")
+            Numbers = []
+            
+        case MessageComposeResultFailed.rawValue :
+            print("message failed")
+            
+        case MessageComposeResultSent.rawValue :
+            print("message sent")
+            // Do Parse Function Here
+            self.fullInvite()
+            
+        default:
+            break
+        }
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    func getDigits(Num : String) -> String {
+        
+        let stringArray = Num.componentsSeparatedByCharactersInSet(
+            NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+        var newNum = stringArray.joinWithSeparator("")
+        
+        if newNum.characters.count == 10{
+            return "1\(newNum)"
+        }else{
+            return "\(newNum)"
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Full Parse Function
+    
+    func fullInvite(){
+        let parseOperation = NSBlockOperation(block: {
+            // Parse : Adding Notification
+            
+            self.sendInvites()
+            
+        })
+        parseOperation.completionBlock = {
+            print("Parse Invite Complete!")
+            // Stop Loading Activity Sign
+            
+        }
+        
+        queue.addOperation(parseOperation)
+    }
+    
+    
+    
+    
+    // Parse Notifications
+    //Test This
+    func sendInvites(){
+        let cUser = PFUser.currentUser()
+        
+        let noti = PFObject(className: "Notifications")
+        noti["recieved"] = false
+        noti["PhoneNumbers"] = Numbers
+        noti["notiType"] = "Invite"
+        noti["giverUserName"] = "\((cUser!.username)!)"
+        if theSchool != nil{
+            noti["School"] = self.theSchool!
+        }
+        if theClass != nil{
+            noti["classname"] = self.theClass!
+        }
+        if theTeacher != nil{
+            noti["teacherName"] = self.theTeacher!
+        }
+        noti["profilePic"] = proppie
+        noti["thePic"] = proppie  // setting this up to aviod error
+        // SCHOOL Doesn't matter for comments
+        noti.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+            if (success == true){
+                print("Notified User, and Done")
+            }else{
+                print(error?.description)
+            }
+        })
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //Segue, may not be needed
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     /*
     // Override to support conditional editing of the table view.

@@ -9,12 +9,15 @@
     
     import UIKit
     import Parse
-    
-    class OtherAssignmentsTableViewController: UITableViewController,AssignmentDelagate,Childing {
+    import MessageUI
+
+    class OtherAssignmentsTableViewController: UITableViewController,AssignmentDelagate,Childing, MFMessageComposeViewControllerDelegate {
         
         // let queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED.rawValue, 0)
         
         @IBOutlet var TopTipButton: UIButton!
+        @IBOutlet var WalkthruBttn: UIButton!
+
         var refreshControlelol = UIRefreshControl()
         var proppie : PFFile?
         @IBOutlet var tableview: UITableView!
@@ -24,10 +27,9 @@
         @IBOutlet var OtherContine: UIView!
 //        @IBOutlet var contine: UIView!
         
-        @IBOutlet var WalkthruBttn: UIButton!
         
-        
-        
+        var Invitees = [String]()
+
         
         var sgeControl = 0
         var ToppyPosts = [FullClassPost]()
@@ -59,8 +61,6 @@
         var GroupChatID : String?  // For Say Something Button
         var ChatID : String?     // For Say Something Button
         
-        var annotationViewController: AnnotationViewController?
-
         var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
         
         let dRed = UIColor(red: 234/255, green: 141/255, blue: 158/255, alpha: 1)
@@ -78,8 +78,6 @@
         }
         override func viewDidLoad() {
             super.viewDidLoad()
-            
-            WalkthruBttn.sendActionsForControlEvents(.TouchUpInside)
             
             print("DERP")
             print("\(derp)")
@@ -159,8 +157,6 @@
             self.refreshControlelol.addTarget(self, action: "DidRefreshStrings", forControlEvents: UIControlEvents.ValueChanged)
             
             
-            
-            
         }
         
         
@@ -197,21 +193,6 @@
             print("REFRESHED")
         }
         
-        
-        
-        
-        
-        
-        @IBAction func buttonPressed(sender: AnyObject) {
-//            presentAnnotation()
-        }
-        
-        func presentAnnotation() {
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Annotation") as! AnnotationViewController
-            viewController.alpha = 0.5
-            presentViewController(viewController, animated: true, completion: nil)
-            annotationViewController = viewController
-        }
         
         @IBAction func unwindSegOtherASS(segue:UIStoryboardSegue){
             cachedPosts.removeAll()
@@ -261,32 +242,6 @@
         
         
         
-        
-        
-        @IBAction func ShowTip(sender: AnyObject) {
-            print("Show Tips")
-            var tipAlert =  SCLAlertView()
-            
-            tipAlert.addButton("Yes Please!") { () -> Void in
-                print("Showing Walkthrough")
-                self.DisplayingWalkthrough()
-            }//🙏
-            
-            tipAlert.addButton("No, I got this 😎") { () -> Void in
-                print("Not Showing Walkthrough")
-            }
-            
-            tipAlert.showCloseButton = false
-            tipAlert.showInfo("Quick Walkthrough?", subTitle: "")
-            
-            
-        }
-        
-        func DisplayingWalkthrough(){
-            print("Displaying Walkthrough")
-            self.presentAnnotation()
-        }
-        
         override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             if segue.identifier == "onewLesson"{
                 let vc : NewLessonVC = segue.destinationViewController as! NewLessonVC
@@ -316,36 +271,6 @@
                     vc.diko = "NotFollowing"
                 }
             }
-            if segue.identifier == "oassTVcToAnswer2"{
-                let vc : AddHWViewController = segue.destinationViewController as! AddHWViewController
-                
-                vc.naviTITLE.setTitle("Post", forState: .Normal)
-                vc.theClass = self.theClass
-                vc.theTeacher = self.theTeacher
-                vc.theSchool = self.theSchool
-                vc.theQuestion = "ChatHub"
-                vc.seger = "assTVcToAnswer"
-                vc.QuestionID = self.ChatID
-                vc.QuestionerID = "Su9eRf8ID"
-                if self.isFollowing == false{
-                    vc.diko = "NotFollowing"
-                }
-                
-            }
-            if segue.identifier == "oassTOQ2"{
-                let vc : AddQuestionVC = segue.destinationViewController as! AddQuestionVC
-                
-                vc.theTopic = "Group Chat"
-                vc.theSchool = self.theSchool
-                vc.theClass = self.theClass
-                vc.theTeacher = self.theTeacher
-                vc.assID = self.GroupChatID
-                
-                if self.isFollowing == false{
-                    vc.diko = "NotFollowing"
-                }
-            }//assTOQ2
-
             if segue.identifier == "omyAss"{
                 let vc : MyClassesTableViewController = segue.destinationViewController as! MyClassesTableViewController
             }
@@ -629,7 +554,6 @@
                             
                             let cvc = self.childViewControllers.first as! ChildViewController
                             let _ = cvc.allowSaySom()
-//                            self.allowSaySom()
                         }
                     }
                 }else{
@@ -875,7 +799,7 @@
             
         }
         
-//        oPostingCell
+        
         override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
             // Configure the cell...
@@ -970,7 +894,7 @@
                 
                 let indexPathh = indexPath.row - 1
                 
-                if sgeControl == 1 || sgeControl == 2 || sgeControl == 0{
+                if sgeControl == 1 || sgeControl == 2{
                     if indexPath.row == 0 && sgeControl == 1{
                         let cell : AssQuestionAskCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionAskCell", forIndexPath: indexPath) as! AssQuestionAskCell
                         tableView.rowHeight = 51
@@ -979,17 +903,6 @@
                         let cell : AssAddTopicCell = tableView.dequeueReusableCellWithIdentifier("AssAddTopicCell", forIndexPath: indexPath) as! AssAddTopicCell
                         tableView.rowHeight = 51
                         return cell
-                    }else if indexPath.row == 0 && sgeControl == 0{
-                            let cell : oPostingCell = tableView.dequeueReusableCellWithIdentifier("oPostingCell", forIndexPath: indexPath) as! oPostingCell
-                            if ChatID == nil{
-                                cell.PostButton.enabled = false
-                                cell.AskButton.enabled = false
-                            }else{
-                                cell.PostButton.enabled = true
-                                cell.AskButton.enabled = true
-                            }
-                            tableView.rowHeight = 63
-                            return cell
                     }else{
                         if cPost[indexPathh].Type == "Ass"{
                             
@@ -1012,9 +925,6 @@
                             
                             tableView.rowHeight = UITableViewAutomaticDimension
                             tableView.estimatedRowHeight = 107
-                            if cPost[indexPathh].What == "ChatHub"{
-                                tableView.rowHeight = 0
-                            }
                             // New Assignments TableView
                             let cell : AssQuestionCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionCell", forIndexPath: indexPath) as! AssQuestionCell
                             cell.WHatLabel.text = cPost[indexPathh].What!
@@ -1139,9 +1049,6 @@
                         
                         tableView.rowHeight = UITableViewAutomaticDimension
                         tableView.estimatedRowHeight = 107
-                        if cPost[indexPath.row].What == "ChatHub"{
-                            tableView.rowHeight = 0
-                        }
                         // New Assignments TableView
                         let cell : AssQuestionCell = tableView.dequeueReusableCellWithIdentifier("AssQuestionCell", forIndexPath: indexPath) as! AssQuestionCell
                         cell.WHatLabel.text = cPost[indexPath.row].What!
@@ -1434,7 +1341,7 @@
                     self.removeLoading30()
                     print(error?.description)
                 }else if let results = results  {
-//                    UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+                    UIApplication.sharedApplication().beginIgnoringInteractionEvents()
                     
                     var tiki : Int?
                     var cNum = results["numOfClasses"] as? Int
@@ -2085,6 +1992,144 @@
             }
             
         }
+        
+        
+        
+        
+        
+        
+        
+        // Send Message
+        
+        func sendMessage(){
+            let messageVC = MFMessageComposeViewController()
+            messageVC.body = "Hey, Come Join the HWClub: https://appsto.re/us/YSIyab.i"
+            messageVC.recipients = [] // Optionally Add Cell Phone Numbers
+            messageVC.messageComposeDelegate = self
+            
+            presentViewController(messageVC, animated: true, completion: nil)
+        }
+        
+        // Delegate Method
+        
+        func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+            switch result.rawValue {
+                
+            case MessageComposeResultCancelled.rawValue:
+                print("Cancelled Message")
+                
+            case MessageComposeResultFailed.rawValue:
+                print("Failed to send Message!")
+                
+            case MessageComposeResultSent.rawValue:
+                print("Message Sent!")
+                self.Invitees = controller.recipients!
+                print(self.Invitees)
+                print("Above Got it")
+                
+                for each in Invitees{
+                    var rick = getDigits(each)
+                    
+                    inviteUser(rick)
+                }
+                
+            default:
+                break;
+            }
+            
+            controller.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        
+        
+        func getDigits(Num : String) -> String {
+            
+            let stringArray = Num.componentsSeparatedByCharactersInSet(
+                NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+            var newNum = stringArray.joinWithSeparator("")
+            
+            
+            return "1\(newNum)"
+        }
+
+        
+        
+        
+        
+        
+        // Pushing Button
+        
+        
+//        @IBAction func invitePressed(sender: AnyObject) {
+////            self.sendMessage()
+//            
+//        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        // Invitations
+        
+        func inviteUser(pNumber: String){
+            
+            print("Inviting \(pNumber)")
+            
+            let noti = PFObject(className: "Notifications")
+            noti["recieved"] = false
+            noti["PhoneNumber"] = pNumber
+            noti["notiType"] = "Invite"
+            noti["giverUserName"] = (cUser?.username)!
+            noti["School"] = self.theSchool!
+            noti["teacherName"] = self.theTeacher!
+            noti["classname"] = self.theClass!
+            noti["profilePic"] = self.proppie!
+            noti["thePic"] = self.proppie!  // setting this up to aviod error
+
+            noti.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+                if (success == true){
+                    print("Notified User, and Done")
+                    
+                    // SAVE FOR LATER, INVITE EXISTING USERS TO CLASS
+//                    self.pushNotify(notiUserid)
+                    
+                }else{
+                    print(error?.description)
+                }
+            })
+        }
+        
+        func pushNotify(notifyThisOne: String){
+            // Find users near a given location
+            let userQuery = PFUser.query()
+            userQuery!.whereKey("objectId", equalTo: notifyThisOne)
+            
+            
+            // Find devices associated with these users
+            let pushQuery = PFInstallation.query()
+            //pushQuery!.whereKey("userID", equalTo: notifyThisOne)
+            pushQuery!.whereKey("user", matchesQuery: userQuery!)
+            
+            
+            // Send push notification to query
+            let push = PFPush()
+            push.setQuery(pushQuery) // Set our Installation query
+            push.setMessage("\(cUser!.username!) invited you to \(theClass!) with \(theTeacher!)")
+            push.sendPushInBackground()
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
         
         /*
         // Override to support conditional editing of the table view.

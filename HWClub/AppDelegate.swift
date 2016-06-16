@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         queryNotiis()
         if let userId: String = userInfo["userID"] as? String {
             //let targetPhoto = PFObject(withoutDataWithClassName: "Photo", objectId: photoId)
-            let targetNoti = PFObject(withoutDataWithClassName: "Notifications", objectId: userId)
+            let targetNoti = PFObject(outDataWithClassName: "Notifications", objectId: userId)
             targetNoti.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
                 // Show photo view controller
                 if error != nil {

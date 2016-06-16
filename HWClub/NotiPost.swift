@@ -10,6 +10,7 @@ import Foundation
 import Parse
 
 class NotiPost {
+    var cellNumber : Int?
     dynamic var NotiID : String?
     dynamic var theSchool : String?
     dynamic var theTeacher : String?

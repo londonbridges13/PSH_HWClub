@@ -23,9 +23,9 @@ class HomeTVC: UITableViewController {
 
     @IBOutlet weak var newsletter: UIButton!
     
-    @IBOutlet var NewsletterButton: UIButton!
+//    @IBOutlet var NewsletterButton: UIButton!
     
-    
+//    @IBOutlet var NewsletterItemButton: UIBarButtonItem!
     
     
     
@@ -70,9 +70,15 @@ class HomeTVC: UITableViewController {
         super.viewDidLoad()
         
         
-        NewsletterButton.layer.cornerRadius = 15
-        NewsletterButton.frame.size.width = 30
+//        NewsletterButton.layer.cornerRadius = 15
+//        NewsletterButton.frame.size.width = 30
         
+        
+//        if self.revealViewController() != nil {
+//            NewsletterItemButton.target = self.revealViewController()
+//            NewsletterItemButton.action = "rightRevealToggle:"
+//            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+//        }
         
 //        self.newsletter.badgeEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 15)
 //        
