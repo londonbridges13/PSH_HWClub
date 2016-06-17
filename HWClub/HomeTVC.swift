@@ -11,8 +11,10 @@ import Parse
 import RealmSwift
 //import Realm
 import Foundation
+import MessageUI
 
-class HomeTVC: UITableViewController {
+
+class HomeTVC: UITableViewController,EPPickerDelegate, MFMessageComposeViewControllerDelegate {
     
     let realm = try! Realm()
 
@@ -28,7 +30,8 @@ class HomeTVC: UITableViewController {
 //    @IBOutlet var NewsletterItemButton: UIBarButtonItem!
     
     
-    
+    var Numbers = [String]()
+
     var theSay : String?
     var refreshControlelol = UIRefreshControl()
     var array : [String] = [String]()
@@ -60,6 +63,8 @@ class HomeTVC: UITableViewController {
     var School : String?
     var queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
     
+    let dGreen = UIColor(red: 42/255, green: 182/255, blue: 172/255, alpha: 1)
+
     
     override func viewDidDisappear(animated: Bool) {
         view.endEditing(true)
@@ -69,6 +74,7 @@ class HomeTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.alertInvite()
         
 //        NewsletterButton.layer.cornerRadius = 15
 //        NewsletterButton.frame.size.width = 30
@@ -99,7 +105,7 @@ class HomeTVC: UITableViewController {
         
         
         try! self.realm.write {
-            realm.deleteAll()
+//            realm.deleteAll()
         }
         
         
@@ -1542,6 +1548,182 @@ class HomeTVC: UITableViewController {
                 }
 
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Invitation Feature
+    
+    func alertInvite(){
+        let realm = try! Realm()
+        let asked = realm.objects(InviteCheck)
+        if asked.count == 0{
+            // Never asked User
+            print("Print yays")
+            askToInvite()
+            var didAsk = InviteCheck()
+            didAsk.asked = "yes"
+            try! realm.write({ 
+                realm.add(didAsk)
+            })
+        }else{
+            print("We Already Asked")
+        }
+        
+    }
+    
+    
+    func askToInvite(){
+        
+        var alert = SCLAlertView()
+        alert.addButton("Invite From Contacts") {
+            self.showContacts()
+        }
+        alert.addButton("Not Yet") {
+        }
+        alert.showCloseButton = false
+        alert.showInfo("Invite Friends", subTitle: "")
+        
+
+    }
+    
+    
+    func showContacts(){
+        
+        let contactPickerScene = EPContactsPicker(delegate: self, multiSelection:true, subtitleCellType: SubtitleCellValue.PhoneNumer)
+        let navigationController = UINavigationController(rootViewController: contactPickerScene)
+        navigationController.navigationBar.barTintColor = self.dGreen
+        self.presentViewController(navigationController, animated: true, completion: nil)
+    }
+
+    
+    
+    func DelayTime(){
+        let triggerTime = (Int64(NSEC_PER_MSEC) * 10)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+            self.sendMessage()
+        })
+        
+    }
+    
+    
+    
+    // Send a message
+    func sendMessage() {
+        let messageVC = MFMessageComposeViewController()
+        messageVC.body = "Hey, Come Check Out Dac. Download Dac: https://appsto.re/us/YSIyab.i"
+        messageVC.recipients = Numbers // Optionally add some tel numbers
+        messageVC.messageComposeDelegate = self
+        
+        presentViewController(messageVC, animated: true, completion: nil)
+        
+        
+    }
+
+    
+    
+    
+    
+    // Conform to the protocol
+    // MARK: - Message Delegate method
+    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+        switch result.rawValue {
+        case MessageComposeResultCancelled.rawValue :
+            print("message canceled")
+            Numbers = []
+            
+        case MessageComposeResultFailed.rawValue :
+            print("message failed")
+            
+        case MessageComposeResultSent.rawValue :
+            print("message sent")
+            // Do Parse Function Here
+            print("Sent Message")
+        default:
+            break
+        }
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    func getDigits(Num : String) -> String {
+        
+        let stringArray = Num.componentsSeparatedByCharactersInSet(
+            NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+        var newNum = stringArray.joinWithSeparator("")
+        
+        if newNum.characters.count == 10{
+            return "1\(newNum)"
+        }else{
+            return "\(newNum)"
+        }
+    }
+    
+    
+
+    
+    
+    
+    
+    // MARK: - EPContactsDelegate
+    //MARK: EPContactsPicker delegates
+    func epContactPicker(_: EPContactsPicker, didContactFetchFailed error : NSError)
+    {
+        print("Failed with error \(error.description)")
+    }
+    
+    func epContactPicker(_: EPContactsPicker, didSelectContact contact : EPContact)
+    {
+        print("Contact \(contact.displayName()) has been selected")
+        // Append to Numbers
+        for each in contact.phoneNumbers{
+            print(each.phoneNumber)
+            print("Added: \(getDigits(each.phoneNumber)) to Numbers Array")
+            
+            // Run the numbers through getDigits Func
+            self.Numbers.append(getDigits(each.phoneNumber))
+            // Take Each and Append it to the Phone Numbers in the Notification Class
+            
+        }
+        self.DelayTime()
+    }
+    
+    func epContactPicker(_: EPContactsPicker, didCancel error : NSError)
+    {
+        print("User canceled the selection");
+        Numbers = []
+    }
+    
+    func epContactPicker(_: EPContactsPicker, didSelectMultipleContacts contacts: [EPContact]) {
+        print("The following contacts are selected")
+        for contact in contacts {
+            print("\(contact.displayName())")
+            for each in contact.phoneNumbers{
+                print(each.phoneNumber)
+                
+                print("Added: \(getDigits(each.phoneNumber)) to Numbers Array")
+                // Run the numbers through getDigits Func
+                self.Numbers.append(getDigits(each.phoneNumber))
+                
+            }
+            //            print(contact.phoneNumbers[0].phoneNumber)
+            print("")
+        }
+        
+        self.DelayTime()
+        
+    }
+
+    
+    
     
     
     
